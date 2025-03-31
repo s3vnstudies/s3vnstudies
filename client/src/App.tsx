@@ -16,10 +16,11 @@ import CommunityPage from "@/pages/community-page";
 import ChatPage from "@/pages/chat-page";
 import ProfilePage from "@/pages/profile-page";
 import AuthPage from "@/pages/auth-page";
-import AdminPage from "@/pages/admin-page";
+import SelfHelpStudiesPage from "@/pages/self-help-studies-page";
 import FunGamesPage from "@/pages/fun-games-page";
 import PoliciesPage from "@/pages/policies-page";
 import MembershipPage from "@/pages/membership-page";
+import AdminPage from "@/pages/admin-page";
 import { ProtectedRoute } from "./lib/protected-route";
 import { AuthProvider } from "./hooks/use-auth";
 import { CartProvider } from "./hooks/use-cart";
@@ -35,15 +36,16 @@ function Router() {
       <Route path="/store" component={StorePage} />
       <Route path="/store/:id" component={ProductDetailPage} />
       <Route path="/cart" component={CartPage} />
-      <ProtectedRoute path="/checkout" component={CheckoutPage} />
+      <ProtectedRoute path="/checkout" component={() => <CheckoutPage />} />
       <Route path="/community" component={CommunityPage} />
-      <ProtectedRoute path="/chat" component={ChatPage} />
-      <ProtectedRoute path="/profile" component={ProfilePage} />
+      <ProtectedRoute path="/chat" component={() => <ChatPage />} />
+      <ProtectedRoute path="/profile" component={() => <ProfilePage />} />
       <Route path="/auth" component={AuthPage} />
-      <ProtectedRoute path="/admin" component={AdminPage} requiredMembership="vip" />
+      <Route path="/self-help-studies" component={SelfHelpStudiesPage} />
       <Route path="/fun-games" component={FunGamesPage} />
       <Route path="/policies" component={PoliciesPage} />
       <Route path="/membership" component={MembershipPage} />
+      <ProtectedRoute path="/admin" component={() => <AdminPage />} />
       <Route component={NotFound} />
     </Switch>
   );

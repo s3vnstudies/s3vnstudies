@@ -29,8 +29,8 @@ function requireAdmin(req: Request, res: Response, next: Function) {
     return res.status(401).json({ message: "Authentication required" });
   }
   
-  // For simplicity, we'll consider user ID 1 as admin
-  if (req.user && req.user.id === 1) {
+  // Admin access is restricted to VIP members
+  if (req.user && req.user.membershipTier === "vip") {
     next();
   } else {
     return res.status(403).json({ message: "Admin access required" });
@@ -242,8 +242,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Orders
   app.get("/api/orders", requireAuth, async (req, res) => {
     try {
+      // Make sure user ID is defined (requireAuth middleware ensures this)
+      const userId = req.user?.id;
+      if (!userId) {
+        return res.status(401).json({ message: "User not authenticated" });
+      }
+      
       // Get orders for the current user
-      const orders = await storage.getOrders(req.user?.id);
+      const orders = await storage.getOrders(userId);
       res.json(orders);
     } catch (err) {
       res.status(500).json({ message: "Failed to fetch orders" });
@@ -275,10 +281,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   app.post("/api/orders", requireAuth, async (req, res) => {
     try {
+      const userId = req.user?.id;
+      if (!userId) {
+        return res.status(401).json({ message: "User not authenticated" });
+      }
+      
       // Ensure user ID is set to the current user
       const orderData = insertOrderSchema.parse({
         ...req.body,
-        userId: req.user?.id
+        userId: userId
       });
       
       const order = await storage.createOrder(orderData);
@@ -318,9 +329,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   app.post("/api/chat/rooms", requireMembership("pro"), async (req, res) => {
     try {
+      const userId = req.user?.id;
+      if (!userId) {
+        return res.status(401).json({ message: "User not authenticated" });
+      }
+      
       const roomData = insertChatRoomSchema.parse({
         ...req.body,
-        createdBy: req.user?.id
+        createdBy: userId
       });
       
       const room = await storage.createChatRoom(roomData);
@@ -347,9 +363,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   app.post("/api/bulletin", requireAuth, async (req, res) => {
     try {
+      const userId = req.user?.id;
+      if (!userId) {
+        return res.status(401).json({ message: "User not authenticated" });
+      }
+      
       const postData = insertBulletinPostSchema.parse({
         ...req.body,
-        userId: req.user?.id
+        userId: userId
       });
       
       const post = await storage.createBulletinPost(postData);
@@ -462,7 +483,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Subscriptions
   app.get("/api/subscriptions", requireAuth, async (req, res) => {
     try {
-      const subscription = await storage.getSubscription(req.user?.id);
+      const userId = req.user?.id;
+      if (!userId) {
+        return res.status(401).json({ message: "User not authenticated" });
+      }
+      
+      const subscription = await storage.getSubscription(userId);
       res.json(subscription || null);
     } catch (err) {
       res.status(500).json({ message: "Failed to fetch subscription" });
@@ -471,13 +497,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   app.post("/api/subscriptions", requireAuth, async (req, res) => {
     try {
+      const userId = req.user?.id;
+      if (!userId) {
+        return res.status(401).json({ message: "User not authenticated" });
+      }
+      
       // Validate that tier is either pro or vip
       if (!['pro', 'vip'].includes(req.body.tier)) {
         return res.status(400).json({ message: "Invalid membership tier" });
       }
       
       // Check if user already has an active subscription
-      const existingSubscription = await storage.getSubscription(req.user?.id);
+      const existingSubscription = await storage.getSubscription(userId);
       
       if (existingSubscription) {
         // Update the existing subscription instead
@@ -492,7 +523,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Create a new subscription
       const subscriptionData = insertSubscriptionSchema.parse({
         ...req.body,
-        userId: req.user?.id
+        userId: userId
       });
       
       // Set end date to 30 days from now
@@ -512,8 +543,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   app.delete("/api/subscriptions/:id", requireAuth, async (req, res) => {
     try {
+      const userId = req.user?.id;
+      if (!userId) {
+        return res.status(401).json({ message: "User not authenticated" });
+      }
+      
       const id = parseInt(req.params.id);
-      const subscription = await storage.getSubscription(req.user?.id);
+      const subscription = await storage.getSubscription(userId);
       
       if (!subscription || subscription.id !== id) {
         return res.status(404).json({ message: "Subscription not found" });
@@ -534,7 +570,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // User Profile
   app.get("/api/profile", requireAuth, async (req, res) => {
     try {
-      const user = await storage.getUser(req.user?.id);
+      const userId = req.user?.id;
+      if (!userId) {
+        return res.status(401).json({ message: "User not authenticated" });
+      }
+      
+      const user = await storage.getUser(userId);
       
       if (!user) {
         return res.status(404).json({ message: "User not found" });
@@ -551,6 +592,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   app.put("/api/profile", requireAuth, async (req, res) => {
     try {
+      const userId = req.user?.id;
+      if (!userId) {
+        return res.status(401).json({ message: "User not authenticated" });
+      }
+      
       // Only allow updating certain fields
       const allowedFields = ['displayName', 'bio', 'avatarUrl'];
       const updateData: any = {};
@@ -561,7 +607,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       }
       
-      const updatedUser = await storage.updateUser(req.user?.id, updateData);
+      const updatedUser = await storage.updateUser(userId, updateData);
       
       if (!updatedUser) {
         return res.status(404).json({ message: "User not found" });

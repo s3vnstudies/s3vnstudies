@@ -109,7 +109,8 @@ export function useWebSocket() {
 
   // Initialize WebSocket on component mount
   useEffect(() => {
-    connectWebSocket();
+    // Only connect when explicitly requested
+    // Don't auto-connect by default
     
     // Cleanup on unmount
     return () => {
@@ -147,6 +148,7 @@ export function useWebSocket() {
     rooms,
     currentRoom,
     joinRoom,
-    sendMessage
+    sendMessage,
+    connect: connectWebSocket
   };
 }

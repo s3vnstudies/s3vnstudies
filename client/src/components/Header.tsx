@@ -30,15 +30,15 @@ import {
 export default function Header() {
   const [location] = useLocation();
   const { user, logoutMutation } = useAuth();
-  const { cartItemsCount } = useCart();
+  const { totalItems } = useCart();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
+    { name: "Self Help", path: "/self-help-studies" },
     { name: "Articles", path: "/articles" },
     { name: "Videos", path: "/videos" },
-    { name: "Community", path: "/community" },
     { name: "Store", path: "/store" },
   ];
 
@@ -146,9 +146,9 @@ export default function Header() {
           <Link href="/store/cart">
             <Button variant="ghost" size="icon" aria-label="Cart" className="relative">
               <ShoppingCart className="h-5 w-5" />
-              {cartItemsCount > 0 && (
+              {totalItems > 0 && (
                 <span className="absolute -top-2 -right-2 bg-accent text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-                  {cartItemsCount > 9 ? "9+" : cartItemsCount}
+                  {totalItems > 9 ? "9+" : totalItems}
                 </span>
               )}
             </Button>
@@ -161,9 +161,7 @@ export default function Header() {
                   <Avatar>
                     <AvatarImage src={user.avatarUrl || ""} />
                     <AvatarFallback>
-                      {getInitials(user.firstName && user.lastName 
-                        ? `${user.firstName} ${user.lastName}` 
-                        : user.username)}
+                      {getInitials(user.displayName || user.username)}
                     </AvatarFallback>
                   </Avatar>
                 </Button>
@@ -172,7 +170,7 @@ export default function Header() {
                 <DropdownMenuItem asChild>
                   <Link href="/profile">Profile</Link>
                 </DropdownMenuItem>
-                {user.role === "admin" && (
+                {user.membershipTier === "vip" && (
                   <DropdownMenuItem asChild>
                     <Link href="/admin">Admin Dashboard</Link>
                   </DropdownMenuItem>
