@@ -1,67 +1,64 @@
-import {
+import { 
   users, type User, type InsertUser,
+  contents, type Content, type InsertContent,
   products, type Product, type InsertProduct,
-  articles, type Article, type InsertArticle,
-  videos, type Video, type InsertVideo,
   chatRooms, type ChatRoom, type InsertChatRoom,
   chatMessages, type ChatMessage, type InsertChatMessage,
-  orders, type Order, type InsertOrder,
-  orderItems, type OrderItem,
   bulletinPosts, type BulletinPost, type InsertBulletinPost,
-  subscriptionTiers, type SubscriptionTier, type InsertSubscriptionTier
+  orders, type Order, type InsertOrder,
+  subscriptions, type Subscription, type InsertSubscription
 } from "@shared/schema";
-import session from "express-session";
 import createMemoryStore from "memorystore";
+import session from "express-session";
 
 const MemoryStore = createMemoryStore(session);
 
 export interface IStorage {
-  // User methods
+  // User operations
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   getUserByEmail(email: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
-  updateUser(id: number, user: Partial<User>): Promise<User | undefined>;
+  updateUser(id: number, userData: Partial<User>): Promise<User | undefined>;
   
-  // Product methods
-  getProducts(): Promise<Product[]>;
+  // Content operations
+  getContents(options?: { premium?: boolean, authorId?: number }): Promise<Content[]>;
+  getContent(id: number): Promise<Content | undefined>;
+  createContent(content: InsertContent): Promise<Content>;
+  updateContent(id: number, contentData: Partial<Content>): Promise<Content | undefined>;
+  deleteContent(id: number): Promise<boolean>;
+  
+  // Product operations
+  getProducts(options?: { category?: string, onSale?: boolean }): Promise<Product[]>;
   getProduct(id: number): Promise<Product | undefined>;
-  getProductsByCategory(category: string): Promise<Product[]>;
   createProduct(product: InsertProduct): Promise<Product>;
-  updateProduct(id: number, product: Partial<Product>): Promise<Product | undefined>;
+  updateProduct(id: number, productData: Partial<Product>): Promise<Product | undefined>;
+  deleteProduct(id: number): Promise<boolean>;
   
-  // Article methods
-  getArticles(isPremium?: boolean): Promise<Article[]>;
-  getArticle(id: number): Promise<Article | undefined>;
-  getArticlesByCategory(category: string): Promise<Article[]>;
-  createArticle(article: InsertArticle): Promise<Article>;
-  
-  // Video methods
-  getVideos(isPremium?: boolean): Promise<Video[]>;
-  getVideo(id: number): Promise<Video | undefined>;
-  createVideo(video: InsertVideo): Promise<Video>;
-  
-  // Chat methods
+  // Chat operations
   getChatRooms(): Promise<ChatRoom[]>;
   getChatRoom(id: number): Promise<ChatRoom | undefined>;
-  createChatRoom(chatRoom: InsertChatRoom): Promise<ChatRoom>;
+  createChatRoom(room: InsertChatRoom): Promise<ChatRoom>;
   getChatMessages(roomId: number): Promise<ChatMessage[]>;
   createChatMessage(message: InsertChatMessage): Promise<ChatMessage>;
   
-  // Order methods
-  getOrders(userId: number): Promise<Order[]>;
-  getOrder(id: number): Promise<Order | undefined>;
-  createOrder(order: InsertOrder): Promise<Order>;
-  getOrderItems(orderId: number): Promise<OrderItem[]>;
-  
-  // Bulletin methods
+  // Bulletin operations
   getBulletinPosts(): Promise<BulletinPost[]>;
   getBulletinPost(id: number): Promise<BulletinPost | undefined>;
   createBulletinPost(post: InsertBulletinPost): Promise<BulletinPost>;
+  updateBulletinPost(id: number, postData: Partial<BulletinPost>): Promise<BulletinPost | undefined>;
+  deleteBulletinPost(id: number): Promise<boolean>;
   
-  // Subscription methods
-  getSubscriptionTiers(): Promise<SubscriptionTier[]>;
-  getSubscriptionTier(id: number): Promise<SubscriptionTier | undefined>;
+  // Order operations
+  getOrders(userId: number): Promise<Order[]>;
+  getOrder(id: number): Promise<Order | undefined>;
+  createOrder(order: InsertOrder): Promise<Order>;
+  updateOrder(id: number, orderData: Partial<Order>): Promise<Order | undefined>;
+  
+  // Subscription operations
+  getSubscription(userId: number): Promise<Subscription | undefined>;
+  createSubscription(subscription: InsertSubscription): Promise<Subscription>;
+  updateSubscription(userId: number, subscriptionData: Partial<Subscription>): Promise<Subscription | undefined>;
   
   // Session store
   sessionStore: session.SessionStore;
@@ -69,150 +66,81 @@ export interface IStorage {
 
 export class MemStorage implements IStorage {
   private users: Map<number, User>;
+  private contents: Map<number, Content>;
   private products: Map<number, Product>;
-  private articles: Map<number, Article>;
-  private videos: Map<number, Video>;
   private chatRooms: Map<number, ChatRoom>;
-  private chatMessages: Map<number, ChatMessage>;
-  private orders: Map<number, Order>;
-  private orderItems: Map<number, OrderItem>;
+  private chatMessages: Map<number, ChatMessage[]>;
   private bulletinPosts: Map<number, BulletinPost>;
-  private subscriptionTiers: Map<number, SubscriptionTier>;
-  
-  // IDs for auto-increment
-  private userIdCounter: number;
-  private productIdCounter: number;
-  private articleIdCounter: number;
-  private videoIdCounter: number;
-  private chatRoomIdCounter: number;
-  private chatMessageIdCounter: number;
-  private orderIdCounter: number;
-  private orderItemIdCounter: number;
-  private bulletinPostIdCounter: number;
-  private subscriptionTierIdCounter: number;
-  
+  private orders: Map<number, Order>;
+  private subscriptions: Map<number, Subscription>;
   sessionStore: session.SessionStore;
+  
+  private currentIds: {
+    users: number;
+    contents: number;
+    products: number;
+    chatRooms: number;
+    chatMessages: number;
+    bulletinPosts: number;
+    orders: number;
+    subscriptions: number;
+  };
 
   constructor() {
     this.users = new Map();
+    this.contents = new Map();
     this.products = new Map();
-    this.articles = new Map();
-    this.videos = new Map();
     this.chatRooms = new Map();
     this.chatMessages = new Map();
-    this.orders = new Map();
-    this.orderItems = new Map();
     this.bulletinPosts = new Map();
-    this.subscriptionTiers = new Map();
+    this.orders = new Map();
+    this.subscriptions = new Map();
     
-    this.userIdCounter = 1;
-    this.productIdCounter = 1;
-    this.articleIdCounter = 1;
-    this.videoIdCounter = 1;
-    this.chatRoomIdCounter = 1;
-    this.chatMessageIdCounter = 1;
-    this.orderIdCounter = 1;
-    this.orderItemIdCounter = 1;
-    this.bulletinPostIdCounter = 1;
-    this.subscriptionTierIdCounter = 1;
+    this.currentIds = {
+      users: 1,
+      contents: 1,
+      products: 1,
+      chatRooms: 1,
+      chatMessages: 1,
+      bulletinPosts: 1,
+      orders: 1,
+      subscriptions: 1
+    };
     
     this.sessionStore = new MemoryStore({
-      checkPeriod: 86400000 // prune expired entries every 24h
+      checkPeriod: 86400000, // prune expired entries every 24h
     });
     
-    // Initialize some default subscription tiers
-    this._initSubscriptionTiers();
-    
-    // Initialize a general chat room
-    this._initDefaultChatRoom();
+    // Initialize with some demo products
+    this.seedProducts();
   }
-  
-  // Helper method to initialize default subscription tiers
-  private async _initSubscriptionTiers() {
-    const basicTier: InsertSubscriptionTier = {
-      name: "Basic",
-      description: "Access to exclusive videos and community",
-      features: ["Access to exclusive videos", "Community chat access", "Monthly newsletter"],
-      monthlyPrice: "9.99",
-      isPopular: true
-    };
-    
-    const premiumTier: InsertSubscriptionTier = {
-      name: "Premium",
-      description: "Full access to all features and content",
-      features: ["Access to exclusive videos", "Community chat access", "Monthly newsletter", "Live Q&A sessions", "Early access to content"],
-      monthlyPrice: "19.99",
-      yearlyPrice: null,
-      isPopular: false
-    };
-    
-    const proTier: InsertSubscriptionTier = {
-      name: "Pro",
-      description: "Our best value annual plan with exclusive merchandise",
-      features: ["All Premium features", "Exclusive merchandise", "Private community access", "Priority support", "2 months free"],
-      monthlyPrice: "15.00", // equivalent to $179.99/year
-      yearlyPrice: "179.99",
-      isPopular: false
-    };
-    
-    await this.createSubscriptionTier(basicTier);
-    await this.createSubscriptionTier(premiumTier);
-    await this.createSubscriptionTier(proTier);
-  }
-  
-  // Helper method to initialize default chat room
-  private async _initDefaultChatRoom() {
-    // Create admin user if it doesn't exist
-    let adminId = 1;
-    if (!this.users.has(adminId)) {
-      const admin: InsertUser = {
-        username: "admin",
-        password: "admin_hashed_password", // This would be hashed properly in production
-        email: "admin@s3vnstudies.com",
-        displayName: "Administrator",
-        bio: "Site Administrator",
-        avatar: null,
-      };
-      const adminUser = await this.createUser(admin);
-      adminId = adminUser.id;
-    }
-    
-    const generalRoom: InsertChatRoom = {
-      name: "General",
-      description: "General discussion for all members",
-      createdById: adminId,
-      isPrivate: false
-    };
-    
-    await this.createChatRoom(generalRoom);
-  }
-  
-  // User methods
+
+  // User operations
   async getUser(id: number): Promise<User | undefined> {
     return this.users.get(id);
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
     return Array.from(this.users.values()).find(
-      (user) => user.username.toLowerCase() === username.toLowerCase()
+      (user) => user.username === username,
     );
   }
   
   async getUserByEmail(email: string): Promise<User | undefined> {
     return Array.from(this.users.values()).find(
-      (user) => user.email.toLowerCase() === email.toLowerCase()
+      (user) => user.email === email,
     );
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const now = new Date();
-    const id = this.userIdCounter++;
+    const id = this.currentIds.users++;
+    const createdAt = new Date();
     const user: User = { 
       ...insertUser, 
       id, 
-      role: "member", 
-      subscription: "none", 
-      createdAt: now
+      role: "user", 
+      membershipTier: "free",
+      createdAt
     };
     this.users.set(id, user);
     return user;
@@ -227,27 +155,84 @@ export class MemStorage implements IStorage {
     return updatedUser;
   }
   
-  // Product methods
-  async getProducts(): Promise<Product[]> {
-    return Array.from(this.products.values());
+  // Content operations
+  async getContents(options?: { premium?: boolean, authorId?: number }): Promise<Content[]> {
+    let contents = Array.from(this.contents.values());
+    
+    if (options?.premium !== undefined) {
+      contents = contents.filter(content => content.premium === options.premium);
+    }
+    
+    if (options?.authorId !== undefined) {
+      contents = contents.filter(content => content.authorId === options.authorId);
+    }
+    
+    return contents;
+  }
+  
+  async getContent(id: number): Promise<Content | undefined> {
+    return this.contents.get(id);
+  }
+  
+  async createContent(content: InsertContent): Promise<Content> {
+    const id = this.currentIds.contents++;
+    const now = new Date();
+    const newContent: Content = {
+      ...content,
+      id,
+      createdAt: now,
+      updatedAt: now
+    };
+    this.contents.set(id, newContent);
+    return newContent;
+  }
+  
+  async updateContent(id: number, contentData: Partial<Content>): Promise<Content | undefined> {
+    const content = this.contents.get(id);
+    if (!content) return undefined;
+    
+    const updatedContent = { 
+      ...content, 
+      ...contentData,
+      updatedAt: new Date()
+    };
+    this.contents.set(id, updatedContent);
+    return updatedContent;
+  }
+  
+  async deleteContent(id: number): Promise<boolean> {
+    return this.contents.delete(id);
+  }
+  
+  // Product operations
+  async getProducts(options?: { category?: string, onSale?: boolean }): Promise<Product[]> {
+    let products = Array.from(this.products.values());
+    
+    if (options?.category) {
+      products = products.filter(product => product.category === options.category);
+    }
+    
+    if (options?.onSale !== undefined) {
+      products = products.filter(product => product.onSale === options.onSale);
+    }
+    
+    return products;
   }
   
   async getProduct(id: number): Promise<Product | undefined> {
     return this.products.get(id);
   }
   
-  async getProductsByCategory(category: string): Promise<Product[]> {
-    return Array.from(this.products.values()).filter(
-      product => product.category === category
-    );
-  }
-  
-  async createProduct(insertProduct: InsertProduct): Promise<Product> {
+  async createProduct(product: InsertProduct): Promise<Product> {
+    const id = this.currentIds.products++;
     const now = new Date();
-    const id = this.productIdCounter++;
-    const product: Product = { ...insertProduct, id, createdAt: now };
-    this.products.set(id, product);
-    return product;
+    const newProduct: Product = {
+      ...product,
+      id,
+      createdAt: now
+    };
+    this.products.set(id, newProduct);
+    return newProduct;
   }
   
   async updateProduct(id: number, productData: Partial<Product>): Promise<Product | undefined> {
@@ -259,70 +244,11 @@ export class MemStorage implements IStorage {
     return updatedProduct;
   }
   
-  // Article methods
-  async getArticles(isPremium?: boolean): Promise<Article[]> {
-    let articles = Array.from(this.articles.values());
-    
-    if (isPremium !== undefined) {
-      articles = articles.filter(article => article.isPremium === isPremium);
-    }
-    
-    return articles.sort((a, b) => 
-      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
+  async deleteProduct(id: number): Promise<boolean> {
+    return this.products.delete(id);
   }
   
-  async getArticle(id: number): Promise<Article | undefined> {
-    return this.articles.get(id);
-  }
-  
-  async getArticlesByCategory(category: string): Promise<Article[]> {
-    return Array.from(this.articles.values())
-      .filter(article => article.category === category)
-      .sort((a, b) => 
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-      );
-  }
-  
-  async createArticle(insertArticle: InsertArticle): Promise<Article> {
-    const now = new Date();
-    const id = this.articleIdCounter++;
-    const article: Article = { 
-      ...insertArticle, 
-      id, 
-      createdAt: now, 
-      updatedAt: now 
-    };
-    this.articles.set(id, article);
-    return article;
-  }
-  
-  // Video methods
-  async getVideos(isPremium?: boolean): Promise<Video[]> {
-    let videos = Array.from(this.videos.values());
-    
-    if (isPremium !== undefined) {
-      videos = videos.filter(video => video.isPremium === isPremium);
-    }
-    
-    return videos.sort((a, b) => 
-      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
-  }
-  
-  async getVideo(id: number): Promise<Video | undefined> {
-    return this.videos.get(id);
-  }
-  
-  async createVideo(insertVideo: InsertVideo): Promise<Video> {
-    const now = new Date();
-    const id = this.videoIdCounter++;
-    const video: Video = { ...insertVideo, id, createdAt: now };
-    this.videos.set(id, video);
-    return video;
-  }
-  
-  // Chat methods
+  // Chat operations
   async getChatRooms(): Promise<ChatRoom[]> {
     return Array.from(this.chatRooms.values());
   }
@@ -331,112 +257,193 @@ export class MemStorage implements IStorage {
     return this.chatRooms.get(id);
   }
   
-  async createChatRoom(insertChatRoom: InsertChatRoom): Promise<ChatRoom> {
+  async createChatRoom(room: InsertChatRoom): Promise<ChatRoom> {
+    const id = this.currentIds.chatRooms++;
     const now = new Date();
-    const id = this.chatRoomIdCounter++;
-    const chatRoom: ChatRoom = { ...insertChatRoom, id, createdAt: now };
-    this.chatRooms.set(id, chatRoom);
-    return chatRoom;
+    const newRoom: ChatRoom = {
+      ...room,
+      id,
+      createdAt: now
+    };
+    this.chatRooms.set(id, newRoom);
+    this.chatMessages.set(id, []);
+    return newRoom;
   }
   
   async getChatMessages(roomId: number): Promise<ChatMessage[]> {
-    return Array.from(this.chatMessages.values())
-      .filter(message => message.roomId === roomId)
-      .sort((a, b) => 
-        new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-      );
+    return this.chatMessages.get(roomId) || [];
   }
   
-  async createChatMessage(insertMessage: InsertChatMessage): Promise<ChatMessage> {
+  async createChatMessage(message: InsertChatMessage): Promise<ChatMessage> {
+    const id = this.currentIds.chatMessages++;
     const now = new Date();
-    const id = this.chatMessageIdCounter++;
-    const message: ChatMessage = { ...insertMessage, id, createdAt: now };
-    this.chatMessages.set(id, message);
-    return message;
-  }
-  
-  // Order methods
-  async getOrders(userId: number): Promise<Order[]> {
-    return Array.from(this.orders.values())
-      .filter(order => order.userId === userId)
-      .sort((a, b) => 
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-      );
-  }
-  
-  async getOrder(id: number): Promise<Order | undefined> {
-    return this.orders.get(id);
-  }
-  
-  async createOrder(insertOrder: InsertOrder): Promise<Order> {
-    const now = new Date();
-    const id = this.orderIdCounter++;
-    const order: Order = { 
-      ...insertOrder, 
-      id, 
-      status: "pending", 
-      createdAt: now, 
-      updatedAt: now 
+    const newMessage: ChatMessage = {
+      ...message,
+      id,
+      createdAt: now
     };
-    this.orders.set(id, order);
-    return order;
+    
+    const messages = this.chatMessages.get(message.roomId) || [];
+    messages.push(newMessage);
+    this.chatMessages.set(message.roomId, messages);
+    
+    return newMessage;
   }
   
-  async createOrderItem(orderId: number, productId: number, quantity: number, price: string): Promise<OrderItem> {
-    const id = this.orderItemIdCounter++;
-    const orderItem: OrderItem = { id, orderId, productId, quantity, price };
-    this.orderItems.set(id, orderItem);
-    return orderItem;
-  }
-  
-  async getOrderItems(orderId: number): Promise<OrderItem[]> {
-    return Array.from(this.orderItems.values())
-      .filter(item => item.orderId === orderId);
-  }
-  
-  // Bulletin methods
+  // Bulletin operations
   async getBulletinPosts(): Promise<BulletinPost[]> {
-    return Array.from(this.bulletinPosts.values())
-      .sort((a, b) => {
-        // Pinned posts first, then by date
-        if (a.isPinned && !b.isPinned) return -1;
-        if (!a.isPinned && b.isPinned) return 1;
-        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-      });
+    return Array.from(this.bulletinPosts.values());
   }
   
   async getBulletinPost(id: number): Promise<BulletinPost | undefined> {
     return this.bulletinPosts.get(id);
   }
   
-  async createBulletinPost(insertPost: InsertBulletinPost): Promise<BulletinPost> {
+  async createBulletinPost(post: InsertBulletinPost): Promise<BulletinPost> {
+    const id = this.currentIds.bulletinPosts++;
     const now = new Date();
-    const id = this.bulletinPostIdCounter++;
-    const post: BulletinPost = { 
-      ...insertPost, 
-      id, 
-      isPinned: false, 
-      createdAt: now, 
-      updatedAt: now 
+    const newPost: BulletinPost = {
+      ...post,
+      id,
+      createdAt: now,
+      updatedAt: now
     };
-    this.bulletinPosts.set(id, post);
-    return post;
+    this.bulletinPosts.set(id, newPost);
+    return newPost;
   }
   
-  // Subscription methods
-  async getSubscriptionTiers(): Promise<SubscriptionTier[]> {
-    return Array.from(this.subscriptionTiers.values());
+  async updateBulletinPost(id: number, postData: Partial<BulletinPost>): Promise<BulletinPost | undefined> {
+    const post = this.bulletinPosts.get(id);
+    if (!post) return undefined;
+    
+    const updatedPost = { 
+      ...post, 
+      ...postData,
+      updatedAt: new Date()
+    };
+    this.bulletinPosts.set(id, updatedPost);
+    return updatedPost;
   }
   
-  async getSubscriptionTier(id: number): Promise<SubscriptionTier | undefined> {
-    return this.subscriptionTiers.get(id);
+  async deleteBulletinPost(id: number): Promise<boolean> {
+    return this.bulletinPosts.delete(id);
   }
   
-  async createSubscriptionTier(insertTier: InsertSubscriptionTier): Promise<SubscriptionTier> {
-    const id = this.subscriptionTierIdCounter++;
-    const tier: SubscriptionTier = { ...insertTier, id };
-    this.subscriptionTiers.set(id, tier);
-    return tier;
+  // Order operations
+  async getOrders(userId: number): Promise<Order[]> {
+    return Array.from(this.orders.values())
+      .filter(order => order.userId === userId);
+  }
+  
+  async getOrder(id: number): Promise<Order | undefined> {
+    return this.orders.get(id);
+  }
+  
+  async createOrder(order: InsertOrder): Promise<Order> {
+    const id = this.currentIds.orders++;
+    const now = new Date();
+    const newOrder: Order = {
+      ...order,
+      id,
+      createdAt: now,
+      updatedAt: now
+    };
+    this.orders.set(id, newOrder);
+    return newOrder;
+  }
+  
+  async updateOrder(id: number, orderData: Partial<Order>): Promise<Order | undefined> {
+    const order = this.orders.get(id);
+    if (!order) return undefined;
+    
+    const updatedOrder = { 
+      ...order, 
+      ...orderData,
+      updatedAt: new Date()
+    };
+    this.orders.set(id, updatedOrder);
+    return updatedOrder;
+  }
+  
+  // Subscription operations
+  async getSubscription(userId: number): Promise<Subscription | undefined> {
+    return Array.from(this.subscriptions.values())
+      .find(sub => sub.userId === userId);
+  }
+  
+  async createSubscription(subscription: InsertSubscription): Promise<Subscription> {
+    const id = this.currentIds.subscriptions++;
+    const newSubscription: Subscription = {
+      ...subscription,
+      id
+    };
+    this.subscriptions.set(id, newSubscription);
+    return newSubscription;
+  }
+  
+  async updateSubscription(userId: number, subscriptionData: Partial<Subscription>): Promise<Subscription | undefined> {
+    const subscription = Array.from(this.subscriptions.values())
+      .find(sub => sub.userId === userId);
+    
+    if (!subscription) return undefined;
+    
+    const updatedSubscription = { ...subscription, ...subscriptionData };
+    this.subscriptions.set(subscription.id, updatedSubscription);
+    return updatedSubscription;
+  }
+  
+  // Seed data for development
+  private seedProducts() {
+    const demoProducts: InsertProduct[] = [
+      {
+        name: "Logo T-shirt",
+        description: "Comfortable cotton t-shirt with S3vn Studies logo.",
+        price: 2499, // $24.99
+        image: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1015&q=80",
+        category: "Apparel",
+        stock: 50,
+        isNew: true,
+        onSale: false,
+        originalPrice: null
+      },
+      {
+        name: "Coffee Mug",
+        description: "11oz ceramic mug with S3vn Studies logo.",
+        price: 1499, // $14.99
+        image: "https://images.unsplash.com/photo-1531693251400-38df35776dc7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80",
+        category: "Accessories",
+        stock: 30,
+        isNew: false,
+        onSale: false,
+        originalPrice: null
+      },
+      {
+        name: "Notebook Set",
+        description: "Set of 3 premium notebooks with S3vn Studies branding.",
+        price: 1999, // $19.99
+        image: "https://images.unsplash.com/photo-1572502489669-22655e92cbf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+        category: "Stationery",
+        stock: 25,
+        isNew: false,
+        onSale: false,
+        originalPrice: null
+      },
+      {
+        name: "Premium Hoodie",
+        description: "High-quality hoodie with embroidered S3vn Studies logo.",
+        price: 3999, // $39.99
+        image: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1372&q=80",
+        category: "Apparel",
+        stock: 20,
+        isNew: false,
+        onSale: true,
+        originalPrice: 4999 // $49.99
+      }
+    ];
+    
+    demoProducts.forEach(product => {
+      this.createProduct(product);
+    });
   }
 }
 

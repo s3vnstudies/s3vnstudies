@@ -1,117 +1,122 @@
-import { storage } from "./storage";
-import { InsertVideo } from "@shared/schema";
+import { Request, Response } from 'express';
 
-// YouTube channel ID
-const CHANNEL_ID = "s3vnstudies";
-
-export async function setupYoutubeApi() {
-  const apiKey = process.env.YOUTUBE_API_KEY || "";
-  
-  if (!apiKey) {
-    console.warn("YouTube API key not provided. YouTube integration is disabled.");
-    return;
-  }
-  
-  console.log("Setting up YouTube API integration...");
-  
-  // Start a periodic sync
-  syncYoutubeVideos(apiKey);
-  
-  // Set up a periodic sync every hour
-  setInterval(() => {
-    syncYoutubeVideos(apiKey);
-  }, 60 * 60 * 1000); // 1 hour
+interface YouTubeVideo {
+  id: string;
+  title: string;
+  description: string;
+  publishedAt: string;
+  thumbnails: {
+    default: { url: string; width: number; height: number };
+    medium: { url: string; width: number; height: number };
+    high: { url: string; width: number; height: number };
+  };
+  channelTitle: string;
+  channelId: string;
 }
 
-async function syncYoutubeVideos(apiKey: string) {
+// YouTube API key from environment variables
+const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY || '';
+const YOUTUBE_CHANNEL_ID = process.env.YOUTUBE_CHANNEL_ID || '@s3vnstudies';
+
+export async function getYouTubeVideos(req: Request, res: Response) {
   try {
-    console.log("Syncing YouTube videos...");
+    const channelId = req.query.channelId as string || YOUTUBE_CHANNEL_ID;
+    const maxResults = req.query.maxResults as string || '10';
     
-    // Fetch videos from YouTube API
-    const response = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&maxResults=50&order=date&type=video&key=${apiKey}`
-    );
+    // First get the channel info to extract the actual channel ID if provided with a custom URL
+    let actualChannelId = channelId;
     
-    if (!response.ok) {
-      console.error("Failed to fetch YouTube videos:", await response.text());
-      return;
-    }
-    
-    const data = await response.json();
-    const videos = data.items || [];
-    
-    // Get detailed video information including duration
-    for (const video of videos) {
-      try {
-        const videoId = video.id.videoId;
-        const title = video.snippet.title;
-        const description = video.snippet.description;
-        const thumbnailUrl = video.snippet.thumbnails.high.url;
-        const publishedAt = video.snippet.publishedAt;
-        
-        // Check if video already exists in our database
-        const existingVideo = await storage.getVideoByYoutubeId(videoId);
-        
-        if (!existingVideo) {
-          // Get video details including duration
-          const videoDetailsResponse = await fetch(
-            `https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=${videoId}&key=${apiKey}`
-          );
-          
-          if (!videoDetailsResponse.ok) {
-            console.error("Failed to fetch video details:", await videoDetailsResponse.text());
-            continue;
-          }
-          
-          const videoDetailsData = await videoDetailsResponse.json();
-          const videoDetails = videoDetailsData.items[0];
-          
-          // ISO 8601 duration format (e.g., PT1H2M3S)
-          const duration = videoDetails?.contentDetails?.duration || "";
-          
-          // Convert ISO 8601 duration to human-readable format
-          const readableDuration = formatDuration(duration);
-          
-          // Insert video into database
-          const videoData: InsertVideo = {
-            youtubeId: videoId,
-            title,
-            description,
-            thumbnailUrl,
-            duration: readableDuration,
-            publishedAt: new Date(publishedAt),
-            isPremium: false // By default, new videos are not premium
-          };
-          
-          await storage.createVideo(videoData);
-          console.log(`Added new video: ${title}`);
-        }
-      } catch (error) {
-        console.error("Error processing video:", error);
+    if (channelId.startsWith('@')) {
+      const channelResponse = await fetch(
+        `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(channelId)}&type=channel&key=${YOUTUBE_API_KEY}`
+      );
+      
+      if (!channelResponse.ok) {
+        throw new Error(`YouTube API error: ${channelResponse.statusText}`);
+      }
+      
+      const channelData = await channelResponse.json();
+      if (channelData.items && channelData.items.length > 0) {
+        actualChannelId = channelData.items[0].id.channelId;
+      } else {
+        return res.status(404).json({ message: 'Channel not found' });
       }
     }
     
-    console.log("YouTube video sync completed.");
+    // Fetch videos from the channel
+    const response = await fetch(
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${actualChannelId}&maxResults=${maxResults}&order=date&type=video&key=${YOUTUBE_API_KEY}`
+    );
+    
+    if (!response.ok) {
+      throw new Error(`YouTube API error: ${response.statusText}`);
+    }
+    
+    const data = await response.json();
+    
+    // Format response
+    const videos: YouTubeVideo[] = data.items.map((item: any) => ({
+      id: item.id.videoId,
+      title: item.snippet.title,
+      description: item.snippet.description,
+      publishedAt: item.snippet.publishedAt,
+      thumbnails: item.snippet.thumbnails,
+      channelTitle: item.snippet.channelTitle,
+      channelId: item.snippet.channelId
+    }));
+    
+    res.json({ videos });
   } catch (error) {
-    console.error("YouTube sync error:", error);
+    console.error('Error fetching YouTube videos:', error);
+    res.status(500).json({ 
+      message: 'Failed to fetch YouTube videos',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
   }
 }
 
-// Function to convert ISO 8601 duration to human-readable format
-function formatDuration(isoDuration: string): string {
-  const matches = isoDuration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
-  
-  if (!matches) {
-    return "";
+export async function getYouTubeVideoDetails(req: Request, res: Response) {
+  try {
+    const videoId = req.params.videoId;
+    
+    if (!videoId) {
+      return res.status(400).json({ message: 'Video ID is required' });
+    }
+    
+    const response = await fetch(
+      `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=${videoId}&key=${YOUTUBE_API_KEY}`
+    );
+    
+    if (!response.ok) {
+      throw new Error(`YouTube API error: ${response.statusText}`);
+    }
+    
+    const data = await response.json();
+    
+    if (!data.items || data.items.length === 0) {
+      return res.status(404).json({ message: 'Video not found' });
+    }
+    
+    const videoDetails = {
+      id: data.items[0].id,
+      title: data.items[0].snippet.title,
+      description: data.items[0].snippet.description,
+      publishedAt: data.items[0].snippet.publishedAt,
+      thumbnails: data.items[0].snippet.thumbnails,
+      channelTitle: data.items[0].snippet.channelTitle,
+      channelId: data.items[0].snippet.channelId,
+      viewCount: data.items[0].statistics.viewCount,
+      likeCount: data.items[0].statistics.likeCount,
+      commentCount: data.items[0].statistics.commentCount,
+      duration: data.items[0].contentDetails.duration
+    };
+    
+    res.json({ video: videoDetails });
+  } catch (error) {
+    console.error('Error fetching YouTube video details:', error);
+    res.status(500).json({ 
+      message: 'Failed to fetch YouTube video details',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
   }
-  
-  const hours = matches[1] ? parseInt(matches[1]) : 0;
-  const minutes = matches[2] ? parseInt(matches[2]) : 0;
-  const seconds = matches[3] ? parseInt(matches[3]) : 0;
-  
-  if (hours > 0) {
-    return `${hours}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-  }
-  
-  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
 }

@@ -1,474 +1,406 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { WebSocketServer, WebSocket } from "ws";
-import { storage } from "./storage";
 import { setupAuth } from "./auth";
+import { setupWebSocketServer } from "./websocket";
+import { storage } from "./storage";
 import { z } from "zod";
 import { 
-  insertArticleSchema, 
-  insertVideoSchema, 
-  insertProductSchema, 
-  insertChatRoomSchema, 
-  insertChatMessageSchema,
+  insertContentSchema,
+  insertProductSchema,
+  insertChatRoomSchema,
   insertBulletinPostSchema,
   insertOrderSchema,
-  ChatMessage
+  insertSubscriptionSchema
 } from "@shared/schema";
 
-// Interface for our WebSocket messages
-interface WSMessage {
-  type: string;
-  payload: any;
-}
-
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Set up authentication routes
+  // Set up authentication routes (/api/register, /api/login, /api/logout, /api/user)
   setupAuth(app);
-  
+
   // Create HTTP server
   const httpServer = createServer(app);
   
-  // Set up WebSocket server for chat
-  const wss = new WebSocketServer({ server: httpServer, path: '/ws' });
+  // Setup WebSocket server for chat
+  setupWebSocketServer(httpServer);
   
-  // Store active connections by user ID
-  const clients = new Map<number, WebSocket>();
+  // Content routes
+  app.get("/api/contents", async (req, res, next) => {
+    try {
+      const premium = req.query.premium === "true";
+      const authorId = req.query.authorId ? parseInt(req.query.authorId as string) : undefined;
+      
+      const contents = await storage.getContents({ premium, authorId });
+      res.json(contents);
+    } catch (err) {
+      next(err);
+    }
+  });
   
-  wss.on('connection', (ws, request) => {
-    ws.on('message', async (message) => {
-      try {
-        const parsedMessage = JSON.parse(message.toString()) as WSMessage;
-        
-        if (parsedMessage.type === 'auth') {
-          // Store user connection
-          const userId = parsedMessage.payload.userId;
-          if (userId) {
-            clients.set(userId, ws);
-          }
-        } else if (parsedMessage.type === 'chat_message') {
-          // Handle chat message
-          const { roomId, userId, content } = parsedMessage.payload;
-          
-          if (!roomId || !userId || !content) {
-            ws.send(JSON.stringify({
-              type: 'error',
-              payload: { message: 'Invalid message format' }
-            }));
-            return;
-          }
-          
-          // Validate user and room exist
-          const user = await storage.getUser(userId);
-          const room = await storage.getChatRoom(roomId);
-          
-          if (!user || !room) {
-            ws.send(JSON.stringify({
-              type: 'error',
-              payload: { message: 'User or room not found' }
-            }));
-            return;
-          }
-          
-          // Save message to storage
-          const newMessage = await storage.createChatMessage({
-            roomId,
-            userId,
-            content
-          });
-          
-          // Get full user info to send with message
-          const messageWithUser = {
-            ...newMessage,
-            user: {
-              id: user.id,
-              username: user.username,
-              displayName: user.displayName,
-              avatar: user.avatar
-            }
-          };
-          
-          // Broadcast to all connected clients
-          wss.clients.forEach((client) => {
-            if (client.readyState === WebSocket.OPEN) {
-              client.send(JSON.stringify({
-                type: 'new_message',
-                payload: messageWithUser
-              }));
-            }
-          });
-        } else if (parsedMessage.type === 'join_room') {
-          // Handle room joining
-          const { roomId, userId } = parsedMessage.payload;
-          
-          // Get chat history
-          const messages = await storage.getChatMessages(roomId);
-          
-          // Get user info for each message
-          const messagesWithUsers = await Promise.all(
-            messages.map(async (message) => {
-              const user = await storage.getUser(message.userId);
-              return {
-                ...message,
-                user: user ? {
-                  id: user.id,
-                  username: user.username,
-                  displayName: user.displayName,
-                  avatar: user.avatar
-                } : null
-              };
-            })
-          );
-          
-          // Send chat history to client
-          ws.send(JSON.stringify({
-            type: 'chat_history',
-            payload: {
-              roomId,
-              messages: messagesWithUsers
-            }
-          }));
-        }
-      } catch (error) {
-        console.error('WebSocket message error:', error);
-        ws.send(JSON.stringify({
-          type: 'error',
-          payload: { message: 'Invalid message format' }
-        }));
+  app.get("/api/contents/:id", async (req, res, next) => {
+    try {
+      const contentId = parseInt(req.params.id);
+      const content = await storage.getContent(contentId);
+      
+      if (!content) {
+        return res.status(404).json({ message: "Content not found" });
       }
-    });
+      
+      res.json(content);
+    } catch (err) {
+      next(err);
+    }
+  });
+  
+  app.post("/api/contents", async (req, res, next) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
     
-    ws.on('close', () => {
-      // Remove client from map when disconnected
-      for (const [userId, client] of clients.entries()) {
-        if (client === ws) {
-          clients.delete(userId);
-          break;
-        }
-      }
-    });
-  });
-  
-  // API Routes
-  
-  // Subscription Tiers
-  app.get('/api/subscription-tiers', async (req, res) => {
     try {
-      const tiers = await storage.getSubscriptionTiers();
-      res.json(tiers);
-    } catch (error) {
-      res.status(500).json({ message: 'Error fetching subscription tiers' });
-    }
-  });
-  
-  // Articles
-  app.get('/api/articles', async (req, res) => {
-    try {
-      const isPremium = req.query.premium === 'true';
-      let articles;
-      
-      if (req.query.premium !== undefined) {
-        articles = await storage.getArticles(isPremium);
-      } else {
-        articles = await storage.getArticles();
-      }
-      
-      // If not authenticated or not premium user, filter out premium content
-      if (!req.isAuthenticated() || (req.isAuthenticated() && req.user.subscription === 'none')) {
-        articles = articles.filter(article => !article.isPremium);
-      }
-      
-      res.json(articles);
-    } catch (error) {
-      res.status(500).json({ message: 'Error fetching articles' });
-    }
-  });
-  
-  app.get('/api/articles/:id', async (req, res) => {
-    try {
-      const id = parseInt(req.params.id);
-      const article = await storage.getArticle(id);
-      
-      if (!article) {
-        return res.status(404).json({ message: 'Article not found' });
-      }
-      
-      // Check if premium content is accessible
-      if (article.isPremium && (!req.isAuthenticated() || req.user.subscription === 'none')) {
-        return res.status(403).json({ message: 'Premium content requires subscription' });
-      }
-      
-      res.json(article);
-    } catch (error) {
-      res.status(500).json({ message: 'Error fetching article' });
-    }
-  });
-  
-  app.post('/api/articles', async (req, res) => {
-    try {
-      // Only admins can create articles
-      if (!req.isAuthenticated() || req.user.role !== 'admin') {
-        return res.status(403).json({ message: 'Not authorized' });
-      }
-      
-      const articleData = insertArticleSchema.parse(req.body);
-      const article = await storage.createArticle(articleData);
-      res.status(201).json(article);
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        return res.status(400).json({ message: 'Invalid article data', errors: error.errors });
-      }
-      res.status(500).json({ message: 'Error creating article' });
-    }
-  });
-  
-  // Videos
-  app.get('/api/videos', async (req, res) => {
-    try {
-      const isPremium = req.query.premium === 'true';
-      let videos;
-      
-      if (req.query.premium !== undefined) {
-        videos = await storage.getVideos(isPremium);
-      } else {
-        videos = await storage.getVideos();
-      }
-      
-      // If not authenticated or not premium user, filter out premium content
-      if (!req.isAuthenticated() || (req.isAuthenticated() && req.user.subscription === 'none')) {
-        videos = videos.filter(video => !video.isPremium);
-      }
-      
-      res.json(videos);
-    } catch (error) {
-      res.status(500).json({ message: 'Error fetching videos' });
-    }
-  });
-  
-  app.get('/api/videos/:id', async (req, res) => {
-    try {
-      const id = parseInt(req.params.id);
-      const video = await storage.getVideo(id);
-      
-      if (!video) {
-        return res.status(404).json({ message: 'Video not found' });
-      }
-      
-      // Check if premium content is accessible
-      if (video.isPremium && (!req.isAuthenticated() || req.user.subscription === 'none')) {
-        return res.status(403).json({ message: 'Premium content requires subscription' });
-      }
-      
-      res.json(video);
-    } catch (error) {
-      res.status(500).json({ message: 'Error fetching video' });
-    }
-  });
-  
-  app.post('/api/videos', async (req, res) => {
-    try {
-      // Only admins can create videos
-      if (!req.isAuthenticated() || req.user.role !== 'admin') {
-        return res.status(403).json({ message: 'Not authorized' });
-      }
-      
-      const videoData = insertVideoSchema.parse(req.body);
-      const video = await storage.createVideo(videoData);
-      res.status(201).json(video);
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        return res.status(400).json({ message: 'Invalid video data', errors: error.errors });
-      }
-      res.status(500).json({ message: 'Error creating video' });
-    }
-  });
-  
-  // Chat rooms
-  app.get('/api/chat-rooms', async (req, res) => {
-    try {
-      if (!req.isAuthenticated()) {
-        return res.status(401).json({ message: 'Authentication required' });
-      }
-      
-      const rooms = await storage.getChatRooms();
-      res.json(rooms);
-    } catch (error) {
-      res.status(500).json({ message: 'Error fetching chat rooms' });
-    }
-  });
-  
-  app.post('/api/chat-rooms', async (req, res) => {
-    try {
-      if (!req.isAuthenticated()) {
-        return res.status(401).json({ message: 'Authentication required' });
-      }
-      
-      const roomData = insertChatRoomSchema.parse({
+      const validatedData = insertContentSchema.parse({
         ...req.body,
-        createdById: req.user.id
+        authorId: req.user?.id
       });
       
-      const room = await storage.createChatRoom(roomData);
-      res.status(201).json(room);
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        return res.status(400).json({ message: 'Invalid chat room data', errors: error.errors });
-      }
-      res.status(500).json({ message: 'Error creating chat room' });
+      const content = await storage.createContent(validatedData);
+      res.status(201).json(content);
+    } catch (err) {
+      next(err);
     }
   });
   
-  // Chat messages - for initial loading (real-time happens over WebSocket)
-  app.get('/api/chat-rooms/:roomId/messages', async (req, res) => {
+  app.patch("/api/contents/:id", async (req, res, next) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
     try {
-      if (!req.isAuthenticated()) {
-        return res.status(401).json({ message: 'Authentication required' });
+      const contentId = parseInt(req.params.id);
+      const content = await storage.getContent(contentId);
+      
+      if (!content) {
+        return res.status(404).json({ message: "Content not found" });
       }
       
-      const roomId = parseInt(req.params.roomId);
-      const messages = await storage.getChatMessages(roomId);
+      // Only author or admin can update
+      if (content.authorId !== req.user?.id && req.user?.role !== "admin") {
+        return res.status(403).json({ message: "Not authorized" });
+      }
       
-      // Get user info for each message
-      const messagesWithUsers = await Promise.all(
-        messages.map(async (message) => {
-          const user = await storage.getUser(message.userId);
-          return {
-            ...message,
-            user: user ? {
-              id: user.id,
-              username: user.username,
-              displayName: user.displayName,
-              avatar: user.avatar
-            } : null
-          };
-        })
-      );
-      
-      res.json(messagesWithUsers);
-    } catch (error) {
-      res.status(500).json({ message: 'Error fetching chat messages' });
+      const updatedContent = await storage.updateContent(contentId, req.body);
+      res.json(updatedContent);
+    } catch (err) {
+      next(err);
     }
   });
   
-  // Products
-  app.get('/api/products', async (req, res) => {
+  app.delete("/api/contents/:id", async (req, res, next) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
     try {
-      const products = await storage.getProducts();
+      const contentId = parseInt(req.params.id);
+      const content = await storage.getContent(contentId);
+      
+      if (!content) {
+        return res.status(404).json({ message: "Content not found" });
+      }
+      
+      // Only author or admin can delete
+      if (content.authorId !== req.user?.id && req.user?.role !== "admin") {
+        return res.status(403).json({ message: "Not authorized" });
+      }
+      
+      await storage.deleteContent(contentId);
+      res.sendStatus(204);
+    } catch (err) {
+      next(err);
+    }
+  });
+  
+  // Product routes
+  app.get("/api/products", async (req, res, next) => {
+    try {
+      const category = req.query.category as string | undefined;
+      const onSale = req.query.onSale === "true" ? true : undefined;
+      
+      const products = await storage.getProducts({ category, onSale });
       res.json(products);
-    } catch (error) {
-      res.status(500).json({ message: 'Error fetching products' });
+    } catch (err) {
+      next(err);
     }
   });
   
-  app.get('/api/products/:id', async (req, res) => {
+  app.get("/api/products/:id", async (req, res, next) => {
     try {
-      const id = parseInt(req.params.id);
-      const product = await storage.getProduct(id);
+      const productId = parseInt(req.params.id);
+      const product = await storage.getProduct(productId);
       
       if (!product) {
-        return res.status(404).json({ message: 'Product not found' });
+        return res.status(404).json({ message: "Product not found" });
       }
       
       res.json(product);
-    } catch (error) {
-      res.status(500).json({ message: 'Error fetching product' });
+    } catch (err) {
+      next(err);
     }
   });
   
-  app.post('/api/products', async (req, res) => {
+  app.post("/api/products", async (req, res, next) => {
+    if (!req.isAuthenticated() || req.user?.role !== "admin") {
+      return res.status(403).json({ message: "Not authorized" });
+    }
+    
     try {
-      // Only admins can create products
-      if (!req.isAuthenticated() || req.user.role !== 'admin') {
-        return res.status(403).json({ message: 'Not authorized' });
+      const validatedData = insertProductSchema.parse(req.body);
+      const product = await storage.createProduct(validatedData);
+      res.status(201).json(product);
+    } catch (err) {
+      next(err);
+    }
+  });
+  
+  app.patch("/api/products/:id", async (req, res, next) => {
+    if (!req.isAuthenticated() || req.user?.role !== "admin") {
+      return res.status(403).json({ message: "Not authorized" });
+    }
+    
+    try {
+      const productId = parseInt(req.params.id);
+      const product = await storage.getProduct(productId);
+      
+      if (!product) {
+        return res.status(404).json({ message: "Product not found" });
       }
       
-      const productData = insertProductSchema.parse(req.body);
-      const product = await storage.createProduct(productData);
-      res.status(201).json(product);
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        return res.status(400).json({ message: 'Invalid product data', errors: error.errors });
-      }
-      res.status(500).json({ message: 'Error creating product' });
+      const updatedProduct = await storage.updateProduct(productId, req.body);
+      res.json(updatedProduct);
+    } catch (err) {
+      next(err);
     }
   });
   
-  // Bulletin board
-  app.get('/api/bulletin', async (req, res) => {
+  app.delete("/api/products/:id", async (req, res, next) => {
+    if (!req.isAuthenticated() || req.user?.role !== "admin") {
+      return res.status(403).json({ message: "Not authorized" });
+    }
+    
+    try {
+      const productId = parseInt(req.params.id);
+      await storage.deleteProduct(productId);
+      res.sendStatus(204);
+    } catch (err) {
+      next(err);
+    }
+  });
+  
+  // Chat room routes
+  app.get("/api/chat/rooms", async (req, res, next) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
+    try {
+      const rooms = await storage.getChatRooms();
+      res.json(rooms);
+    } catch (err) {
+      next(err);
+    }
+  });
+  
+  app.post("/api/chat/rooms", async (req, res, next) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
+    try {
+      const validatedData = insertChatRoomSchema.parse({
+        ...req.body,
+        createdBy: req.user?.id
+      });
+      
+      const room = await storage.createChatRoom(validatedData);
+      res.status(201).json(room);
+    } catch (err) {
+      next(err);
+    }
+  });
+  
+  app.get("/api/chat/rooms/:id/messages", async (req, res, next) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
+    try {
+      const roomId = parseInt(req.params.id);
+      const room = await storage.getChatRoom(roomId);
+      
+      if (!room) {
+        return res.status(404).json({ message: "Chat room not found" });
+      }
+      
+      const messages = await storage.getChatMessages(roomId);
+      res.json(messages);
+    } catch (err) {
+      next(err);
+    }
+  });
+  
+  // Bulletin board routes
+  app.get("/api/bulletin", async (req, res, next) => {
     try {
       const posts = await storage.getBulletinPosts();
       res.json(posts);
-    } catch (error) {
-      res.status(500).json({ message: 'Error fetching bulletin posts' });
+    } catch (err) {
+      next(err);
     }
   });
   
-  app.post('/api/bulletin', async (req, res) => {
+  app.post("/api/bulletin", async (req, res, next) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
     try {
-      if (!req.isAuthenticated()) {
-        return res.status(401).json({ message: 'Authentication required' });
-      }
-      
-      const postData = insertBulletinPostSchema.parse({
+      const validatedData = insertBulletinPostSchema.parse({
         ...req.body,
-        userId: req.user.id
+        userId: req.user?.id
       });
       
-      const post = await storage.createBulletinPost(postData);
+      const post = await storage.createBulletinPost(validatedData);
       res.status(201).json(post);
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        return res.status(400).json({ message: 'Invalid bulletin post data', errors: error.errors });
-      }
-      res.status(500).json({ message: 'Error creating bulletin post' });
+    } catch (err) {
+      next(err);
     }
   });
   
-  // Orders
-  app.get('/api/orders', async (req, res) => {
+  app.patch("/api/bulletin/:id", async (req, res, next) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
     try {
-      if (!req.isAuthenticated()) {
-        return res.status(401).json({ message: 'Authentication required' });
+      const postId = parseInt(req.params.id);
+      const post = await storage.getBulletinPost(postId);
+      
+      if (!post) {
+        return res.status(404).json({ message: "Post not found" });
       }
       
-      const orders = await storage.getOrders(req.user.id);
+      // Only author or admin can update
+      if (post.userId !== req.user?.id && req.user?.role !== "admin") {
+        return res.status(403).json({ message: "Not authorized" });
+      }
+      
+      const updatedPost = await storage.updateBulletinPost(postId, req.body);
+      res.json(updatedPost);
+    } catch (err) {
+      next(err);
+    }
+  });
+  
+  app.delete("/api/bulletin/:id", async (req, res, next) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
+    try {
+      const postId = parseInt(req.params.id);
+      const post = await storage.getBulletinPost(postId);
+      
+      if (!post) {
+        return res.status(404).json({ message: "Post not found" });
+      }
+      
+      // Only author or admin can delete
+      if (post.userId !== req.user?.id && req.user?.role !== "admin") {
+        return res.status(403).json({ message: "Not authorized" });
+      }
+      
+      await storage.deleteBulletinPost(postId);
+      res.sendStatus(204);
+    } catch (err) {
+      next(err);
+    }
+  });
+  
+  // Order routes
+  app.get("/api/orders", async (req, res, next) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
+    try {
+      const orders = await storage.getOrders(req.user?.id);
       res.json(orders);
-    } catch (error) {
-      res.status(500).json({ message: 'Error fetching orders' });
+    } catch (err) {
+      next(err);
     }
   });
   
-  app.post('/api/orders', async (req, res) => {
+  app.post("/api/orders", async (req, res, next) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
     try {
-      if (!req.isAuthenticated()) {
-        return res.status(401).json({ message: 'Authentication required' });
-      }
-      
-      const orderData = insertOrderSchema.parse({
+      const validatedData = insertOrderSchema.parse({
         ...req.body,
-        userId: req.user.id
+        userId: req.user?.id
       });
       
-      // In a real app, this would include payment processing
-      const order = await storage.createOrder(orderData);
-      
-      // Process order items
-      if (req.body.items && Array.isArray(req.body.items)) {
-        for (const item of req.body.items) {
-          await storage.createOrderItem(
-            order.id,
-            item.productId,
-            item.quantity,
-            item.price
-          );
-        }
-      }
-      
+      const order = await storage.createOrder(validatedData);
       res.status(201).json(order);
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        return res.status(400).json({ message: 'Invalid order data', errors: error.errors });
+    } catch (err) {
+      next(err);
+    }
+  });
+  
+  // Subscription routes
+  app.get("/api/subscription", async (req, res, next) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
+    try {
+      const subscription = await storage.getSubscription(req.user?.id);
+      
+      if (!subscription) {
+        return res.status(404).json({ message: "No active subscription" });
       }
-      res.status(500).json({ message: 'Error creating order' });
+      
+      res.json(subscription);
+    } catch (err) {
+      next(err);
+    }
+  });
+  
+  app.post("/api/subscription", async (req, res, next) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
+    try {
+      // Check if user already has a subscription
+      const existingSubscription = await storage.getSubscription(req.user?.id);
+      
+      if (existingSubscription) {
+        return res.status(400).json({ message: "User already has a subscription" });
+      }
+      
+      const validatedData = insertSubscriptionSchema.parse({
+        ...req.body,
+        userId: req.user?.id,
+        startDate: new Date(),
+        status: "active"
+      });
+      
+      const subscription = await storage.createSubscription(validatedData);
+      
+      // Update user's membership tier
+      await storage.updateUser(req.user?.id, { membershipTier: subscription.tier });
+      
+      res.status(201).json(subscription);
+    } catch (err) {
+      next(err);
+    }
+  });
+  
+  app.patch("/api/subscription", async (req, res, next) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
+    try {
+      const subscription = await storage.getSubscription(req.user?.id);
+      
+      if (!subscription) {
+        return res.status(404).json({ message: "No active subscription" });
+      }
+      
+      const updatedSubscription = await storage.updateSubscription(req.user?.id, req.body);
+      
+      // If tier is being updated, also update user's membership tier
+      if (req.body.tier) {
+        await storage.updateUser(req.user?.id, { membershipTier: req.body.tier });
+      }
+      
+      res.json(updatedSubscription);
+    } catch (err) {
+      next(err);
     }
   });
 

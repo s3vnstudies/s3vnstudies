@@ -1,42 +1,87 @@
-export type MembershipTier = 'free' | 'standard' | 'premium';
+export interface MembershipTier {
+  id: string;
+  name: string;
+  price: number;
+  interval: 'monthly' | 'yearly';
+  features: string[];
+  isPopular?: boolean;
+}
 
-export type SubscriptionStatus = 'active' | 'inactive' | 'cancelled' | 'expired';
-
-export type UserRole = 'user' | 'admin';
-
-export type OrderStatus = 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
-
-export interface OrderItem {
+export interface CartItem {
+  id: number;
   productId: number;
   name: string;
   price: number;
   quantity: number;
+  imageUrl: string;
 }
 
 export interface ShippingAddress {
   fullName: string;
-  address1: string;
-  address2?: string;
+  address: string;
   city: string;
   state: string;
   zipCode: string;
   country: string;
 }
 
-export interface CartItem extends OrderItem {
-  imageUrl: string;
+export interface PaymentMethod {
+  id: string;
+  type: 'credit_card' | 'paypal';
+  details: {
+    last4?: string;
+    brand?: string;
+    email?: string;
+  };
 }
 
 export interface YouTubeVideo {
   id: string;
   title: string;
   description: string;
-  thumbnailUrl: string;
+  thumbnail: string;
   publishedAt: string;
+  duration: string;
+  viewCount: string;
+  channelTitle: string;
 }
 
-export interface ChatRoomUser {
+export interface ChatMessage {
+  id: number;
+  roomId: number;
+  userId: number;
+  username: string;
+  content: string;
+  createdAt: string;
+}
+
+export interface ChatRoom {
+  id: number;
+  name: string;
+  description: string;
+  createdById: number;
+  isPrivate: boolean;
+}
+
+export interface WebSocketMessage {
+  type: 'message' | 'join_room' | 'leave_room' | 'create_room' | 'error';
+  payload: any;
+}
+
+export interface UserProfile {
   id: number;
   username: string;
-  avatarUrl?: string;
+  displayName: string;
+  avatar: string;
+  bio: string;
+  membershipTier: string;
+  createdAt: string;
 }
+
+export interface MenuItem {
+  name: string;
+  href: string;
+  icon?: React.ReactNode;
+}
+
+export type AdminSection = 'users' | 'content' | 'store' | 'orders' | 'bulletin' | 'settings';

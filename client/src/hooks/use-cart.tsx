@@ -1,173 +1,119 @@
-import { createContext, ReactNode, useContext } from "react";
-import { useQuery, useMutation } from "@tanstack/react-query";
-import { apiRequest, queryClient } from "../lib/queryClient";
+import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { Product, CartItem } from "@shared/schema";
 
-export interface CartItemWithProduct extends CartItem {
-  product: Product;
+interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  quantity: number;
 }
 
 interface CartContextType {
-  cartItems: CartItemWithProduct[];
-  isLoading: boolean;
-  error: Error | null;
-  addToCart: (productId: number, quantity?: number) => void;
-  updateQuantity: (cartItemId: number, quantity: number) => void;
-  removeFromCart: (cartItemId: number) => void;
+  items: CartItem[];
+  addItem: (item: CartItem) => void;
+  removeItem: (id: number) => void;
+  updateQuantity: (id: number, quantity: number) => void;
   clearCart: () => void;
-  cartTotal: number;
-  cartItemsCount: number;
+  totalItems: number;
+  totalPrice: number;
 }
 
-export const CartContext = createContext<CartContextType | null>(null);
+const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
+  const [items, setItems] = useState<CartItem[]>([]);
   const { toast } = useToast();
 
-  const {
-    data: cartItems = [],
-    isLoading,
-    error,
-  } = useQuery<CartItemWithProduct[], Error>({
-    queryKey: ["/api/cart"],
-    queryFn: async ({ queryKey }) => {
+  // Load cart from localStorage on initial load
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
       try {
-        const res = await fetch(queryKey[0] as string, {
-          credentials: "include",
-        });
-
-        if (res.status === 401) {
-          return [];
-        }
-
-        if (!res.ok) {
-          throw new Error(`Error: ${res.status}`);
-        }
-
-        return await res.json();
+        setItems(JSON.parse(savedCart));
       } catch (error) {
-        console.error("Error fetching cart data:", error);
-        return [];
+        console.error("Failed to parse saved cart:", error);
       }
-    },
-  });
+    }
+  }, []);
 
-  const addToCartMutation = useMutation({
-    mutationFn: async ({ productId, quantity = 1 }: { productId: number; quantity: number }) => {
-      const res = await apiRequest("POST", "/api/cart", { productId, quantity });
-      return await res.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
-      toast({
-        title: "Added to cart",
-        description: "Item has been added to your cart.",
-      });
-    },
-    onError: (error: Error) => {
-      toast({
-        title: "Failed to add item",
-        description: error.message,
-        variant: "destructive",
-      });
-    },
-  });
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(items));
+  }, [items]);
 
-  const updateQuantityMutation = useMutation({
-    mutationFn: async ({ cartItemId, quantity }: { cartItemId: number; quantity: number }) => {
-      const res = await apiRequest("PUT", `/api/cart/${cartItemId}`, { quantity });
-      return await res.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
-    },
-    onError: (error: Error) => {
-      toast({
-        title: "Failed to update quantity",
-        description: error.message,
-        variant: "destructive",
-      });
-    },
-  });
+  const addItem = (newItem: CartItem) => {
+    setItems((prevItems) => {
+      // Check if item already exists in cart
+      const existingItem = prevItems.find((item) => item.id === newItem.id);
+      
+      if (existingItem) {
+        // Update quantity if item exists
+        return prevItems.map((item) =>
+          item.id === newItem.id
+            ? { ...item, quantity: item.quantity + newItem.quantity }
+            : item
+        );
+      } else {
+        // Add new item to cart
+        return [...prevItems, newItem];
+      }
+    });
 
-  const removeFromCartMutation = useMutation({
-    mutationFn: async (cartItemId: number) => {
-      await apiRequest("DELETE", `/api/cart/${cartItemId}`);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
-      toast({
-        title: "Removed from cart",
-        description: "Item has been removed from your cart.",
-      });
-    },
-    onError: (error: Error) => {
-      toast({
-        title: "Failed to remove item",
-        description: error.message,
-        variant: "destructive",
-      });
-    },
-  });
+    toast({
+      title: "Added to cart",
+      description: `${newItem.name} has been added to your cart.`,
+    });
+  };
 
-  const clearCartMutation = useMutation({
-    mutationFn: async () => {
-      await apiRequest("DELETE", "/api/cart");
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
-      toast({
-        title: "Cart cleared",
-        description: "All items have been removed from your cart.",
-      });
-    },
-    onError: (error: Error) => {
-      toast({
-        title: "Failed to clear cart",
-        description: error.message,
-        variant: "destructive",
-      });
-    },
-  });
+  const removeItem = (id: number) => {
+    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+    
+    toast({
+      title: "Removed from cart",
+      description: "Item has been removed from your cart.",
+    });
+  };
 
-  // Calculate cart total (in cents)
-  const cartTotal = cartItems.reduce(
-    (total, item) => total + item.product.price * item.quantity,
+  const updateQuantity = (id: number, quantity: number) => {
+    setItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id ? { ...item, quantity } : item
+      )
+    );
+  };
+
+  const clearCart = () => {
+    setItems([]);
+    toast({
+      title: "Cart cleared",
+      description: "All items have been removed from your cart.",
+    });
+  };
+
+  // Calculate totals
+  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+  const totalPrice = items.reduce(
+    (sum, item) => sum + item.price * item.quantity,
     0
   );
 
-  // Calculate total number of items in cart
-  const cartItemsCount = cartItems.reduce(
-    (count, item) => count + item.quantity,
-    0
-  );
+  const value = {
+    items,
+    addItem,
+    removeItem,
+    updateQuantity,
+    clearCart,
+    totalItems,
+    totalPrice,
+  };
 
-  return (
-    <CartContext.Provider
-      value={{
-        cartItems,
-        isLoading,
-        error,
-        addToCart: (productId: number, quantity = 1) =>
-          addToCartMutation.mutate({ productId, quantity }),
-        updateQuantity: (cartItemId: number, quantity: number) =>
-          updateQuantityMutation.mutate({ cartItemId, quantity }),
-        removeFromCart: (cartItemId: number) =>
-          removeFromCartMutation.mutate(cartItemId),
-        clearCart: () => clearCartMutation.mutate(),
-        cartTotal,
-        cartItemsCount,
-      }}
-    >
-      {children}
-    </CartContext.Provider>
-  );
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
 
 export function useCart() {
   const context = useContext(CartContext);
-  if (!context) {
+  if (context === undefined) {
     throw new Error("useCart must be used within a CartProvider");
   }
   return context;

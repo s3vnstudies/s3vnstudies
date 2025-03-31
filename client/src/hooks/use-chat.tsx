@@ -1,201 +1,203 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import { useAuth } from "./use-auth";
-import { useToast } from "./use-toast";
-import { ChatRoom, ChatMessage } from "@shared/schema";
+import { useState, useEffect, useCallback } from "react";
+import { useAuth } from "@/hooks/use-auth";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
+import { ChatMessage, ChatRoom } from "@shared/schema";
 
-// Message with user information
-interface EnrichedChatMessage extends ChatMessage {
-  user: {
-    username: string;
-    avatarUrl: string;
-    role: string;
-  };
+interface UseChatOptions {
+  autoConnect?: boolean;
 }
 
-interface ChatContextType {
-  connected: boolean;
-  connecting: boolean;
-  currentRoom: ChatRoom | null;
-  messages: EnrichedChatMessage[];
-  sendMessage: (roomId: number, message: string) => void;
-  joinRoom: (roomId: number) => void;
-  error: string | null;
+interface CreateRoomData {
+  name: string;
+  description?: string;
+  isPrivate: boolean;
 }
 
-interface ServerMessage {
-  type: string;
-  payload: any;
-}
-
-const ChatContext = createContext<ChatContextType | null>(null);
-
-export function ChatProvider({ children }: { children: ReactNode }) {
+export function useChat(options: UseChatOptions = {}) {
+  const { autoConnect = true } = options;
   const { user } = useAuth();
   const { toast } = useToast();
   const [socket, setSocket] = useState<WebSocket | null>(null);
   const [connected, setConnected] = useState(false);
-  const [connecting, setConnecting] = useState(false);
-  const [currentRoom, setCurrentRoom] = useState<ChatRoom | null>(null);
-  const [messages, setMessages] = useState<EnrichedChatMessage[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [rooms, setRooms] = useState<ChatRoom[]>([]);
+  const [currentRoomId, setCurrentRoomId] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  // Connect to WebSocket when user is authenticated
+  // Connect to WebSocket
   useEffect(() => {
-    if (user && !socket && !connecting) {
-      connectWebSocket();
-    }
-
-    return () => {
-      if (socket) {
-        socket.close();
-      }
-    };
-  }, [user]);
-
-  const connectWebSocket = () => {
-    setConnecting(true);
-    setError(null);
+    if (!autoConnect || !user) return;
 
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
     const wsUrl = `${protocol}//${window.location.host}/ws`;
-    const newSocket = new WebSocket(wsUrl);
+    const ws = new WebSocket(wsUrl);
 
-    newSocket.onopen = () => {
-      setSocket(newSocket);
-      setConnecting(false);
+    ws.onopen = () => {
+      console.log("WebSocket connected");
       setConnected(true);
-
       // Authenticate with the WebSocket server
-      if (user) {
-        const authToken = Buffer.from(
-          JSON.stringify({ userId: user.id, username: user.username })
-        ).toString("base64");
+      ws.send(JSON.stringify({
+        type: "auth",
+        payload: { userId: user.id }
+      }));
+    };
 
-        newSocket.send(
-          JSON.stringify({
-            type: "AUTHENTICATE",
-            payload: { token: authToken },
-          })
-        );
+    ws.onclose = () => {
+      console.log("WebSocket disconnected");
+      setConnected(false);
+    };
+
+    ws.onerror = (error) => {
+      console.error("WebSocket error:", error);
+      toast({
+        title: "Connection Error",
+        description: "Failed to connect to chat. Please try again later.",
+        variant: "destructive",
+      });
+    };
+
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      
+      switch (data.type) {
+        case "auth_success":
+          console.log("WebSocket authenticated");
+          break;
+        case "room_joined":
+          console.log(`Joined room ${data.payload.roomId}`);
+          break;
+        case "new_message":
+          handleNewMessage(data.payload);
+          break;
+        case "error":
+          toast({
+            title: "Chat Error",
+            description: data.payload.message,
+            variant: "destructive",
+          });
+          break;
+        default:
+          console.log("Unknown message type:", data.type);
       }
     };
 
-    newSocket.onmessage = (event) => {
+    setSocket(ws);
+
+    return () => {
+      ws.close();
+    };
+  }, [autoConnect, user, toast]);
+
+  // Load rooms on initialization
+  useEffect(() => {
+    if (!user) return;
+
+    const fetchRooms = async () => {
       try {
-        const message: ServerMessage = JSON.parse(event.data);
-        handleServerMessage(message);
-      } catch (error) {
-        console.error("Error parsing message:", error);
-      }
-    };
+        const response = await fetch("/api/chat/rooms");
+        if (!response.ok) throw new Error("Failed to fetch chat rooms");
+        const data = await response.json();
+        setRooms(data);
 
-    newSocket.onerror = (event) => {
-      console.error("WebSocket error:", event);
-      setError("WebSocket connection error");
-      setConnected(false);
-      setConnecting(false);
-    };
-
-    newSocket.onclose = () => {
-      setConnected(false);
-      setConnecting(false);
-      setSocket(null);
-
-      // Try to reconnect after a delay
-      setTimeout(() => {
-        if (user) {
-          connectWebSocket();
+        // If we have rooms and no current room, set the first one
+        if (data.length > 0 && !currentRoomId) {
+          setCurrentRoomId(data[0].id);
         }
-      }, 3000);
-    };
-  };
-
-  const handleServerMessage = (message: ServerMessage) => {
-    switch (message.type) {
-      case "CONNECTION_ESTABLISHED":
-        console.log("WebSocket connection established");
-        break;
-
-      case "AUTHENTICATION_SUCCESS":
-        console.log("WebSocket authentication successful");
-        break;
-
-      case "ROOM_JOINED":
-        setCurrentRoom(message.payload.room);
-        setMessages(message.payload.messages);
-        break;
-
-      case "NEW_MESSAGE":
-        setMessages((prev) => [...prev, message.payload]);
-        break;
-
-      case "ERROR":
-        setError(message.payload.message);
+      } catch (error) {
+        console.error("Error fetching chat rooms:", error);
         toast({
-          title: "Chat Error",
-          description: message.payload.message,
+          title: "Error",
+          description: "Failed to load chat rooms.",
           variant: "destructive",
         });
-        break;
+      }
+    };
 
-      default:
-        console.log("Unknown message type:", message.type);
-    }
-  };
+    fetchRooms();
+  }, [user, toast, currentRoomId]);
 
-  const joinRoom = (roomId: number) => {
-    if (!connected || !socket) {
-      setError("Not connected to chat server");
+  // Load messages when changing rooms
+  useEffect(() => {
+    if (!currentRoomId || !user) return;
+
+    const fetchMessages = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(`/api/chat/rooms/${currentRoomId}/messages`);
+        if (!response.ok) throw new Error("Failed to fetch messages");
+        const data = await response.json();
+        setMessages(data);
+
+        // Join the room via WebSocket
+        if (socket && connected) {
+          socket.send(JSON.stringify({
+            type: "join_room",
+            payload: { roomId: currentRoomId }
+          }));
+        }
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+        toast({
+          title: "Error",
+          description: "Failed to load messages.",
+          variant: "destructive",
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMessages();
+  }, [currentRoomId, user, socket, connected, toast]);
+
+  const handleNewMessage = useCallback((message: ChatMessage) => {
+    setMessages((prevMessages) => [...prevMessages, message]);
+  }, []);
+
+  const sendMessage = useCallback((roomId: number, message: string) => {
+    if (!socket || socket.readyState !== WebSocket.OPEN) {
+      toast({
+        title: "Connection Error",
+        description: "Not connected to chat. Please try again.",
+        variant: "destructive",
+      });
       return;
     }
 
-    socket.send(
-      JSON.stringify({
-        type: "JOIN_ROOM",
-        payload: { roomId },
-      })
-    );
+    socket.send(JSON.stringify({
+      type: "message",
+      payload: {
+        roomId,
+        message
+      }
+    }));
+  }, [socket, toast]);
+
+  const createRoom = async (data: CreateRoomData): Promise<ChatRoom> => {
+    try {
+      const response = await apiRequest("POST", "/api/chat/rooms", data);
+      const newRoom = await response.json();
+      setRooms((prevRooms) => [...prevRooms, newRoom]);
+      return newRoom;
+    } catch (error) {
+      console.error("Error creating chat room:", error);
+      throw error;
+    }
   };
 
-  const sendMessage = (roomId: number, messageText: string) => {
-    if (!connected || !socket) {
-      setError("Not connected to chat server");
-      return;
-    }
+  const joinRoom = useCallback((roomId: number) => {
+    setCurrentRoomId(roomId);
+  }, []);
 
-    if (!messageText.trim()) {
-      return;
-    }
-
-    socket.send(
-      JSON.stringify({
-        type: "SEND_MESSAGE",
-        payload: { roomId, message: messageText },
-      })
-    );
+  return {
+    connected,
+    messages,
+    rooms,
+    currentRoomId,
+    loading,
+    sendMessage,
+    createRoom,
+    joinRoom,
   };
-
-  return (
-    <ChatContext.Provider
-      value={{
-        connected,
-        connecting,
-        currentRoom,
-        messages,
-        sendMessage,
-        joinRoom,
-        error,
-      }}
-    >
-      {children}
-    </ChatContext.Provider>
-  );
-}
-
-export function useChat() {
-  const context = useContext(ChatContext);
-  if (!context) {
-    throw new Error("useChat must be used within a ChatProvider");
-  }
-  return context;
 }

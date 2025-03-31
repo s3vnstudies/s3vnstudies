@@ -1,441 +1,796 @@
-import { useState } from "react";
-import { useAuth } from "@/hooks/use-auth";
-import Header from "@/components/layout/header";
-import Footer from "@/components/layout/footer";
-import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import PageContainer from "@/components/layout/PageContainer";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Order } from "@shared/schema";
-import { User, Settings, Package, CreditCard, ShoppingBag, Calendar, Clock, Eye } from "lucide-react";
-import { formatDistance } from "date-fns";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/use-auth";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+import { 
+  User, Settings, Package, Calendar, CreditCard, LogOut, Crown, ClipboardList,
+  Loader2, Check, AlertCircle, Mail, UserIcon
+} from "lucide-react";
 
 export default function ProfilePage() {
-  const { user } = useAuth();
-  const [activeTab, setActiveTab] = useState("account");
+  const { user, logoutMutation } = useAuth();
+  const { toast } = useToast();
+  const [displayName, setDisplayName] = useState("");
+  const [email, setEmail] = useState("");
+  const [bio, setBio] = useState("");
+  const [avatar, setAvatar] = useState("");
+  const [isUpdateFormSubmitting, setIsUpdateFormSubmitting] = useState(false);
+  const [isCancelling, setIsCancelling] = useState(false);
   
-  // Fetch user orders
-  const { data: orders, isLoading: ordersLoading } = useQuery<Order[]>({
-    queryKey: ["/api/orders"],
-    enabled: activeTab === "orders",
+  // Set page title
+  useEffect(() => {
+    document.title = "S3vn Studies - My Profile";
+  }, []);
+  
+  // Set initial form values
+  useEffect(() => {
+    if (user) {
+      setDisplayName(user.displayName || "");
+      setEmail(user.email || "");
+      setBio(user.bio || "");
+      setAvatar(user.avatar || "");
+    }
+  }, [user]);
+  
+  // Fetch subscription data
+  const { data: subscription, isLoading: isLoadingSubscription } = useQuery({
+    queryKey: ["/api/subscriptions/current"],
+    queryFn: getQueryFn({ on401: "returnNull" }),
   });
   
+  // Fetch orders
+  const { data: orders, isLoading: isLoadingOrders } = useQuery({
+    queryKey: ["/api/orders"],
+    queryFn: getQueryFn({ on401: "returnNull" }),
+  });
+  
+  // Update profile mutation
+  const updateProfileMutation = useMutation({
+    mutationFn: async (profileData: any) => {
+      return apiRequest("PATCH", `/api/users/${user?.id}`, profileData);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/user"] });
+      toast({
+        title: "Profile updated",
+        description: "Your profile has been updated successfully.",
+      });
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Failed to update profile",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+  
+  // Cancel subscription mutation
+  const cancelSubscriptionMutation = useMutation({
+    mutationFn: async () => {
+      return apiRequest("POST", "/api/subscriptions/cancel");
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/subscriptions/current"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/user"] });
+      toast({
+        title: "Subscription cancelled",
+        description: "Your subscription has been cancelled. You'll continue to have access until the end of your current billing period.",
+      });
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Failed to cancel subscription",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+  
+  const handleUpdateProfile = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsUpdateFormSubmitting(true);
+    
+    updateProfileMutation.mutate(
+      { displayName, email, bio, avatar },
+      {
+        onSettled: () => setIsUpdateFormSubmitting(false),
+      }
+    );
+  };
+  
+  const handleCancelSubscription = () => {
+    if (window.confirm("Are you sure you want to cancel your subscription? You'll continue to have access until the end of your current billing period.")) {
+      setIsCancelling(true);
+      cancelSubscriptionMutation.mutate(undefined, {
+        onSettled: () => setIsCancelling(false),
+      });
+    }
+  };
+  
+  const handleLogout = () => {
+    logoutMutation.mutate();
+  };
+  
+  // If there's no user data, show loading state
   if (!user) {
     return (
-      <div className="flex flex-col min-h-screen">
-        <Header />
-        <main className="flex-grow flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="font-heading text-2xl font-bold mb-4">You need to be logged in to view this page</h1>
-            <Button onClick={() => window.location.href = "/auth"}>Login or Register</Button>
-          </div>
-        </main>
-        <Footer />
-      </div>
+      <PageContainer>
+        <div className="flex justify-center items-center min-h-[60vh]">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      </PageContainer>
     );
   }
   
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-      <main className="flex-grow py-10">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row gap-8">
-            {/* Sidebar */}
-            <div className="w-full md:w-64 lg:w-80">
-              <Card>
-                <CardHeader className="text-center">
-                  <Avatar className="w-24 h-24 mx-auto">
-                    <AvatarImage src={user.avatarUrl || ""} />
-                    <AvatarFallback className="bg-primary text-white text-xl">
-                      {user.username.substring(0, 2).toUpperCase()}
-                    </AvatarFallback>
+    <PageContainer>
+      <div className="container mx-auto px-4 py-16">
+        <div className="flex flex-col md:flex-row gap-8">
+          {/* Left Sidebar */}
+          <div className="md:w-1/3 lg:w-1/4">
+            <Card>
+              <CardHeader>
+                <div className="flex flex-col items-center">
+                  <Avatar className="h-24 w-24 mb-4">
+                    <AvatarImage src={user.avatar} />
+                    <AvatarFallback>{user.displayName?.charAt(0) || user.username.charAt(0)}</AvatarFallback>
                   </Avatar>
-                  <CardTitle className="mt-2">{user.fullName || user.username}</CardTitle>
-                  <CardDescription>{user.email}</CardDescription>
-                  <div className="mt-2">
+                  <CardTitle>{user.displayName || user.username}</CardTitle>
+                  <CardDescription className="text-center mt-1">
+                    Member since {new Date(user.createdAt).toLocaleDateString()}
+                  </CardDescription>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-col gap-2">
+                  <div className="text-center mb-4">
                     <Badge className={`
-                      ${user.membershipTier === 'premium' ? 'bg-primary' : 
-                        user.membershipTier === 'standard' ? 'bg-secondary' : 'bg-neutral-500'}
+                      ${user.membershipTier === 'pro' ? 'bg-purple-600' : 
+                        user.membershipTier === 'premium' ? 'bg-primary' : 
+                        'bg-gray-500'}
                     `}>
                       {user.membershipTier.charAt(0).toUpperCase() + user.membershipTier.slice(1)} Member
                     </Badge>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <nav className="space-y-1">
-                    <Button 
-                      variant={activeTab === "account" ? "default" : "ghost"} 
-                      className="w-full justify-start"
-                      onClick={() => setActiveTab("account")}
-                    >
-                      <User className="h-4 w-4 mr-2" />
-                      Account
-                    </Button>
-                    <Button 
-                      variant={activeTab === "orders" ? "default" : "ghost"} 
-                      className="w-full justify-start"
-                      onClick={() => setActiveTab("orders")}
-                    >
-                      <ShoppingBag className="h-4 w-4 mr-2" />
-                      Orders
-                    </Button>
-                    <Button 
-                      variant={activeTab === "subscription" ? "default" : "ghost"} 
-                      className="w-full justify-start"
-                      onClick={() => setActiveTab("subscription")}
-                    >
-                      <CreditCard className="h-4 w-4 mr-2" />
-                      Subscription
-                    </Button>
-                    <Button 
-                      variant={activeTab === "settings" ? "default" : "ghost"} 
-                      className="w-full justify-start"
-                      onClick={() => setActiveTab("settings")}
-                    >
-                      <Settings className="h-4 w-4 mr-2" />
-                      Settings
-                    </Button>
-                  </nav>
-                </CardContent>
-              </Card>
-            </div>
-            
-            {/* Main Content */}
-            <div className="flex-1">
-              <Card className="mb-6">
-                <CardHeader>
-                  <CardTitle>
-                    {activeTab === "account" && "Account Information"}
-                    {activeTab === "orders" && "Order History"}
-                    {activeTab === "subscription" && "Subscription Management"}
-                    {activeTab === "settings" && "Account Settings"}
-                  </CardTitle>
-                  <CardDescription>
-                    {activeTab === "account" && "View and edit your account details"}
-                    {activeTab === "orders" && "Track and manage your orders"}
-                    {activeTab === "subscription" && "Manage your membership subscription"}
-                    {activeTab === "settings" && "Customize your account settings"}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  {/* Account Tab */}
-                  {activeTab === "account" && (
-                    <div className="space-y-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                          <Label htmlFor="username">Username</Label>
-                          <Input id="username" value={user.username} disabled className="mt-1" />
+                  
+                  <Button variant="outline" className="flex items-center justify-start" asChild>
+                    <a href="#profile">
+                      <User className="mr-2 h-4 w-4" /> Profile
+                    </a>
+                  </Button>
+                  
+                  <Button variant="outline" className="flex items-center justify-start" asChild>
+                    <a href="#membership">
+                      <Crown className="mr-2 h-4 w-4" /> Membership
+                    </a>
+                  </Button>
+                  
+                  <Button variant="outline" className="flex items-center justify-start" asChild>
+                    <a href="#orders">
+                      <Package className="mr-2 h-4 w-4" /> Orders
+                    </a>
+                  </Button>
+                  
+                  <Button variant="outline" className="flex items-center justify-start" asChild>
+                    <a href="#settings">
+                      <Settings className="mr-2 h-4 w-4" /> Settings
+                    </a>
+                  </Button>
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Button 
+                  variant="destructive" 
+                  className="w-full" 
+                  onClick={handleLogout}
+                  disabled={logoutMutation.isPending}
+                >
+                  {logoutMutation.isPending ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Logging out...
+                    </>
+                  ) : (
+                    <>
+                      <LogOut className="mr-2 h-4 w-4" /> Sign Out
+                    </>
+                  )}
+                </Button>
+              </CardFooter>
+            </Card>
+          </div>
+          
+          {/* Main Content */}
+          <div className="md:w-2/3 lg:w-3/4">
+            <Tabs defaultValue="profile" className="space-y-8">
+              <TabsList className="grid grid-cols-2 md:grid-cols-4 w-full">
+                <TabsTrigger value="profile" id="profile">
+                  <User className="mr-2 h-4 w-4" /> Profile
+                </TabsTrigger>
+                <TabsTrigger value="membership" id="membership">
+                  <Crown className="mr-2 h-4 w-4" /> Membership
+                </TabsTrigger>
+                <TabsTrigger value="orders" id="orders">
+                  <Package className="mr-2 h-4 w-4" /> Orders
+                </TabsTrigger>
+                <TabsTrigger value="settings" id="settings">
+                  <Settings className="mr-2 h-4 w-4" /> Settings
+                </TabsTrigger>
+              </TabsList>
+              
+              {/* Profile Tab */}
+              <TabsContent value="profile">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Profile Information</CardTitle>
+                    <CardDescription>
+                      Update your profile information visible to other community members
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <form onSubmit={handleUpdateProfile} className="space-y-4">
+                      <div className="grid gap-4">
+                        <div className="grid gap-2">
+                          <label htmlFor="username" className="text-sm font-medium">
+                            Username
+                          </label>
+                          <Input
+                            id="username"
+                            value={user.username}
+                            disabled
+                            placeholder="Username"
+                          />
+                          <p className="text-xs text-gray-500">
+                            Your username cannot be changed
+                          </p>
                         </div>
-                        <div>
-                          <Label htmlFor="email">Email</Label>
-                          <Input id="email" type="email" value={user.email} className="mt-1" />
+                        
+                        <div className="grid gap-2">
+                          <label htmlFor="displayName" className="text-sm font-medium">
+                            Display Name
+                          </label>
+                          <Input
+                            id="displayName"
+                            value={displayName}
+                            onChange={(e) => setDisplayName(e.target.value)}
+                            placeholder="How you want to be known"
+                          />
                         </div>
-                        <div>
-                          <Label htmlFor="fullName">Full Name</Label>
-                          <Input id="fullName" value={user.fullName || ""} className="mt-1" />
+                        
+                        <div className="grid gap-2">
+                          <label htmlFor="email" className="text-sm font-medium">
+                            Email
+                          </label>
+                          <Input
+                            id="email"
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Your email address"
+                          />
                         </div>
-                        <div>
-                          <Label htmlFor="joined">Member Since</Label>
-                          <Input 
-                            id="joined" 
-                            value={new Date(user.createdAt).toLocaleDateString()} 
-                            disabled 
-                            className="mt-1" 
+                        
+                        <div className="grid gap-2">
+                          <label htmlFor="bio" className="text-sm font-medium">
+                            Bio
+                          </label>
+                          <Textarea
+                            id="bio"
+                            value={bio}
+                            onChange={(e) => setBio(e.target.value)}
+                            placeholder="Tell the community about yourself"
+                            rows={4}
+                          />
+                        </div>
+                        
+                        <div className="grid gap-2">
+                          <label htmlFor="avatar" className="text-sm font-medium">
+                            Avatar URL (optional)
+                          </label>
+                          <Input
+                            id="avatar"
+                            value={avatar}
+                            onChange={(e) => setAvatar(e.target.value)}
+                            placeholder="https://example.com/avatar.jpg"
                           />
                         </div>
                       </div>
-                      <div className="flex justify-end">
-                        <Button>Update Profile</Button>
-                      </div>
-                    </div>
-                  )}
-                  
-                  {/* Orders Tab */}
-                  {activeTab === "orders" && (
-                    <div>
-                      {ordersLoading ? (
-                        <div className="space-y-4">
-                          {Array(3).fill(0).map((_, index) => (
-                            <div key={index} className="border rounded-md p-4">
-                              <div className="h-6 bg-neutral-200 rounded w-1/4 mb-4 animate-pulse"></div>
-                              <div className="grid grid-cols-2 gap-3">
-                                <div className="h-4 bg-neutral-200 rounded animate-pulse"></div>
-                                <div className="h-4 bg-neutral-200 rounded animate-pulse"></div>
-                                <div className="h-4 bg-neutral-200 rounded animate-pulse"></div>
-                                <div className="h-4 bg-neutral-200 rounded animate-pulse"></div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      ) : !orders || orders.length === 0 ? (
-                        <div className="text-center py-12">
-                          <div className="w-16 h-16 mx-auto bg-neutral-100 rounded-full flex items-center justify-center mb-4">
-                            <Package className="h-8 w-8 text-neutral-400" />
+                      
+                      <Button
+                        type="submit"
+                        disabled={isUpdateFormSubmitting}
+                        className="mt-6"
+                      >
+                        {isUpdateFormSubmitting ? (
+                          <>
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            Saving Changes...
+                          </>
+                        ) : (
+                          "Save Changes"
+                        )}
+                      </Button>
+                    </form>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+              
+              {/* Membership Tab */}
+              <TabsContent value="membership">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Your Membership</CardTitle>
+                    <CardDescription>
+                      View and manage your membership status
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-8">
+                      <div className="flex items-center p-4 bg-gray-50 rounded-lg">
+                        <div className="mr-4">
+                          <div className={`
+                            w-16 h-16 rounded-full flex items-center justify-center
+                            ${user.membershipTier === 'pro' ? 'bg-purple-100 text-purple-600' : 
+                              user.membershipTier === 'premium' ? 'bg-blue-100 text-blue-600' : 
+                              'bg-gray-100 text-gray-600'}
+                          `}>
+                            <Crown className="h-8 w-8" />
                           </div>
-                          <h3 className="text-lg font-medium mb-1">No orders yet</h3>
-                          <p className="text-neutral-500 mb-6">You haven't placed any orders with us yet.</p>
-                          <Button onClick={() => window.location.href = "/store"}>Browse Store</Button>
                         </div>
-                      ) : (
-                        <div className="space-y-4">
-                          {orders.map((order) => (
-                            <Card key={order.id}>
-                              <CardHeader className="pb-2">
-                                <div className="flex justify-between items-start">
-                                  <div>
-                                    <CardTitle className="text-base">Order #{order.id}</CardTitle>
-                                    <CardDescription>
-                                      Placed {formatDistance(new Date(order.createdAt), new Date(), { addSuffix: true })}
-                                    </CardDescription>
-                                  </div>
-                                  <Badge className={`
-                                    ${order.status === 'delivered' ? 'bg-green-500' : 
-                                      order.status === 'shipped' ? 'bg-blue-500' : 
-                                      order.status === 'processing' ? 'bg-yellow-500' : 
-                                      order.status === 'cancelled' ? 'bg-red-500' : 'bg-neutral-500'}
-                                  `}>
-                                    {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
-                                  </Badge>
-                                </div>
-                              </CardHeader>
-                              <CardContent>
-                                <div className="space-y-2">
-                                  {(order.orderItems as any[]).map((item, index) => (
-                                    <div key={index} className="flex justify-between items-center py-2 border-b last:border-0">
-                                      <div className="flex items-center">
-                                        <div className="w-10 h-10 bg-neutral-100 rounded overflow-hidden mr-3">
-                                          {item.imageUrl && (
-                                            <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
-                                          )}
-                                        </div>
-                                        <div>
-                                          <p className="font-medium">{item.name}</p>
-                                          <p className="text-sm text-neutral-500">Qty: {item.quantity}</p>
-                                        </div>
-                                      </div>
-                                      <p className="font-medium">${(item.price * item.quantity / 100).toFixed(2)}</p>
-                                    </div>
-                                  ))}
-                                </div>
-                                <div className="flex justify-between items-center mt-4 pt-4 border-t font-bold">
-                                  <span>Total:</span>
-                                  <span>${(order.totalAmount / 100).toFixed(2)}</span>
-                                </div>
-                              </CardContent>
-                            </Card>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  )}
-                  
-                  {/* Subscription Tab */}
-                  {activeTab === "subscription" && (
-                    <div>
-                      <div className="bg-neutral-50 rounded-lg p-6 mb-6">
-                        <div className="flex items-start justify-between">
-                          <div>
-                            <h3 className="font-heading text-lg font-bold mb-1">
-                              {user.membershipTier === 'premium' ? 'Premium' : 
-                               user.membershipTier === 'standard' ? 'Standard' : 'Free'} Membership
-                            </h3>
-                            <p className="text-neutral-600 mb-2">
-                              {user.subscriptionStatus === 'active' ? 'Your subscription is active' : 'You are on the free plan'}
+                        <div>
+                          <h3 className="font-bold text-lg">
+                            {user.membershipTier === 'free' ? 'Basic Member' : 
+                             user.membershipTier === 'premium' ? 'Premium Member' : 
+                             'Pro Member'}
+                          </h3>
+                          {isLoadingSubscription ? (
+                            <p className="text-sm text-gray-500">Loading subscription details...</p>
+                          ) : subscription ? (
+                            <p className="text-sm text-gray-500">
+                              Active since {new Date(subscription.startDate).toLocaleDateString()}
+                              {subscription.endDate && ` • Expires on ${new Date(subscription.endDate).toLocaleDateString()}`}
                             </p>
-                            {user.membershipTier !== 'free' && (
-                              <div className="flex items-center text-sm text-neutral-500">
-                                <Calendar className="h-4 w-4 mr-1" />
-                                <span>Next billing date: June 15, 2023</span>
-                              </div>
-                            )}
-                          </div>
-                          {user.membershipTier !== 'free' && user.subscriptionStatus === 'active' && (
-                            <Badge variant="outline" className="border-green-500 text-green-600">
-                              Active
-                            </Badge>
+                          ) : (
+                            <p className="text-sm text-gray-500">No active subscription</p>
                           )}
                         </div>
                       </div>
                       
                       {user.membershipTier === 'free' ? (
-                        <div className="text-center">
-                          <h3 className="font-heading font-bold mb-2">Upgrade Your Experience</h3>
-                          <p className="text-neutral-600 mb-4">
-                            Unlock premium content and community features with a paid membership.
-                          </p>
-                          <Button onClick={() => window.location.href = "/membership"}>
-                            View Membership Options
-                          </Button>
-                        </div>
-                      ) : (
-                        <div className="space-y-6">
-                          <div>
-                            <h3 className="font-heading font-medium mb-2">Payment Method</h3>
-                            <div className="flex items-center p-3 border rounded-md">
-                              <div className="mr-3">
-                                <CreditCard className="h-6 w-6 text-neutral-500" />
-                              </div>
-                              <div>
-                                <p className="font-medium">•••• •••• •••• 4242</p>
-                                <p className="text-sm text-neutral-500">Expires 12/25</p>
-                              </div>
-                              <Button variant="ghost" size="sm" className="ml-auto">
-                                Update
+                        <div className="space-y-4">
+                          <div className="bg-primary/10 p-4 rounded-lg">
+                            <h3 className="font-bold mb-2">Upgrade to Premium or Pro</h3>
+                            <p className="text-sm text-gray-600 mb-4">
+                              Gain access to exclusive content, community features, and more by upgrading your membership.
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-2">
+                              <Button asChild className="flex-1">
+                                <a href="/#pricing">View Membership Options</a>
                               </Button>
                             </div>
                           </div>
                           
-                          <div>
-                            <h3 className="font-heading font-medium mb-2">Billing History</h3>
-                            <div className="border rounded-md overflow-hidden">
-                              <div className="bg-neutral-50 px-4 py-2 font-medium text-sm grid grid-cols-3">
-                                <span>Date</span>
-                                <span>Amount</span>
-                                <span>Status</span>
+                          <h3 className="font-medium text-lg mt-6">Benefits of Upgrading</h3>
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div className="flex items-start">
+                              <Check className="text-green-500 mr-2 mt-1 h-5 w-5" />
+                              <div>
+                                <h4 className="font-medium">Premium Content</h4>
+                                <p className="text-sm text-gray-600">Access all premium articles and videos</p>
                               </div>
-                              <div className="divide-y">
-                                <div className="px-4 py-3 grid grid-cols-3 text-sm">
-                                  <span>May 15, 2023</span>
-                                  <span>${user.membershipTier === 'premium' ? '19.99' : '9.99'}</span>
-                                  <span className="text-green-600">Successful</span>
-                                </div>
-                                <div className="px-4 py-3 grid grid-cols-3 text-sm">
-                                  <span>April 15, 2023</span>
-                                  <span>${user.membershipTier === 'premium' ? '19.99' : '9.99'}</span>
-                                  <span className="text-green-600">Successful</span>
-                                </div>
+                            </div>
+                            <div className="flex items-start">
+                              <Check className="text-green-500 mr-2 mt-1 h-5 w-5" />
+                              <div>
+                                <h4 className="font-medium">Chat Access</h4>
+                                <p className="text-sm text-gray-600">Join community chat rooms</p>
+                              </div>
+                            </div>
+                            <div className="flex items-start">
+                              <Check className="text-green-500 mr-2 mt-1 h-5 w-5" />
+                              <div>
+                                <h4 className="font-medium">Early Access</h4>
+                                <p className="text-sm text-gray-600">Get content before everyone else</p>
+                              </div>
+                            </div>
+                            <div className="flex items-start">
+                              <Check className="text-green-500 mr-2 mt-1 h-5 w-5" />
+                              <div>
+                                <h4 className="font-medium">Store Discounts</h4>
+                                <p className="text-sm text-gray-600">Special pricing on merchandise</p>
                               </div>
                             </div>
                           </div>
+                        </div>
+                      ) : (
+                        <div className="space-y-4">
+                          <div className="bg-green-50 p-4 rounded-lg flex items-start">
+                            <Check className="text-green-500 mr-3 mt-1 h-5 w-5" />
+                            <div>
+                              <h3 className="font-bold text-green-700">Active Subscription</h3>
+                              <p className="text-sm text-gray-600">
+                                You have an active {user.membershipTier} membership with all benefits unlocked.
+                              </p>
+                            </div>
+                          </div>
                           
-                          <div className="flex justify-between items-center pt-4 border-t">
+                          <h3 className="font-medium text-lg mt-6">Your Membership Benefits</h3>
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div className="flex items-start">
+                              <Check className="text-green-500 mr-2 mt-1 h-5 w-5" />
+                              <div>
+                                <h4 className="font-medium">Premium Content</h4>
+                                <p className="text-sm text-gray-600">Access all premium articles and videos</p>
+                              </div>
+                            </div>
+                            <div className="flex items-start">
+                              <Check className="text-green-500 mr-2 mt-1 h-5 w-5" />
+                              <div>
+                                <h4 className="font-medium">Chat Access</h4>
+                                <p className="text-sm text-gray-600">Join community chat rooms</p>
+                              </div>
+                            </div>
+                            {user.membershipTier === 'pro' && (
+                              <>
+                                <div className="flex items-start">
+                                  <Check className="text-green-500 mr-2 mt-1 h-5 w-5" />
+                                  <div>
+                                    <h4 className="font-medium">1-on-1 Monthly Call</h4>
+                                    <p className="text-sm text-gray-600">Schedule your personal consultation</p>
+                                  </div>
+                                </div>
+                                <div className="flex items-start">
+                                  <Check className="text-green-500 mr-2 mt-1 h-5 w-5" />
+                                  <div>
+                                    <h4 className="font-medium">15% Store Discount</h4>
+                                    <p className="text-sm text-gray-600">Automatically applied at checkout</p>
+                                  </div>
+                                </div>
+                              </>
+                            )}
+                          </div>
+                          
+                          <div className="border-t pt-6 mt-6">
+                            <h3 className="font-medium text-lg mb-4">Manage Subscription</h3>
+                            {user.membershipTier === 'premium' && (
+                              <Button className="mr-4">Upgrade to Pro</Button>
+                            )}
                             <Button 
                               variant="outline" 
-                              onClick={() => window.location.href = "/membership"}
+                              className="text-red-500 border-red-200 hover:bg-red-50 hover:text-red-600"
+                              onClick={handleCancelSubscription}
+                              disabled={isCancelling}
                             >
-                              {user.membershipTier === 'standard' ? 'Upgrade to Premium' : 'Manage Plan'}
+                              {isCancelling ? (
+                                <>
+                                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                  Cancelling...
+                                </>
+                              ) : (
+                                "Cancel Subscription"
+                              )}
                             </Button>
-                            <Button variant="destructive">Cancel Subscription</Button>
                           </div>
                         </div>
                       )}
                     </div>
-                  )}
-                  
-                  {/* Settings Tab */}
-                  {activeTab === "settings" && (
-                    <div className="space-y-6">
-                      <div>
-                        <h3 className="font-heading font-medium mb-3">Email Preferences</h3>
-                        <div className="space-y-2">
-                          <div className="flex items-center">
-                            <input type="checkbox" id="newsletter" defaultChecked className="mr-2" />
-                            <Label htmlFor="newsletter">Newsletter and updates</Label>
-                          </div>
-                          <div className="flex items-center">
-                            <input type="checkbox" id="contentAlerts" defaultChecked className="mr-2" />
-                            <Label htmlFor="contentAlerts">New content alerts</Label>
-                          </div>
-                          <div className="flex items-center">
-                            <input type="checkbox" id="comments" defaultChecked className="mr-2" />
-                            <Label htmlFor="comments">Comment notifications</Label>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="pt-4 border-t">
-                        <h3 className="font-heading font-medium mb-3">Security</h3>
-                        <Button variant="outline" className="mr-3">Change Password</Button>
-                        <Button variant="outline">Two-Factor Authentication</Button>
-                      </div>
-                      
-                      <div className="pt-4 border-t">
-                        <h3 className="font-heading font-medium mb-3">Privacy</h3>
-                        <p className="text-sm text-neutral-600 mb-3">
-                          Control how your information is displayed and shared within the community.
-                        </p>
-                        <div className="space-y-2">
-                          <div className="flex items-center">
-                            <input type="checkbox" id="profileVisibility" defaultChecked className="mr-2" />
-                            <Label htmlFor="profileVisibility">Show my profile to other members</Label>
-                          </div>
-                          <div className="flex items-center">
-                            <input type="checkbox" id="activityVisibility" defaultChecked className="mr-2" />
-                            <Label htmlFor="activityVisibility">Show my activity in the community</Label>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="pt-4 border-t">
-                        <h3 className="font-heading font-medium mb-3 text-red-600">Danger Zone</h3>
-                        <p className="text-sm text-neutral-600 mb-3">
-                          Permanently delete your account and all associated data.
-                        </p>
-                        <Button variant="destructive">Delete Account</Button>
-                      </div>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-              
-              {/* Recent Activity Card */}
-              {activeTab === "account" && (
-                <Card>
+                  </CardContent>
+                </Card>
+                
+                {/* Payment Methods Card */}
+                <Card className="mt-6">
                   <CardHeader>
-                    <CardTitle>Recent Activity</CardTitle>
-                    <CardDescription>Your latest interactions on the platform</CardDescription>
+                    <CardTitle>Payment Methods</CardTitle>
+                    <CardDescription>
+                      Manage your payment methods for subscriptions and purchases
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-4">
-                      <div className="flex items-start">
-                        <div className="mr-3 p-2 bg-neutral-100 rounded-full">
-                          <Eye className="h-4 w-4 text-neutral-500" />
+                    {subscription ? (
+                      <div className="space-y-4">
+                        <div className="flex items-center p-4 border rounded-lg">
+                          <div className="mr-4">
+                            <CreditCard className="h-8 w-8 text-gray-400" />
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex justify-between items-start">
+                              <div>
+                                <h4 className="font-medium">
+                                  {subscription.paymentMethod?.type === 'credit_card' 
+                                    ? `•••• •••• •••• ${subscription.paymentMethod?.details.last4}` 
+                                    : 'PayPal Account'}
+                                </h4>
+                                <p className="text-sm text-gray-500">
+                                  {subscription.paymentMethod?.type === 'credit_card' 
+                                    ? subscription.paymentMethod?.details.brand
+                                    : subscription.paymentMethod?.details.email}
+                                </p>
+                              </div>
+                              <Badge>Default</Badge>
+                            </div>
+                          </div>
                         </div>
-                        <div>
-                          <p className="font-medium">You viewed "Advanced Data Visualization Techniques"</p>
-                          <p className="text-sm text-neutral-500 flex items-center">
-                            <Clock className="h-3 w-3 mr-1" /> 2 hours ago
-                          </p>
+                        
+                        <Button variant="outline">Add Payment Method</Button>
+                      </div>
+                    ) : (
+                      <div className="text-center py-6">
+                        <CreditCard className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+                        <h3 className="font-medium mb-2">No Payment Methods</h3>
+                        <p className="text-sm text-gray-500 mb-4">
+                          You don't have any payment methods set up yet.
+                        </p>
+                        <Button variant="outline">Add Payment Method</Button>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </TabsContent>
+              
+              {/* Orders Tab */}
+              <TabsContent value="orders">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Order History</CardTitle>
+                    <CardDescription>
+                      View your past orders and their status
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    {isLoadingOrders ? (
+                      <div className="flex justify-center py-8">
+                        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                      </div>
+                    ) : orders && orders.length > 0 ? (
+                      <div className="space-y-6">
+                        {orders.map((order: any) => (
+                          <div key={order.id} className="border rounded-lg overflow-hidden">
+                            <div className="bg-gray-50 p-4 flex justify-between items-center">
+                              <div>
+                                <h3 className="font-medium">Order #{order.id}</h3>
+                                <p className="text-sm text-gray-500">
+                                  Placed on {new Date(order.createdAt).toLocaleDateString()}
+                                </p>
+                              </div>
+                              <Badge 
+                                className={
+                                  order.status === 'completed' ? 'bg-green-500' :
+                                  order.status === 'processing' ? 'bg-blue-500' :
+                                  order.status === 'shipped' ? 'bg-purple-500' :
+                                  'bg-gray-500'
+                                }
+                              >
+                                {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+                              </Badge>
+                            </div>
+                            <div className="p-4">
+                              <div className="space-y-4">
+                                {order.items.map((item: any, index: number) => (
+                                  <div key={index} className="flex items-center">
+                                    <div className="w-16 h-16 bg-gray-100 rounded-md mr-4"></div>
+                                    <div className="flex-1">
+                                      <h4 className="font-medium">{item.name}</h4>
+                                      <div className="flex justify-between items-center">
+                                        <p className="text-sm text-gray-500">
+                                          Qty: {item.quantity}
+                                        </p>
+                                        <p className="font-medium">
+                                          ${(item.price * item.quantity).toFixed(2)}
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                              <div className="border-t mt-4 pt-4 flex justify-between">
+                                <span className="font-medium">Total</span>
+                                <span className="font-bold">${order.total.toFixed(2)}</span>
+                              </div>
+                            </div>
+                            <div className="bg-gray-50 p-4 border-t">
+                              <Button variant="outline" size="sm">View Order Details</Button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="text-center py-8">
+                        <Package className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+                        <h3 className="font-medium mb-2">No Orders Yet</h3>
+                        <p className="text-sm text-gray-500 mb-4">
+                          You haven't placed any orders yet.
+                        </p>
+                        <Button asChild>
+                          <a href="/store">Browse Store</a>
+                        </Button>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </TabsContent>
+              
+              {/* Settings Tab */}
+              <TabsContent value="settings" id="settings">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Account Settings</CardTitle>
+                    <CardDescription>
+                      Manage your account preferences and notifications
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-6">
+                      <div>
+                        <h3 className="font-medium text-lg mb-4">Email Notifications</h3>
+                        <div className="space-y-4">
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <h4 className="font-medium">New Content Alerts</h4>
+                              <p className="text-sm text-gray-500">
+                                Receive emails when new articles or videos are published
+                              </p>
+                            </div>
+                            <div className="flex items-center h-5">
+                              <input
+                                id="new-content"
+                                type="checkbox"
+                                defaultChecked
+                                className="focus:ring-primary h-4 w-4 text-primary border-gray-300 rounded"
+                              />
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <h4 className="font-medium">Community Updates</h4>
+                              <p className="text-sm text-gray-500">
+                                Updates about community events and announcements
+                              </p>
+                            </div>
+                            <div className="flex items-center h-5">
+                              <input
+                                id="community"
+                                type="checkbox"
+                                defaultChecked
+                                className="focus:ring-primary h-4 w-4 text-primary border-gray-300 rounded"
+                              />
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <h4 className="font-medium">Order Updates</h4>
+                              <p className="text-sm text-gray-500">
+                                Updates about your orders and shipping
+                              </p>
+                            </div>
+                            <div className="flex items-center h-5">
+                              <input
+                                id="orders"
+                                type="checkbox"
+                                defaultChecked
+                                className="focus:ring-primary h-4 w-4 text-primary border-gray-300 rounded"
+                              />
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <h4 className="font-medium">Marketing Emails</h4>
+                              <p className="text-sm text-gray-500">
+                                Special offers, promotions, and surveys
+                              </p>
+                            </div>
+                            <div className="flex items-center h-5">
+                              <input
+                                id="marketing"
+                                type="checkbox"
+                                className="focus:ring-primary h-4 w-4 text-primary border-gray-300 rounded"
+                              />
+                            </div>
+                          </div>
                         </div>
                       </div>
                       
-                      <div className="flex items-start">
-                        <div className="mr-3 p-2 bg-neutral-100 rounded-full">
-                          <MessageSquare className="h-4 w-4 text-neutral-500" />
-                        </div>
-                        <div>
-                          <p className="font-medium">You commented on "Creative Problem Solving Workshop"</p>
-                          <p className="text-sm text-neutral-500 flex items-center">
-                            <Clock className="h-3 w-3 mr-1" /> Yesterday
-                          </p>
+                      <div className="border-t pt-6">
+                        <h3 className="font-medium text-lg mb-4">Privacy Settings</h3>
+                        <div className="space-y-4">
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <h4 className="font-medium">Profile Visibility</h4>
+                              <p className="text-sm text-gray-500">
+                                Allow other members to view your profile
+                              </p>
+                            </div>
+                            <div className="flex items-center h-5">
+                              <input
+                                id="visibility"
+                                type="checkbox"
+                                defaultChecked
+                                className="focus:ring-primary h-4 w-4 text-primary border-gray-300 rounded"
+                              />
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <h4 className="font-medium">Activity Tracking</h4>
+                              <p className="text-sm text-gray-500">
+                                Allow us to track your activity to improve your experience
+                              </p>
+                            </div>
+                            <div className="flex items-center h-5">
+                              <input
+                                id="tracking"
+                                type="checkbox"
+                                defaultChecked
+                                className="focus:ring-primary h-4 w-4 text-primary border-gray-300 rounded"
+                              />
+                            </div>
+                          </div>
                         </div>
                       </div>
                       
-                      <div className="flex items-start">
-                        <div className="mr-3 p-2 bg-neutral-100 rounded-full">
-                          <ShoppingBag className="h-4 w-4 text-neutral-500" />
-                        </div>
-                        <div>
-                          <p className="font-medium">You purchased "S3VN Logo Hoodie"</p>
-                          <p className="text-sm text-neutral-500 flex items-center">
-                            <Clock className="h-3 w-3 mr-1" /> 3 days ago
-                          </p>
+                      <div className="border-t pt-6">
+                        <h3 className="font-medium text-lg mb-4 text-red-600">Danger Zone</h3>
+                        <div className="bg-red-50 p-4 rounded-lg">
+                          <div className="flex items-start">
+                            <AlertCircle className="text-red-500 mr-3 mt-1 h-5 w-5" />
+                            <div>
+                              <h4 className="font-medium text-red-600">Delete Account</h4>
+                              <p className="text-sm text-gray-600 mb-4">
+                                Permanently delete your account and all associated data. This action cannot be undone.
+                              </p>
+                              <Button 
+                                variant="destructive" 
+                                size="sm"
+                                onClick={() => {
+                                  alert("This feature is not yet implemented");
+                                }}
+                              >
+                                Delete Account
+                              </Button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </CardContent>
+                  <CardFooter>
+                    <Button>Save Settings</Button>
+                  </CardFooter>
                 </Card>
-              )}
-            </div>
+              </TabsContent>
+            </Tabs>
           </div>
         </div>
-      </main>
-      <Footer />
-    </div>
+      </div>
+    </PageContainer>
   );
+}
+
+// Helper function for query fetching
+function getQueryFn({ on401 }: { on401: "returnNull" }) {
+  return async ({ queryKey }: { queryKey: string[] }) => {
+    const res = await fetch(queryKey[0] as string, {
+      credentials: "include",
+    });
+
+    if (on401 === "returnNull" && res.status === 401) {
+      return null;
+    }
+
+    if (!res.ok) {
+      const text = (await res.text()) || res.statusText;
+      throw new Error(`${res.status}: ${text}`);
+    }
+    
+    return await res.json();
+  };
 }

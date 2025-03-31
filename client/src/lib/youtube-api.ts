@@ -1,108 +1,112 @@
-const YOUTUBE_API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY || '';
-const CHANNEL_ID = 's3vnstudies';
-
-interface YouTubeVideo {
+export interface YoutubeVideo {
   id: string;
   title: string;
   description: string;
+  thumbnail: string;
   publishedAt: string;
-  thumbnailUrl: string;
-  channelTitle: string;
-  duration?: string;
-  viewCount?: string;
+  viewCount: string;
+  duration: string;
 }
 
-export async function fetchYouTubeVideos(maxResults: number = 10): Promise<YouTubeVideo[]> {
+// YouTube API key from environment variables
+const API_KEY = process.env.YOUTUBE_API_KEY || import.meta.env.VITE_YOUTUBE_API_KEY;
+const CHANNEL_ID = "UC7zQzw2l9h4IgY_Pfo_Gy_A"; // Replace with S3vn Studies actual YouTube channel ID
+
+export async function fetchYouTubeVideos(limit = 10): Promise<YoutubeVideo[]> {
+  if (!API_KEY) {
+    throw new Error("YouTube API key is not configured");
+  }
+
   try {
-    // First fetch the uploads playlist ID for the channel
-    const channelResponse = await fetch(
-      `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${CHANNEL_ID}&key=${YOUTUBE_API_KEY}`
+    // Fetch playlist items or channel uploads
+    const response = await fetch(
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&maxResults=${limit}&order=date&type=video&key=${API_KEY}`
     );
-    
-    if (!channelResponse.ok) {
-      throw new Error(`Failed to fetch channel details: ${channelResponse.statusText}`);
+
+    if (!response.ok) {
+      throw new Error(`YouTube API error: ${response.status}`);
     }
-    
-    const channelData = await channelResponse.json();
-    
-    if (!channelData.items || channelData.items.length === 0) {
-      throw new Error('Channel not found');
-    }
-    
-    const uploadsPlaylistId = channelData.items[0].contentDetails.relatedPlaylists.uploads;
-    
-    // Then fetch the videos from the uploads playlist
-    const playlistResponse = await fetch(
-      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=${maxResults}&key=${YOUTUBE_API_KEY}`
+
+    const data = await response.json();
+    const videoIds = data.items.map((item: any) => item.id.videoId).join(",");
+
+    // Fetch additional video details including statistics and content details
+    const videoDetailsResponse = await fetch(
+      `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${videoIds}&key=${API_KEY}`
     );
-    
-    if (!playlistResponse.ok) {
-      throw new Error(`Failed to fetch videos: ${playlistResponse.statusText}`);
+
+    if (!videoDetailsResponse.ok) {
+      throw new Error(`YouTube API error: ${videoDetailsResponse.status}`);
     }
-    
-    const playlistData = await playlistResponse.json();
-    
-    // Extract video IDs to get additional details
-    const videoIds = playlistData.items.map((item: any) => item.snippet.resourceId.videoId).join(',');
-    
-    // Fetch additional video details
-    const videoResponse = await fetch(
-      `https://www.googleapis.com/youtube/v3/videos?part=contentDetails,statistics&id=${videoIds}&key=${YOUTUBE_API_KEY}`
-    );
-    
-    if (!videoResponse.ok) {
-      throw new Error(`Failed to fetch video details: ${videoResponse.statusText}`);
-    }
-    
-    const videoData = await videoResponse.json();
-    
-    // Combine the data
-    return playlistData.items.map((item: any) => {
-      const videoId = item.snippet.resourceId.videoId;
-      const videoDetails = videoData.items.find((v: any) => v.id === videoId);
+
+    const videoDetails = await videoDetailsResponse.json();
+
+    // Format the video data
+    return videoDetails.items.map((item: any) => {
+      // Format duration from ISO 8601 format
+      const isoDuration = item.contentDetails.duration; // e.g., "PT12M34S"
+      const durationMatch = isoDuration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
       
+      const hours = durationMatch[1] ? parseInt(durationMatch[1]) : 0;
+      const minutes = durationMatch[2] ? parseInt(durationMatch[2]) : 0;
+      const seconds = durationMatch[3] ? parseInt(durationMatch[3]) : 0;
+      
+      let formattedDuration = "";
+      if (hours > 0) {
+        formattedDuration += `${hours}:`;
+        formattedDuration += `${minutes.toString().padStart(2, "0")}:`;
+      } else {
+        formattedDuration += `${minutes}:`;
+      }
+      formattedDuration += seconds.toString().padStart(2, "0");
+
+      // Format view count
+      const viewCount = parseInt(item.statistics.viewCount);
+      let formattedViewCount = "";
+      if (viewCount >= 1000000) {
+        formattedViewCount = `${(viewCount / 1000000).toFixed(1)}M`;
+      } else if (viewCount >= 1000) {
+        formattedViewCount = `${(viewCount / 1000).toFixed(1)}K`;
+      } else {
+        formattedViewCount = viewCount.toString();
+      }
+
+      // Format publish date
+      const publishDate = new Date(item.snippet.publishedAt);
+      const now = new Date();
+      const diffInMilliseconds = now.getTime() - publishDate.getTime();
+      const diffInDays = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
+      
+      let publishedAt = "";
+      if (diffInDays < 1) {
+        publishedAt = "Today";
+      } else if (diffInDays === 1) {
+        publishedAt = "Yesterday";
+      } else if (diffInDays < 7) {
+        publishedAt = `${diffInDays} days ago`;
+      } else if (diffInDays < 30) {
+        const weeks = Math.floor(diffInDays / 7);
+        publishedAt = `${weeks} week${weeks > 1 ? "s" : ""} ago`;
+      } else if (diffInDays < 365) {
+        const months = Math.floor(diffInDays / 30);
+        publishedAt = `${months} month${months > 1 ? "s" : ""} ago`;
+      } else {
+        const years = Math.floor(diffInDays / 365);
+        publishedAt = `${years} year${years > 1 ? "s" : ""} ago`;
+      }
+
       return {
-        id: videoId,
+        id: item.id,
         title: item.snippet.title,
         description: item.snippet.description,
-        publishedAt: item.snippet.publishedAt,
-        thumbnailUrl: item.snippet.thumbnails.high.url,
-        channelTitle: item.snippet.channelTitle,
-        duration: videoDetails?.contentDetails?.duration,
-        viewCount: videoDetails?.statistics?.viewCount
+        thumbnail: item.snippet.thumbnails.high.url,
+        publishedAt,
+        viewCount: formattedViewCount,
+        duration: formattedDuration
       };
     });
   } catch (error) {
-    console.error('Error fetching YouTube videos:', error);
-    return [];
-  }
-}
-
-export function formatDuration(isoDuration: string): string {
-  // ISO 8601 duration format: PT1H23M45S
-  const match = isoDuration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
-  
-  if (!match) return '00:00';
-  
-  const hours = match[1] ? parseInt(match[1]) : 0;
-  const minutes = match[2] ? parseInt(match[2]) : 0;
-  const seconds = match[3] ? parseInt(match[3]) : 0;
-  
-  if (hours > 0) {
-    return `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  } else {
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-  }
-}
-
-export function formatViewCount(viewCount: string): string {
-  const count = parseInt(viewCount);
-  
-  if (count >= 1000000) {
-    return `${(count / 1000000).toFixed(1)}M views`;
-  } else if (count >= 1000) {
-    return `${(count / 1000).toFixed(1)}K views`;
-  } else {
-    return `${count} views`;
+    console.error("Error fetching YouTube videos:", error);
+    throw error;
   }
 }

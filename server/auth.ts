@@ -30,13 +30,12 @@ async function comparePasswords(supplied: string, stored: string) {
 
 export function setupAuth(app: Express) {
   const sessionSettings: session.SessionOptions = {
-    secret: process.env.SESSION_SECRET || "s3vn-studies-secret-key",
+    secret: process.env.SESSION_SECRET || "s3vn-studies-session-secret",
     resave: false,
     saveUninitialized: false,
     store: storage.sessionStore,
     cookie: {
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
     }
   };
 
@@ -48,21 +47,14 @@ export function setupAuth(app: Express) {
   passport.use(
     new LocalStrategy(async (username, password, done) => {
       try {
-        // Check if username or email was provided
-        let user = await storage.getUserByUsername(username);
-        
-        // If no user found by username, check by email
-        if (!user && username.includes('@')) {
-          user = await storage.getUserByEmail(username);
-        }
-        
+        const user = await storage.getUserByUsername(username);
         if (!user || !(await comparePasswords(password, user.password))) {
-          return done(null, false, { message: "Invalid credentials" });
+          return done(null, false);
         } else {
           return done(null, user);
         }
-      } catch (error) {
-        return done(error);
+      } catch (err) {
+        return done(err);
       }
     }),
   );
@@ -72,64 +64,49 @@ export function setupAuth(app: Express) {
     try {
       const user = await storage.getUser(id);
       done(null, user);
-    } catch (error) {
-      done(error, null);
+    } catch (err) {
+      done(err);
     }
   });
 
+  // User registration endpoint
   app.post("/api/register", async (req, res, next) => {
     try {
-      // Check for existing username
-      const existingUsername = await storage.getUserByUsername(req.body.username);
-      if (existingUsername) {
+      const existingUser = await storage.getUserByUsername(req.body.username);
+      if (existingUser) {
         return res.status(400).json({ message: "Username already exists" });
       }
       
-      // Check for existing email
       const existingEmail = await storage.getUserByEmail(req.body.email);
       if (existingEmail) {
         return res.status(400).json({ message: "Email already exists" });
       }
-      
-      // Create new user with hashed password
-      const hashedPassword = await hashPassword(req.body.password);
-      const userData = {
+
+      const user = await storage.createUser({
         ...req.body,
-        password: hashedPassword,
-      };
-      
-      const user = await storage.createUser(userData);
-      
+        password: await hashPassword(req.body.password),
+      });
+
       // Remove password from response
       const { password, ...userWithoutPassword } = user;
 
-      // Log the user in
       req.login(user, (err) => {
         if (err) return next(err);
-        return res.status(201).json(userWithoutPassword);
+        res.status(201).json(userWithoutPassword);
       });
-    } catch (error) {
-      next(error);
+    } catch (err) {
+      next(err);
     }
   });
 
-  app.post("/api/login", (req, res, next) => {
-    passport.authenticate("local", (err, user, info) => {
-      if (err) return next(err);
-      if (!user) {
-        return res.status(401).json({ message: info?.message || "Invalid credentials" });
-      }
-      
-      req.login(user, (loginErr) => {
-        if (loginErr) return next(loginErr);
-        
-        // Remove password from response
-        const { password, ...userWithoutPassword } = user;
-        return res.status(200).json(userWithoutPassword);
-      });
-    })(req, res, next);
+  // User login endpoint
+  app.post("/api/login", passport.authenticate("local"), (req, res) => {
+    // Remove password from response
+    const { password, ...userWithoutPassword } = req.user as SelectUser;
+    res.status(200).json(userWithoutPassword);
   });
 
+  // User logout endpoint
   app.post("/api/logout", (req, res, next) => {
     req.logout((err) => {
       if (err) return next(err);
@@ -137,59 +114,36 @@ export function setupAuth(app: Express) {
     });
   });
 
+  // Get current user endpoint
   app.get("/api/user", (req, res) => {
     if (!req.isAuthenticated()) return res.sendStatus(401);
-    
     // Remove password from response
-    const { password, ...userWithoutPassword } = req.user;
+    const { password, ...userWithoutPassword } = req.user as SelectUser;
     res.json(userWithoutPassword);
   });
-  
-  // Additional auth routes for subscriptions, profile updates, etc.
-  app.post("/api/user/subscription", (req, res) => {
-    if (!req.isAuthenticated()) return res.status(401).json({ message: "Not authorized" });
-    
-    const { tier } = req.body;
-    if (!tier) return res.status(400).json({ message: "Subscription tier is required" });
-    
-    // In a real app, this would handle payment processing
-    // For now, just update the user's subscription
-    storage.updateUser(req.user.id, { subscription: tier })
-      .then(user => {
-        if (!user) return res.status(404).json({ message: "User not found" });
-        
-        // Remove password from response
-        const { password, ...userWithoutPassword } = user;
-        res.json(userWithoutPassword);
-      })
-      .catch(err => {
-        res.status(500).json({ message: "Error updating subscription" });
-      });
-  });
-  
-  app.put("/api/user/profile", async (req, res) => {
-    if (!req.isAuthenticated()) return res.status(401).json({ message: "Not authorized" });
+
+  // Update user endpoint
+  app.patch("/api/user", async (req, res, next) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
     
     try {
-      // Update user profile fields
-      const { displayName, bio, avatar } = req.body;
-      const updateData: Partial<SelectUser> = {};
+      const userId = (req.user as SelectUser).id;
       
-      if (displayName) updateData.displayName = displayName;
-      if (bio) updateData.bio = bio;
-      if (avatar) updateData.avatar = avatar;
+      // Don't allow updating username or role through this endpoint
+      const { username, role, password, ...updateData } = req.body;
       
-      const updatedUser = await storage.updateUser(req.user.id, updateData);
+      const updatedUser = await storage.updateUser(userId, updateData);
       
       if (!updatedUser) {
         return res.status(404).json({ message: "User not found" });
       }
       
       // Remove password from response
-      const { password, ...userWithoutPassword } = updatedUser;
+      const { password: pwd, ...userWithoutPassword } = updatedUser;
+      
       res.json(userWithoutPassword);
-    } catch (error) {
-      res.status(500).json({ message: "Error updating profile" });
+    } catch (err) {
+      next(err);
     }
   });
 }
