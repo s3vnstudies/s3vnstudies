@@ -1,4 +1,3 @@
-import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { ReactNode } from "react";
 
@@ -9,8 +8,7 @@ interface PageLayoutProps {
 
 export default function PageLayout({ children, withoutFooter = false }: PageLayoutProps) {
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
+    <div className="flex flex-col">
       <main className="flex-grow">
         {children}
       </main>
