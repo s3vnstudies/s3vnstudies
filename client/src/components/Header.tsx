@@ -70,6 +70,11 @@ export default function Header() {
         {/* Logo and Brand Name */}
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center">
+            <img 
+              src="/images/logo.gif" 
+              alt="S3VN Studies Logo"
+              className="h-10 mr-2"
+            />
             <span className="text-2xl font-bold text-white">
               S3VN<span className="text-primary">Studies</span>
             </span>
@@ -150,6 +155,11 @@ export default function Header() {
                 className="flex items-center"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
+                <img 
+                  src="/images/logo.gif" 
+                  alt="S3VN Studies Logo"
+                  className="h-10 mr-2"
+                />
                 <span className="text-2xl font-bold text-white">
                   S3VN<span className="text-primary">Studies</span>
                 </span>
