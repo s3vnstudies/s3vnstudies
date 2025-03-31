@@ -1,150 +1,237 @@
 import { WebSocketServer, WebSocket } from "ws";
 import { Server } from "http";
 import { storage } from "./storage";
-import { ChatMessage, InsertChatMessage } from "@shared/schema";
+import { InsertChatMessage } from "@shared/schema";
 
-interface SocketMessage {
+// Message types
+interface ClientMessage {
   type: string;
-  payload: any;
+  roomId: number;
+  content?: string;
+  userId?: number;
 }
 
+interface ServerMessage {
+  type: string;
+  roomId?: number;
+  message?: any;
+  messages?: any[];
+  rooms?: any[];
+  error?: string;
+}
+
+// Client connections store
 interface ConnectedClient {
-  socket: WebSocket;
-  userId: number;
-  rooms: Set<number>;
+  ws: WebSocket;
+  userId?: number;
+  username?: string;
 }
 
-export function setupWebSocketServer(server: Server) {
+export function setupWebsockets(server: Server) {
   const wss = new WebSocketServer({ server, path: '/ws' });
-  const clients = new Map<WebSocket, ConnectedClient>();
-
-  wss.on('connection', (socket) => {
-    console.log('WebSocket client connected');
+  
+  // Keep track of all connected clients
+  const clients: ConnectedClient[] = [];
+  
+  wss.on('connection', (ws) => {
+    console.log('Client connected to websocket');
     
-    // Add to clients map without user ID until authenticated
-    clients.set(socket, { socket, userId: 0, rooms: new Set() });
+    // Add to clients
+    const client: ConnectedClient = { ws };
+    clients.push(client);
     
-    socket.on('message', async (data) => {
+    // Send welcome message
+    send(ws, {
+      type: 'welcome',
+      message: 'Connected to S3vn Studies chat server'
+    });
+    
+    ws.on('message', async (data) => {
       try {
-        const message: SocketMessage = JSON.parse(data.toString());
+        const message: ClientMessage = JSON.parse(data.toString());
         
+        // Handle different message types
         switch (message.type) {
           case 'auth':
-            handleAuth(socket, message.payload.userId);
+            // Associate this connection with the user
+            if (message.userId) {
+              const user = await storage.getUser(message.userId);
+              if (user) {
+                client.userId = user.id;
+                client.username = user.username;
+                
+                // Send available chat rooms
+                const tier = user.membershipTier;
+                const rooms = await storage.getChatRoomsByMembershipTier(tier);
+                send(ws, {
+                  type: 'rooms',
+                  rooms: rooms.map(room => ({
+                    id: room.id,
+                    name: room.name,
+                    description: room.description
+                  }))
+                });
+              }
+            }
             break;
-          case 'join_room':
-            handleJoinRoom(socket, message.payload.roomId);
+            
+          case 'join':
+            // Join a chat room
+            if (!client.userId) {
+              send(ws, { type: 'error', error: 'Authentication required' });
+              return;
+            }
+            
+            try {
+              const roomId = message.roomId;
+              const room = await storage.getChatRoomById(roomId);
+              
+              if (!room) {
+                send(ws, { type: 'error', error: 'Room not found' });
+                return;
+              }
+              
+              // Check if user has access to this room
+              const user = await storage.getUser(client.userId);
+              if (!user) {
+                send(ws, { type: 'error', error: 'User not found' });
+                return;
+              }
+              
+              const tierLevels: Record<string, number> = {
+                "free": 0,
+                "pro": 1,
+                "vip": 2
+              };
+              
+              const userTierLevel = tierLevels[user.membershipTier];
+              const roomTierLevel = tierLevels[room.membershipRequired];
+              
+              if (userTierLevel < roomTierLevel) {
+                send(ws, { 
+                  type: 'error', 
+                  error: `This room requires ${room.membershipRequired} membership` 
+                });
+                return;
+              }
+              
+              // Get recent messages
+              const messages = await storage.getChatMessages(roomId);
+              
+              // Send messages to client
+              send(ws, {
+                type: 'history',
+                roomId,
+                messages: await Promise.all(messages.map(async msg => {
+                  const sender = await storage.getUser(msg.userId);
+                  return {
+                    id: msg.id,
+                    content: msg.message,
+                    sentAt: msg.sentAt,
+                    sender: {
+                      id: sender?.id,
+                      username: sender?.username,
+                      displayName: sender?.displayName || sender?.username
+                    }
+                  };
+                }))
+              });
+              
+              // Notify client
+              send(ws, {
+                type: 'joined',
+                roomId,
+                message: {
+                  name: room.name,
+                  description: room.description
+                }
+              });
+            } catch (err) {
+              send(ws, { type: 'error', error: 'Failed to join room' });
+            }
             break;
-          case 'leave_room':
-            handleLeaveRoom(socket, message.payload.roomId);
-            break;
+            
           case 'message':
-            await handleChatMessage(socket, message.payload);
+            // Handle chat message
+            if (!client.userId) {
+              send(ws, { type: 'error', error: 'Authentication required' });
+              return;
+            }
+            
+            if (!message.content || !message.roomId) {
+              send(ws, { type: 'error', error: 'Invalid message format' });
+              return;
+            }
+            
+            try {
+              const roomId = message.roomId;
+              const room = await storage.getChatRoomById(roomId);
+              
+              if (!room) {
+                send(ws, { type: 'error', error: 'Room not found' });
+                return;
+              }
+              
+              // Save message to storage
+              const chatMessage: InsertChatMessage = {
+                roomId,
+                userId: client.userId,
+                message: message.content
+              };
+              
+              const savedMessage = await storage.createChatMessage(chatMessage);
+              const sender = await storage.getUser(client.userId);
+              
+              // Broadcast message to all clients in the room
+              broadcast({
+                type: 'message',
+                roomId,
+                message: {
+                  id: savedMessage.id,
+                  content: savedMessage.message,
+                  sentAt: savedMessage.sentAt,
+                  sender: {
+                    id: sender?.id,
+                    username: sender?.username,
+                    displayName: sender?.displayName || sender?.username
+                  }
+                }
+              });
+            } catch (err) {
+              send(ws, { type: 'error', error: 'Failed to send message' });
+            }
             break;
+            
           default:
-            console.log('Unknown message type:', message.type);
+            send(ws, { type: 'error', error: 'Unknown message type' });
         }
-      } catch (error) {
-        console.error('Error handling WebSocket message:', error);
+      } catch (err) {
+        console.error('WebSocket error:', err);
+        send(ws, { type: 'error', error: 'Invalid message format' });
       }
     });
     
-    socket.on('close', () => {
-      const client = clients.get(socket);
-      if (client) {
-        clients.delete(socket);
-        console.log(`WebSocket client disconnected, userId: ${client.userId}`);
+    ws.on('close', () => {
+      // Remove client from clients array
+      const index = clients.findIndex(c => c.ws === ws);
+      if (index !== -1) {
+        clients.splice(index, 1);
       }
+      console.log('Client disconnected from websocket');
     });
   });
   
-  function handleAuth(socket: WebSocket, userId: number) {
-    const client = clients.get(socket);
-    if (client) {
-      client.userId = userId;
-      sendToClient(socket, {
-        type: 'auth_success',
-        payload: { userId }
-      });
+  // Helper functions
+  function send(ws: WebSocket, message: ServerMessage) {
+    if (ws.readyState === WebSocket.OPEN) {
+      ws.send(JSON.stringify(message));
     }
   }
   
-  function handleJoinRoom(socket: WebSocket, roomId: number) {
-    const client = clients.get(socket);
-    if (client && client.userId) {
-      client.rooms.add(roomId);
-      sendToClient(socket, {
-        type: 'room_joined',
-        payload: { roomId }
-      });
-    } else {
-      sendToClient(socket, {
-        type: 'error',
-        payload: { message: 'Authentication required' }
-      });
-    }
-  }
-  
-  function handleLeaveRoom(socket: WebSocket, roomId: number) {
-    const client = clients.get(socket);
-    if (client) {
-      client.rooms.delete(roomId);
-      sendToClient(socket, {
-        type: 'room_left',
-        payload: { roomId }
-      });
-    }
-  }
-  
-  async function handleChatMessage(socket: WebSocket, payload: any) {
-    const client = clients.get(socket);
-    if (!client || !client.userId) {
-      sendToClient(socket, {
-        type: 'error',
-        payload: { message: 'Authentication required' }
-      });
-      return;
-    }
-    
-    if (!client.rooms.has(payload.roomId)) {
-      sendToClient(socket, {
-        type: 'error',
-        payload: { message: 'You must join the room first' }
-      });
-      return;
-    }
-    
-    const messageData: InsertChatMessage = {
-      roomId: payload.roomId,
-      userId: client.userId,
-      message: payload.message
-    };
-    
-    try {
-      const savedMessage = await storage.createChatMessage(messageData);
-      broadcastToRoom(payload.roomId, {
-        type: 'new_message',
-        payload: savedMessage
-      });
-    } catch (error) {
-      console.error('Error saving chat message:', error);
-      sendToClient(socket, {
-        type: 'error',
-        payload: { message: 'Failed to save message' }
-      });
-    }
-  }
-  
-  function sendToClient(socket: WebSocket, message: SocketMessage) {
-    if (socket.readyState === WebSocket.OPEN) {
-      socket.send(JSON.stringify(message));
-    }
-  }
-  
-  function broadcastToRoom(roomId: number, message: SocketMessage) {
+  function broadcast(message: ServerMessage) {
     clients.forEach(client => {
-      if (client.rooms.has(roomId) && client.socket.readyState === WebSocket.OPEN) {
-        client.socket.send(JSON.stringify(message));
+      if (client.ws.readyState === WebSocket.OPEN) {
+        send(client.ws, message);
       }
     });
   }

@@ -1,23 +1,28 @@
-import Hero from "@/components/home/Hero";
-import FeaturedContent from "@/components/home/FeaturedContent";
-import MembershipPlans from "@/components/home/MembershipPlans";
-import CommunitySection from "@/components/home/CommunitySection";
-import StorePreview from "@/components/home/StorePreview";
-import VideoSection from "@/components/home/VideoSection";
-import Newsletter from "@/components/home/Newsletter";
+import { useEffect } from "react";
+import PageLayout from "@/components/layout/page-layout";
+import HeroSection from "@/components/home/hero-section";
+import FeaturedContent from "@/components/home/featured-content";
+import MembershipTiers from "@/components/home/membership-tiers";
+import FeaturedVideos from "@/components/home/featured-videos";
+import StorePreview from "@/components/home/store-preview";
+import CommunitySection from "@/components/home/community-section";
+import CallToAction from "@/components/home/call-to-action";
 
-const HomePage = () => {
+export default function HomePage() {
+  // Set page title
+  useEffect(() => {
+    document.title = "S3vn Studies - Learn, Connect, and Grow";
+  }, []);
+
   return (
-    <div>
-      <Hero />
+    <PageLayout>
+      <HeroSection />
       <FeaturedContent />
-      <MembershipPlans />
-      <CommunitySection />
+      <MembershipTiers />
+      <FeaturedVideos />
       <StorePreview />
-      <VideoSection />
-      <Newsletter />
-    </div>
+      <CommunitySection />
+      <CallToAction />
+    </PageLayout>
   );
-};
-
-export default HomePage;
+}

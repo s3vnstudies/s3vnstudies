@@ -1,168 +1,207 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/hooks/use-auth";
 import { useCart } from "@/hooks/use-cart";
-import CartDropdown from "@/components/shop/cart-dropdown";
-import UserMenu from "@/components/profile/user-menu";
-import MobileMenu from "@/components/layout/mobile-menu";
-import LoginModal from "@/components/layout/login-modal";
-import SignupModal from "@/components/layout/signup-modal";
 import { Button } from "@/components/ui/button";
-import { ROUTES } from "@/lib/constants";
-import { ShoppingCart } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Menu,
+  Search,
+  ShoppingCart,
+  User,
+  LogOut,
+  Settings,
+  ChevronDown,
+} from "lucide-react";
 
 export default function Header() {
   const [location] = useLocation();
-  const { user } = useAuth();
-  const { cartCount } = useCart();
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [loginModalOpen, setLoginModalOpen] = useState(false);
-  const [signupModalOpen, setSignupModalOpen] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false);
+  const { user, logoutMutation } = useAuth();
+  const { totalItems } = useCart();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Track scroll position to add shadow to header
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const navigation = [
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Articles", href: "/articles" },
+    { name: "Videos", href: "/videos" },
+    { name: "Store", href: "/store" },
+    { name: "Community", href: "/community" },
+  ];
 
-  // Check if current route is active
-  const isActive = (path: string) => {
-    return location === path;
+  const handleLogout = () => {
+    logoutMutation.mutate();
   };
 
   return (
-    <header className={`bg-white sticky top-0 z-50 ${isScrolled ? "shadow-sm" : ""}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          {/* Logo and main nav */}
-          <div className="flex">
-            <div className="flex-shrink-0 flex items-center">
-              <Link href={ROUTES.HOME} className="flex items-center">
-                <span className="text-primary text-2xl font-accent font-bold">S3VN</span>
-                <span className="text-dark text-xl ml-1 font-semibold">Studies</span>
-              </Link>
-            </div>
-            <nav className="hidden md:ml-6 md:flex md:space-x-6">
-              <Link href={ROUTES.HOME} 
-                className={`inline-flex items-center px-1 pt-1 text-sm font-medium 
-                  ${isActive(ROUTES.HOME) 
-                    ? "text-primary border-b-2 border-primary" 
-                    : "text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-secondary"
-                  }`}>
-                Home
-              </Link>
-              <Link href={ROUTES.ABOUT} 
-                className={`inline-flex items-center px-1 pt-1 text-sm font-medium 
-                  ${isActive(ROUTES.ABOUT) 
-                    ? "text-primary border-b-2 border-primary" 
-                    : "text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-secondary"
-                  }`}>
-                About
-              </Link>
-              <Link href={ROUTES.ARTICLES} 
-                className={`inline-flex items-center px-1 pt-1 text-sm font-medium 
-                  ${isActive(ROUTES.ARTICLES) 
-                    ? "text-primary border-b-2 border-primary" 
-                    : "text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-secondary"
-                  }`}>
-                Articles
-              </Link>
-              <Link href={ROUTES.VIDEOS} 
-                className={`inline-flex items-center px-1 pt-1 text-sm font-medium 
-                  ${isActive(ROUTES.VIDEOS) 
-                    ? "text-primary border-b-2 border-primary" 
-                    : "text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-secondary"
-                  }`}>
-                Videos
-              </Link>
-              <Link href={ROUTES.STORE} 
-                className={`inline-flex items-center px-1 pt-1 text-sm font-medium 
-                  ${isActive(ROUTES.STORE) 
-                    ? "text-primary border-b-2 border-primary" 
-                    : "text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-secondary"
-                  }`}>
-                Store
-              </Link>
-              <Link href={ROUTES.COMMUNITY} 
-                className={`inline-flex items-center px-1 pt-1 text-sm font-medium 
-                  ${isActive(ROUTES.COMMUNITY) 
-                    ? "text-primary border-b-2 border-primary" 
-                    : "text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-secondary"
-                  }`}>
-                Community
-              </Link>
-            </nav>
-          </div>
-          
-          {/* User controls */}
+    <header className="bg-white shadow-sm sticky top-0 z-50">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex items-center justify-between h-16 md:h-20">
           <div className="flex items-center">
-            <div className="relative">
-              <button 
-                onClick={() => setCartOpen(!cartOpen)}
-                className="p-2 text-gray-500 hover:text-primary mr-1 relative">
-                <ShoppingCart className="h-5 w-5" />
-                {cartCount > 0 && (
-                  <span className="absolute top-0 right-0 bg-amber-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                    {cartCount}
-                  </span>
-                )}
-              </button>
-              {cartOpen && <CartDropdown onClose={() => setCartOpen(false)} />}
-            </div>
-            
-            {/* Login buttons (when not logged in) */}
-            {!user && (
-              <div className="hidden md:block">
-                <Button 
-                  variant="default" 
-                  onClick={() => setLoginModalOpen(true)} 
-                  className="mr-2"
-                >
-                  Login
-                </Button>
-                <Button 
-                  variant="outline" 
-                  onClick={() => setSignupModalOpen(true)}
-                >
-                  Sign Up
-                </Button>
+            <Link href="/" className="flex items-center">
+              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                <span className="text-white font-poppins font-bold text-lg">S7</span>
               </div>
+              <span className="ml-2 text-lg font-semibold text-primary font-poppins hidden sm:inline-block">
+                S3vn Studies
+              </span>
+            </Link>
+          </div>
+
+          <nav className="hidden md:flex space-x-8">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`text-gray-700 hover:text-primary font-medium ${
+                  location === item.href ? "text-primary" : ""
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="flex items-center space-x-4">
+            <Link href="/search" className="hidden md:inline-flex text-gray-700 hover:text-primary">
+              <Search className="h-5 w-5" />
+            </Link>
+
+            <Link href="/cart" className="hidden md:inline-flex text-gray-700 hover:text-primary relative">
+              <ShoppingCart className="h-5 w-5" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-accent text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
+
+            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="md:hidden">
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left">
+                <div className="py-4">
+                  <div className="px-2 mb-8">
+                    <Link
+                      href="/"
+                      className="flex items-center"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <span className="text-white font-poppins font-bold text-lg">S7</span>
+                      </div>
+                      <span className="ml-2 text-lg font-semibold text-primary font-poppins">
+                        S3vn Studies
+                      </span>
+                    </Link>
+                  </div>
+                  <div className="space-y-1">
+                    {navigation.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className={`block px-3 py-2 text-base font-medium rounded-md ${
+                          location === item.href
+                            ? "bg-primary/10 text-primary"
+                            : "text-gray-700 hover:bg-gray-100"
+                        }`}
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                    <Link
+                      href="/cart"
+                      className="flex items-center justify-between px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 rounded-md"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <span>Cart</span>
+                      {totalItems > 0 && (
+                        <span className="bg-accent text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                          {totalItems}
+                        </span>
+                      )}
+                    </Link>
+                    {user ? (
+                      <>
+                        <Link
+                          href="/profile"
+                          className="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 rounded-md"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          Profile
+                        </Link>
+                        <button
+                          className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 rounded-md"
+                          onClick={() => {
+                            handleLogout();
+                            setMobileMenuOpen(false);
+                          }}
+                        >
+                          Sign Out
+                        </button>
+                      </>
+                    ) : (
+                      <Link
+                        href="/auth"
+                        className="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 rounded-md"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Sign In
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
+
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="hidden md:flex items-center gap-2">
+                    <User className="h-5 w-5" />
+                    <span>{user.displayName || user.username}</span>
+                    <ChevronDown className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem asChild>
+                    <Link href="/profile" className="cursor-pointer">Profile</Link>
+                  </DropdownMenuItem>
+                  {user.id === 1 && (
+                    <DropdownMenuItem asChild>
+                      <Link href="/admin" className="cursor-pointer">Admin Dashboard</Link>
+                    </DropdownMenuItem>
+                  )}
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
+                    <LogOut className="h-4 w-4 mr-2" />
+                    <span>Sign Out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button asChild className="hidden md:inline-flex bg-primary hover:bg-primary-dark text-white">
+                <Link href="/auth">Sign In</Link>
+              </Button>
             )}
-            
-            {/* User menu (when logged in) */}
-            {user && <UserMenu user={user} />}
-            
-            {/* Mobile menu button */}
-            <MobileMenu user={user} 
-              onLogin={() => setLoginModalOpen(true)} 
-              onSignup={() => setSignupModalOpen(true)} 
-            />
           </div>
         </div>
       </div>
-
-      {/* Modals */}
-      <LoginModal 
-        isOpen={loginModalOpen} 
-        onClose={() => setLoginModalOpen(false)} 
-        onSignupClick={() => {
-          setLoginModalOpen(false);
-          setSignupModalOpen(true);
-        }} 
-      />
-      
-      <SignupModal 
-        isOpen={signupModalOpen} 
-        onClose={() => setSignupModalOpen(false)} 
-        onLoginClick={() => {
-          setSignupModalOpen(false);
-          setLoginModalOpen(true);
-        }} 
-      />
     </header>
   );
 }

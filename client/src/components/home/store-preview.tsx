@@ -1,139 +1,145 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import { Product } from "@shared/schema";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ArrowRight, Heart, Star, StarHalf } from "lucide-react";
 import { useCart } from "@/hooks/use-cart";
-import { ShoppingCart, Eye, Heart, ArrowRight } from "lucide-react";
 
 export default function StorePreview() {
-  const { addToCart } = useCart();
-  
   const { data: products, isLoading } = useQuery<Product[]>({
-    queryKey: ["/api/products?limit=4"],
+    queryKey: ["/api/products/featured"],
   });
-  
-  const handleAddToCart = (product: Product) => {
-    addToCart(product, 1);
+
+  const { addItem } = useCart();
+
+  // Convert cents to dollars
+  const formatPrice = (cents: number) => {
+    return `$${(cents / 100).toFixed(2)}`;
   };
-  
+
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-end mb-10">
-          <div>
-            <h2 className="font-heading text-3xl font-bold mb-2">Merchandise</h2>
-            <p className="text-neutral-600">Show your support with official S3VN Studies gear</p>
-          </div>
-          <Link href="/store">
-            <a className="text-primary font-semibold hover:underline hidden md:flex items-center">
-              Visit Store <ArrowRight className="ml-1 h-4 w-4" />
-            </a>
-          </Link>
+    <section className="py-16 bg-neutral-50">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="text-center mb-12">
+          <span className="bg-secondary/10 text-secondary text-sm font-medium px-4 py-1.5 rounded-full">
+            Store
+          </span>
+          <h2 className="mt-4 text-3xl font-bold font-poppins text-neutral-900">
+            Official Merchandise
+          </h2>
+          <p className="mt-3 text-neutral-600 max-w-2xl mx-auto">
+            Support S3vn Studies and show your love with our official merchandise
+          </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {isLoading ? (
-            // Skeleton loaders
-            Array(4).fill(0).map((_, index) => (
-              <Card key={index} className="bg-white rounded-lg overflow-hidden shadow relative group">
-                <div className="relative pb-[100%] bg-neutral-200 animate-pulse"></div>
-                <CardContent className="p-4">
-                  <div className="h-5 bg-neutral-200 w-3/4 rounded animate-pulse mb-2"></div>
-                  <div className="flex justify-between items-center mt-2">
-                    <div className="h-4 bg-neutral-200 w-1/4 rounded animate-pulse"></div>
-                    <div className="h-4 bg-neutral-200 w-1/4 rounded animate-pulse"></div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))
-          ) : (
-            products?.map((product) => (
-              <Card 
-                key={product.id}
-                className="bg-white rounded-lg overflow-hidden shadow relative group"
-              >
-                <div className="relative pb-[100%] bg-neutral-100">
-                  <img 
-                    src={product.imageUrl || "https://images.unsplash.com/photo-1618354691373-d851c5c3a990"} 
-                    alt={product.name}
-                    className="absolute top-0 left-0 w-full h-full object-contain p-4"
-                  />
-                  {product.isNew && (
-                    <div className="absolute top-2 right-2 bg-primary text-white text-xs py-1 px-2 rounded">
-                      New
-                    </div>
-                  )}
-                  {product.isDiscounted && (
-                    <div className="absolute top-2 right-2 bg-accent text-white text-xs py-1 px-2 rounded">
-                      {Math.round((1 - (product.discountPrice || 0) / product.price) * 100)}% OFF
-                    </div>
-                  )}
-                  <div className="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <div className="flex space-x-2">
-                      <Button 
-                        size="icon" 
-                        variant="secondary" 
-                        className="rounded-full" 
-                        onClick={() => handleAddToCart(product)}
-                      >
-                        <ShoppingCart className="h-4 w-4" />
-                      </Button>
-                      <Button 
-                        size="icon" 
-                        variant="secondary" 
-                        className="rounded-full"
-                      >
-                        <Heart className="h-4 w-4" />
-                      </Button>
-                      <Link href={`/store/product/${product.id}`}>
-                        <Button 
-                          size="icon" 
-                          variant="secondary" 
-                          className="rounded-full"
-                        >
-                          <Eye className="h-4 w-4" />
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-                <CardContent className="p-4">
-                  <Link href={`/store/product/${product.id}`}>
-                    <a>
-                      <h3 className="font-heading font-bold line-clamp-1 hover:text-primary">
-                        {product.name}
-                      </h3>
-                    </a>
-                  </Link>
-                  <div className="flex justify-between items-center mt-2">
-                    <div>
-                      {product.discountPrice ? (
-                        <>
-                          <span className="font-semibold text-primary">${(product.discountPrice / 100).toFixed(2)}</span>
-                          <span className="text-sm text-neutral-500 line-through ml-1">${(product.price / 100).toFixed(2)}</span>
-                        </>
-                      ) : (
-                        <span className="font-semibold text-primary">${(product.price / 100).toFixed(2)}</span>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {isLoading
+            ? Array(3)
+                .fill(0)
+                .map((_, i) => (
+                  <Card key={i} className="bg-white">
+                    <Skeleton className="h-64 w-full rounded-t-xl" />
+                    <CardContent className="p-5">
+                      <Skeleton className="h-6 w-3/4 mb-2" />
+                      <div className="flex items-center justify-between mb-4">
+                        <Skeleton className="h-6 w-20" />
+                        <Skeleton className="h-4 w-32" />
+                      </div>
+                      <div className="flex space-x-2 mb-4">
+                        <Skeleton className="h-6 w-6 rounded-full" />
+                        <Skeleton className="h-6 w-6 rounded-full" />
+                        <Skeleton className="h-6 w-6 rounded-full" />
+                      </div>
+                      <div className="flex space-x-2">
+                        <Skeleton className="h-10 flex-1 rounded-lg" />
+                        <Skeleton className="h-10 w-10 rounded-lg" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))
+            : products?.slice(0, 3).map((product) => (
+                <Card
+                  key={product.id}
+                  className="bg-white rounded-xl overflow-hidden shadow-md transition-all hover:shadow-lg group"
+                >
+                  <Link href={`/store/${product.id}`}>
+                    <div className="h-64 overflow-hidden relative cursor-pointer">
+                      <img
+                        src={product.imageUrl || "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"}
+                        alt={product.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                      />
+                      {product.isFeatured && (
+                        <div className="absolute top-3 right-3">
+                          <span className="bg-accent text-white text-xs font-medium px-2 py-1 rounded">
+                            Featured
+                          </span>
+                        </div>
+                      )}
+                      {!product.inStock && (
+                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                          <span className="bg-neutral-900/80 text-white px-3 py-1 rounded-md font-medium">
+                            Out of Stock
+                          </span>
+                        </div>
                       )}
                     </div>
-                    <div className="text-sm text-yellow-500">
-                      <span>★★★★</span>
-                      <span className="text-yellow-300">★</span>
+                  </Link>
+                  <CardContent className="p-5">
+                    <h3 className="font-bold text-lg mb-2 font-poppins">{product.name}</h3>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-neutral-900 font-bold">
+                        {formatPrice(product.price)}
+                      </span>
+                      <div className="flex text-neutral-400">
+                        <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                        <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                        <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                        <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                        <StarHalf className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                        <span className="ml-1 text-sm text-neutral-500">
+                          ({Math.floor(Math.random() * 50) + 10})
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))
-          )}
+                    <div className="flex space-x-2 mb-4">
+                      <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-black"></span>
+                      <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white border border-neutral-300"></span>
+                      <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary"></span>
+                    </div>
+                    <div className="flex space-x-2">
+                      <Button
+                        className="flex-1 bg-primary hover:bg-primary-dark text-white"
+                        disabled={!product.inStock}
+                        onClick={() => addItem(product)}
+                      >
+                        Add to Cart
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="w-10 h-10 flex items-center justify-center rounded-lg border border-neutral-300 hover:bg-neutral-100"
+                      >
+                        <Heart className="h-5 w-5" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
         </div>
 
-        <div className="mt-8 text-center md:hidden">
-          <Link href="/store">
-            <a className="inline-block text-primary font-semibold hover:underline flex items-center justify-center">
-              Visit Store <ArrowRight className="ml-1 h-4 w-4" />
-            </a>
-          </Link>
+        <div className="text-center mt-12">
+          <Button
+            asChild
+            className="bg-secondary hover:bg-secondary-dark text-white px-6 py-3 rounded-lg font-medium transition-colors"
+          >
+            <Link href="/store">
+              Visit Store
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>

@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import ContentCard from "@/components/shared/ContentCard";
+import PageLayout from "@/components/layout/page-layout";
+import ArticleCard from "@/components/articles/article-card";
+import { Article } from "@shared/schema";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -9,198 +11,189 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Content } from "@shared/schema";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Search, Filter } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
 
-const ArticlesPage = () => {
+export default function ArticlesPage() {
   const { user } = useAuth();
-  const [searchTerm, setSearchTerm] = useState("");
-  const [category, setCategory] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("all");
+  const [tab, setTab] = useState("all");
 
-  const { data: contents = [], isLoading } = useQuery<Content[]>({
-    queryKey: ['/api/contents'],
-    queryFn: async () => {
-      const response = await fetch('/api/contents');
-      if (!response.ok) {
-        throw new Error('Failed to fetch content');
-      }
-      return await response.json();
-    }
+  const { data: articles, isLoading } = useQuery<Article[]>({
+    queryKey: ["/api/articles"],
   });
 
-  // Filter content for articles only
-  const articles = contents.filter(
-    (content) => content.contentType === "article"
-  );
+  // Set page title
+  useEffect(() => {
+    document.title = "Articles - S3vn Studies";
+  }, []);
 
-  // Filter based on search term and category
-  const filteredArticles = articles.filter((article) => {
-    const matchesSearch = article.title
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase()) || 
-      article.description.toLowerCase().includes(searchTerm.toLowerCase());
-      
-    const matchesCategory = category === "all" || article.category === category;
-    
-    return matchesSearch && matchesCategory;
-  });
+  // Filter articles based on search query, category, and tab
+  const filteredArticles = articles
+    ? articles.filter((article) => {
+        // Skip articles that require higher membership than user has
+        if (tab !== "all") {
+          if (tab === "free" && article.membershipRequired !== "free") {
+            return false;
+          } else if (tab === "premium" && article.membershipRequired === "free") {
+            return false;
+          }
+        }
 
-  // Split into free and premium articles
-  const freeArticles = filteredArticles.filter(article => !article.premium);
-  const premiumArticles = filteredArticles.filter(article => article.premium);
+        // Filter by category
+        if (categoryFilter !== "all" && article.category !== categoryFilter) {
+          return false;
+        }
 
-  // Get unique categories for filter dropdown
-  const categories = ["all", ...new Set(articles.map(article => article.category))];
+        // Filter by search query
+        if (searchQuery) {
+          const query = searchQuery.toLowerCase();
+          return (
+            article.title.toLowerCase().includes(query) ||
+            article.excerpt.toLowerCase().includes(query) ||
+            article.author.toLowerCase().includes(query)
+          );
+        }
 
-  if (isLoading) {
-    return (
-      <div className="container mx-auto px-4 py-16">
-        <h1 className="text-3xl font-bold mb-8">Articles</h1>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[1, 2, 3, 4, 5, 6].map(i => (
-            <div key={i} className="bg-gray-100 rounded-xl animate-pulse h-96"></div>
-          ))}
-        </div>
-      </div>
-    );
-  }
+        return true;
+      })
+    : [];
+
+  // Get unique categories from articles
+  const categories = articles
+    ? ["all", ...new Set(articles.map((article) => article.category))]
+    : ["all"];
 
   return (
-    <div className="container mx-auto px-4 py-16">
-      <h1 className="text-3xl font-bold mb-8">Articles</h1>
-      
-      {/* Search and Filter */}
-      <div className="mb-8 flex flex-col md:flex-row gap-4">
-        <Input
-          type="text"
-          placeholder="Search articles..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="md:max-w-md"
-        />
-        <Select value={category} onValueChange={setCategory}>
-          <SelectTrigger className="w-full md:w-[180px]">
-            <SelectValue placeholder="Category" />
-          </SelectTrigger>
-          <SelectContent>
-            {categories.map((cat) => (
-              <SelectItem key={cat} value={cat}>
-                {cat === "all" ? "All Categories" : cat}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+    <PageLayout>
+      <div className="bg-primary text-white py-12">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+          <h1 className="text-3xl md:text-4xl font-bold font-poppins mb-4">Articles</h1>
+          <p className="text-lg opacity-90">
+            Explore our collection of insightful articles on various topics
+          </p>
+        </div>
       </div>
-      
-      {/* Articles List */}
-      <Tabs defaultValue="all">
-        <TabsList className="mb-6">
-          <TabsTrigger value="all">All Articles</TabsTrigger>
-          <TabsTrigger value="free">Free</TabsTrigger>
-          <TabsTrigger value="premium">Premium</TabsTrigger>
-        </TabsList>
-        
-        <TabsContent value="all">
-          {filteredArticles.length === 0 ? (
-            <div className="text-center py-10">
-              <p className="text-gray-500">No articles found matching your search criteria.</p>
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredArticles.map((article) => (
-                <ContentCard
-                  key={article.id}
-                  id={article.id}
-                  title={article.title}
-                  description={article.description}
-                  image={article.thumbnail || "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80"}
-                  contentType="article"
-                  date={new Date(article.createdAt).toLocaleDateString()}
-                  category={article.category || "General"}
-                  duration={`${Math.ceil(article.content.length / 1000)} min read`}
-                  author={{
-                    name: article.authorName || "S3vn Studies",
-                    avatar: article.authorAvatar || ""
-                  }}
-                />
-              ))}
-            </div>
-          )}
-        </TabsContent>
-        
-        <TabsContent value="free">
-          {freeArticles.length === 0 ? (
-            <div className="text-center py-10">
-              <p className="text-gray-500">No free articles found matching your search criteria.</p>
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {freeArticles.map((article) => (
-                <ContentCard
-                  key={article.id}
-                  id={article.id}
-                  title={article.title}
-                  description={article.description}
-                  image={article.thumbnail || "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80"}
-                  contentType="article"
-                  date={new Date(article.createdAt).toLocaleDateString()}
-                  category={article.category || "General"}
-                  duration={`${Math.ceil(article.content.length / 1000)} min read`}
-                  author={{
-                    name: article.authorName || "S3vn Studies",
-                    avatar: article.authorAvatar || ""
-                  }}
-                />
-              ))}
-            </div>
-          )}
-        </TabsContent>
-        
-        <TabsContent value="premium">
-          {!user ? (
-            <div className="text-center py-10 bg-gray-50 rounded-lg">
-              <h3 className="text-xl font-bold mb-2">Premium Content</h3>
-              <p className="text-gray-600 mb-4">You need to be a member to access premium articles.</p>
-              <a href="/auth" className="text-blue-600 hover:underline">Sign in</a>
-              <span className="mx-2 text-gray-400">or</span>
-              <a href="/#pricing" className="text-blue-600 hover:underline">Become a member</a>
-            </div>
-          ) : user.membershipTier === "free" ? (
-            <div className="text-center py-10 bg-gray-50 rounded-lg">
-              <h3 className="text-xl font-bold mb-2">Premium Content</h3>
-              <p className="text-gray-600 mb-4">Upgrade your membership to access premium articles.</p>
-              <a href="/#pricing" className="text-blue-600 hover:underline">View membership options</a>
-            </div>
-          ) : premiumArticles.length === 0 ? (
-            <div className="text-center py-10">
-              <p className="text-gray-500">No premium articles found matching your search criteria.</p>
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {premiumArticles.map((article) => (
-                <ContentCard
-                  key={article.id}
-                  id={article.id}
-                  title={article.title}
-                  description={article.description}
-                  image={article.thumbnail || "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80"}
-                  contentType="article"
-                  date={new Date(article.createdAt).toLocaleDateString()}
-                  category={article.category || "General"}
-                  duration={`${Math.ceil(article.content.length / 1000)} min read`}
-                  author={{
-                    name: article.authorName || "S3vn Studies",
-                    avatar: article.authorAvatar || ""
-                  }}
-                />
-              ))}
-            </div>
-          )}
-        </TabsContent>
-      </Tabs>
-    </div>
-  );
-};
 
-export default ArticlesPage;
+      <div className="container mx-auto px-4 md:px-6 py-12 max-w-5xl">
+        <div className="flex flex-col md:flex-row gap-4 mb-8">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <Input
+              placeholder="Search articles..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+          <div className="w-full md:w-48">
+            <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+              <SelectTrigger>
+                <Filter className="h-4 w-4 mr-2" />
+                <SelectValue placeholder="Category" />
+              </SelectTrigger>
+              <SelectContent>
+                {categories.map((category) => (
+                  <SelectItem key={category} value={category}>
+                    {category === "all" ? "All Categories" : category}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+
+        <Tabs
+          value={tab}
+          onValueChange={setTab}
+          className="mb-8"
+        >
+          <TabsList className="grid w-full md:w-auto grid-cols-3">
+            <TabsTrigger value="all">All Articles</TabsTrigger>
+            <TabsTrigger value="free">Free</TabsTrigger>
+            <TabsTrigger value="premium">Premium</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="all" className="mt-6">
+            {isLoading ? (
+              <div className="text-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+                <p className="mt-4 text-neutral-600">Loading articles...</p>
+              </div>
+            ) : filteredArticles.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredArticles.map((article) => (
+                  <ArticleCard
+                    key={article.id}
+                    article={article}
+                    showLockIcon={true}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-neutral-600">No articles found matching your criteria.</p>
+              </div>
+            )}
+          </TabsContent>
+
+          <TabsContent value="free" className="mt-6">
+            {isLoading ? (
+              <div className="text-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+                <p className="mt-4 text-neutral-600">Loading articles...</p>
+              </div>
+            ) : filteredArticles.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredArticles.map((article) => (
+                  <ArticleCard
+                    key={article.id}
+                    article={article}
+                    showLockIcon={false}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-neutral-600">No free articles found matching your criteria.</p>
+              </div>
+            )}
+          </TabsContent>
+
+          <TabsContent value="premium" className="mt-6">
+            {isLoading ? (
+              <div className="text-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+                <p className="mt-4 text-neutral-600">Loading articles...</p>
+              </div>
+            ) : filteredArticles.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredArticles.map((article) => (
+                  <ArticleCard
+                    key={article.id}
+                    article={article}
+                    showLockIcon={false}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-neutral-600">No premium articles found matching your criteria.</p>
+                {!user && (
+                  <p className="mt-2 text-neutral-600">
+                    <a href="/auth" className="text-primary hover:underline">
+                      Sign in
+                    </a>{" "}
+                    to access premium content.
+                  </p>
+                )}
+              </div>
+            )}
+          </TabsContent>
+        </Tabs>
+      </div>
+    </PageLayout>
+  );
+}

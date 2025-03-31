@@ -5,9 +5,11 @@ import { Redirect, Route } from "wouter";
 export function ProtectedRoute({
   path,
   component: Component,
+  requiredMembership,
 }: {
   path: string;
   component: () => React.JSX.Element;
+  requiredMembership?: "free" | "pro" | "vip";
 }) {
   const { user, isLoading } = useAuth();
 
@@ -15,7 +17,7 @@ export function ProtectedRoute({
     return (
       <Route path={path}>
         <div className="flex items-center justify-center min-h-screen">
-          <Loader2 className="h-8 w-8 animate-spin text-border" />
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
         </div>
       </Route>
     );
@@ -27,6 +29,25 @@ export function ProtectedRoute({
         <Redirect to="/auth" />
       </Route>
     );
+  }
+
+  if (requiredMembership && requiredMembership !== "free") {
+    const tierLevels: Record<string, number> = {
+      "free": 0,
+      "pro": 1,
+      "vip": 2
+    };
+    
+    const requiredLevel = tierLevels[requiredMembership];
+    const userLevel = tierLevels[user.membershipTier];
+    
+    if (userLevel < requiredLevel) {
+      return (
+        <Route path={path}>
+          <Redirect to="/membership" />
+        </Route>
+      );
+    }
   }
 
   return <Route path={path} component={Component} />;

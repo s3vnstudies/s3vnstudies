@@ -1,148 +1,167 @@
+import { useEffect } from "react";
+import PageLayout from "@/components/layout/page-layout";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
-const AboutPage = () => {
+export default function AboutPage() {
+  // Set page title
+  useEffect(() => {
+    document.title = "About - S3vn Studies";
+  }, []);
+
   return (
-    <div className="bg-white">
-      {/* Hero Section */}
-      <section className="bg-gray-50 py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl font-bold mb-6">About S3vn Studies</h1>
-            <p className="text-xl text-gray-600 mb-8">
-              Dedicated to learning, growing, and sharing knowledge with a community of curious minds.
+    <PageLayout>
+      <div className="bg-primary text-white py-12">
+        <div className="container mx-auto px-4 md:px-6 max-w-4xl">
+          <h1 className="text-3xl md:text-4xl font-bold font-poppins mb-4">About S3vn Studies</h1>
+          <p className="text-lg opacity-90">
+            Discover our mission, vision, and the story behind our community.
+          </p>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 md:px-6 py-12 max-w-4xl">
+        <div className="grid md:grid-cols-2 gap-8 items-center mb-12">
+          <div>
+            <h2 className="text-2xl font-bold font-poppins mb-4 text-neutral-900">Our Story</h2>
+            <p className="text-neutral-700 mb-4">
+              S3vn Studies was founded with a simple yet powerful idea: to create a space where curious minds could
+              connect, learn, and grow together. What started as a small YouTube channel has evolved into a thriving
+              community of knowledge seekers from around the world.
+            </p>
+            <p className="text-neutral-700">
+              We believe in the transformative power of continuous learning and meaningful connections. Our platform
+              is designed to foster both, providing high-quality educational content alongside vibrant community features.
+            </p>
+          </div>
+          <div className="rounded-lg overflow-hidden shadow-lg">
+            <img
+              src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+              alt="S3vn Studies founder"
+              className="w-full h-auto"
+            />
+          </div>
+        </div>
+
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold font-poppins mb-4 text-neutral-900">Our Mission</h2>
+          <p className="text-neutral-700 mb-4">
+            At S3vn Studies, our mission is to make high-quality educational content accessible to everyone while
+            building a supportive community where members can share ideas, collaborate, and inspire each other.
+          </p>
+          <p className="text-neutral-700">
+            We strive to create content that not only informs but also encourages critical thinking and personal growth.
+            Through our videos, articles, and community discussions, we aim to spark curiosity and foster a lifelong
+            love of learning.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
+          <div className="bg-neutral-50 p-6 rounded-lg">
+            <h3 className="text-xl font-bold font-poppins mb-3 text-neutral-900">Quality Content</h3>
+            <p className="text-neutral-700">
+              We are committed to producing thoughtful, well-researched content that provides genuine value to our
+              community members.
+            </p>
+          </div>
+          <div className="bg-neutral-50 p-6 rounded-lg">
+            <h3 className="text-xl font-bold font-poppins mb-3 text-neutral-900">Inclusive Community</h3>
+            <p className="text-neutral-700">
+              We welcome diverse perspectives and believe that the best learning happens when people from different
+              backgrounds share their experiences and ideas.
+            </p>
+          </div>
+          <div className="bg-neutral-50 p-6 rounded-lg">
+            <h3 className="text-xl font-bold font-poppins mb-3 text-neutral-900">Continuous Growth</h3>
+            <p className="text-neutral-700">
+              We are constantly evolving, improving our platform, and expanding our content library to better serve
+              our community's needs.
             </p>
           </div>
         </div>
-      </section>
 
-      {/* Mission and Vision */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
-              <p className="text-gray-600 mb-4">
-                At S3vn Studies, we're on a mission to create a vibrant community where passionate individuals can connect, learn, and grow together. We believe that knowledge is most valuable when shared, and that community support accelerates personal growth.
-              </p>
-              <p className="text-gray-600">
-                Through our diverse content, interactive platform, and supportive environment, we aim to empower everyone to pursue continuous learning and development in their areas of interest.
-              </p>
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold font-poppins mb-4 text-neutral-900">Meet the Team</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="text-center">
+              <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4">
+                <img
+                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                  alt="Founder & Content Creator"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="text-lg font-bold font-poppins text-neutral-900">John Doe</h3>
+              <p className="text-neutral-700">Founder & Content Creator</p>
             </div>
-            <div className="bg-gray-200 h-80 rounded-lg flex items-center justify-center">
-              <div className="text-gray-400 text-lg">Mission Image</div>
+            <div className="text-center">
+              <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4">
+                <img
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                  alt="Community Manager"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="text-lg font-bold font-poppins text-neutral-900">Jane Smith</h3>
+              <p className="text-neutral-700">Community Manager</p>
+            </div>
+            <div className="text-center">
+              <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4">
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                  alt="Content Researcher"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="text-lg font-bold font-poppins text-neutral-900">Michael Johnson</h3>
+              <p className="text-neutral-700">Content Researcher</p>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* Founder Story */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6 text-center">The Founder's Story</h2>
-            <div className="bg-white p-8 rounded-xl shadow-md">
-              <div className="flex flex-col sm:flex-row items-center gap-6 mb-6">
-                <div className="w-32 h-32 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center">
-                  <div className="text-gray-400">Photo</div>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold">Alex Johnson</h3>
-                  <p className="text-gray-500">Founder & Content Creator</p>
-                </div>
-              </div>
-              <p className="text-gray-600 mb-4">
-                The journey of S3vn Studies began five years ago when I realized there was a gap in how educational content was being delivered and experienced online. With a background in education and technology, I wanted to create a space that wasn't just about passive consumption of information, but active engagement and community building.
-              </p>
-              <p className="text-gray-600">
-                What started as a simple YouTube channel has evolved into a multi-faceted platform where members can access exclusive content, connect with like-minded individuals, and participate in collaborative learning experiences. I'm incredibly proud of the community we've built together, and excited about where we're headed next.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* What We Offer */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center">What We Offer</h2>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-xl shadow-md">
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                <i className="fas fa-book text-blue-600"></i>
-              </div>
-              <h3 className="text-xl font-bold mb-3">Educational Content</h3>
-              <p className="text-gray-600">
-                Articles, videos, and workshops covering a wide range of topics, from technology and personal development to creative skills and more.
-              </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-xl shadow-md">
-              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                <i className="fas fa-users text-purple-600"></i>
-              </div>
-              <h3 className="text-xl font-bold mb-3">Vibrant Community</h3>
-              <p className="text-gray-600">
-                Connect with fellow members through chat rooms, bulletin boards, and virtual events to share ideas and collaborate on projects.
-              </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-xl shadow-md">
-              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                <i className="fas fa-trophy text-green-600"></i>
-              </div>
-              <h3 className="text-xl font-bold mb-3">Member Benefits</h3>
-              <p className="text-gray-600">
-                Exclusive access to premium content, early releases, one-on-one consultations, and special discounts on merchandise and events.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section className="py-16 bg-gray-50" id="contact">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6">Get In Touch</h2>
-            <p className="text-gray-600 mb-8">
-              Have questions, suggestions, or just want to say hello? We'd love to hear from you!
-            </p>
-            <div className="grid md:grid-cols-3 gap-6 text-center mb-8">
-              <div>
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-envelope text-blue-600"></i>
-                </div>
-                <h3 className="font-bold mb-2">Email</h3>
-                <p className="text-gray-600">contact@s3vnstudies.com</p>
-              </div>
-              
-              <div>
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-map-marker-alt text-blue-600"></i>
-                </div>
-                <h3 className="font-bold mb-2">Location</h3>
-                <p className="text-gray-600">San Francisco, CA</p>
-              </div>
-              
-              <div>
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fab fa-youtube text-blue-600"></i>
-                </div>
-                <h3 className="font-bold mb-2">YouTube</h3>
-                <p className="text-gray-600">@s3vnstudies</p>
-              </div>
-            </div>
-            
-            <Button asChild className="bg-blue-600 hover:bg-blue-700">
-              <Link href="/community">Join Our Community</Link>
+        <div className="text-center mb-12">
+          <h2 className="text-2xl font-bold font-poppins mb-4 text-neutral-900">Contact Us</h2>
+          <p className="text-neutral-700 mb-6 max-w-2xl mx-auto">
+            Have questions or feedback? We'd love to hear from you! Reach out to us at
+            <a href="mailto:contact@s3vnstudies.com" className="text-primary font-medium ml-1">
+              contact@s3vnstudies.com
+            </a>
+          </p>
+          <div className="flex justify-center space-x-4">
+            <Button asChild variant="outline">
+              <a
+                href="https://youtube.com/@s3vnstudies"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                YouTube
+              </a>
+            </Button>
+            <Button asChild variant="outline">
+              <a href="#" target="_blank" rel="noopener noreferrer">
+                Twitter
+              </a>
+            </Button>
+            <Button asChild variant="outline">
+              <a href="#" target="_blank" rel="noopener noreferrer">
+                Instagram
+              </a>
             </Button>
           </div>
         </div>
-      </section>
-    </div>
-  );
-};
 
-export default AboutPage;
+        <div className="bg-primary/5 p-8 rounded-lg text-center">
+          <h2 className="text-2xl font-bold font-poppins mb-4 text-neutral-900">
+            Join Our Community Today
+          </h2>
+          <p className="text-neutral-700 mb-6 max-w-2xl mx-auto">
+            Become part of the S3vn Studies community and start your journey of continuous learning and connection.
+          </p>
+          <Button asChild size="lg" className="bg-primary hover:bg-primary-dark text-white">
+            <Link href="/auth">Get Started</Link>
+          </Button>
+        </div>
+      </div>
+    </PageLayout>
+  );
+}

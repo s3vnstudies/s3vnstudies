@@ -1,90 +1,114 @@
-import { pgTable, text, serial, integer, boolean, jsonb, timestamp, pgEnum } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, timestamp, pgEnum } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-// User related schemas
+export const membershipTierEnum = pgEnum("membership_tier", ["free", "pro", "vip"]);
+
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
   email: text("email").notNull().unique(),
-  fullName: text("full_name"),
-  avatar: text("avatar"),
+  displayName: text("display_name"),
   bio: text("bio"),
-  role: text("role").default("user").notNull(),
-  membershipTier: text("membership_tier").default("free").notNull(),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
+  avatarUrl: text("avatar_url"),
+  membershipTier: membershipTierEnum("membership_tier").default("free").notNull(),
+  memberSince: timestamp("member_since").defaultNow().notNull(),
 });
 
-export const insertUserSchema = createInsertSchema(users).pick({
-  username: true,
-  password: true,
-  email: true,
-  fullName: true,
-});
+export const insertUserSchema = createInsertSchema(users)
+  .pick({
+    username: true,
+    password: true,
+    email: true,
+    displayName: true,
+  })
+  .extend({
+    email: z.string().email(),
+    displayName: z.string().min(1).max(50).optional(),
+  });
 
-// Content related schemas
-export const contentTypeEnum = pgEnum("content_type", ["article", "video", "workshop"]);
-
-export const contents = pgTable("contents", {
+export const articles = pgTable("articles", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
-  description: text("description").notNull(),
   content: text("content").notNull(),
-  contentType: contentTypeEnum("content_type").notNull(),
+  author: text("author").notNull(),
   thumbnail: text("thumbnail"),
-  authorId: integer("author_id").notNull(),
-  published: boolean("published").default(true).notNull(),
-  premium: boolean("premium").default(false).notNull(),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  excerpt: text("excerpt").notNull(),
+  category: text("category").notNull(),
+  publishDate: timestamp("publish_date").defaultNow().notNull(),
+  membershipRequired: membershipTierEnum("membership_required").default("free").notNull(),
 });
 
-export const insertContentSchema = createInsertSchema(contents).pick({
+export const insertArticleSchema = createInsertSchema(articles).pick({
   title: true,
-  description: true,
   content: true,
-  contentType: true,
+  author: true,
   thumbnail: true,
-  authorId: true,
-  published: true,
-  premium: true,
+  excerpt: true,
+  category: true,
+  membershipRequired: true,
 });
 
-// Product related schemas
 export const products = pgTable("products", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   description: text("description").notNull(),
-  price: integer("price").notNull(), // in cents
-  image: text("image").notNull(),
+  price: integer("price").notNull(), // stored in cents
+  imageUrl: text("image_url"),
   category: text("category").notNull(),
-  stock: integer("stock").default(0).notNull(),
-  isNew: boolean("is_new").default(false),
-  onSale: boolean("on_sale").default(false),
-  originalPrice: integer("original_price"), // in cents, for sale items
-  createdAt: timestamp("created_at").defaultNow().notNull(),
+  inStock: boolean("in_stock").default(true).notNull(),
+  isFeatured: boolean("is_featured").default(false).notNull(),
 });
 
 export const insertProductSchema = createInsertSchema(products).pick({
   name: true,
   description: true,
   price: true,
-  image: true,
+  imageUrl: true,
   category: true,
-  stock: true,
-  isNew: true,
-  onSale: true,
-  originalPrice: true,
+  inStock: true,
+  isFeatured: true,
 });
 
-// Chat room related schemas
+export const orders = pgTable("orders", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").notNull(),
+  totalAmount: integer("total_amount").notNull(), // stored in cents
+  status: text("status").notNull(), // pending, completed, cancelled
+  orderDate: timestamp("order_date").defaultNow().notNull(),
+  shippingAddress: text("shipping_address").notNull(),
+});
+
+export const insertOrderSchema = createInsertSchema(orders).pick({
+  userId: true,
+  totalAmount: true,
+  status: true,
+  shippingAddress: true,
+});
+
+export const orderItems = pgTable("order_items", {
+  id: serial("id").primaryKey(),
+  orderId: integer("order_id").notNull(),
+  productId: integer("product_id").notNull(),
+  quantity: integer("quantity").notNull(),
+  price: integer("price").notNull(), // stored in cents
+});
+
+export const insertOrderItemSchema = createInsertSchema(orderItems).pick({
+  orderId: true,
+  productId: true,
+  quantity: true,
+  price: true,
+});
+
 export const chatRooms = pgTable("chat_rooms", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   description: text("description"),
-  createdBy: integer("created_by").notNull(),
+  createdBy: integer("created_by").notNull(), // user id
   isPrivate: boolean("is_private").default(false).notNull(),
+  membershipRequired: membershipTierEnum("membership_required").default("free").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -93,15 +117,15 @@ export const insertChatRoomSchema = createInsertSchema(chatRooms).pick({
   description: true,
   createdBy: true,
   isPrivate: true,
+  membershipRequired: true,
 });
 
-// Chat message related schemas
 export const chatMessages = pgTable("chat_messages", {
   id: serial("id").primaryKey(),
   roomId: integer("room_id").notNull(),
   userId: integer("user_id").notNull(),
   message: text("message").notNull(),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
+  sentAt: timestamp("sent_at").defaultNow().notNull(),
 });
 
 export const insertChatMessageSchema = createInsertSchema(chatMessages).pick({
@@ -110,73 +134,74 @@ export const insertChatMessageSchema = createInsertSchema(chatMessages).pick({
   message: true,
 });
 
-// Bulletin board related schemas
 export const bulletinPosts = pgTable("bulletin_posts", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
   content: text("content").notNull(),
   userId: integer("user_id").notNull(),
-  pinned: boolean("pinned").default(false).notNull(),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  category: text("category").notNull(),
+  postedAt: timestamp("posted_at").defaultNow().notNull(),
 });
 
 export const insertBulletinPostSchema = createInsertSchema(bulletinPosts).pick({
   title: true,
   content: true,
   userId: true,
-  pinned: true,
+  category: true,
 });
 
-// Order related schemas
-export const orders = pgTable("orders", {
+export const videos = pgTable("videos", {
   id: serial("id").primaryKey(),
-  userId: integer("user_id").notNull(),
-  status: text("status").default("pending").notNull(),
-  total: integer("total").notNull(), // in cents
-  items: jsonb("items").notNull(),
-  shippingAddress: jsonb("shipping_address"),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  title: text("title").notNull(),
+  description: text("description"),
+  youtubeId: text("youtube_id").notNull(),
+  thumbnail: text("thumbnail"),
+  duration: text("duration"),
+  publishDate: timestamp("publish_date").defaultNow().notNull(),
+  membershipRequired: membershipTierEnum("membership_required").default("free").notNull(),
 });
 
-export const insertOrderSchema = createInsertSchema(orders).pick({
-  userId: true,
-  status: true,
-  total: true,
-  items: true,
-  shippingAddress: true,
+export const insertVideoSchema = createInsertSchema(videos).pick({
+  title: true,
+  description: true,
+  youtubeId: true,
+  thumbnail: true,
+  duration: true,
+  membershipRequired: true,
 });
 
-// Membership subscriptions
 export const subscriptions = pgTable("subscriptions", {
   id: serial("id").primaryKey(),
-  userId: integer("user_id").notNull().unique(),
-  tier: text("tier").notNull(),
+  userId: integer("user_id").notNull(),
+  tier: membershipTierEnum("tier").notNull(),
   startDate: timestamp("start_date").defaultNow().notNull(),
   endDate: timestamp("end_date"),
-  status: text("status").default("active").notNull(),
+  active: boolean("active").default(true).notNull(),
   autoRenew: boolean("auto_renew").default(true).notNull(),
 });
 
 export const insertSubscriptionSchema = createInsertSchema(subscriptions).pick({
   userId: true,
   tier: true,
-  startDate: true,
   endDate: true,
-  status: true,
+  active: true,
   autoRenew: true,
 });
 
-// Type exports
 export type User = typeof users.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
 
-export type Content = typeof contents.$inferSelect;
-export type InsertContent = z.infer<typeof insertContentSchema>;
+export type Article = typeof articles.$inferSelect;
+export type InsertArticle = z.infer<typeof insertArticleSchema>;
 
 export type Product = typeof products.$inferSelect;
 export type InsertProduct = z.infer<typeof insertProductSchema>;
+
+export type Order = typeof orders.$inferSelect;
+export type InsertOrder = z.infer<typeof insertOrderSchema>;
+
+export type OrderItem = typeof orderItems.$inferSelect;
+export type InsertOrderItem = z.infer<typeof insertOrderItemSchema>;
 
 export type ChatRoom = typeof chatRooms.$inferSelect;
 export type InsertChatRoom = z.infer<typeof insertChatRoomSchema>;
@@ -187,8 +212,8 @@ export type InsertChatMessage = z.infer<typeof insertChatMessageSchema>;
 export type BulletinPost = typeof bulletinPosts.$inferSelect;
 export type InsertBulletinPost = z.infer<typeof insertBulletinPostSchema>;
 
-export type Order = typeof orders.$inferSelect;
-export type InsertOrder = z.infer<typeof insertOrderSchema>;
+export type Video = typeof videos.$inferSelect;
+export type InsertVideo = z.infer<typeof insertVideoSchema>;
 
 export type Subscription = typeof subscriptions.$inferSelect;
 export type InsertSubscription = z.infer<typeof insertSubscriptionSchema>;

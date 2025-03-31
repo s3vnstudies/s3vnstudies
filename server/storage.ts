@@ -1,15 +1,17 @@
 import { 
-  users, type User, type InsertUser,
-  contents, type Content, type InsertContent,
+  users, type User, type InsertUser, 
+  articles, type Article, type InsertArticle,
   products, type Product, type InsertProduct,
+  orders, type Order, type InsertOrder,
+  orderItems, type OrderItem, type InsertOrderItem,
   chatRooms, type ChatRoom, type InsertChatRoom,
   chatMessages, type ChatMessage, type InsertChatMessage,
   bulletinPosts, type BulletinPost, type InsertBulletinPost,
-  orders, type Order, type InsertOrder,
+  videos, type Video, type InsertVideo,
   subscriptions, type Subscription, type InsertSubscription
 } from "@shared/schema";
-import createMemoryStore from "memorystore";
 import session from "express-session";
+import createMemoryStore from "memorystore";
 
 const MemoryStore = createMemoryStore(session);
 
@@ -21,44 +23,63 @@ export interface IStorage {
   createUser(user: InsertUser): Promise<User>;
   updateUser(id: number, userData: Partial<User>): Promise<User | undefined>;
   
-  // Content operations
-  getContents(options?: { premium?: boolean, authorId?: number }): Promise<Content[]>;
-  getContent(id: number): Promise<Content | undefined>;
-  createContent(content: InsertContent): Promise<Content>;
-  updateContent(id: number, contentData: Partial<Content>): Promise<Content | undefined>;
-  deleteContent(id: number): Promise<boolean>;
+  // Article operations
+  getArticles(limit?: number, offset?: number): Promise<Article[]>;
+  getArticleById(id: number): Promise<Article | undefined>;
+  getArticlesByCategory(category: string): Promise<Article[]>;
+  getArticlesByMembershipTier(tier: string): Promise<Article[]>;
+  createArticle(article: InsertArticle): Promise<Article>;
+  updateArticle(id: number, articleData: Partial<Article>): Promise<Article | undefined>;
+  deleteArticle(id: number): Promise<boolean>;
   
   // Product operations
-  getProducts(options?: { category?: string, onSale?: boolean }): Promise<Product[]>;
-  getProduct(id: number): Promise<Product | undefined>;
+  getProducts(limit?: number, offset?: number): Promise<Product[]>;
+  getProductById(id: number): Promise<Product | undefined>;
+  getProductsByCategory(category: string): Promise<Product[]>;
+  getFeaturedProducts(): Promise<Product[]>;
   createProduct(product: InsertProduct): Promise<Product>;
   updateProduct(id: number, productData: Partial<Product>): Promise<Product | undefined>;
   deleteProduct(id: number): Promise<boolean>;
   
-  // Chat operations
+  // Order operations
+  getOrders(userId?: number): Promise<Order[]>;
+  getOrderById(id: number): Promise<Order | undefined>;
+  createOrder(order: InsertOrder): Promise<Order>;
+  updateOrderStatus(id: number, status: string): Promise<Order | undefined>;
+  
+  // Order items operations
+  getOrderItems(orderId: number): Promise<OrderItem[]>;
+  createOrderItem(orderItem: InsertOrderItem): Promise<OrderItem>;
+  
+  // Chat room operations
   getChatRooms(): Promise<ChatRoom[]>;
-  getChatRoom(id: number): Promise<ChatRoom | undefined>;
-  createChatRoom(room: InsertChatRoom): Promise<ChatRoom>;
-  getChatMessages(roomId: number): Promise<ChatMessage[]>;
+  getChatRoomById(id: number): Promise<ChatRoom | undefined>;
+  getChatRoomsByMembershipTier(tier: string): Promise<ChatRoom[]>;
+  createChatRoom(chatRoom: InsertChatRoom): Promise<ChatRoom>;
+  
+  // Chat message operations
+  getChatMessages(roomId: number, limit?: number): Promise<ChatMessage[]>;
   createChatMessage(message: InsertChatMessage): Promise<ChatMessage>;
   
-  // Bulletin operations
-  getBulletinPosts(): Promise<BulletinPost[]>;
-  getBulletinPost(id: number): Promise<BulletinPost | undefined>;
+  // Bulletin post operations
+  getBulletinPosts(limit?: number, offset?: number): Promise<BulletinPost[]>;
+  getBulletinPostById(id: number): Promise<BulletinPost | undefined>;
+  getBulletinPostsByCategory(category: string): Promise<BulletinPost[]>;
   createBulletinPost(post: InsertBulletinPost): Promise<BulletinPost>;
-  updateBulletinPost(id: number, postData: Partial<BulletinPost>): Promise<BulletinPost | undefined>;
   deleteBulletinPost(id: number): Promise<boolean>;
   
-  // Order operations
-  getOrders(userId: number): Promise<Order[]>;
-  getOrder(id: number): Promise<Order | undefined>;
-  createOrder(order: InsertOrder): Promise<Order>;
-  updateOrder(id: number, orderData: Partial<Order>): Promise<Order | undefined>;
+  // Video operations
+  getVideos(limit?: number, offset?: number): Promise<Video[]>;
+  getVideoById(id: number): Promise<Video | undefined>;
+  getVideosByMembershipTier(tier: string): Promise<Video[]>;
+  createVideo(video: InsertVideo): Promise<Video>;
+  updateVideo(id: number, videoData: Partial<Video>): Promise<Video | undefined>;
   
   // Subscription operations
   getSubscription(userId: number): Promise<Subscription | undefined>;
   createSubscription(subscription: InsertSubscription): Promise<Subscription>;
-  updateSubscription(userId: number, subscriptionData: Partial<Subscription>): Promise<Subscription | undefined>;
+  updateSubscription(id: number, subscriptionData: Partial<Subscription>): Promise<Subscription | undefined>;
+  cancelSubscription(id: number): Promise<boolean>;
   
   // Session store
   sessionStore: session.SessionStore;
@@ -66,82 +87,106 @@ export interface IStorage {
 
 export class MemStorage implements IStorage {
   private users: Map<number, User>;
-  private contents: Map<number, Content>;
+  private articles: Map<number, Article>;
   private products: Map<number, Product>;
-  private chatRooms: Map<number, ChatRoom>;
-  private chatMessages: Map<number, ChatMessage[]>;
-  private bulletinPosts: Map<number, BulletinPost>;
   private orders: Map<number, Order>;
+  private orderItems: Map<number, OrderItem>;
+  private chatRooms: Map<number, ChatRoom>;
+  private chatMessages: Map<number, ChatMessage>;
+  private bulletinPosts: Map<number, BulletinPost>;
+  private videos: Map<number, Video>;
   private subscriptions: Map<number, Subscription>;
+  
+  private userId: number = 1;
+  private articleId: number = 1;
+  private productId: number = 1;
+  private orderId: number = 1;
+  private orderItemId: number = 1;
+  private chatRoomId: number = 1;
+  private chatMessageId: number = 1;
+  private bulletinPostId: number = 1;
+  private videoId: number = 1;
+  private subscriptionId: number = 1;
+  
   sessionStore: session.SessionStore;
   
-  private currentIds: {
-    users: number;
-    contents: number;
-    products: number;
-    chatRooms: number;
-    chatMessages: number;
-    bulletinPosts: number;
-    orders: number;
-    subscriptions: number;
-  };
-
   constructor() {
     this.users = new Map();
-    this.contents = new Map();
+    this.articles = new Map();
     this.products = new Map();
+    this.orders = new Map();
+    this.orderItems = new Map();
     this.chatRooms = new Map();
     this.chatMessages = new Map();
     this.bulletinPosts = new Map();
-    this.orders = new Map();
+    this.videos = new Map();
     this.subscriptions = new Map();
-    
-    this.currentIds = {
-      users: 1,
-      contents: 1,
-      products: 1,
-      chatRooms: 1,
-      chatMessages: 1,
-      bulletinPosts: 1,
-      orders: 1,
-      subscriptions: 1
-    };
     
     this.sessionStore = new MemoryStore({
       checkPeriod: 86400000, // prune expired entries every 24h
     });
     
-    // Initialize with some demo products
-    this.seedProducts();
+    // Initialize with some example data
+    this.initSampleData();
   }
-
+  
+  private initSampleData() {
+    // Create some initial chat rooms
+    this.createChatRoom({
+      name: "General Discussion",
+      description: "A place to discuss anything related to S3vn Studies",
+      createdBy: 1,
+      isPrivate: false,
+      membershipRequired: "free"
+    });
+    
+    this.createChatRoom({
+      name: "Philosophy",
+      description: "Discuss philosophical topics and ideas",
+      createdBy: 1,
+      isPrivate: false,
+      membershipRequired: "pro"
+    });
+    
+    this.createChatRoom({
+      name: "VIP Lounge",
+      description: "Exclusive chat for VIP members",
+      createdBy: 1,
+      isPrivate: true,
+      membershipRequired: "vip"
+    });
+  }
+  
   // User operations
   async getUser(id: number): Promise<User | undefined> {
     return this.users.get(id);
   }
-
+  
   async getUserByUsername(username: string): Promise<User | undefined> {
     return Array.from(this.users.values()).find(
-      (user) => user.username === username,
+      (user) => user.username.toLowerCase() === username.toLowerCase()
     );
   }
   
   async getUserByEmail(email: string): Promise<User | undefined> {
     return Array.from(this.users.values()).find(
-      (user) => user.email === email,
+      (user) => user.email.toLowerCase() === email.toLowerCase()
     );
   }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = this.currentIds.users++;
-    const createdAt = new Date();
-    const user: User = { 
-      ...insertUser, 
-      id, 
-      role: "user", 
+  
+  async createUser(userData: InsertUser): Promise<User> {
+    const id = this.userId++;
+    const now = new Date();
+    
+    const user: User = {
+      id,
+      ...userData,
       membershipTier: "free",
-      createdAt
+      memberSince: now,
+      bio: "",
+      avatarUrl: ""
     };
+    
     this.users.set(id, user);
     return user;
   }
@@ -155,84 +200,99 @@ export class MemStorage implements IStorage {
     return updatedUser;
   }
   
-  // Content operations
-  async getContents(options?: { premium?: boolean, authorId?: number }): Promise<Content[]> {
-    let contents = Array.from(this.contents.values());
-    
-    if (options?.premium !== undefined) {
-      contents = contents.filter(content => content.premium === options.premium);
-    }
-    
-    if (options?.authorId !== undefined) {
-      contents = contents.filter(content => content.authorId === options.authorId);
-    }
-    
-    return contents;
+  // Article operations
+  async getArticles(limit = 10, offset = 0): Promise<Article[]> {
+    return Array.from(this.articles.values())
+      .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime())
+      .slice(offset, offset + limit);
   }
   
-  async getContent(id: number): Promise<Content | undefined> {
-    return this.contents.get(id);
+  async getArticleById(id: number): Promise<Article | undefined> {
+    return this.articles.get(id);
   }
   
-  async createContent(content: InsertContent): Promise<Content> {
-    const id = this.currentIds.contents++;
+  async getArticlesByCategory(category: string): Promise<Article[]> {
+    return Array.from(this.articles.values())
+      .filter(article => article.category === category)
+      .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
+  }
+  
+  async getArticlesByMembershipTier(tier: string): Promise<Article[]> {
+    // This will return articles that the specified tier can access
+    const tierLevels: Record<string, number> = {
+      "free": 0,
+      "pro": 1,
+      "vip": 2
+    };
+    
+    const userTierLevel = tierLevels[tier];
+    
+    return Array.from(this.articles.values())
+      .filter(article => {
+        const articleTierLevel = tierLevels[article.membershipRequired];
+        return articleTierLevel <= userTierLevel;
+      })
+      .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
+  }
+  
+  async createArticle(articleData: InsertArticle): Promise<Article> {
+    const id = this.articleId++;
     const now = new Date();
-    const newContent: Content = {
-      ...content,
-      id,
-      createdAt: now,
-      updatedAt: now
-    };
-    this.contents.set(id, newContent);
-    return newContent;
-  }
-  
-  async updateContent(id: number, contentData: Partial<Content>): Promise<Content | undefined> {
-    const content = this.contents.get(id);
-    if (!content) return undefined;
     
-    const updatedContent = { 
-      ...content, 
-      ...contentData,
-      updatedAt: new Date()
+    const article: Article = {
+      id,
+      ...articleData,
+      publishDate: now
     };
-    this.contents.set(id, updatedContent);
-    return updatedContent;
+    
+    this.articles.set(id, article);
+    return article;
   }
   
-  async deleteContent(id: number): Promise<boolean> {
-    return this.contents.delete(id);
+  async updateArticle(id: number, articleData: Partial<Article>): Promise<Article | undefined> {
+    const article = this.articles.get(id);
+    if (!article) return undefined;
+    
+    const updatedArticle = { ...article, ...articleData };
+    this.articles.set(id, updatedArticle);
+    return updatedArticle;
+  }
+  
+  async deleteArticle(id: number): Promise<boolean> {
+    if (!this.articles.has(id)) return false;
+    return this.articles.delete(id);
   }
   
   // Product operations
-  async getProducts(options?: { category?: string, onSale?: boolean }): Promise<Product[]> {
-    let products = Array.from(this.products.values());
-    
-    if (options?.category) {
-      products = products.filter(product => product.category === options.category);
-    }
-    
-    if (options?.onSale !== undefined) {
-      products = products.filter(product => product.onSale === options.onSale);
-    }
-    
-    return products;
+  async getProducts(limit = 10, offset = 0): Promise<Product[]> {
+    return Array.from(this.products.values())
+      .slice(offset, offset + limit);
   }
   
-  async getProduct(id: number): Promise<Product | undefined> {
+  async getProductById(id: number): Promise<Product | undefined> {
     return this.products.get(id);
   }
   
-  async createProduct(product: InsertProduct): Promise<Product> {
-    const id = this.currentIds.products++;
-    const now = new Date();
-    const newProduct: Product = {
-      ...product,
+  async getProductsByCategory(category: string): Promise<Product[]> {
+    return Array.from(this.products.values())
+      .filter(product => product.category === category);
+  }
+  
+  async getFeaturedProducts(): Promise<Product[]> {
+    return Array.from(this.products.values())
+      .filter(product => product.isFeatured);
+  }
+  
+  async createProduct(productData: InsertProduct): Promise<Product> {
+    const id = this.productId++;
+    
+    const product: Product = {
       id,
-      createdAt: now
+      ...productData
     };
-    this.products.set(id, newProduct);
-    return newProduct;
+    
+    this.products.set(id, product);
+    return product;
   }
   
   async updateProduct(id: number, productData: Partial<Product>): Promise<Product | undefined> {
@@ -245,205 +305,282 @@ export class MemStorage implements IStorage {
   }
   
   async deleteProduct(id: number): Promise<boolean> {
+    if (!this.products.has(id)) return false;
     return this.products.delete(id);
   }
   
-  // Chat operations
+  // Order operations
+  async getOrders(userId?: number): Promise<Order[]> {
+    let orders = Array.from(this.orders.values());
+    
+    if (userId) {
+      orders = orders.filter(order => order.userId === userId);
+    }
+    
+    return orders.sort((a, b) => new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime());
+  }
+  
+  async getOrderById(id: number): Promise<Order | undefined> {
+    return this.orders.get(id);
+  }
+  
+  async createOrder(orderData: InsertOrder): Promise<Order> {
+    const id = this.orderId++;
+    const now = new Date();
+    
+    const order: Order = {
+      id,
+      ...orderData,
+      orderDate: now
+    };
+    
+    this.orders.set(id, order);
+    return order;
+  }
+  
+  async updateOrderStatus(id: number, status: string): Promise<Order | undefined> {
+    const order = this.orders.get(id);
+    if (!order) return undefined;
+    
+    const updatedOrder = { ...order, status };
+    this.orders.set(id, updatedOrder);
+    return updatedOrder;
+  }
+  
+  // Order items operations
+  async getOrderItems(orderId: number): Promise<OrderItem[]> {
+    return Array.from(this.orderItems.values())
+      .filter(item => item.orderId === orderId);
+  }
+  
+  async createOrderItem(orderItemData: InsertOrderItem): Promise<OrderItem> {
+    const id = this.orderItemId++;
+    
+    const orderItem: OrderItem = {
+      id,
+      ...orderItemData
+    };
+    
+    this.orderItems.set(id, orderItem);
+    return orderItem;
+  }
+  
+  // Chat room operations
   async getChatRooms(): Promise<ChatRoom[]> {
     return Array.from(this.chatRooms.values());
   }
   
-  async getChatRoom(id: number): Promise<ChatRoom | undefined> {
+  async getChatRoomById(id: number): Promise<ChatRoom | undefined> {
     return this.chatRooms.get(id);
   }
   
-  async createChatRoom(room: InsertChatRoom): Promise<ChatRoom> {
-    const id = this.currentIds.chatRooms++;
-    const now = new Date();
-    const newRoom: ChatRoom = {
-      ...room,
-      id,
-      createdAt: now
+  async getChatRoomsByMembershipTier(tier: string): Promise<ChatRoom[]> {
+    // This will return chat rooms that the specified tier can access
+    const tierLevels: Record<string, number> = {
+      "free": 0,
+      "pro": 1,
+      "vip": 2
     };
-    this.chatRooms.set(id, newRoom);
-    this.chatMessages.set(id, []);
-    return newRoom;
+    
+    const userTierLevel = tierLevels[tier];
+    
+    return Array.from(this.chatRooms.values())
+      .filter(room => {
+        const roomTierLevel = tierLevels[room.membershipRequired];
+        return roomTierLevel <= userTierLevel;
+      });
   }
   
-  async getChatMessages(roomId: number): Promise<ChatMessage[]> {
-    return this.chatMessages.get(roomId) || [];
-  }
-  
-  async createChatMessage(message: InsertChatMessage): Promise<ChatMessage> {
-    const id = this.currentIds.chatMessages++;
+  async createChatRoom(roomData: InsertChatRoom): Promise<ChatRoom> {
+    const id = this.chatRoomId++;
     const now = new Date();
-    const newMessage: ChatMessage = {
-      ...message,
+    
+    const chatRoom: ChatRoom = {
       id,
+      ...roomData,
       createdAt: now
     };
     
-    const messages = this.chatMessages.get(message.roomId) || [];
-    messages.push(newMessage);
-    this.chatMessages.set(message.roomId, messages);
+    this.chatRooms.set(id, chatRoom);
+    return chatRoom;
+  }
+  
+  // Chat message operations
+  async getChatMessages(roomId: number, limit = 50): Promise<ChatMessage[]> {
+    return Array.from(this.chatMessages.values())
+      .filter(message => message.roomId === roomId)
+      .sort((a, b) => new Date(a.sentAt).getTime() - new Date(b.sentAt).getTime())
+      .slice(-limit);
+  }
+  
+  async createChatMessage(messageData: InsertChatMessage): Promise<ChatMessage> {
+    const id = this.chatMessageId++;
+    const now = new Date();
     
-    return newMessage;
+    const chatMessage: ChatMessage = {
+      id,
+      ...messageData,
+      sentAt: now
+    };
+    
+    this.chatMessages.set(id, chatMessage);
+    return chatMessage;
   }
   
-  // Bulletin operations
-  async getBulletinPosts(): Promise<BulletinPost[]> {
-    return Array.from(this.bulletinPosts.values());
+  // Bulletin post operations
+  async getBulletinPosts(limit = 10, offset = 0): Promise<BulletinPost[]> {
+    return Array.from(this.bulletinPosts.values())
+      .sort((a, b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime())
+      .slice(offset, offset + limit);
   }
   
-  async getBulletinPost(id: number): Promise<BulletinPost | undefined> {
+  async getBulletinPostById(id: number): Promise<BulletinPost | undefined> {
     return this.bulletinPosts.get(id);
   }
   
-  async createBulletinPost(post: InsertBulletinPost): Promise<BulletinPost> {
-    const id = this.currentIds.bulletinPosts++;
-    const now = new Date();
-    const newPost: BulletinPost = {
-      ...post,
-      id,
-      createdAt: now,
-      updatedAt: now
-    };
-    this.bulletinPosts.set(id, newPost);
-    return newPost;
+  async getBulletinPostsByCategory(category: string): Promise<BulletinPost[]> {
+    return Array.from(this.bulletinPosts.values())
+      .filter(post => post.category === category)
+      .sort((a, b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime());
   }
   
-  async updateBulletinPost(id: number, postData: Partial<BulletinPost>): Promise<BulletinPost | undefined> {
-    const post = this.bulletinPosts.get(id);
-    if (!post) return undefined;
+  async createBulletinPost(postData: InsertBulletinPost): Promise<BulletinPost> {
+    const id = this.bulletinPostId++;
+    const now = new Date();
     
-    const updatedPost = { 
-      ...post, 
+    const bulletinPost: BulletinPost = {
+      id,
       ...postData,
-      updatedAt: new Date()
+      postedAt: now
     };
-    this.bulletinPosts.set(id, updatedPost);
-    return updatedPost;
+    
+    this.bulletinPosts.set(id, bulletinPost);
+    return bulletinPost;
   }
   
   async deleteBulletinPost(id: number): Promise<boolean> {
+    if (!this.bulletinPosts.has(id)) return false;
     return this.bulletinPosts.delete(id);
   }
   
-  // Order operations
-  async getOrders(userId: number): Promise<Order[]> {
-    return Array.from(this.orders.values())
-      .filter(order => order.userId === userId);
+  // Video operations
+  async getVideos(limit = 10, offset = 0): Promise<Video[]> {
+    return Array.from(this.videos.values())
+      .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime())
+      .slice(offset, offset + limit);
   }
   
-  async getOrder(id: number): Promise<Order | undefined> {
-    return this.orders.get(id);
+  async getVideoById(id: number): Promise<Video | undefined> {
+    return this.videos.get(id);
   }
   
-  async createOrder(order: InsertOrder): Promise<Order> {
-    const id = this.currentIds.orders++;
-    const now = new Date();
-    const newOrder: Order = {
-      ...order,
-      id,
-      createdAt: now,
-      updatedAt: now
+  async getVideosByMembershipTier(tier: string): Promise<Video[]> {
+    // This will return videos that the specified tier can access
+    const tierLevels: Record<string, number> = {
+      "free": 0,
+      "pro": 1,
+      "vip": 2
     };
-    this.orders.set(id, newOrder);
-    return newOrder;
-  }
-  
-  async updateOrder(id: number, orderData: Partial<Order>): Promise<Order | undefined> {
-    const order = this.orders.get(id);
-    if (!order) return undefined;
     
-    const updatedOrder = { 
-      ...order, 
-      ...orderData,
-      updatedAt: new Date()
+    const userTierLevel = tierLevels[tier];
+    
+    return Array.from(this.videos.values())
+      .filter(video => {
+        const videoTierLevel = tierLevels[video.membershipRequired];
+        return videoTierLevel <= userTierLevel;
+      })
+      .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
+  }
+  
+  async createVideo(videoData: InsertVideo): Promise<Video> {
+    const id = this.videoId++;
+    const now = new Date();
+    
+    const video: Video = {
+      id,
+      ...videoData,
+      publishDate: now
     };
-    this.orders.set(id, updatedOrder);
-    return updatedOrder;
+    
+    this.videos.set(id, video);
+    return video;
+  }
+  
+  async updateVideo(id: number, videoData: Partial<Video>): Promise<Video | undefined> {
+    const video = this.videos.get(id);
+    if (!video) return undefined;
+    
+    const updatedVideo = { ...video, ...videoData };
+    this.videos.set(id, updatedVideo);
+    return updatedVideo;
   }
   
   // Subscription operations
   async getSubscription(userId: number): Promise<Subscription | undefined> {
     return Array.from(this.subscriptions.values())
-      .find(sub => sub.userId === userId);
+      .find(sub => sub.userId === userId && sub.active);
   }
   
-  async createSubscription(subscription: InsertSubscription): Promise<Subscription> {
-    const id = this.currentIds.subscriptions++;
-    const newSubscription: Subscription = {
-      ...subscription,
-      id
-    };
-    this.subscriptions.set(id, newSubscription);
-    return newSubscription;
-  }
-  
-  async updateSubscription(userId: number, subscriptionData: Partial<Subscription>): Promise<Subscription | undefined> {
-    const subscription = Array.from(this.subscriptions.values())
-      .find(sub => sub.userId === userId);
+  async createSubscription(subscriptionData: InsertSubscription): Promise<Subscription> {
+    const id = this.subscriptionId++;
+    const now = new Date();
     
+    const subscription: Subscription = {
+      id,
+      ...subscriptionData,
+      startDate: now
+    };
+    
+    this.subscriptions.set(id, subscription);
+    
+    // Update user's membership tier
+    const user = await this.getUser(subscriptionData.userId);
+    if (user) {
+      await this.updateUser(user.id, { membershipTier: subscriptionData.tier });
+    }
+    
+    return subscription;
+  }
+  
+  async updateSubscription(id: number, subscriptionData: Partial<Subscription>): Promise<Subscription | undefined> {
+    const subscription = this.subscriptions.get(id);
     if (!subscription) return undefined;
     
     const updatedSubscription = { ...subscription, ...subscriptionData };
-    this.subscriptions.set(subscription.id, updatedSubscription);
+    this.subscriptions.set(id, updatedSubscription);
+    
+    // If tier is changing, update user's membership tier
+    if (subscriptionData.tier && subscription.tier !== subscriptionData.tier) {
+      const user = await this.getUser(subscription.userId);
+      if (user) {
+        await this.updateUser(user.id, { membershipTier: subscriptionData.tier });
+      }
+    }
+    
     return updatedSubscription;
   }
   
-  // Seed data for development
-  private seedProducts() {
-    const demoProducts: InsertProduct[] = [
-      {
-        name: "Logo T-shirt",
-        description: "Comfortable cotton t-shirt with S3vn Studies logo.",
-        price: 2499, // $24.99
-        image: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1015&q=80",
-        category: "Apparel",
-        stock: 50,
-        isNew: true,
-        onSale: false,
-        originalPrice: null
-      },
-      {
-        name: "Coffee Mug",
-        description: "11oz ceramic mug with S3vn Studies logo.",
-        price: 1499, // $14.99
-        image: "https://images.unsplash.com/photo-1531693251400-38df35776dc7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80",
-        category: "Accessories",
-        stock: 30,
-        isNew: false,
-        onSale: false,
-        originalPrice: null
-      },
-      {
-        name: "Notebook Set",
-        description: "Set of 3 premium notebooks with S3vn Studies branding.",
-        price: 1999, // $19.99
-        image: "https://images.unsplash.com/photo-1572502489669-22655e92cbf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-        category: "Stationery",
-        stock: 25,
-        isNew: false,
-        onSale: false,
-        originalPrice: null
-      },
-      {
-        name: "Premium Hoodie",
-        description: "High-quality hoodie with embroidered S3vn Studies logo.",
-        price: 3999, // $39.99
-        image: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1372&q=80",
-        category: "Apparel",
-        stock: 20,
-        isNew: false,
-        onSale: true,
-        originalPrice: 4999 // $49.99
-      }
-    ];
+  async cancelSubscription(id: number): Promise<boolean> {
+    const subscription = this.subscriptions.get(id);
+    if (!subscription) return false;
     
-    demoProducts.forEach(product => {
-      this.createProduct(product);
-    });
+    const now = new Date();
+    const updatedSubscription = { 
+      ...subscription, 
+      active: false,
+      autoRenew: false,
+      endDate: subscription.endDate || now
+    };
+    
+    this.subscriptions.set(id, updatedSubscription);
+    
+    // Revert user to free tier
+    const user = await this.getUser(subscription.userId);
+    if (user) {
+      await this.updateUser(user.id, { membershipTier: "free" });
+    }
+    
+    return true;
   }
 }
 

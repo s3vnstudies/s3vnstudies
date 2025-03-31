@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import PageLayout from "@/components/layout/page-layout";
+import ProductCard from "@/components/store/product-card";
 import { Product } from "@shared/schema";
-import ProductCard from "@/components/store/ProductCard";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -11,215 +12,191 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from "@/components/ui/badge";
-import { CartProvider } from "@/hooks/use-cart";
+import { Search, Filter } from "lucide-react";
 
-const StorePage = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [category, setCategory] = useState("all");
+export default function StorePage() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("all");
+  const [sortBy, setSortBy] = useState("featured");
+  const [tab, setTab] = useState("all");
 
-  const { data: products = [], isLoading } = useQuery<Product[]>({
-    queryKey: ['/api/products'],
-    queryFn: async () => {
-      const response = await fetch('/api/products');
-      if (!response.ok) {
-        throw new Error('Failed to fetch products');
-      }
-      return await response.json();
-    }
+  const { data: products, isLoading } = useQuery<Product[]>({
+    queryKey: ["/api/products"],
   });
 
-  // Filter products based on search term and category
-  const filteredProducts = products.filter((product) => {
-    const matchesSearch = product.name
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase()) || 
-      product.description.toLowerCase().includes(searchTerm.toLowerCase());
-      
-    const matchesCategory = category === "all" || product.category === category;
-    
-    return matchesSearch && matchesCategory;
-  });
+  // Set page title
+  useEffect(() => {
+    document.title = "Store - S3vn Studies";
+  }, []);
 
-  // Get products on sale
-  const saleProducts = filteredProducts.filter(product => product.onSale);
-  
-  // Get new products
-  const newProducts = filteredProducts.filter(product => product.isNew);
+  // Filter products based on search query, category, and availability
+  const filteredProducts = products
+    ? products
+        .filter((product) => {
+          // Filter by tab (availability)
+          if (tab === "inStock" && !product.inStock) {
+            return false;
+          } else if (tab === "featured" && !product.isFeatured) {
+            return false;
+          }
 
-  // Get unique categories for filter dropdown
-  const categories = ["all", ...new Set(products.map(product => product.category))];
+          // Filter by category
+          if (categoryFilter !== "all" && product.category !== categoryFilter) {
+            return false;
+          }
 
-  if (isLoading) {
-    return (
-      <div className="container mx-auto px-4 py-16">
-        <h1 className="text-3xl font-bold mb-8">Store</h1>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
-            <div key={i} className="bg-gray-100 rounded-xl animate-pulse h-80"></div>
-          ))}
-        </div>
-      </div>
-    );
-  }
+          // Filter by search query
+          if (searchQuery) {
+            const query = searchQuery.toLowerCase();
+            return (
+              product.name.toLowerCase().includes(query) ||
+              product.description.toLowerCase().includes(query) ||
+              product.category.toLowerCase().includes(query)
+            );
+          }
+
+          return true;
+        })
+        .sort((a, b) => {
+          if (sortBy === "featured") {
+            return a.isFeatured === b.isFeatured ? 0 : a.isFeatured ? -1 : 1;
+          } else if (sortBy === "priceAsc") {
+            return a.price - b.price;
+          } else if (sortBy === "priceDesc") {
+            return b.price - a.price;
+          } else if (sortBy === "nameAsc") {
+            return a.name.localeCompare(b.name);
+          }
+          return 0;
+        })
+    : [];
+
+  // Get unique categories from products
+  const categories = products
+    ? ["all", ...new Set(products.map((product) => product.category))]
+    : ["all"];
 
   return (
-    <CartProvider>
-      <div className="container mx-auto px-4 py-16">
-        <h1 className="text-3xl font-bold mb-8">Store</h1>
-        
-        {/* Featured banner */}
-        <div className="mb-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl p-8 text-white">
-          <div className="max-w-3xl">
-            <Badge variant="secondary" className="bg-white text-blue-600 mb-4">NEW COLLECTION</Badge>
-            <h2 className="text-3xl font-bold mb-4">S3vn Studies Official Merchandise</h2>
-            <p className="mb-6 text-purple-100">
-              Show your support with our high-quality merchandise. From comfortable t-shirts to handy accessories, explore the full collection.
-            </p>
-            <div className="flex gap-4 flex-wrap">
-              <a href="#all-products" className="bg-white text-blue-600 px-6 py-2 rounded-lg font-medium hover:bg-gray-100 transition">
-                Shop Now
-              </a>
-              <a href="#sale" className="bg-blue-700 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-800 transition">
-                View Sale Items
-              </a>
-            </div>
+    <PageLayout>
+      <div className="bg-primary text-white py-12">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+          <h1 className="text-3xl md:text-4xl font-bold font-poppins mb-4">Store</h1>
+          <p className="text-lg opacity-90">
+            Browse and shop our official S3vn Studies merchandise
+          </p>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 md:px-6 py-12 max-w-5xl">
+        <div className="flex flex-col md:flex-row gap-4 mb-8">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <Input
+              placeholder="Search products..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+          <div className="w-full md:w-48">
+            <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+              <SelectTrigger>
+                <Filter className="h-4 w-4 mr-2" />
+                <SelectValue placeholder="Category" />
+              </SelectTrigger>
+              <SelectContent>
+                {categories.map((category) => (
+                  <SelectItem key={category} value={category}>
+                    {category === "all" ? "All Categories" : category}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="w-full md:w-48">
+            <Select value={sortBy} onValueChange={setSortBy}>
+              <SelectTrigger>
+                <SelectValue placeholder="Sort By" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="featured">Featured</SelectItem>
+                <SelectItem value="priceAsc">Price: Low to High</SelectItem>
+                <SelectItem value="priceDesc">Price: High to Low</SelectItem>
+                <SelectItem value="nameAsc">Name: A to Z</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
-        
-        {/* Search and Filter */}
-        <div className="mb-8 flex flex-col md:flex-row gap-4">
-          <Input
-            type="text"
-            placeholder="Search products..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="md:max-w-md"
-          />
-          <Select value={category} onValueChange={setCategory}>
-            <SelectTrigger className="w-full md:w-[180px]">
-              <SelectValue placeholder="Category" />
-            </SelectTrigger>
-            <SelectContent>
-              {categories.map((cat) => (
-                <SelectItem key={cat} value={cat}>
-                  {cat === "all" ? "All Categories" : cat}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        
-        {/* Products Tabs */}
-        <Tabs defaultValue="all">
-          <TabsList className="mb-6">
-            <TabsTrigger value="all" id="all-products">All Products</TabsTrigger>
-            <TabsTrigger value="new">New Arrivals</TabsTrigger>
-            <TabsTrigger value="sale" id="sale">On Sale</TabsTrigger>
+
+        <Tabs
+          value={tab}
+          onValueChange={setTab}
+          className="mb-8"
+        >
+          <TabsList className="grid w-full md:w-auto grid-cols-3">
+            <TabsTrigger value="all">All Products</TabsTrigger>
+            <TabsTrigger value="inStock">In Stock</TabsTrigger>
+            <TabsTrigger value="featured">Featured</TabsTrigger>
           </TabsList>
-          
-          <TabsContent value="all">
-            {filteredProducts.length === 0 ? (
-              <div className="text-center py-10">
-                <p className="text-gray-500">No products found matching your search criteria.</p>
+
+          <TabsContent value="all" className="mt-6">
+            {isLoading ? (
+              <div className="text-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+                <p className="mt-4 text-neutral-600">Loading products...</p>
               </div>
-            ) : (
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            ) : filteredProducts.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredProducts.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    id={product.id}
-                    name={product.name}
-                    price={product.price}
-                    originalPrice={product.originalPrice}
-                    image={product.image}
-                    isNew={product.isNew}
-                    onSale={product.onSale}
-                  />
+                  <ProductCard key={product.id} product={product} />
                 ))}
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-neutral-600">No products found matching your criteria.</p>
               </div>
             )}
           </TabsContent>
-          
-          <TabsContent value="new">
-            {newProducts.length === 0 ? (
-              <div className="text-center py-10">
-                <p className="text-gray-500">No new products found matching your search criteria.</p>
+
+          <TabsContent value="inStock" className="mt-6">
+            {isLoading ? (
+              <div className="text-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+                <p className="mt-4 text-neutral-600">Loading products...</p>
+              </div>
+            ) : filteredProducts.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
               </div>
             ) : (
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {newProducts.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    id={product.id}
-                    name={product.name}
-                    price={product.price}
-                    originalPrice={product.originalPrice}
-                    image={product.image}
-                    isNew={product.isNew}
-                    onSale={product.onSale}
-                  />
-                ))}
+              <div className="text-center py-12">
+                <p className="text-neutral-600">No in-stock products found matching your criteria.</p>
               </div>
             )}
           </TabsContent>
-          
-          <TabsContent value="sale">
-            {saleProducts.length === 0 ? (
-              <div className="text-center py-10">
-                <p className="text-gray-500">No sale items found matching your search criteria.</p>
+
+          <TabsContent value="featured" className="mt-6">
+            {isLoading ? (
+              <div className="text-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+                <p className="mt-4 text-neutral-600">Loading products...</p>
+              </div>
+            ) : filteredProducts.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
               </div>
             ) : (
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {saleProducts.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    id={product.id}
-                    name={product.name}
-                    price={product.price}
-                    originalPrice={product.originalPrice}
-                    image={product.image}
-                    isNew={product.isNew}
-                    onSale={product.onSale}
-                  />
-                ))}
+              <div className="text-center py-12">
+                <p className="text-neutral-600">No featured products found matching your criteria.</p>
               </div>
             )}
           </TabsContent>
         </Tabs>
-        
-        {/* Shipping Info */}
-        <div className="mt-16 bg-gray-50 rounded-xl p-8">
-          <h2 className="text-xl font-bold mb-6 text-center">Shipping & Returns</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i className="fas fa-truck text-blue-600"></i>
-              </div>
-              <h3 className="font-bold mb-2">Free Shipping</h3>
-              <p className="text-gray-600">Free shipping on all orders over $50</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i className="fas fa-exchange-alt text-blue-600"></i>
-              </div>
-              <h3 className="font-bold mb-2">Easy Returns</h3>
-              <p className="text-gray-600">30-day hassle-free return policy</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i className="fas fa-shield-alt text-blue-600"></i>
-              </div>
-              <h3 className="font-bold mb-2">Secure Checkout</h3>
-              <p className="text-gray-600">100% secure payment processing</p>
-            </div>
-          </div>
-        </div>
       </div>
-    </CartProvider>
+    </PageLayout>
   );
-};
-
-export default StorePage;
+}
