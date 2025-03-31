@@ -82,7 +82,7 @@ export interface IStorage {
   cancelSubscription(id: number): Promise<boolean>;
   
   // Session store
-  sessionStore: session.SessionStore;
+  sessionStore: session.Store;
 }
 
 export class MemStorage implements IStorage {
@@ -108,7 +108,7 @@ export class MemStorage implements IStorage {
   private videoId: number = 1;
   private subscriptionId: number = 1;
   
-  sessionStore: session.SessionStore;
+  sessionStore: session.Store;
   
   constructor() {
     this.users = new Map();
@@ -131,6 +131,21 @@ export class MemStorage implements IStorage {
   }
   
   private initSampleData() {
+    // Create admin user
+    const adminUser: User = {
+      id: this.userId++,
+      username: "S3vn",
+      password: "$2b$10$aCMN29PQqGWBSYCgwuIDh.LNtLX6mfoqcLj4wH0Ml1WeoHMIzYtDy", // BIGgulp25
+      email: "admin@s3vnstudies.com",
+      displayName: "S3vn Studies Admin",
+      bio: "Administrator of S3vn Studies",
+      avatarUrl: "",
+      membershipTier: "free",
+      memberSince: new Date(),
+      isAdmin: true
+    };
+    this.users.set(adminUser.id, adminUser);
+    
     // Create some initial chat rooms
     this.createChatRoom({
       name: "General Discussion",
@@ -149,11 +164,11 @@ export class MemStorage implements IStorage {
     });
     
     this.createChatRoom({
-      name: "VIP Lounge",
-      description: "Exclusive chat for VIP members",
+      name: "Premium Lounge",
+      description: "Exclusive chat for premium members",
       createdBy: 1,
       isPrivate: true,
-      membershipRequired: "vip"
+      membershipRequired: "pro"
     });
   }
   
@@ -180,11 +195,15 @@ export class MemStorage implements IStorage {
     
     const user: User = {
       id,
-      ...userData,
+      username: userData.username,
+      password: userData.password,
+      email: userData.email,
+      displayName: userData.displayName || null,
+      bio: null,
+      avatarUrl: null,
       membershipTier: "free",
       memberSince: now,
-      bio: "",
-      avatarUrl: ""
+      isAdmin: false
     };
     
     this.users.set(id, user);
@@ -221,8 +240,7 @@ export class MemStorage implements IStorage {
     // This will return articles that the specified tier can access
     const tierLevels: Record<string, number> = {
       "free": 0,
-      "pro": 1,
-      "vip": 2
+      "pro": 1
     };
     
     const userTierLevel = tierLevels[tier];
@@ -241,7 +259,13 @@ export class MemStorage implements IStorage {
     
     const article: Article = {
       id,
-      ...articleData,
+      title: articleData.title,
+      content: articleData.content,
+      author: articleData.author,
+      excerpt: articleData.excerpt,
+      category: articleData.category,
+      thumbnail: articleData.thumbnail || null,
+      membershipRequired: articleData.membershipRequired || "free",
       publishDate: now
     };
     
@@ -288,7 +312,13 @@ export class MemStorage implements IStorage {
     
     const product: Product = {
       id,
-      ...productData
+      name: productData.name,
+      description: productData.description,
+      price: productData.price,
+      category: productData.category,
+      imageUrl: productData.imageUrl || null,
+      inStock: productData.inStock !== undefined ? productData.inStock : true,
+      isFeatured: productData.isFeatured !== undefined ? productData.isFeatured : false
     };
     
     this.products.set(id, product);
@@ -378,8 +408,7 @@ export class MemStorage implements IStorage {
     // This will return chat rooms that the specified tier can access
     const tierLevels: Record<string, number> = {
       "free": 0,
-      "pro": 1,
-      "vip": 2
+      "pro": 1
     };
     
     const userTierLevel = tierLevels[tier];
@@ -397,7 +426,11 @@ export class MemStorage implements IStorage {
     
     const chatRoom: ChatRoom = {
       id,
-      ...roomData,
+      name: roomData.name,
+      createdBy: roomData.createdBy,
+      description: roomData.description || null,
+      isPrivate: roomData.isPrivate !== undefined ? roomData.isPrivate : false,
+      membershipRequired: roomData.membershipRequired || "free",
       createdAt: now
     };
     
@@ -478,8 +511,7 @@ export class MemStorage implements IStorage {
     // This will return videos that the specified tier can access
     const tierLevels: Record<string, number> = {
       "free": 0,
-      "pro": 1,
-      "vip": 2
+      "pro": 1
     };
     
     const userTierLevel = tierLevels[tier];
@@ -498,7 +530,12 @@ export class MemStorage implements IStorage {
     
     const video: Video = {
       id,
-      ...videoData,
+      title: videoData.title,
+      youtubeId: videoData.youtubeId,
+      thumbnail: videoData.thumbnail || null,
+      description: videoData.description || null,
+      duration: videoData.duration || null,
+      membershipRequired: videoData.membershipRequired || "free",
       publishDate: now
     };
     
@@ -527,8 +564,12 @@ export class MemStorage implements IStorage {
     
     const subscription: Subscription = {
       id,
-      ...subscriptionData,
-      startDate: now
+      userId: subscriptionData.userId,
+      tier: subscriptionData.tier,
+      startDate: now,
+      endDate: subscriptionData.endDate || null,
+      active: subscriptionData.active !== undefined ? subscriptionData.active : true,
+      autoRenew: subscriptionData.autoRenew !== undefined ? subscriptionData.autoRenew : true
     };
     
     this.subscriptions.set(id, subscription);

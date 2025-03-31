@@ -2,7 +2,7 @@ import { pgTable, text, serial, integer, boolean, timestamp, pgEnum } from "driz
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const membershipTierEnum = pgEnum("membership_tier", ["free", "pro", "vip"]);
+export const membershipTierEnum = pgEnum("membership_tier", ["free", "pro"]);
 
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
@@ -14,6 +14,7 @@ export const users = pgTable("users", {
   avatarUrl: text("avatar_url"),
   membershipTier: membershipTierEnum("membership_tier").default("free").notNull(),
   memberSince: timestamp("member_since").defaultNow().notNull(),
+  isAdmin: boolean("is_admin").default(false).notNull(),
 });
 
 export const insertUserSchema = createInsertSchema(users)

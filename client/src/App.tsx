@@ -1,7 +1,8 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
+import MainLayout from "@/layouts/MainLayout";
 import NotFound from "@/pages/not-found";
 import HomePage from "@/pages/home-page";
 import AboutPage from "@/pages/about-page";
@@ -25,8 +26,16 @@ import { ProtectedRoute } from "./lib/protected-route";
 import { AuthProvider } from "./hooks/use-auth";
 import { CartProvider } from "./hooks/use-cart";
 
-function Router() {
-  return (
+// Routes that should not use the main layout
+const noLayoutRoutes = ['/auth'];
+
+function AppRoutes() {
+  const [location] = useLocation();
+  
+  // Check if the current route should use the main layout
+  const useMainLayout = !noLayoutRoutes.some(route => location.startsWith(route));
+  
+  const routes = (
     <Switch>
       <Route path="/" component={HomePage} />
       <Route path="/about" component={AboutPage} />
@@ -49,6 +58,9 @@ function Router() {
       <Route component={NotFound} />
     </Switch>
   );
+  
+  // Conditionally wrap with layout
+  return useMainLayout ? <MainLayout>{routes}</MainLayout> : routes;
 }
 
 function App() {
@@ -56,7 +68,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <CartProvider>
-          <Router />
+          <AppRoutes />
           <Toaster />
         </CartProvider>
       </AuthProvider>

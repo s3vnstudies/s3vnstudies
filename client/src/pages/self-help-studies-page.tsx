@@ -21,46 +21,54 @@ export default function SelfHelpStudiesPage() {
   const { user } = useAuth();
   const [selectedResource, setSelectedResource] = useState<StudyResource | null>(null);
   
-  // Sample studies with placeholders
+  // Self-help studies resources
   const selfHelpStudies: StudyResource[] = [
     {
-      id: "flask-course",
-      title: "Flask Development Course",
-      description: "Learn how to build web applications with Python Flask. Perfect for beginners wanting to get started with web development using Python.",
-      thumbnail: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder - replace with actual intro video
+      id: "mind-reset",
+      title: "GOLD Mind Reset",
+      description: "Discover mindset techniques that will help you break through self-limiting beliefs, build confidence, and develop a positive mindset to achieve success.",
+      thumbnail: "/courses/flask-course/GOLD-Mind-Reset/Module 10 - Feature Images/Images/mind-rest-videos.jpg",
+      videoUrl: "/courses/flask-course/GOLD-Mind-Reset/Module 1 - Videos/video01.mp4", // Free intro video
+      isPremium: false // Making the intro video free
+    },
+    {
+      id: "self-limiting-beliefs",
+      title: "Self-Limiting Beliefs",
+      description: "Learn about 3 self-limiting beliefs that are holding you back from achieving success and how to overcome them.",
+      thumbnail: "/courses/flask-course/GOLD-Mind-Reset/Module 10 - Feature Images/Images/feature-1.png",
+      videoUrl: "/courses/flask-course/GOLD-Mind-Reset/Module 1 - Videos/video01.mp4",
       isPremium: true
     },
     {
-      id: "meditation-techniques",
-      title: "Meditation Techniques",
-      description: "Explore different meditation techniques to improve focus, reduce stress, and enhance mindfulness in your daily life.",
-      thumbnail: "https://images.unsplash.com/photo-1545389336-cf090694435e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder - replace with actual intro video
+      id: "confidence-training",
+      title: "Training Your Confidence",
+      description: "Discover 3 things that are training your confidence and how to leverage them for personal growth.",
+      thumbnail: "/courses/flask-course/GOLD-Mind-Reset/Module 10 - Feature Images/Images/feature-2.png",
+      videoUrl: "/courses/flask-course/GOLD-Mind-Reset/Module 1 - Videos/video02.mp4",
       isPremium: true
     },
     {
-      id: "personal-finance",
-      title: "Personal Finance Basics",
-      description: "Master the fundamentals of personal finance - budgeting, saving, investing, and planning for your future financial goals.",
-      thumbnail: "https://images.unsplash.com/photo-1579621970588-a35d0e7ab9b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder - replace with actual intro video
+      id: "positive-thinking",
+      title: "Negative to Positive Thoughts",
+      description: "Master 3 powerful tricks to instantly turn negative thoughts into positive thoughts for a healthier mindset.",
+      thumbnail: "/courses/flask-course/GOLD-Mind-Reset/Module 10 - Feature Images/Images/feature-3.png",
+      videoUrl: "/courses/flask-course/GOLD-Mind-Reset/Module 1 - Videos/video03.mp4",
       isPremium: true
     },
     {
-      id: "public-speaking",
-      title: "Public Speaking Mastery",
-      description: "Overcome fear and build confidence in public speaking with proven techniques used by professional speakers.",
-      thumbnail: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder - replace with actual intro video
+      id: "self-esteem-boost",
+      title: "Boost Your Self-Esteem",
+      description: "Learn 5 powerful mantras that will boost your self-esteem and transform your self-perception.",
+      thumbnail: "/courses/flask-course/GOLD-Mind-Reset/Module 10 - Feature Images/Images/feature-4.png",
+      videoUrl: "/courses/flask-course/GOLD-Mind-Reset/Module 1 - Videos/video04.mp4",
       isPremium: true
     },
     {
-      id: "productivity-hacks",
-      title: "Productivity Hacks",
-      description: "Learn proven strategies to boost your productivity, manage your time effectively, and achieve more in less time.",
-      thumbnail: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder - replace with actual intro video
+      id: "morning-mindset",
+      title: "Morning Mindset Rituals",
+      description: "Discover 5 morning mindset rituals that will help you win the day and set yourself up for success.",
+      thumbnail: "/courses/flask-course/GOLD-Mind-Reset/Module 10 - Feature Images/Images/feature-5.png",
+      videoUrl: "/courses/flask-course/GOLD-Mind-Reset/Module 1 - Videos/video06.mp4", // Skipping video05 as the filename suggests it might be problematic
       isPremium: true
     }
   ];
@@ -158,14 +166,14 @@ export default function SelfHelpStudiesPage() {
               <h2 className="text-2xl font-bold mb-6">{selectedResource.title}</h2>
               
               <div className="aspect-video w-full bg-black rounded-xl overflow-hidden shadow-xl mb-6">
-                <iframe
+                <video
                   className="w-full h-full"
                   src={selectedResource.videoUrl}
                   title={selectedResource.title}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                  controls
+                  preload="metadata"
+                  poster={selectedResource.thumbnail}
+                />
               </div>
               
               <p className="text-gray-600 mb-6">{selectedResource.description}</p>

@@ -29,8 +29,8 @@ function requireAdmin(req: Request, res: Response, next: Function) {
     return res.status(401).json({ message: "Authentication required" });
   }
   
-  // Admin access is restricted to VIP members
-  if (req.user && req.user.membershipTier === "vip") {
+  // Admin access is restricted to users with isAdmin flag
+  if (req.user && req.user.isAdmin) {
     next();
   } else {
     return res.status(403).json({ message: "Admin access required" });
@@ -46,8 +46,7 @@ function requireMembership(tier: string) {
     
     const tierLevels: Record<string, number> = {
       "free": 0,
-      "pro": 1,
-      "vip": 2
+      "pro": 1
     };
     
     const requiredLevel = tierLevels[tier];
@@ -447,8 +446,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         
         const tierLevels: Record<string, number> = {
           "free": 0,
-          "pro": 1,
-          "vip": 2
+          "pro": 1
         };
         
         const requiredLevel = tierLevels[video.membershipRequired];
@@ -502,8 +500,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(401).json({ message: "User not authenticated" });
       }
       
-      // Validate that tier is either pro or vip
-      if (!['pro', 'vip'].includes(req.body.tier)) {
+      // Validate that tier is pro
+      if (req.body.tier !== 'pro') {
         return res.status(400).json({ message: "Invalid membership tier" });
       }
       

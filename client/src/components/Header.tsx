@@ -3,6 +3,7 @@ import { Link, useLocation } from "wouter";
 import { useAuth } from "@/hooks/use-auth";
 import { useCart } from "@/hooks/use-cart";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Sheet,
   SheetContent,
@@ -22,9 +23,13 @@ import {
   Search, 
   ShoppingCart, 
   User,
-  X,
   LogOut,
-  Settings,
+  Book,
+  Video,
+  Store,
+  Users,
+  Star,
+  PenTool,
 } from "lucide-react";
 
 export default function Header() {
@@ -32,13 +37,14 @@ export default function Header() {
   const { user, logoutMutation } = useAuth();
   const { totalItems } = useCart();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const navLinks = [
-    { name: "Home", path: "/" },
     { name: "About", path: "/about" },
-    { name: "Self Help", path: "/self-help-studies" },
     { name: "Articles", path: "/articles" },
     { name: "Videos", path: "/videos" },
+    { name: "Community", path: "/community" },
+    { name: "Self Help Studies", path: "/self-help-studies" },
     { name: "Store", path: "/store" },
   ];
 
@@ -52,144 +58,204 @@ export default function Header() {
     logoutMutation.mutate();
   };
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Implement search functionality
+    console.log("Searching for:", searchQuery);
+  };
+
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white bg-opacity-90 shadow-md z-50 backdrop-blur-sm">
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <div className="flex items-center">
+    <header className="fixed top-0 left-0 right-0 bg-background/80 border-b border-border/40 shadow-md z-50 backdrop-blur-md">
+      <div className="container mx-auto px-4 py-3">
+        {/* Logo and Brand Name */}
+        <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-white font-bold text-lg">
-              S3
-            </div>
-            <span className="ml-2 text-xl font-poppins font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-              S3VN Studies
+            <span className="text-2xl font-bold text-white">
+              S3VN<span className="text-primary">Studies</span>
             </span>
           </Link>
+          
+          {/* Search Bar */}
+          <form 
+            onSubmit={handleSearch}
+            className="hidden md:flex mx-4 flex-1 max-w-md relative"
+          >
+            <Input
+              type="search"
+              placeholder="Search articles..."
+              className="bg-muted/50 border-muted text-white placeholder:text-muted-foreground"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <Button 
+              type="submit" 
+              size="icon" 
+              className="absolute right-0 top-0 bottom-0 rounded-l-none"
+            >
+              <Search className="h-4 w-4" />
+            </Button>
+          </form>
+          
+          {/* Desktop Nav Links */}
+          {!user ? (
+            <div className="flex items-center space-x-2">
+              <Link href="/auth">
+                <Button variant="ghost" size="sm">
+                  Log In
+                </Button>
+              </Link>
+              <Link href="/auth?signup=true">
+                <Button variant="default" size="sm">
+                  Sign Up
+                </Button>
+              </Link>
+            </div>
+          ) : (
+            <div className="flex items-center space-x-2">
+              <Button variant="ghost" size="sm" onClick={handleLogout}>
+                Log Out
+              </Button>
+            </div>
+          )}
         </div>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
+        
+        {/* Navigation Links */}
+        <nav className="hidden md:flex items-center justify-center mt-2 space-x-6">
           {navLinks.map((link) => (
             <Link
               key={link.path}
               href={link.path}
-              className={`font-medium transition-colors ${
+              className={`font-medium text-sm transition-colors ${
                 isActive(link.path)
                   ? "text-primary"
-                  : "text-foreground hover:text-primary"
+                  : "text-white hover:text-primary"
               }`}
             >
               {link.name}
             </Link>
           ))}
-          <Link href="/membership">
-            <Button className="font-montserrat rounded-full bg-gradient-to-r from-primary to-secondary">
-              Join Now
-            </Button>
-          </Link>
         </nav>
-
+        
         {/* Mobile Menu Button */}
         <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-          <SheetTrigger asChild className="md:hidden">
+          <SheetTrigger asChild className="md:hidden absolute right-4 top-4">
             <Button variant="ghost" size="icon">
               <Menu className="h-6 w-6" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+          <SheetContent side="left" className="bg-background/95 backdrop-blur-md border-r border-border">
             <div className="flex flex-col gap-6 py-4">
               <Link
                 href="/"
                 className="flex items-center"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-white font-bold text-lg">
-                  S3
-                </div>
-                <span className="ml-2 text-xl font-poppins font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-                  S3VN Studies
+                <span className="text-2xl font-bold text-white">
+                  S3VN<span className="text-primary">Studies</span>
                 </span>
               </Link>
-              <nav className="flex flex-col space-y-3">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.path}
-                    href={link.path}
-                    className={`font-medium py-2 transition-colors ${
-                      isActive(link.path)
-                        ? "text-primary"
-                        : "text-foreground hover:text-primary"
-                    }`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-                <Link
-                  href="/membership"
-                  onClick={() => setIsMobileMenuOpen(false)}
+              
+              <form 
+                onSubmit={handleSearch}
+                className="relative"
+              >
+                <Input
+                  type="search"
+                  placeholder="Search articles..."
+                  className="bg-muted/50 border-muted text-white placeholder:text-muted-foreground"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <Button 
+                  type="submit" 
+                  size="icon" 
+                  className="absolute right-0 top-0 bottom-0 rounded-l-none"
                 >
-                  <Button className="w-full mt-2 font-montserrat rounded-full bg-gradient-to-r from-primary to-secondary">
-                    Join Now
-                  </Button>
-                </Link>
+                  <Search className="h-4 w-4" />
+                </Button>
+              </form>
+              
+              <nav className="flex flex-col space-y-1">
+                {navLinks.map((link) => {
+                  // Define icons for each link
+                  let icon;
+                  switch(link.name) {
+                    case "Articles":
+                      icon = <Book className="h-4 w-4 mr-2" />;
+                      break;
+                    case "Videos":
+                      icon = <Video className="h-4 w-4 mr-2" />;
+                      break;
+                    case "Community":
+                      icon = <Users className="h-4 w-4 mr-2" />;
+                      break;
+                    case "Self Help Studies":
+                      icon = <PenTool className="h-4 w-4 mr-2" />;
+                      break;
+                    case "Store":
+                      icon = <Store className="h-4 w-4 mr-2" />;
+                      break;
+                    default:
+                      icon = <Star className="h-4 w-4 mr-2" />;
+                  }
+                  
+                  return (
+                    <Link
+                      key={link.path}
+                      href={link.path}
+                      className={`flex items-center py-2 px-3 rounded-md transition-colors ${
+                        isActive(link.path)
+                          ? "bg-primary/20 text-primary"
+                          : "text-white hover:bg-muted/20"
+                      }`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {icon}
+                      {link.name}
+                    </Link>
+                  );
+                })}
               </nav>
+              
+              <div className="mt-auto pt-4 border-t border-border">
+                {user ? (
+                  <div className="flex flex-col space-y-2">
+                    <div className="flex items-center space-x-3 p-3 rounded-md bg-muted/30">
+                      <Avatar>
+                        <AvatarImage src={user.avatarUrl || ""} />
+                        <AvatarFallback>
+                          {getInitials(user.displayName || user.username)}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="font-medium">{user.displayName || user.username}</p>
+                        <p className="text-xs text-muted-foreground">{user.membershipTier === "pro" ? "Pro Member" : "Free Member"}</p>
+                      </div>
+                    </div>
+                    
+                    <Button variant="outline" className="w-full" onClick={handleLogout}>
+                      <LogOut className="mr-2 h-4 w-4" />
+                      Sign Out
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="flex flex-col space-y-2">
+                    <Link href="/auth" onClick={() => setIsMobileMenuOpen(false)}>
+                      <Button variant="outline" className="w-full">
+                        Log In
+                      </Button>
+                    </Link>
+                    <Link href="/auth?signup=true" onClick={() => setIsMobileMenuOpen(false)}>
+                      <Button className="w-full">
+                        Sign Up
+                      </Button>
+                    </Link>
+                  </div>
+                )}
+              </div>
             </div>
           </SheetContent>
         </Sheet>
-
-        {/* User Menu & Actions */}
-        <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="icon" aria-label="Search">
-            <Search className="h-5 w-5" />
-          </Button>
-          
-          <Link href="/store/cart">
-            <Button variant="ghost" size="icon" aria-label="Cart" className="relative">
-              <ShoppingCart className="h-5 w-5" />
-              {totalItems > 0 && (
-                <span className="absolute -top-2 -right-2 bg-accent text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-                  {totalItems > 9 ? "9+" : totalItems}
-                </span>
-              )}
-            </Button>
-          </Link>
-
-          {user ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-full">
-                  <Avatar>
-                    <AvatarImage src={user.avatarUrl || ""} />
-                    <AvatarFallback>
-                      {getInitials(user.displayName || user.username)}
-                    </AvatarFallback>
-                  </Avatar>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem asChild>
-                  <Link href="/profile">Profile</Link>
-                </DropdownMenuItem>
-                {user.membershipTier === "vip" && (
-                  <DropdownMenuItem asChild>
-                    <Link href="/admin">Admin Dashboard</Link>
-                  </DropdownMenuItem>
-                )}
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleLogout}>
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>Logout</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ) : (
-            <Link href="/auth">
-              <Button variant="ghost" size="icon">
-                <User className="h-5 w-5" />
-              </Button>
-            </Link>
-          )}
-        </div>
       </div>
     </header>
   );
