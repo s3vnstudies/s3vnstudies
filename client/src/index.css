@@ -5,28 +5,28 @@
 @layer base {
   :root {
     --background: 222 47% 11%;
-    --foreground: 213 31% 91%;
+    --foreground: 0 0% 98%;   /* Lightened from 213 31% 91% to almost white */
     
     --card: 222 47% 15%;
-    --card-foreground: 213 31% 91%;
+    --card-foreground: 0 0% 98%;  /* Lightened to match foreground */
     
     --popover: 222 47% 11%;
-    --popover-foreground: 213 31% 91%;
+    --popover-foreground: 0 0% 98%;  /* Lightened to match foreground */
     
     --primary: 214 70% 50%;
-    --primary-foreground: 210 40% 98%;
+    --primary-foreground: 0 0% 100%;  /* Pure white for primary buttons */
     
     --secondary: 199 89% 48%;
     --secondary-foreground: 222 47% 11%;
     
     --muted: 223 47% 20%;
-    --muted-foreground: 215 20% 65%;
+    --muted-foreground: 210 40% 90%;  /* Lightened from 215 20% 65% */
     
     --accent: 216 34% 17%;
-    --accent-foreground: 210 40% 98%;
+    --accent-foreground: 0 0% 100%;  /* Pure white for accent elements */
     
     --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;  /* Pure white for destructive elements */
     
     --border: 216 34% 17%;
     --input: 216 34% 17%;
@@ -64,5 +64,31 @@
 
   ::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--primary) / 0.8);
+  }
+  
+  /* Improved text readability against dark backgrounds */
+  p {
+    @apply text-foreground font-medium leading-relaxed;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-foreground font-bold tracking-tight;
+  }
+  
+  /* Card content */
+  .card-content p, 
+  article p,
+  .content p {
+    @apply text-foreground/95;
+  }
+  
+  /* Ensure text over image backgrounds is visible */
+  [class*='hero-'] h1,
+  [class*='hero-'] h2,
+  [class*='hero-'] p,
+  [class*='banner-'] h1,
+  [class*='banner-'] h2,
+  [class*='banner-'] p {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   }
 }

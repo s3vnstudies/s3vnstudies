@@ -32,7 +32,7 @@ export default function ContentCard({
 }: ContentCardProps) {
   return (
     <div className={cn(
-      "bg-white rounded-xl shadow-lg overflow-hidden h-full flex flex-col",
+      "bg-card rounded-xl shadow-lg overflow-hidden h-full flex flex-col border border-border/40",
       className
     )}>
       <div className="relative">
@@ -50,7 +50,7 @@ export default function ContentCard({
               </button>
             </div>
             {duration && (
-              <span className="absolute bottom-3 right-3 bg-slate-900 text-white px-2 py-1 text-sm rounded flex items-center">
+              <span className="absolute bottom-3 right-3 bg-black/80 text-white px-2 py-1 text-sm rounded flex items-center">
                 <Clock className="h-3 w-3 mr-1" />
                 {duration}
               </span>
@@ -58,7 +58,7 @@ export default function ContentCard({
           </>
         ) : (
           category && (
-            <span className="absolute top-3 left-3 inline-block px-3 py-1 bg-slate-100 text-slate-800 text-xs font-medium rounded-full">
+            <span className="absolute top-3 left-3 inline-block px-3 py-1 bg-primary/90 text-white text-xs font-medium rounded-full">
               {category}
             </span>
           )
@@ -66,16 +66,16 @@ export default function ContentCard({
       </div>
       
       <div className="p-6 flex-grow flex flex-col">
-        <h3 className="text-xl font-poppins font-semibold mb-2 hover:text-primary transition-colors">
+        <h3 className="text-xl font-semibold mb-2 text-foreground hover:text-primary transition-colors">
           <Link href={link}>{title}</Link>
         </h3>
-        <p className="text-slate-700 opacity-80 text-sm mb-4 flex-grow">{description}</p>
+        <p className="text-foreground/80 text-sm mb-4 flex-grow">{description}</p>
         <div className="flex justify-between items-center">
-          <span className="text-sm text-slate-500">{formatRelativeTime(date)}</span>
+          <span className="text-sm text-foreground/70">{formatRelativeTime(date)}</span>
           {isPremium ? (
             <Badge variant="default" className="bg-gradient-to-r from-primary to-secondary">Premium</Badge>
           ) : (
-            <span className="text-sm text-slate-500">Free</span>
+            <Badge variant="outline" className="text-foreground/80">Free</Badge>
           )}
         </div>
       </div>
