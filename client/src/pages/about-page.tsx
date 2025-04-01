@@ -98,13 +98,14 @@ export default function AboutPage() {
             <div className="text-center">
               <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4">
                 <img
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-                  alt="Community Manager"
+                  src="/images/team/benjamin-arao.jpg"
+                  alt="Benjamin Arao Jr"
                   className="w-full h-full object-cover"
+                  style={{ objectPosition: "center 40%" }}
                 />
               </div>
-              <h3 className="text-lg font-bold font-poppins text-foreground">Jane Smith</h3>
-              <p className="text-foreground/80">Community Manager</p>
+              <h3 className="text-lg font-bold font-poppins text-foreground">Benjamin Arao Jr</h3>
+              <p className="text-foreground/80">Senior Creative Advisor</p>
             </div>
             <div className="text-center">
               <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4">
