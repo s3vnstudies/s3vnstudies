@@ -57,11 +57,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
     },
     onError: (error: Error) => {
+      // Provide a more user-friendly error message
+      let errorMessage = "Please check your username and password and try again.";
+      
+      if (error.message.includes("401")) {
+        errorMessage = "Invalid username or password. Please try again.";
+      } else if (error.message.includes("500")) {
+        errorMessage = "Server error. Please try again later.";
+      }
+      
       toast({
         title: "Login failed",
-        description: error.message,
+        description: errorMessage,
         variant: "destructive",
       });
+      
+      console.error("Login error details:", error.message);
     },
   });
 

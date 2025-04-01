@@ -1,0 +1,50 @@
+queryClient.ts:15 
+ POST https://4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev/api/login 401 (Unauthorized)
+apiRequest	@	queryClient.ts:15
+mutationFn	@	use-auth.tsx:49
+await in execute		
+onLoginSubmit	@	auth-page.tsx:109
+queryClient.ts:15 
+ POST https://4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev/api/login 401 (Unauthorized)
+apiRequest	@	queryClient.ts:15
+mutationFn	@	use-auth.tsx:49
+await in execute		
+onLoginSubmit	@	auth-page.tsx:109
+queryClient.ts:15 
+ POST https://4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev/api/login 401 (Unauthorized)
+apiRequest	@	queryClient.ts:15
+mutationFn	@	use-auth.tsx:49
+await in execute		
+onLoginSubmit	@	auth-page.tsx:109
+queryClient.ts:15 
+ POST https://4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev/api/login 401 (Unauthorized)
+apiRequest	@	queryClient.ts:15
+mutationFn	@	use-auth.tsx:49
+await in execute		
+onLoginSubmit	@	auth-page.tsx:109
+queryClient.ts:15 
+ POST https://4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev/api/login 401 (Unauthorized)
+apiRequest	@	queryClient.ts:15
+mutationFn	@	use-auth.tsx:49
+await in execute		
+onLoginSubmit	@	auth-page.tsx:109
+queryClient.ts:15 
+ POST https://4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev/api/login 401 (Unauthorized)
+apiRequest	@	queryClient.ts:15
+mutationFn	@	use-auth.tsx:49
+await in execute		
+onLoginSubmit	@	auth-page.tsx:109
+queryClient.ts:15 
+ POST https://4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev/api/login 401 (Unauthorized)
+apiRequest	@	queryClient.ts:15
+mutationFn	@	use-auth.tsx:49
+await in execute		
+onLoginSubmit	@	auth-page.tsx:109
+queryClient.ts:15 
+ POST https://4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev/api/login 401 (Unauthorized)
+apiRequest	@	queryClient.ts:15
+mutationFn	@	use-auth.tsx:49
+await in execute		
+onLoginSubmit	@	auth-page.tsx:109
+﻿
+
