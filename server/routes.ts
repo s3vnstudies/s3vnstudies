@@ -77,6 +77,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Setup static files
   app.use('/static', express.static(path.join(process.cwd(), 'public/static')));
   app.use('/images', express.static(path.join(process.cwd(), 'public/images')));
+  app.use('/courses', express.static(path.join(process.cwd(), 'public/courses')));
+  app.use('/assets', express.static(path.join(process.cwd(), 'public/assets')));
   
   // API ROUTES
   
