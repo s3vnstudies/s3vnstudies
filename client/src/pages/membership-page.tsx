@@ -169,8 +169,7 @@ export default function MembershipPage() {
             <CardContent>
               <p className="text-neutral-700">
                 Each plan level includes all the benefits of the previous levels plus additional exclusive features. 
-                The Pro Access adds premium content and community features, while VIP Access includes personalized 
-                sessions and the ability to create custom chat rooms.
+                The Pro Access adds premium content, community features, and the ability to create custom chat rooms.
               </p>
             </CardContent>
           </Card>

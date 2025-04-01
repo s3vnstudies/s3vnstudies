@@ -113,6 +113,7 @@ export const CONTENT_CATEGORIES = [
 // Product categories
 export const PRODUCT_CATEGORIES = [
   { label: 'All', value: 'all' },
+  { label: 'Membership', value: 'membership' },
   { label: 'Apparel', value: 'apparel' },
   { label: 'Accessories', value: 'accessories' },
   { label: 'Stationery', value: 'stationery' },
@@ -123,6 +124,16 @@ export const PRODUCT_CATEGORIES = [
 export const SAMPLE_PRODUCTS = [
   {
     id: 1,
+    name: 'Pro Membership',
+    description: 'Unlock full access to all premium content, features, and community benefits with our Pro Membership.',
+    price: 299, // $2.99
+    imageUrl: '/static/images/membership-promo.svg',
+    category: 'membership',
+    isFeatured: true,
+    inStock: true
+  },
+  {
+    id: 2,
     name: 'Premium Logo T-shirt',
     description: 'High-quality cotton t-shirt with S3VN Studies logo.',
     price: 3500, // $35.00
@@ -131,7 +142,7 @@ export const SAMPLE_PRODUCTS = [
     inStock: true
   },
   {
-    id: 2,
+    id: 3,
     name: 'Ceramic Coffee Mug',
     description: 'Start your day right with this premium ceramic mug.',
     price: 1800, // $18.00
@@ -140,7 +151,7 @@ export const SAMPLE_PRODUCTS = [
     inStock: true
   },
   {
-    id: 3,
+    id: 4,
     name: 'Premium Notebook',
     description: '120 pages of high-quality paper for your ideas and notes.',
     price: 2200, // $22.00
@@ -149,7 +160,7 @@ export const SAMPLE_PRODUCTS = [
     inStock: true
   },
   {
-    id: 4,
+    id: 5,
     name: 'Sticker Pack',
     description: 'Set of 10 high-quality vinyl stickers with S3VN designs.',
     price: 1200, // $12.00
@@ -175,30 +186,18 @@ export const MEMBERSHIP_PLANS = [
   {
     id: 2,
     name: 'Pro',
-    price: 1200,
+    price: 299,
     description: 'For serious enthusiasts who want deeper engagement.',
     features: [
       'All Basic features',
       'Exclusive content access',
       'Priority support',
       'Access to all chat rooms',
-      '10% discount in store'
+      '15% discount in store',
+      'Early access to new content',
+      'Ability to create chat rooms'
     ],
     popular: true
-  },
-  {
-    id: 3,
-    name: 'Premium',
-    price: 2900,
-    description: 'For the dedicated community members and enthusiasts.',
-    features: [
-      'All Pro features',
-      'Early access to new content',
-      'Monthly 1-on-1 consultation',
-      'Ability to create chat rooms',
-      '25% discount in store',
-      'Exclusive merchandise'
-    ]
   }
 ];
 

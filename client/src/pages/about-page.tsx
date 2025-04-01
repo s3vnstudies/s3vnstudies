@@ -82,7 +82,7 @@ export default function AboutPage() {
 
         <div className="mb-12">
           <h2 className="text-2xl font-bold font-poppins mb-4 text-foreground">Meet the Team</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-6">
             <div className="text-center">
               <div className="w-40 h-48 mx-auto mb-4 relative">
                 <div className="absolute inset-0 border-8 border-amber-800 rounded-md shadow-lg"></div>
@@ -108,18 +108,6 @@ export default function AboutPage() {
               </div>
               <h3 className="text-lg font-bold font-poppins text-foreground mt-2">Benjamin Arao Jr</h3>
               <p className="text-foreground/80">Senior Creative Advisor</p>
-            </div>
-            <div className="text-center">
-              <div className="w-40 h-48 mx-auto mb-4 relative">
-                <div className="absolute inset-0 border-8 border-amber-800 rounded-md shadow-lg"></div>
-                <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-                  alt="Content Researcher"
-                  className="w-full h-full object-cover rounded-sm"
-                />
-              </div>
-              <h3 className="text-lg font-bold font-poppins text-foreground mt-2">Michael Johnson</h3>
-              <p className="text-foreground/80">Content Researcher</p>
             </div>
           </div>
         </div>

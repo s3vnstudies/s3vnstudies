@@ -1,4 +1,7 @@
 import { useAuth } from "./use-auth";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 export interface MembershipTier {
   id: string;
@@ -11,7 +14,29 @@ export interface MembershipTier {
 }
 
 export function useMembership() {
-  const { user, upgradeMembership } = useAuth();
+  const { user } = useAuth();
+  const { toast } = useToast();
+  
+  const upgradeMembership = useMutation({
+    mutationFn: async ({ tier }: { tier: string }) => {
+      const res = await apiRequest("POST", "/api/upgrade-membership", { tier });
+      return await res.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "Membership upgraded",
+        description: "Your membership has been successfully upgraded.",
+      });
+      queryClient.invalidateQueries({ queryKey: ["/api/user"] });
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Upgrade failed",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
 
   const membershipTiers: MembershipTier[] = [
     {
@@ -30,39 +55,27 @@ export function useMembership() {
     {
       id: "pro",
       name: "Pro Access",
-      price: 999,
+      price: 299,
       description: "Full access to premium content and features",
       features: [
         "Everything in Basic",
         "Full community access",
         "Exclusive premium content",
         "Early access to new videos",
-        "Member-only chat rooms"
+        "Member-only chat rooms",
+        "Store discounts (15%)",
+        "Create custom chat rooms",
+        "Priority support"
       ],
       highlighted: true,
-      badge: "Most Popular"
-    },
-    {
-      id: "vip",
-      name: "VIP Access",
-      price: 2499,
-      description: "The ultimate membership experience",
-      features: [
-        "Everything in Pro Access",
-        "1-on-1 monthly sessions",
-        "VIP store discounts (15%)",
-        "Create custom chat rooms",
-        "Exclusive VIP events"
-      ],
-      highlighted: false,
-      badge: ""
+      badge: "Best Value"
     }
   ];
 
   const currentTier = user?.membershipTier || "free";
 
   const canUpgrade = (tierId: string): boolean => {
-    const tierRank = { "free": 0, "pro": 1, "vip": 2 };
+    const tierRank = { "free": 0, "pro": 1 };
     return tierRank[tierId as keyof typeof tierRank] > tierRank[currentTier as keyof typeof tierRank];
   };
 

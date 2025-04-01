@@ -9,7 +9,7 @@ export function ProtectedRoute({
 }: {
   path: string;
   component: () => React.JSX.Element;
-  requiredMembership?: "free" | "pro" | "vip";
+  requiredMembership?: "free" | "pro";
 }) {
   const { user, isLoading } = useAuth();
 
@@ -36,8 +36,7 @@ export function ProtectedRoute({
   if (requiredMembership && requiredMembership !== "free") {
     const tierLevels: Record<string, number> = {
       "free": 0,
-      "pro": 1,
-      "vip": 2
+      "pro": 1
     };
     
     const requiredLevel = tierLevels[requiredMembership];
