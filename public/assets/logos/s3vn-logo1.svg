@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="500" viewBox="0 0 500 500">
+  <defs>
+    <radialGradient id="blue-glow" cx="0.5" cy="0.5" r="0.5" fx="0.5" fy="0.5">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity="1" />
+      <stop offset="100%" stop-color="#0288d1" stop-opacity="0.6" />
+    </radialGradient>
+    <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f9a825" />
+      <stop offset="50%" stop-color="#ffd54f" />
+      <stop offset="100%" stop-color="#ff8f00" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="250" cy="250" r="200" fill="#0a1929" />
+  
+  <!-- Blue energy glow effect -->
+  <path d="M250,100 C280,140 310,180 330,190 C350,200 370,210 340,260 C310,310 280,330 250,350 C220,330 190,310 160,260 C130,210 150,200 170,190 C190,180 220,140 250,100 Z" 
+        fill="url(#blue-glow)" opacity="0.8" />
+  
+  <!-- Number 7 shape -->
+  <path d="M170,120 L330,120 L250,380 L200,380 L270,170 L170,170 Z" 
+        fill="none" stroke="url(#gold-gradient)" stroke-width="20" stroke-linejoin="round" />
+  
+  <!-- Small decorative elements -->
+  <circle cx="170" cy="120" r="5" fill="#00e5ff" />
+  <circle cx="330" cy="120" r="5" fill="#00e5ff" />
+  <circle cx="250" cy="380" r="5" fill="#00e5ff" />
+  <circle cx="250" cy="80" r="8" fill="#ffd54f" />
+  <circle cx="250" cy="420" r="8" fill="#ffd54f" />
+  
+  <!-- Subtle orbit lines -->
+  <ellipse cx="250" cy="250" rx="220" ry="220" fill="none" stroke="#00838f" stroke-width="1" opacity="0.3" />
+  <ellipse cx="250" cy="250" rx="180" ry="180" fill="none" stroke="#00838f" stroke-width="1" opacity="0.3" />
+</svg>

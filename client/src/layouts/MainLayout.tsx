@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -15,26 +16,7 @@ export default function MainLayout({ children, className = "" }: MainLayoutProps
           {children}
         </div>
       </main>
-      <footer className="bg-background/95 backdrop-blur-sm border-t border-border py-6 px-4">
-        <div className="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div className="flex items-center">
-            <img 
-              src="/images/logo.gif" 
-              alt="S3VN Studies Logo"
-              className="h-8 mr-2"
-            />
-            <div>
-              <p className="text-white font-semibold">S3VN<span className="text-primary">Studies</span></p>
-              <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} All rights reserved.</p>
-            </div>
-          </div>
-          <div className="flex items-center space-x-6">
-            <a href="/about" className="text-sm text-muted-foreground hover:text-white transition-colors">About</a>
-            <a href="/policies" className="text-sm text-muted-foreground hover:text-white transition-colors">Policies</a>
-            <a href="/membership" className="text-sm text-muted-foreground hover:text-white transition-colors">Membership</a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

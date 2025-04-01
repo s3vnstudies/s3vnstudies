@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="500" viewBox="0 0 500 500">
+  <defs>
+    <radialGradient id="blue-glow2" cx="0.5" cy="0.5" r="0.5" fx="0.5" fy="0.5">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity="1" />
+      <stop offset="100%" stop-color="#0288d1" stop-opacity="0.6" />
+    </radialGradient>
+    <linearGradient id="gold-gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f9a825" />
+      <stop offset="50%" stop-color="#ffd54f" />
+      <stop offset="100%" stop-color="#ff8f00" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle with elegant style -->
+  <circle cx="250" cy="250" r="200" fill="#0a1929" />
+  
+  <!-- Decorative circular frame -->
+  <circle cx="250" cy="250" r="180" fill="none" stroke="url(#gold-gradient2)" stroke-width="10" />
+  
+  <!-- Blue energy swirl -->
+  <path d="M250,100 C320,120 340,160 350,200 C360,240 350,280 320,310 C290,340 260,350 230,340 C200,330 180,300 170,260 C160,220 180,170 210,150 C240,130 270,110 250,100 Z" 
+        fill="url(#blue-glow2)" opacity="0.8" />
+  
+  <!-- Stylized 7 -->
+  <path d="M180,130 L320,130 L250,370 L220,370 L280,180 L180,180 Z" 
+        fill="none" stroke="url(#gold-gradient2)" stroke-width="15" />
+  
+  <!-- Decorative elements -->
+  <circle cx="180" cy="130" r="6" fill="#ffd54f" />
+  <circle cx="320" cy="130" r="6" fill="#ffd54f" />
+  <circle cx="250" cy="370" r="6" fill="#ffd54f" />
+  <circle cx="250" cy="85" r="8" fill="#00e5ff" />
+  <circle cx="250" cy="415" r="8" fill="#00e5ff" />
+  
+  <!-- Four accent points around the circle -->
+  <circle cx="250" cy="70" r="5" fill="#ffd54f" />
+  <circle cx="250" cy="430" r="5" fill="#ffd54f" />
+  <circle cx="70" cy="250" r="5" fill="#ffd54f" />
+  <circle cx="430" cy="250" r="5" fill="#ffd54f" />
+</svg>

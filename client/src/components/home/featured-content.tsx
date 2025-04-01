@@ -36,8 +36,13 @@ export default function FeaturedContent() {
   };
 
   return (
-    <section className="py-16 bg-background/50">
-      <div className="container mx-auto px-4 md:px-6">
+    <section className="py-16 bg-background/50 relative">
+      {/* Hero Image Background */}
+      <div className="absolute inset-0 bg-cover bg-center opacity-20 pointer-events-none" 
+           style={{ backgroundImage: "url('/assets/images/hero-image.svg')" }}>
+      </div>
+      
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold font-poppins text-foreground">Featured Content</h2>
           <p className="mt-3 text-foreground/80 max-w-2xl mx-auto">
@@ -134,11 +139,12 @@ export default function FeaturedContent() {
                   // Membership card (static)
                   return (
                     <Card key={index} className="bg-card overflow-hidden shadow-md transition-all hover:shadow-lg border border-border/40">
-                      <div className="h-48 overflow-hidden">
+                      <div className="h-48 overflow-hidden flex items-center justify-center" 
+                           style={{ background: "linear-gradient(135deg, #0a1929 0%, #102a43 100%)" }}>
                         <img
-                          src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-                          alt="Membership feature"
-                          className="w-full h-full object-cover transition-transform hover:scale-105"
+                          src="/assets/logos/s3vn-logo2.svg"
+                          alt="S3VN Membership"
+                          className="w-32 h-32 object-contain transition-transform hover:scale-110"
                         />
                       </div>
                       <CardContent className="p-6">
