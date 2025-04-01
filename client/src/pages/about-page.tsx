@@ -86,7 +86,7 @@ export default function AboutPage() {
             <div className="text-center">
               <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4">
                 <img
-                  src="/images/team/matthew-lepley.png"
+                  src="/images/team/matthew-lepley.jpg"
                   alt="Matthew Lepley"
                   className="w-full h-full object-cover"
                 />
