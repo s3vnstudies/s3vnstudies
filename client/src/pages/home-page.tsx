@@ -6,6 +6,7 @@ import MembershipTiers from "@/components/home/membership-tiers";
 import FeaturedVideos from "@/components/home/featured-videos";
 import StorePreview from "@/components/home/store-preview";
 import CommunitySection from "@/components/home/community-section";
+import CategoryNavigation from "@/components/home/category-navigation";
 import CallToAction from "@/components/home/call-to-action";
 
 export default function HomePage() {
@@ -22,6 +23,7 @@ export default function HomePage() {
       <FeaturedVideos />
       <StorePreview />
       <CommunitySection />
+      <CategoryNavigation />
       <CallToAction />
     </PageLayout>
   );

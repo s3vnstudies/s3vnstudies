@@ -170,6 +170,343 @@ export class MemStorage implements IStorage {
       isPrivate: true,
       membershipRequired: "pro"
     });
+
+    // Create self-improvement articles
+    this.createArticle({
+      title: "Mastering the Growth Mindset",
+      content: `
+        <h2>Mastering the Growth Mindset</h2>
+        <p>A growth mindset is the belief that your abilities can be developed through dedication and hard work. This perspective creates a love for learning and resilience that is essential for great accomplishment.</p>
+        
+        <h3>The Power of "Yet"</h3>
+        <p>When you face challenges, adding the word "yet" to your statements can transform your thinking. Instead of saying "I can't do this," say "I can't do this yet." This simple change acknowledges that with persistence and effort, you can develop the skills you need.</p>
+        
+        <h3>Embracing Challenges</h3>
+        <p>People with a growth mindset see challenges as opportunities to grow rather than threats to their self-image. They understand that stretching beyond your comfort zone is how you develop new abilities.</p>
+        
+        <h3>Learning from Criticism</h3>
+        <p>Feedback is valuable information that can help you improve. Rather than taking criticism personally, use it as a tool to refine your approach and develop your skills.</p>
+        
+        <h3>Finding Inspiration in Others' Success</h3>
+        <p>Instead of feeling threatened by others' achievements, see them as evidence of what's possible through dedication and hard work. Their journey can provide valuable insights for your own growth.</p>
+        
+        <h3>Daily Practices</h3>
+        <ul>
+          <li>Reflect on your learning, not just your performance</li>
+          <li>Celebrate effort and progress, not just results</li>
+          <li>Use setbacks as learning opportunities</li>
+          <li>Seek challenges that stretch your abilities</li>
+          <li>Practice positive self-talk that emphasizes growth</li>
+        </ul>
+        
+        <p>Remember that developing a growth mindset is itself a process that requires practice and patience. Each day presents new opportunities to choose growth over limitation.</p>
+      `,
+      author: "S3vn Studies Team",
+      thumbnail: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      excerpt: "Discover how to develop a growth mindset that transforms challenges into opportunities for learning and personal development.",
+      category: "self-improvement",
+      membershipRequired: "free"
+    });
+
+    this.createArticle({
+      title: "The Art of Effective Goal Setting",
+      content: `
+        <h2>The Art of Effective Goal Setting</h2>
+        <p>Setting meaningful goals is a powerful process for thinking about your ideal future and motivating yourself to turn this vision into reality. When done effectively, goal setting can transform vague aspirations into concrete achievements.</p>
+        
+        <h3>SMART Goal Framework</h3>
+        <p>The SMART framework provides a structured approach to creating goals that are more likely to be achieved:</p>
+        <ul>
+          <li><strong>Specific</strong>: Clearly define what you want to accomplish</li>
+          <li><strong>Measurable</strong>: Include concrete criteria for measuring progress</li>
+          <li><strong>Achievable</strong>: Set goals that challenge you but are attainable</li>
+          <li><strong>Relevant</strong>: Ensure your goals align with your values and long-term objectives</li>
+          <li><strong>Time-bound</strong>: Set a deadline to create urgency and focus</li>
+        </ul>
+        
+        <h3>Balancing Short and Long-term Goals</h3>
+        <p>Creating a hierarchy of goals helps maintain motivation while working toward distant outcomes. Consider organizing your goals into:</p>
+        <ul>
+          <li>Daily actions</li>
+          <li>Weekly objectives</li>
+          <li>Monthly milestones</li>
+          <li>Yearly achievements</li>
+          <li>Life vision</li>
+        </ul>
+        
+        <h3>The Power of Written Goals</h3>
+        <p>Writing down your goals creates clarity and commitment. It transforms abstract thoughts into concrete intentions. Consider keeping a dedicated journal for tracking your goals and progress.</p>
+        
+        <h3>Reviewing and Adjusting</h3>
+        <p>Goals aren't set in stone. Schedule regular reviews to assess your progress, celebrate achievements, and adjust your approach as needed. This flexibility allows you to respond to changing circumstances while maintaining your overall direction.</p>
+        
+        <h3>From Goals to Habits</h3>
+        <p>The most effective goals often involve creating sustainable habits. Rather than focusing exclusively on outcomes, identify the daily behaviors that will lead to your desired results.</p>
+        
+        <p>Remember that goal setting is a skill that improves with practice. Each goal you set and pursue provides valuable experience that enhances your ability to achieve future aspirations.</p>
+      `,
+      author: "S3vn Studies Team",
+      thumbnail: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      excerpt: "Learn how to set meaningful, achievable goals that propel you toward your desired future using proven strategies and frameworks.",
+      category: "self-improvement",
+      membershipRequired: "free"
+    });
+
+    this.createArticle({
+      title: "Developing Emotional Intelligence",
+      content: `
+        <h2>Developing Emotional Intelligence</h2>
+        <p>Emotional intelligence (EQ) is the ability to recognize, understand, and manage our own emotions while also recognizing, understanding, and influencing the emotions of others. In a world increasingly driven by connection and collaboration, EQ is often as important as technical skills.</p>
+        
+        <h3>The Four Pillars of Emotional Intelligence</h3>
+        
+        <h4>1. Self-Awareness</h4>
+        <p>Self-awareness is the foundation of emotional intelligence. It involves recognizing your emotions as they arise and understanding how they affect your thoughts and behavior. Practices that enhance self-awareness include:</p>
+        <ul>
+          <li>Daily reflection or journaling</li>
+          <li>Mindfulness meditation</li>
+          <li>Seeking feedback from trusted others</li>
+          <li>Identifying emotional triggers</li>
+        </ul>
+        
+        <h4>2. Self-Management</h4>
+        <p>Once you're aware of your emotions, the next step is managing them effectively. This doesn't mean suppressing feelings, but rather responding to them in constructive ways. Key self-management skills include:</p>
+        <ul>
+          <li>Impulse control</li>
+          <li>Stress management techniques</li>
+          <li>Adaptability in changing situations</li>
+          <li>Maintaining a positive outlook</li>
+        </ul>
+        
+        <h4>3. Social Awareness</h4>
+        <p>Social awareness expands your emotional perception beyond yourself to understand others' feelings, needs, and concerns. This dimension includes:</p>
+        <ul>
+          <li>Empathy—understanding others' perspectives</li>
+          <li>Organizational awareness—recognizing group dynamics</li>
+          <li>Active listening skills</li>
+          <li>Reading non-verbal cues</li>
+        </ul>
+        
+        <h4>4. Relationship Management</h4>
+        <p>The final component involves using emotional awareness to build healthy, productive relationships. Essential skills include:</p>
+        <ul>
+          <li>Clear communication</li>
+          <li>Conflict resolution</li>
+          <li>Inspirational leadership</li>
+          <li>Collaboration and teamwork</li>
+        </ul>
+        
+        <h3>Developing Your EQ</h3>
+        <p>Unlike IQ, emotional intelligence can be significantly developed through practice. Consider these approaches:</p>
+        <ul>
+          <li>Practice identifying and naming emotions as they occur</li>
+          <li>Pause before responding in emotional situations</li>
+          <li>Ask questions to better understand others' perspectives</li>
+          <li>Seek feedback about your interpersonal interactions</li>
+          <li>Read literature that explores complex human emotions</li>
+        </ul>
+        
+        <p>Remember that developing emotional intelligence is a lifelong journey. Each interaction provides an opportunity to apply and refine these skills.</p>
+      `,
+      author: "S3vn Studies Team",
+      thumbnail: "https://images.unsplash.com/photo-1522511305405-13b8b7f2fdfb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      excerpt: "Explore the four pillars of emotional intelligence and learn practical strategies to enhance your ability to understand and manage emotions.",
+      category: "self-improvement",
+      membershipRequired: "free"
+    });
+
+    this.createArticle({
+      title: "The Power of Positive Habits",
+      content: `
+        <h2>The Power of Positive Habits</h2>
+        <p>Our lives are largely determined not by our individual decisions but by our habits—the small, consistent actions we perform daily. Understanding and harnessing the power of habits can transform your life one small change at a time.</p>
+        
+        <h3>The Habit Loop</h3>
+        <p>Habits follow a predictable pattern known as the habit loop:</p>
+        <ul>
+          <li><strong>Cue</strong>: The trigger that initiates the behavior</li>
+          <li><strong>Craving</strong>: The motivation or desire for change</li>
+          <li><strong>Response</strong>: The actual habit or action</li>
+          <li><strong>Reward</strong>: The benefit you gain from the behavior</li>
+        </ul>
+        <p>By understanding these components, you can more effectively establish new habits and modify existing ones.</p>
+        
+        <h3>Making Habits Stick: The Four Laws</h3>
+        <p>Research suggests four principles that can help establish positive habits:</p>
+        
+        <h4>1. Make it Obvious (Cue)</h4>
+        <ul>
+          <li>Use implementation intentions: "After [current habit], I will [new habit]."</li>
+          <li>Design your environment to make cues for good habits prominent</li>
+          <li>Fill out a habits scorecard to increase awareness</li>
+        </ul>
+        
+        <h4>2. Make it Attractive (Craving)</h4>
+        <ul>
+          <li>Use temptation bundling—pair an action you want to do with one you need to do</li>
+          <li>Join a culture where your desired behavior is the norm</li>
+          <li>Create a motivation ritual before difficult habits</li>
+        </ul>
+        
+        <h4>3. Make it Easy (Response)</h4>
+        <ul>
+          <li>Reduce friction for good habits; increase friction for bad ones</li>
+          <li>Start with the "Two-Minute Rule"—scale habits down to two minutes or less</li>
+          <li>Prepare your environment to make future actions easier</li>
+        </ul>
+        
+        <h4>4. Make it Satisfying (Reward)</h4>
+        <ul>
+          <li>Use reinforcement—give yourself an immediate reward when you complete your habit</li>
+          <li>Track your habits with a habit tracker</li>
+          <li>Never miss twice—get back on track immediately if you slip up</li>
+        </ul>
+        
+        <h3>Identity-Based Habits</h3>
+        <p>The most effective way to change your habits is to focus on who you wish to become, not just what you want to achieve. When you make your habits part of your identity, you're more likely to stick with them. Ask yourself:</p>
+        <ul>
+          <li>"What would a healthy person do?"</li>
+          <li>"What would a productive person do?"</li>
+          <li>"What would a mindful person do?"</li>
+        </ul>
+        
+        <p>Remember that habits are the compound interest of self-improvement. Small changes may seem insignificant in the moment, but they can deliver remarkable results over time when performed consistently.</p>
+      `,
+      author: "S3vn Studies Team",
+      thumbnail: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      excerpt: "Discover how to build positive habits that stick using science-backed strategies and the four laws of behavior change.",
+      category: "self-improvement",
+      membershipRequired: "free"
+    });
+
+    this.createArticle({
+      title: "Mindfulness Practices for Everyday Life",
+      content: `
+        <h2>Mindfulness Practices for Everyday Life</h2>
+        <p>Mindfulness is the practice of paying attention to the present moment with openness, curiosity, and acceptance. In our fast-paced world filled with constant stimulation and distraction, mindfulness offers a way to reconnect with ourselves and our experiences.</p>
+        
+        <h3>Benefits of Mindfulness</h3>
+        <p>Research has shown that regular mindfulness practice can:</p>
+        <ul>
+          <li>Reduce stress and anxiety</li>
+          <li>Improve focus and concentration</li>
+          <li>Enhance emotional regulation</li>
+          <li>Boost immune function</li>
+          <li>Increase compassion and connection</li>
+          <li>Reduce rumination and negative thinking</li>
+        </ul>
+        
+        <h3>Simple Mindfulness Practices</h3>
+        
+        <h4>Mindful Breathing (5 Minutes)</h4>
+        <p>One of the simplest ways to practice mindfulness is to focus on your breath:</p>
+        <ol>
+          <li>Find a comfortable seated position</li>
+          <li>Notice the natural rhythm of your breath without changing it</li>
+          <li>Feel the sensations of breathing—the rise and fall of your chest or abdomen</li>
+          <li>When your mind wanders (and it will), gently bring your attention back to your breath</li>
+          <li>Continue for five minutes, gradually extending the duration as you become more comfortable</li>
+        </ol>
+        
+        <h4>Body Scan (10 Minutes)</h4>
+        <p>A body scan helps you connect with physical sensations and release tension:</p>
+        <ol>
+          <li>Lie down or sit comfortably with your eyes closed</li>
+          <li>Bring your awareness to your feet, noticing any sensations</li>
+          <li>Slowly move your attention upward through each part of your body</li>
+          <li>Notice areas of tension, discomfort, or ease without judgment</li>
+          <li>As you become aware of tension, imagine breathing into that area and releasing it</li>
+        </ol>
+        
+        <h4>Mindful Eating</h4>
+        <p>Transform an everyday activity into a mindfulness practice:</p>
+        <ol>
+          <li>Before eating, pause to appreciate the appearance of your food</li>
+          <li>Notice the aroma and how it affects you</li>
+          <li>Take small bites and chew slowly, noticing flavors and textures</li>
+          <li>Put down your utensils between bites</li>
+          <li>Express gratitude for the nourishment and the many hands that brought the food to you</li>
+        </ol>
+        
+        <h4>S.T.O.P. Practice</h4>
+        <p>Use this acronym throughout your day to bring yourself back to the present moment:</p>
+        <ul>
+          <li><strong>S</strong>top what you're doing</li>
+          <li><strong>T</strong>ake a breath</li>
+          <li><strong>O</strong>bserve what's happening internally and externally</li>
+          <li><strong>P</strong>roceed with awareness</li>
+        </ul>
+        
+        <h3>Integrating Mindfulness into Daily Life</h3>
+        <ul>
+          <li>Start your day with a brief mindfulness practice before checking devices</li>
+          <li>Use transitions (before meals, entering/leaving home) as mindfulness triggers</li>
+          <li>Practice mindful listening in conversations</li>
+          <li>Take mindful walking breaks, even if just for a few minutes</li>
+          <li>End your day with a gratitude reflection</li>
+        </ul>
+        
+        <p>Remember that mindfulness isn't about achieving a particular state, but rather about being aware of whatever is happening in the present moment. The essence of the practice is returning your attention again and again, cultivating awareness with kindness toward yourself.</p>
+      `,
+      author: "S3vn Studies Team",
+      thumbnail: "https://images.unsplash.com/photo-1532798442725-41036acc7489?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      excerpt: "Learn practical mindfulness techniques that can be easily integrated into your daily routine to reduce stress and increase wellbeing.",
+      category: "self-improvement",
+      membershipRequired: "free"
+    });
+
+    // Premium self-improvement articles (require membership)
+    this.createArticle({
+      title: "Advanced Meditation Techniques for Personal Growth",
+      content: `
+        <h2>Advanced Meditation Techniques for Personal Growth</h2>
+        <p>While basic mindfulness meditation offers tremendous benefits, advanced practices can help experienced meditators break through plateaus and achieve deeper levels of awareness, insight, and personal transformation.</p>
+        
+        <p><strong>This premium content is available to Pro members only. Upgrade your membership to access the full article and additional exclusive content.</strong></p>
+        
+        <h3>What You'll Learn:</h3>
+        <ul>
+          <li>Vipassana meditation for developing insight and wisdom</li>
+          <li>Loving-kindness (Metta) meditation for cultivating compassion</li>
+          <li>Transcendental meditation techniques for deeper states of consciousness</li>
+          <li>Visualization practices for manifestation and healing</li>
+          <li>Integration practices to apply meditation insights to daily life</li>
+        </ul>
+        
+        <p>Advance your meditation practice with expert guidance and transform your relationship with your mind.</p>
+      `,
+      author: "S3vn Studies Team",
+      thumbnail: "https://images.unsplash.com/photo-1508672019048-805c876b67e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      excerpt: "Explore advanced meditation techniques that go beyond basic mindfulness to accelerate your personal growth and spiritual development.",
+      category: "self-improvement",
+      membershipRequired: "pro"
+    });
+
+    this.createArticle({
+      title: "Mastering Difficult Conversations",
+      content: `
+        <h2>Mastering Difficult Conversations</h2>
+        <p>Difficult conversations are an inevitable part of both personal and professional life. Whether it's delivering constructive feedback, addressing conflict, or discussing sensitive topics, these interactions often trigger strong emotions and can be challenging to navigate effectively.</p>
+        
+        <p><strong>This premium content is available to Pro members only. Upgrade your membership to access the full article and additional exclusive content.</strong></p>
+        
+        <h3>What You'll Learn:</h3>
+        <ul>
+          <li>A structured framework for preparing for difficult conversations</li>
+          <li>Techniques for managing emotional triggers in yourself and others</li>
+          <li>Powerful questioning methods that foster understanding</li>
+          <li>Non-verbal communication strategies that build trust</li>
+          <li>How to reach meaningful resolutions even in high-stakes situations</li>
+        </ul>
+        
+        <p>Develop the confidence and skills to transform difficult conversations into opportunities for growth, understanding, and stronger relationships.</p>
+      `,
+      author: "S3vn Studies Team",
+      thumbnail: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      excerpt: "Learn advanced communication strategies for navigating challenging interactions with confidence, empathy, and effectiveness.",
+      category: "self-improvement",
+      membershipRequired: "pro"
+    });
   }
   
   // User operations
