@@ -23,9 +23,9 @@ export default function Footer() {
           <div>
             <div className="flex items-center mb-4">
               <img 
-                src="/assets/logos/s3vn-logo2.svg"
+                src="/images/logo.gif"
                 alt="S3VN Studies Logo"
-                className="h-12 mr-2" 
+                className="h-10 mr-2" 
               />
               <span className="ml-2 text-xl font-poppins font-bold">S3VN<span className="text-primary">Studies</span></span>
             </div>

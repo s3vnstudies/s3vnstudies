@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import MainFooter from "@/components/MainFooter";
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -16,7 +16,7 @@ export default function MainLayout({ children, className = "" }: MainLayoutProps
           {children}
         </div>
       </main>
-      <Footer />
+      <MainFooter />
     </div>
   );
 }

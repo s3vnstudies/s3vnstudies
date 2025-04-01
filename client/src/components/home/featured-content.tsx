@@ -38,8 +38,8 @@ export default function FeaturedContent() {
   return (
     <section className="py-16 bg-background/50 relative">
       {/* Hero Image Background */}
-      <div className="absolute inset-0 bg-cover bg-center opacity-20 pointer-events-none" 
-           style={{ backgroundImage: "url('/assets/images/hero-image.svg')" }}>
+      {/* Background gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/50 to-slate-800/50 opacity-80 pointer-events-none">
       </div>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -142,9 +142,9 @@ export default function FeaturedContent() {
                       <div className="h-48 overflow-hidden flex items-center justify-center" 
                            style={{ background: "linear-gradient(135deg, #0a1929 0%, #102a43 100%)" }}>
                         <img
-                          src="/assets/logos/s3vn-logo2.svg"
+                          src="/images/logo.gif"
                           alt="S3VN Membership"
-                          className="w-32 h-32 object-contain transition-transform hover:scale-110"
+                          className="w-28 h-28 object-contain transition-transform hover:scale-110"
                         />
                       </div>
                       <CardContent className="p-6">
