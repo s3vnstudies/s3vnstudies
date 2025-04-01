@@ -153,28 +153,9 @@ export default function ArticleDetailPage() {
             </Button>
           </div>
         ) : (
-          <div className="prose max-w-none">
-            {/* Render article content - in a real app this would be rendered from HTML/Markdown */}
-            <p className="mb-4">{article.content}</p>
-            <p className="mb-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae justo ac nisl posuere fermentum. 
-              Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; 
-              Sed auctor, nisl eget ultricies ultricies, nunc nunc aliquet nunc, vitae aliquam nisl nunc vitae nisl.
-            </p>
-            <h2>Learning More</h2>
-            <p className="mb-4">
-              Nullam eget magna euismod, bibendum nisl eu, consectetur nisl. Donec euismod, nisl eget ultricies ultricies, 
-              nunc nunc aliquet nunc, vitae aliquam nisl nunc vitae nisl.
-            </p>
-            <ul>
-              <li>Point one about the topic</li>
-              <li>Another important consideration</li>
-              <li>Final thoughts on the matter</li>
-            </ul>
-            <p className="mb-4">
-              Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. 
-              Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.
-            </p>
+          <div className="prose max-w-none dark:prose-invert">
+            {/* Render HTML content safely */}
+            <div dangerouslySetInnerHTML={{ __html: article.content }} />
           </div>
         )}
 

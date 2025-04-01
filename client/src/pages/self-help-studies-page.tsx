@@ -70,6 +70,14 @@ export default function SelfHelpStudiesPage() {
       thumbnail: "/courses/flask-course/GOLD-Mind-Reset/Module 10 - Feature Images/Images/feature-5.png",
       videoUrl: "/courses/flask-course/GOLD-Mind-Reset/Module 1 - Videos/video06.mp4", // Skipping video05 as the filename suggests it might be problematic
       isPremium: true
+    },
+    {
+      id: "emotional-intelligence",
+      title: "Developing Emotional Intelligence",
+      description: "Learn essential techniques to develop your emotional intelligence, understand and manage your emotions effectively in both personal and professional settings.",
+      thumbnail: "/images/courses/emotional-intelligence.jpg",
+      videoUrl: "/courses/flask-course/GOLD-Mind-Reset/Module 1 - Videos/video07.mp4",
+      isPremium: true
     }
   ];
 
