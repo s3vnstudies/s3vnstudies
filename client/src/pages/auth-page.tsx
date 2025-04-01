@@ -4,6 +4,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { KeyRound } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -46,9 +47,28 @@ const registerSchema = z.object({
   displayName: z.string().optional(),
 });
 
+// Password reset request schema
+const passwordResetRequestSchema = z.object({
+  email: z.string().email("Invalid email address"),
+});
+
+// Password reset schema
+const passwordResetSchema = z.object({
+  token: z.string().min(1, "Token is required"),
+  userId: z.string().min(1, "User ID is required"),
+  newPassword: z.string().min(6, "Password must be at least 6 characters"),
+  confirmPassword: z.string().min(6, "Password must be at least 6 characters"),
+}).refine((data) => data.newPassword === data.confirmPassword, {
+  message: "Passwords do not match",
+  path: ["confirmPassword"],
+});
+
 export default function AuthPage() {
-  const [activeTab, setActiveTab] = useState<"login" | "register">("login");
-  const { user, loginMutation, registerMutation } = useAuth();
+  const [activeTab, setActiveTab] = useState<"login" | "register" | "forgot-password">("login");
+  const [resetStep, setResetStep] = useState<"request" | "reset">("request");
+  const [resetToken, setResetToken] = useState<string>("");
+  const [userId, setUserId] = useState<number | null>(null);
+  const { user, loginMutation, registerMutation, requestPasswordResetMutation, resetPasswordMutation } = useAuth();
   const [location, navigate] = useLocation();
 
   // Set page title
@@ -108,7 +128,7 @@ export default function AuthPage() {
             </div>
           </div>
 
-          <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as "login" | "register")}>
+          <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as "login" | "register" | "forgot-password")}>
             <TabsList className="grid w-full grid-cols-2 mb-8">
               <TabsTrigger value="login">
                 <LogIn className="h-4 w-4 mr-2" />
@@ -180,17 +200,31 @@ export default function AuthPage() {
                 </CardContent>
                 <CardFooter className="flex flex-col space-y-4">
                   <div className="text-sm text-center">
-                    Don't have an account?{" "}
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setActiveTab("register");
-                      }}
-                      className="text-primary hover:text-primary-dark font-medium"
-                    >
-                      Register now
-                    </a>
+                    <div className="mb-2">
+                      <a
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setActiveTab("forgot-password");
+                        }}
+                        className="text-primary hover:text-primary-dark font-medium"
+                      >
+                        Forgot your password?
+                      </a>
+                    </div>
+                    <div>
+                      Don't have an account?{" "}
+                      <a
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setActiveTab("register");
+                        }}
+                        className="text-primary hover:text-primary-dark font-medium"
+                      >
+                        Register now
+                      </a>
+                    </div>
                   </div>
                 </CardFooter>
               </Card>
@@ -307,6 +341,140 @@ export default function AuthPage() {
                       className="text-primary hover:text-primary-dark font-medium"
                     >
                       Sign in
+                    </a>
+                  </div>
+                </CardFooter>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="forgot-password">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Reset Password</CardTitle>
+                  <CardDescription>
+                    {resetStep === "request"
+                      ? "Enter your email to receive a password reset link"
+                      : "Enter your new password"}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {resetStep === "request" ? (
+                    // Password reset request form
+                    <div className="space-y-4">
+                      <div className="space-y-2">
+                        <FormLabel>Email</FormLabel>
+                        <div className="relative">
+                          <Mail className="absolute left-3 top-3 h-4 w-4 text-neutral-500" />
+                          <Input
+                            type="email"
+                            placeholder="Enter your email address"
+                            className="pl-10"
+                            value={
+                              (document.getElementById("reset-email") as HTMLInputElement)?.value || ""
+                            }
+                            id="reset-email"
+                          />
+                        </div>
+                      </div>
+                      <Button
+                        type="button"
+                        className="w-full bg-primary hover:bg-primary-dark"
+                        disabled={requestPasswordResetMutation.isPending}
+                        onClick={() => {
+                          const email = (document.getElementById("reset-email") as HTMLInputElement)?.value;
+                          if (!email) return;
+                          
+                          requestPasswordResetMutation.mutate({ email }, {
+                            onSuccess: (data) => {
+                              if (data.token && data.userId) {
+                                setResetToken(data.token);
+                                setUserId(data.userId);
+                                setResetStep("reset");
+                              }
+                            }
+                          });
+                        }}
+                      >
+                        {requestPasswordResetMutation.isPending 
+                          ? "Sending request..." 
+                          : "Send Reset Link"}
+                      </Button>
+                    </div>
+                  ) : (
+                    // Password reset form
+                    <div className="space-y-4">
+                      <div className="space-y-2">
+                        <FormLabel>New Password</FormLabel>
+                        <div className="relative">
+                          <KeyRound className="absolute left-3 top-3 h-4 w-4 text-neutral-500" />
+                          <Input
+                            type="password"
+                            placeholder="Enter your new password"
+                            className="pl-10"
+                            id="new-password"
+                          />
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <FormLabel>Confirm Password</FormLabel>
+                        <div className="relative">
+                          <KeyRound className="absolute left-3 top-3 h-4 w-4 text-neutral-500" />
+                          <Input
+                            type="password"
+                            placeholder="Confirm your new password"
+                            className="pl-10"
+                            id="confirm-password"
+                          />
+                        </div>
+                      </div>
+                      <Button
+                        type="button"
+                        className="w-full bg-primary hover:bg-primary-dark"
+                        disabled={resetPasswordMutation.isPending}
+                        onClick={() => {
+                          const newPassword = (document.getElementById("new-password") as HTMLInputElement)?.value;
+                          const confirmPassword = (document.getElementById("confirm-password") as HTMLInputElement)?.value;
+                          
+                          if (!newPassword || !confirmPassword) return;
+                          if (newPassword !== confirmPassword) {
+                            alert("Passwords do not match");
+                            return;
+                          }
+                          
+                          if (!resetToken || !userId) {
+                            alert("Invalid reset token or user ID");
+                            return;
+                          }
+                          
+                          resetPasswordMutation.mutate({
+                            token: resetToken,
+                            userId,
+                            newPassword
+                          }, {
+                            onSuccess: () => {
+                              setActiveTab("login");
+                            }
+                          });
+                        }}
+                      >
+                        {resetPasswordMutation.isPending 
+                          ? "Resetting password..." 
+                          : "Reset Password"}
+                      </Button>
+                    </div>
+                  )}
+                </CardContent>
+                <CardFooter className="flex flex-col space-y-4">
+                  <div className="text-sm text-center">
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setActiveTab("login");
+                      }}
+                      className="text-primary hover:text-primary-dark font-medium"
+                    >
+                      Back to Sign In
                     </a>
                   </div>
                 </CardFooter>

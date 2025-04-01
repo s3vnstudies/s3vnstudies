@@ -15,6 +15,8 @@ export const users = pgTable("users", {
   membershipTier: membershipTierEnum("membership_tier").default("free").notNull(),
   memberSince: timestamp("member_since").defaultNow().notNull(),
   isAdmin: boolean("is_admin").default(false).notNull(),
+  resetPasswordToken: text("reset_password_token"),
+  resetPasswordExpires: timestamp("reset_password_expires"),
 });
 
 export const insertUserSchema = createInsertSchema(users)
