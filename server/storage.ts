@@ -142,7 +142,9 @@ export class MemStorage implements IStorage {
       avatarUrl: "",
       membershipTier: "free",
       memberSince: new Date(),
-      isAdmin: true
+      isAdmin: true,
+      resetPasswordToken: null,
+      resetPasswordExpires: null
     };
     this.users.set(adminUser.id, adminUser);
     
@@ -507,6 +509,315 @@ export class MemStorage implements IStorage {
       category: "self-improvement",
       membershipRequired: "pro"
     });
+    
+    // Anger Management Articles
+    this.createArticle({
+      title: "Understanding Anger: The First Step to Management",
+      content: `
+        <h2>Understanding Anger: The First Step to Management</h2>
+        <p>Anger is a natural human emotion that serves as a signal that something is wrong or threatening. Before we can effectively manage anger, we must first understand its nature, triggers, and how it manifests in our thoughts, bodies, and behaviors.</p>
+        
+        <h3>The Anger Experience</h3>
+        <p>Anger typically involves three components:</p>
+        <ul>
+          <li><strong>Physical reactions:</strong> Increased heart rate, tense muscles, flushed face, faster breathing</li>
+          <li><strong>Cognitive processes:</strong> Thoughts about injustice, blame, or revenge</li>
+          <li><strong>Behavioral responses:</strong> From assertive communication to aggression or withdrawal</li>
+        </ul>
+        
+        <h3>Common Anger Triggers</h3>
+        <p>Understanding your personal triggers is essential. Common triggers include:</p>
+        <ul>
+          <li>Feeling threatened or attacked (physically or emotionally)</li>
+          <li>Experiencing injustice or unfairness</li>
+          <li>Having your needs or wants blocked</li>
+          <li>Being provoked or insulted</li>
+          <li>Feeling powerless or out of control</li>
+        </ul>
+        
+        <h3>The Anger Cycle</h3>
+        <p>Anger often follows a predictable pattern:</p>
+        <ol>
+          <li><strong>Trigger:</strong> An event that initiates the anger response</li>
+          <li><strong>Thoughts:</strong> Your interpretation of the event</li>
+          <li><strong>Emotions:</strong> Feelings that arise from your thoughts</li>
+          <li><strong>Physical sensations:</strong> Bodily changes triggered by emotions</li>
+          <li><strong>Behaviors:</strong> Actions taken in response</li>
+          <li><strong>Consequences:</strong> Results of those actions</li>
+        </ol>
+        
+        <h3>The Purpose of Anger</h3>
+        <p>Anger isn't inherently negative—it serves important functions:</p>
+        <ul>
+          <li>Signals potential threats or boundary violations</li>
+          <li>Provides energy to defend yourself</li>
+          <li>Motivates action against injustice</li>
+          <li>Helps identify unmet needs</li>
+        </ul>
+        
+        <h3>Anger vs. Aggression</h3>
+        <p>A crucial distinction: anger is an emotion, while aggression is a behavior. You can feel angry without becoming aggressive, and learning this separation is key to healthy anger management.</p>
+        
+        <h3>Self-Assessment</h3>
+        <p>Consider these questions to better understand your relationship with anger:</p>
+        <ul>
+          <li>What situations consistently trigger your anger?</li>
+          <li>How do you typically express anger?</li>
+          <li>What physical sensations do you notice when angry?</li>
+          <li>What thoughts accompany your anger?</li>
+          <li>How has anger affected your relationships and well-being?</li>
+        </ul>
+        
+        <p>By developing awareness of your anger patterns, you create the foundation for learning more effective management techniques. The next articles in this series will explore specific strategies for managing anger in healthy, constructive ways.</p>
+      `,
+      author: "S3vn Studies Team",
+      thumbnail: "https://images.unsplash.com/photo-1581279813180-4dddc1008167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      excerpt: "Learn to recognize anger triggers, understand the anger cycle, and distinguish between healthy and unhealthy expressions of this powerful emotion.",
+      category: "anger-management",
+      membershipRequired: "free"
+    });
+
+    this.createArticle({
+      title: "Physical Techniques for Immediate Anger Control",
+      content: `
+        <h2>Physical Techniques for Immediate Anger Control</h2>
+        <p>When anger surges, your body responds with the "fight or flight" reaction—increased heart rate, rapid breathing, muscle tension, and a rush of stress hormones. These physical techniques help interrupt this response and restore balance to your nervous system.</p>
+        
+        <h3>Deep Breathing: The Foundation</h3>
+        <p>Deep, diaphragmatic breathing is perhaps the most effective immediate response to anger:</p>
+        <ol>
+          <li>Breathe in slowly through your nose for a count of 4, feeling your abdomen (not chest) expand</li>
+          <li>Hold briefly for a count of 1-2</li>
+          <li>Exhale slowly through your mouth for a count of 6-8</li>
+          <li>Repeat 5-10 times</li>
+        </ol>
+        <p>This extended exhale activates your parasympathetic nervous system, countering the stress response.</p>
+        
+        <h3>Progressive Muscle Relaxation</h3>
+        <p>This technique helps release the physical tension that accompanies anger:</p>
+        <ol>
+          <li>Start with your feet and work upward</li>
+          <li>Tense each muscle group for 5-7 seconds</li>
+          <li>Release suddenly and completely</li>
+          <li>Notice the sensation of relaxation for 15-20 seconds</li>
+          <li>Move to the next muscle group</li>
+        </ol>
+        
+        <h3>The 5-4-3-2-1 Grounding Exercise</h3>
+        <p>This mindfulness technique pulls you out of escalating thoughts and into the present:</p>
+        <ul>
+          <li>Identify 5 things you can see</li>
+          <li>Acknowledge 4 things you can touch or feel</li>
+          <li>Notice 3 things you can hear</li>
+          <li>Recognize 2 things you can smell</li>
+          <li>Name 1 thing you can taste</li>
+        </ul>
+        
+        <h3>Physical Distance</h3>
+        <p>Sometimes the simplest solution is to physically remove yourself from the triggering situation:</p>
+        <ul>
+          <li>Step away politely: "I need a moment to think about this"</li>
+          <li>Take a short walk—movement helps process emotion</li>
+          <li>Change environments to interrupt emotional patterns</li>
+        </ul>
+        
+        <h3>Cold Water Technique</h3>
+        <p>This method activates the mammalian dive reflex, which can rapidly calm your nervous system:</p>
+        <ul>
+          <li>Splash cold water on your face</li>
+          <li>Hold a cold pack or ice cube on your forehead, cheeks, or back of neck</li>
+          <li>If possible, submerge your face in cold water for 15-30 seconds</li>
+        </ul>
+        
+        <h3>Body Scan Meditation</h3>
+        <p>This practice helps identify where you're holding tension:</p>
+        <ol>
+          <li>Close your eyes and bring attention to your feet</li>
+          <li>Slowly move your awareness upward through your body</li>
+          <li>Notice any areas of tension without judgment</li>
+          <li>Imagine releasing tension with each exhale</li>
+        </ol>
+        
+        <h3>Practice Makes Perfect</h3>
+        <p>The key to these techniques is practicing them regularly, not just during anger episodes. By training your body's relaxation response during calm periods, you'll be able to access these skills more readily when anger arises.</p>
+        
+        <p>Remember that these physical techniques work best as part of a comprehensive anger management approach that also addresses thoughts and behaviors—topics we'll explore in upcoming articles.</p>
+      `,
+      author: "S3vn Studies Team",
+      thumbnail: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      excerpt: "Discover practical physical techniques to manage anger in the moment, including breathing exercises, muscle relaxation, and grounding methods.",
+      category: "anger-management",
+      membershipRequired: "free"
+    });
+
+    this.createArticle({
+      title: "Cognitive Strategies for Anger Management",
+      content: `
+        <h2>Cognitive Strategies for Anger Management</h2>
+        <p>While physical techniques help manage the bodily symptoms of anger, cognitive strategies address the thinking patterns that fuel it. How we interpret situations directly influences our emotional responses—changing these thought patterns can transform our relationship with anger.</p>
+        
+        <h3>Identify Cognitive Distortions</h3>
+        <p>Anger often involves thought patterns that aren't fully accurate:</p>
+        <ul>
+          <li><strong>Mind reading:</strong> Assuming you know others' intentions ("He deliberately tried to make me look bad")</li>
+          <li><strong>Overgeneralizing:</strong> Using "always" or "never" statements ("You always interrupt me")</li>
+          <li><strong>Catastrophizing:</strong> Assuming the worst possible outcome ("This mistake will ruin everything")</li>
+          <li><strong>Personalizing:</strong> Taking things personally that may not be about you ("She's late because she doesn't respect my time")</li>
+          <li><strong>Shoulds and musts:</strong> Rigid expectations ("People should always keep their promises")</li>
+        </ul>
+        
+        <h3>The A-B-C-D Method</h3>
+        <p>This cognitive-behavioral technique helps restructure angry thoughts:</p>
+        <ul>
+          <li><strong>A (Activating event):</strong> Identify what triggered your anger</li>
+          <li><strong>B (Beliefs):</strong> Notice your thoughts about the event</li>
+          <li><strong>C (Consequences):</strong> Recognize the emotional and behavioral results</li>
+          <li><strong>D (Dispute):</strong> Challenge unhelpful beliefs with more balanced alternatives</li>
+        </ul>
+        
+        <h3>Perspective-Taking</h3>
+        <p>Expanding your viewpoint can reduce anger intensity:</p>
+        <ul>
+          <li>Consider alternative explanations for others' behavior</li>
+          <li>Ask yourself: "How might someone else view this situation?"</li>
+          <li>Imagine how the situation will look one week, one month, or one year from now</li>
+        </ul>
+        
+        <h3>The 10-Second Rule</h3>
+        <p>When angry thoughts arise:</p>
+        <ol>
+          <li>Pause for 10 seconds before responding</li>
+          <li>Ask yourself: "Is this thought helping or hurting me?"</li>
+          <li>Consider: "What evidence supports or contradicts this thought?"</li>
+          <li>Choose a more balanced perspective</li>
+        </ol>
+        
+        <h3>Reframing Techniques</h3>
+        <p>Change how you interpret situations that trigger anger:</p>
+        <ul>
+          <li><strong>Find the opportunity:</strong> "What can I learn from this?"</li>
+          <li><strong>Consider context:</strong> "What factors might be influencing this situation?"</li>
+          <li><strong>Focus on specifics:</strong> Replace "She's so inconsiderate" with "She was late to this meeting"</li>
+          <li><strong>Separate behavior from identity:</strong> "He made a mistake" versus "He is a mistake"</li>
+        </ul>
+        
+        <h3>Mindful Acceptance</h3>
+        <p>Some situations can't be changed, but your relationship to them can:</p>
+        <ul>
+          <li>Acknowledge: "This is happening, and I feel angry about it"</li>
+          <li>Accept without judgment: "I can feel this anger without being controlled by it"</li>
+          <li>Choose your response intentionally rather than reacting automatically</li>
+        </ul>
+        
+        <h3>Practice Exercise: Thought Record</h3>
+        <p>Keep a log of anger episodes with these columns:</p>
+        <ol>
+          <li>Situation: What happened?</li>
+          <li>Automatic thoughts: What went through your mind?</li>
+          <li>Emotion and intensity (0-10): How angry did you feel?</li>
+          <li>Alternative perspective: What's another way to view this?</li>
+          <li>Outcome: How did your feelings change with the new perspective?</li>
+        </ol>
+        
+        <p>With regular practice, these cognitive strategies can help you develop greater mental flexibility when facing anger triggers. Combined with the physical techniques from our previous article, they form a powerful toolkit for comprehensive anger management.</p>
+      `,
+      author: "S3vn Studies Team",
+      thumbnail: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      excerpt: "Learn to identify and challenge unhelpful thought patterns that fuel anger, and develop more balanced ways of interpreting triggering situations.",
+      category: "anger-management",
+      membershipRequired: "pro"
+    });
+
+    this.createArticle({
+      title: "Communicating Effectively Through Anger",
+      content: `
+        <h2>Communicating Effectively Through Anger</h2>
+        <p>How we express anger often determines whether a situation improves or deteriorates. Effective communication during anger allows you to address problems while preserving relationships and self-respect.</p>
+        
+        <h3>The Communication Continuum</h3>
+        <p>Anger expression typically falls somewhere on this spectrum:</p>
+        <ul>
+          <li><strong>Passive:</strong> Suppressing anger, avoiding conflict, denying feelings</li>
+          <li><strong>Passive-aggressive:</strong> Indirect expression through sarcasm, gossip, or subtle sabotage</li>
+          <li><strong>Assertive:</strong> Direct, respectful expression that honors both yourself and others</li>
+          <li><strong>Aggressive:</strong> Hostile expression that violates others' boundaries</li>
+        </ul>
+        <p>The goal is to develop assertive communication skills—expressing feelings honestly while respecting others.</p>
+        
+        <h3>The Assertive Formula: "I" Statements</h3>
+        <p>This structured approach communicates feelings without blame:</p>
+        <ol>
+          <li>"I feel..." (name the emotion)</li>
+          <li>"when..." (describe the specific behavior or situation)</li>
+          <li>"because..." (explain the impact)</li>
+          <li>"What I need is..." (request a specific change)</li>
+        </ol>
+        <p>Example: "I feel frustrated when meetings run over schedule because it affects my other commitments. What I need is for us to either stick to our agenda or reschedule in advance."</p>
+        
+        <h3>Active Listening During Conflict</h3>
+        <p>Even when angry, strive to understand the other person:</p>
+        <ul>
+          <li>Give your full attention</li>
+          <li>Avoid interrupting</li>
+          <li>Paraphrase to confirm understanding: "So what you're saying is..."</li>
+          <li>Validate their perspective, even if you disagree: "I can see why you might feel that way"</li>
+        </ul>
+        
+        <h3>Timing Matters</h3>
+        <p>Sometimes the best communication strategy is temporary postponement:</p>
+        <ul>
+          <li>Recognize when you're too angry for productive conversation</li>
+          <li>Request a specific time to revisit the discussion: "I need some time to collect my thoughts. Could we talk about this after lunch?"</li>
+          <li>Follow through on the commitment to resume the conversation</li>
+        </ul>
+        
+        <h3>Non-verbal Communication</h3>
+        <p>Your body language speaks volumes during conflict:</p>
+        <ul>
+          <li>Maintain appropriate eye contact</li>
+          <li>Keep a neutral facial expression</li>
+          <li>Use a calm, even tone of voice</li>
+          <li>Stand or sit at the same level as the other person</li>
+          <li>Respect personal space</li>
+        </ul>
+        
+        <h3>Conflict Resolution Process</h3>
+        <p>When addressing anger-inducing issues, follow these steps:</p>
+        <ol>
+          <li>Identify the specific problem</li>
+          <li>Express your feelings using "I" statements</li>
+          <li>Listen to the other person's perspective</li>
+          <li>Brainstorm solutions together</li>
+          <li>Agree on a specific action plan</li>
+          <li>Set a time to follow up</li>
+        </ol>
+        
+        <h3>Setting and Maintaining Boundaries</h3>
+        <p>Clear boundaries are essential for anger management:</p>
+        <ul>
+          <li>Identify what behaviors you will and won't accept</li>
+          <li>Communicate boundaries clearly: "I need you to speak to me respectfully without raising your voice"</li>
+          <li>State consequences for boundary violations</li>
+          <li>Follow through consistently</li>
+        </ul>
+        
+        <h3>Practice Exercise: Difficult Conversations</h3>
+        <p>Before having a challenging conversation:</p>
+        <ol>
+          <li>Write out your "I" statement</li>
+          <li>Anticipate possible responses</li>
+          <li>Identify your goal for the conversation</li>
+          <li>Plan how you'll manage your emotions</li>
+        </ol>
+        
+        <p>Remember that effective communication is a skill that improves with practice. Each time you express anger assertively rather than aggressively or passively, you strengthen this ability while building healthier relationships.</p>
+      `,
+      author: "S3vn Studies Team",
+      thumbnail: "https://images.unsplash.com/photo-1573497491765-dccce02b3324?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      excerpt: "Master the art of assertive communication during conflicts with techniques for expressing feelings clearly while maintaining respect for others.",
+      category: "anger-management",
+      membershipRequired: "pro"
+    });
   }
   
   // User operations
@@ -540,7 +851,9 @@ export class MemStorage implements IStorage {
       avatarUrl: null,
       membershipTier: "free",
       memberSince: now,
-      isAdmin: false
+      isAdmin: false,
+      resetPasswordToken: null,
+      resetPasswordExpires: null
     };
     
     this.users.set(id, user);

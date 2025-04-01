@@ -1,12 +1,18 @@
 import { Link } from "wouter";
 import { Card, CardContent } from "@/components/ui/card";
-import { BookOpen, Lightbulb, Music, Video, ShoppingBag, Users, Terminal } from "lucide-react";
+import { BookOpen, Lightbulb, Music, Video, ShoppingBag, Users, Terminal, Heart } from "lucide-react";
 
 interface CategoryItem {
   name: string;
   icon: React.ReactNode;
   path: string;
   description: string;
+  subcategories?: SubcategoryItem[];
+}
+
+interface SubcategoryItem {
+  name: string;
+  path: string;
 }
 
 export default function CategoryNavigation() {
@@ -15,7 +21,21 @@ export default function CategoryNavigation() {
       name: "Self Help Studies",
       icon: <Lightbulb className="h-5 w-5 text-amber-500" />,
       path: "/articles?category=self-improvement",
-      description: "Personal growth and development articles"
+      description: "Personal growth and development articles",
+      subcategories: [
+        {
+          name: "Anger Management",
+          path: "/articles?category=anger-management"
+        },
+        {
+          name: "Mindfulness",
+          path: "/articles?category=mindfulness"
+        },
+        {
+          name: "Goal Setting",
+          path: "/articles?category=goal-setting"
+        }
+      ]
     },
     {
       name: "Articles",
@@ -55,17 +75,39 @@ export default function CategoryNavigation() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {categories.map((category, index) => (
-            <Link key={index} href={category.path}>
-              <Card className="bg-card cursor-pointer transition-all hover:shadow-md border border-border/40 h-full">
-                <CardContent className="p-6 flex flex-col items-center text-center">
-                  <div className="w-12 h-12 rounded-full bg-background flex items-center justify-center mb-4">
-                    {category.icon}
-                  </div>
-                  <h3 className="font-semibold text-foreground mb-2">{category.name}</h3>
-                  <p className="text-sm text-foreground/70">{category.description}</p>
-                </CardContent>
-              </Card>
-            </Link>
+            <div key={index}>
+              <Link href={category.path}>
+                <Card className="bg-card cursor-pointer transition-all hover:shadow-md border border-border/40 h-full">
+                  <CardContent className="p-6 flex flex-col items-center text-center">
+                    <div className="w-12 h-12 rounded-full bg-background flex items-center justify-center mb-4">
+                      {category.icon}
+                    </div>
+                    <h3 className="font-semibold text-foreground mb-2">{category.name}</h3>
+                    <p className="text-sm text-foreground/70">{category.description}</p>
+                    
+                    {category.subcategories && category.subcategories.length > 0 && (
+                      <div className="mt-4 w-full">
+                        <div className="text-xs font-medium text-foreground/60 mb-2 text-left">Subcategories:</div>
+                        <div className="flex flex-wrap gap-2 justify-center">
+                          {category.subcategories.map((subcategory, idx) => (
+                            <a 
+                              key={idx}
+                              href={subcategory.path}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                              }}
+                              className="text-xs bg-background px-2 py-1 rounded-full border border-border/40 text-foreground/80 hover:bg-primary/10 transition-colors"
+                            >
+                              {subcategory.name}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </Link>
+            </div>
           ))}
         </div>
       </div>
