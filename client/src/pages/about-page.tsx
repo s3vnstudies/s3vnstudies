@@ -86,9 +86,10 @@ export default function AboutPage() {
             <div className="text-center">
               <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4">
                 <img
-                  src="/images/team/matthew-lepley.jpg"
+                  src="/images/team/matthew-lepley-original.jpg"
                   alt="Matthew Lepley"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
+                  style={{ objectPosition: "center 15%" }}
                 />
               </div>
               <h3 className="text-lg font-bold font-poppins text-foreground">Matthew Lepley</h3>
