@@ -84,38 +84,41 @@ export default function AboutPage() {
           <h2 className="text-2xl font-bold font-poppins mb-4 text-foreground">Meet the Team</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="text-center">
-              <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4">
+              <div className="w-40 h-48 mx-auto mb-4 relative">
+                <div className="absolute inset-0 border-8 border-amber-800 rounded-md shadow-lg"></div>
                 <img
-                  src="/images/team/matthew-lepley-original.jpg"
+                  src="/static/images/team/matthew-lepley-original.jpg"
                   alt="Matthew Lepley"
-                  className="w-full h-full object-cover object-top"
-                  style={{ objectPosition: "center 15%" }}
+                  className="w-full h-full object-cover rounded-sm"
+                  style={{ objectPosition: "center 20%" }}
                 />
               </div>
-              <h3 className="text-lg font-bold font-poppins text-foreground">Matthew Lepley</h3>
+              <h3 className="text-lg font-bold font-poppins text-foreground mt-2">Matthew Lepley</h3>
               <p className="text-foreground/80">Founder & Content Creator</p>
             </div>
             <div className="text-center">
-              <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4">
+              <div className="w-40 h-48 mx-auto mb-4 relative">
+                <div className="absolute inset-0 border-8 border-amber-800 rounded-md shadow-lg"></div>
                 <img
-                  src="/images/team/benjamin-arao.jpg"
+                  src="/static/images/team/benjamin-arao.jpg"
                   alt="Benjamin Arao Jr"
-                  className="w-full h-full object-cover"
-                  style={{ objectPosition: "center 40%" }}
+                  className="w-full h-full object-cover rounded-sm"
+                  style={{ objectPosition: "center 25%" }}
                 />
               </div>
-              <h3 className="text-lg font-bold font-poppins text-foreground">Benjamin Arao Jr</h3>
+              <h3 className="text-lg font-bold font-poppins text-foreground mt-2">Benjamin Arao Jr</h3>
               <p className="text-foreground/80">Senior Creative Advisor</p>
             </div>
             <div className="text-center">
-              <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4">
+              <div className="w-40 h-48 mx-auto mb-4 relative">
+                <div className="absolute inset-0 border-8 border-amber-800 rounded-md shadow-lg"></div>
                 <img
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
                   alt="Content Researcher"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-sm"
                 />
               </div>
-              <h3 className="text-lg font-bold font-poppins text-foreground">Michael Johnson</h3>
+              <h3 className="text-lg font-bold font-poppins text-foreground mt-2">Michael Johnson</h3>
               <p className="text-foreground/80">Content Researcher</p>
             </div>
           </div>

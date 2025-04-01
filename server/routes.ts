@@ -1,8 +1,10 @@
 import type { Express, Request, Response } from "express";
+import express from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { setupAuth } from "./auth";
 import { setupWebsockets } from "./websocket";
+import path from "path";
 import { 
   insertArticleSchema, 
   insertProductSchema, 
@@ -71,6 +73,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   // Setup WebSockets
   setupWebsockets(httpServer);
+  
+  // Setup static files
+  app.use('/static', express.static(path.join(process.cwd(), 'public/static')));
+  app.use('/images', express.static(path.join(process.cwd(), 'public/images')));
   
   // API ROUTES
   

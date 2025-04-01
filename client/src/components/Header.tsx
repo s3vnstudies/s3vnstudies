@@ -71,7 +71,7 @@ export default function Header() {
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center">
             <img 
-              src="/images/logo.gif" 
+              src="/static/images/logo.gif" 
               alt="S3VN Studies Logo"
               className="h-10 mr-2" 
             />
@@ -156,7 +156,7 @@ export default function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <img 
-                  src="/images/logo.gif" 
+                  src="/static/images/logo.gif" 
                   alt="S3VN Studies Logo"
                   className="h-10 mr-2"
                 />
