@@ -64,20 +64,9 @@ export function useWebSocket() {
         console.error("Failed to create WebSocket connection:", error);
         setIsConnected(false);
         
-        // If we're in a development environment and the main connection fails,
-        // try fallback to explicit localhost connection with a fixed port
-        if (import.meta.env.DEV) {
-          try {
-            const fallbackUrl = "ws://localhost:5000/ws";
-            console.log("Trying fallback WebSocket connection:", fallbackUrl);
-            socketRef.current = new WebSocket(fallbackUrl);
-          } catch (fallbackError) {
-            console.error("Fallback WebSocket connection also failed:", fallbackError);
-            return;
-          }
-        } else {
-          return;
-        }
+        // Don't attempt fallback as it's causing errors
+        console.log("Not attempting fallback connection");
+        return;
       }
       
       if (socketRef.current) {

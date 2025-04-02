@@ -90,16 +90,16 @@ export default function CategoryNavigation() {
                         <div className="text-xs font-medium text-foreground/60 mb-2 text-left">Subcategories:</div>
                         <div className="flex flex-wrap gap-2 justify-center">
                           {category.subcategories.map((subcategory, idx) => (
-                            <a 
+                            <span
                               key={idx}
-                              href={subcategory.path}
                               onClick={(e) => {
                                 e.stopPropagation();
+                                window.location.href = subcategory.path;
                               }}
-                              className="text-xs bg-background px-2 py-1 rounded-full border border-border/40 text-foreground/80 hover:bg-primary/10 transition-colors"
+                              className="text-xs bg-background px-2 py-1 rounded-full border border-border/40 text-foreground/80 hover:bg-primary/10 transition-colors cursor-pointer"
                             >
                               {subcategory.name}
-                            </a>
+                            </span>
                           ))}
                         </div>
                       </div>
