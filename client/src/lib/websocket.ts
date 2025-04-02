@@ -51,12 +51,20 @@ export function useWebSocket() {
       // Clean up any existing connection
       cleanup();
       
-      // Create WebSocket connection
+      // Create WebSocket connection with the correct path
       const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-      const wsUrl = `${protocol}//${window.location.host}/ws`;
+      const host = window.location.host;
+      const wsUrl = `${protocol}//${host}/ws`;
       
       console.log("Connecting to WebSocket at:", wsUrl);
-      socketRef.current = new WebSocket(wsUrl);
+      
+      try {
+        socketRef.current = new WebSocket(wsUrl);
+      } catch (error) {
+        console.error("Failed to create WebSocket connection:", error);
+        setIsConnected(false);
+        return;
+      }
       
       if (socketRef.current) {
         // Connection opened
