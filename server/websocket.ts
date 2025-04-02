@@ -54,7 +54,13 @@ const broadcastMessage = (clients: ConnectedClient[], message: ServerMessage) =>
 export function setupWebsockets(server: Server) {
   try {
     console.log('Setting up WebSocket server on path /ws');
-    const wss = new WebSocketServer({ server, path: '/ws' });
+    // Create WebSocket server on /ws path, not conflicting with Vite HMR which uses /@vite/client
+    const wss = new WebSocketServer({ 
+      server, 
+      path: '/ws',
+      // Improve handling of errors at the server level
+      clientTracking: true
+    });
     
     // Keep track of all connected clients
     const clients: ConnectedClient[] = [];
@@ -64,8 +70,48 @@ export function setupWebsockets(server: Server) {
       console.error('WebSocket server error:', error);
     });
     
+    // Setup heartbeat mechanism to detect stale connections
+    const pingInterval = 30000; // 30 seconds
+    const pingClients = () => {
+      clients.forEach((client, i) => {
+        if (client.ws.readyState !== WebSocket.OPEN) {
+          clients.splice(i, 1);
+          return;
+        }
+        
+        // Set up a "pong" expectation
+        // @ts-ignore - ws doesn't expose isAlive in types but it works
+        if (client.ws.isAlive === false) {
+          client.ws.terminate();
+          clients.splice(i, 1);
+          return;
+        }
+        
+        // @ts-ignore
+        client.ws.isAlive = false;
+        client.ws.ping();
+      });
+    };
+    
+    // Start heartbeat interval
+    const interval = setInterval(pingClients, pingInterval);
+    
+    // Clean up interval on server close
+    wss.on('close', () => {
+      clearInterval(interval);
+    });
+    
     wss.on('connection', (ws, req) => {
       console.log(`Client connected to websocket from ${req.socket.remoteAddress}`);
+      
+      // @ts-ignore - ws doesn't expose isAlive in types but it works
+      ws.isAlive = true;
+      
+      // Handle pong messages
+      ws.on('pong', () => {
+        // @ts-ignore
+        ws.isAlive = true;
+      });
       
       // Add to clients
       const client: ConnectedClient = { ws };
@@ -129,10 +175,10 @@ export function setupWebsockets(server: Server) {
                   return;
                 }
                 
+                // Only use free and pro tiers since VIP was removed
                 const tierLevels: Record<string, number> = {
                   "free": 0,
-                  "pro": 1,
-                  "vip": 2
+                  "pro": 1
                 };
                 
                 const userTierLevel = tierLevels[user.membershipTier];

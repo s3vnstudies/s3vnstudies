@@ -51,25 +51,19 @@ export function useWebSocket() {
       // Clean up any existing connection
       cleanup();
       
-      // Create WebSocket connection with the correct path
-      const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-      const host = window.location.host;
-      const wsUrl = `${protocol}//${host}/ws`;
-      
-      console.log("Connecting to WebSocket at:", wsUrl);
-      
-      try {
-        socketRef.current = new WebSocket(wsUrl);
-      } catch (error) {
-        console.error("Failed to create WebSocket connection:", error);
-        setIsConnected(false);
+      // Import our WebSocketManager - dynamically to avoid circular dependencies
+      import('./websocket-manager').then((module) => {
+        const webSocketManager = module.default;
         
-        // Don't attempt fallback as it's causing errors
-        console.log("Not attempting fallback connection");
-        return;
-      }
-      
-      if (socketRef.current) {
+        // Get or create a WebSocket connection using the manager
+        socketRef.current = webSocketManager.getOrCreateSocket('/ws');
+        
+        if (!socketRef.current) {
+          console.error("WebSocket connection could not be established");
+          setIsConnected(false);
+          return;
+        }
+        
         // Connection opened
         socketRef.current.addEventListener('open', () => {
           console.log('Connected to WebSocket server');
@@ -111,7 +105,7 @@ export function useWebSocket() {
           
           // Try to reconnect after a delay
           setTimeout(() => {
-            if (socketRef.current?.readyState === WebSocket.CLOSED) {
+            if (!socketRef.current || socketRef.current.readyState === WebSocket.CLOSED) {
               connectWebSocket();
             }
           }, 3000);
@@ -122,7 +116,10 @@ export function useWebSocket() {
           console.error('WebSocket error:', error);
           setIsConnected(false);
         });
-      }
+      }).catch(error => {
+        console.error("Error importing WebSocket manager:", error);
+        setIsConnected(false);
+      });
     } catch (error) {
       console.error('Error setting up WebSocket:', error);
       setIsConnected(false);
