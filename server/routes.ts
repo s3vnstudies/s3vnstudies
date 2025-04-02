@@ -5,6 +5,7 @@ import { storage } from "./storage";
 import { setupAuth } from "./auth";
 import { setupWebsockets } from "./websocket";
 import path from "path";
+import Stripe from "stripe";
 import { 
   insertArticleSchema, 
   insertProductSchema, 
@@ -16,6 +17,12 @@ import {
   insertSubscriptionSchema
 } from "@shared/schema";
 import { z } from "zod";
+
+// Initialize Stripe
+if (!process.env.STRIPE_SECRET_KEY) {
+  throw new Error('Missing Stripe secret key. Please add STRIPE_SECRET_KEY to environment variables.');
+}
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Authentication middleware
 function requireAuth(req: Request, res: Response, next: Function) {
@@ -483,6 +490,120 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Invalid video data", errors: err.errors });
       }
       res.status(500).json({ message: "Failed to create video" });
+    }
+  });
+  
+  // Stripe Payment Integration
+  app.post("/api/create-subscription-intent", requireAuth, async (req, res) => {
+    try {
+      const userId = req.user?.id;
+      const userEmail = req.user?.email;
+      
+      if (!userId) {
+        return res.status(401).json({ message: "Authentication required" });
+      }
+      
+      // Create a payment intent for $2.99 subscription
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: 299, // $2.99 in cents
+        currency: "usd",
+        payment_method_types: ["card"],
+        metadata: {
+          userId: userId.toString(),
+          type: "subscription",
+          tier: "pro"
+        },
+        receipt_email: userEmail,
+        description: "Pro Membership Subscription ($2.99/month)"
+      });
+      
+      res.json({
+        clientSecret: paymentIntent.client_secret
+      });
+    } catch (error: any) {
+      console.error("Stripe error:", error);
+      res.status(500).json({
+        message: "Error creating payment intent",
+        error: error.message
+      });
+    }
+  });
+  
+  app.post("/api/complete-subscription", requireAuth, async (req, res) => {
+    try {
+      const { paymentIntentId } = req.body;
+      const userId = req.user?.id;
+      
+      if (!userId) {
+        return res.status(401).json({ message: "Authentication required" });
+      }
+      
+      // Verify payment intent exists and is successful
+      const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+      
+      if (paymentIntent.status !== "succeeded") {
+        return res.status(400).json({ message: "Payment has not been completed" });
+      }
+      
+      // Check the metadata to ensure it matches our expectations
+      if (paymentIntent.metadata.userId !== userId.toString() || 
+          paymentIntent.metadata.type !== "subscription" ||
+          paymentIntent.metadata.tier !== "pro") {
+        return res.status(400).json({ message: "Invalid payment intent metadata" });
+      }
+      
+      // Create subscription in our system
+      const subscription = await storage.createSubscription({
+        userId: userId,
+        tier: "pro",
+        startDate: new Date().toISOString(),
+        endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days from now
+        status: "active",
+        paymentId: paymentIntentId
+      });
+      
+      // Update user's membership tier
+      await storage.updateUser(userId, { membershipTier: "pro" });
+      
+      res.json({ success: true, subscription });
+    } catch (error: any) {
+      console.error("Error completing subscription:", error);
+      res.status(500).json({
+        message: "Error completing subscription",
+        error: error.message
+      });
+    }
+  });
+  
+  // Simple upgrade endpoint for testing (no payment processing)
+  app.post("/api/upgrade-membership", requireAuth, async (req, res) => {
+    try {
+      const userId = req.user?.id;
+      
+      if (!userId) {
+        return res.status(401).json({ message: "Authentication required" });
+      }
+      
+      // Create a subscription in our system
+      const subscription = await storage.createSubscription({
+        userId: userId,
+        tier: "pro",
+        startDate: new Date().toISOString(),
+        endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days from now
+        status: "active",
+        paymentId: "test_" + Date.now()
+      });
+      
+      // Update user's membership tier
+      await storage.updateUser(userId, { membershipTier: "pro" });
+      
+      res.json({ success: true, subscription });
+    } catch (error: any) {
+      console.error("Error upgrading membership:", error);
+      res.status(500).json({
+        message: "Error upgrading membership",
+        error: error.message
+      });
     }
   });
   
