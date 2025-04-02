@@ -52,59 +52,78 @@ export function useChat() {
   useEffect(() => {
     if (!user) return;
 
-    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-    const wsUrl = `${protocol}//${window.location.host}/ws`;
-    const ws = new WebSocket(wsUrl);
+    try {
+      const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+      const host = window.location.host;
+      const wsUrl = `${protocol}//${host}/ws`;
+      console.log("Connecting to chat WebSocket at:", wsUrl);
+      
+      const ws = new WebSocket(wsUrl);
+      
+      ws.onopen = () => {
+        console.log("Chat WebSocket connected successfully");
+        setSocket(ws);
+        setConnected(true);
+      };
 
-    ws.onopen = () => {
-      setSocket(ws);
-      setConnected(true);
-    };
+      ws.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
 
-    ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
+          switch (data.type) {
+            case 'message':
+            case 'system':
+              setMessages(prev => [...prev, data]);
+              break;
+            case 'joined':
+              setIsJoining(false);
+              toast({
+                title: "Joined Chat Room",
+                description: `You have joined ${data.roomName}`,
+              });
+              break;
+            case 'error':
+              toast({
+                title: "Chat Error",
+                description: data.content,
+                variant: "destructive",
+              });
+              break;
+          }
+        } catch (error) {
+          console.error("Error processing WebSocket message:", error);
+        }
+      };
 
-      switch (data.type) {
-        case 'message':
-        case 'system':
-          setMessages(prev => [...prev, data]);
-          break;
-        case 'joined':
-          setIsJoining(false);
-          toast({
-            title: "Joined Chat Room",
-            description: `You have joined ${data.roomName}`,
-          });
-          break;
-        case 'error':
-          toast({
-            title: "Chat Error",
-            description: data.content,
-            variant: "destructive",
-          });
-          break;
-      }
-    };
+      ws.onclose = () => {
+        console.log("Chat WebSocket connection closed");
+        setSocket(null);
+        setConnected(false);
+        setCurrentRoom(null);
+      };
 
-    ws.onclose = () => {
-      setSocket(null);
-      setConnected(false);
-      setCurrentRoom(null);
-    };
+      ws.onerror = (error) => {
+        console.error("Chat WebSocket error:", error);
+        toast({
+          title: "Connection Error",
+          description: "Failed to connect to chat server",
+          variant: "destructive",
+        });
+      };
 
-    ws.onerror = () => {
+      return () => {
+        if (ws.readyState === WebSocket.OPEN) {
+          ws.close();
+        }
+      };
+    } catch (error) {
+      console.error("Error setting up chat WebSocket:", error);
       toast({
         title: "Connection Error",
-        description: "Failed to connect to chat server",
+        description: "Failed to setup chat connection",
         variant: "destructive",
       });
-    };
-
-    return () => {
-      if (ws.readyState === WebSocket.OPEN) {
-        ws.close();
-      }
-    };
+    }
   }, [user, toast]);
 
   // Join a chat room

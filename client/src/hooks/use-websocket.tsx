@@ -43,82 +43,103 @@ export function useWebSocket(): WebSocketHook {
     if (!user) return;
 
     const connect = () => {
-      setConnecting(true);
-      const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-      const wsUrl = `${protocol}//${window.location.host}/ws`;
-      const socket = new WebSocket(wsUrl);
-
-      socket.onopen = () => {
-        console.log('WebSocket connected');
-        setConnected(true);
-        setConnecting(false);
+      try {
+        setConnecting(true);
+        const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+        const host = window.location.host;
+        const wsUrl = `${protocol}//${host}/ws`;
+        console.log("Connecting to WebSocket at:", wsUrl);
         
-        // Authenticate with the server
-        socket.send(JSON.stringify({
-          type: 'auth',
-          userId: user.id
-        }));
-      };
+        const socket = new WebSocket(wsUrl);
 
-      socket.onclose = () => {
-        console.log('WebSocket disconnected');
-        setConnected(false);
+        socket.onopen = () => {
+          console.log('WebSocket connected successfully');
+          setConnected(true);
+          setConnecting(false);
+          
+          // Authenticate with the server
+          socket.send(JSON.stringify({
+            type: 'auth',
+            userId: user.id
+          }));
+        };
+
+        socket.onclose = () => {
+          console.log('WebSocket disconnected');
+          setConnected(false);
+          setConnecting(false);
+          
+          // Try to reconnect after a delay
+          setTimeout(() => {
+            if (socketRef.current?.readyState !== WebSocket.OPEN) {
+              connect();
+            }
+          }, 3000);
+        };
+
+        socket.onerror = (error) => {
+          console.error('WebSocket error:', error);
+          setConnected(false);
+          setConnecting(false);
+        };
+
+        socket.onmessage = (event) => {
+          try {
+            const data = JSON.parse(event.data);
+            
+            switch (data.type) {
+              case 'welcome':
+                console.log('Welcome message:', data.message);
+                break;
+                
+              case 'rooms':
+                if (data.rooms && Array.isArray(data.rooms)) {
+                  setRooms(data.rooms);
+                }
+                break;
+                
+              case 'joined':
+                if (data.roomId) {
+                  setCurrentRoom(data.roomId);
+                }
+                break;
+                
+              case 'history':
+                if (data.messages && Array.isArray(data.messages)) {
+                  setMessages(data.messages);
+                }
+                break;
+                
+              case 'message':
+                if (data.roomId === currentRoom && data.message) {
+                  setMessages(prev => [...prev, data.message]);
+                }
+                break;
+                
+              case 'error':
+                console.error('WebSocket error message:', data.error);
+                break;
+                
+              default:
+                console.log('Unknown message type:', data);
+            }
+          } catch (error) {
+            console.error('Error processing WebSocket message:', error);
+          }
+        };
+
+        socketRef.current = socket;
+      } catch (error) {
+        console.error('Error setting up WebSocket connection:', error);
         setConnecting(false);
         
         // Try to reconnect after a delay
         setTimeout(() => {
-          if (socketRef.current?.readyState !== WebSocket.OPEN) {
+          if (!socketRef.current || socketRef.current.readyState !== WebSocket.OPEN) {
             connect();
           }
-        }, 3000);
-      };
-
-      socket.onerror = (error) => {
-        console.error('WebSocket error:', error);
-      };
-
-      socket.onmessage = (event) => {
-        const data = JSON.parse(event.data);
-        
-        switch (data.type) {
-          case 'welcome':
-            console.log('Welcome message:', data.message);
-            break;
-            
-          case 'rooms':
-            if (data.rooms && Array.isArray(data.rooms)) {
-              setRooms(data.rooms);
-            }
-            break;
-            
-          case 'joined':
-            if (data.roomId) {
-              setCurrentRoom(data.roomId);
-            }
-            break;
-            
-          case 'history':
-            if (data.messages && Array.isArray(data.messages)) {
-              setMessages(data.messages);
-            }
-            break;
-            
-          case 'message':
-            if (data.roomId === currentRoom && data.message) {
-              setMessages(prev => [...prev, data.message]);
-            }
-            break;
-            
-          case 'error':
-            console.error('WebSocket error message:', data.error);
-            break;
-            
-          default:
-            console.log('Unknown message type:', data);
-        }
-      };
-
-      socketRef.current = socket;
+        }, 5000);
+      }
     };
 
     connect();
