@@ -17,6 +17,7 @@ import {
   insertSubscriptionSchema
 } from "@shared/schema";
 import { z } from "zod";
+import { getYouTubeVideos, getYouTubeVideoDetails } from "./youtube";
 
 // Initialize Stripe
 if (!process.env.STRIPE_SECRET_KEY) {
@@ -493,6 +494,199 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
   
+  // YouTube Integration
+  app.get("/api/youtube/videos", getYouTubeVideos);
+  app.get("/api/youtube/videos/:videoId", getYouTubeVideoDetails);
+  
+  // YouTube Sync - Creates/Updates videos in our database from YouTube channel
+  app.post("/api/youtube/sync", requireAdmin, async (req, res) => {
+    try {
+      const channelId = req.body.channelId || '@s3vnstudies';
+      const maxResults = req.body.maxResults || 20;
+      
+      // Fetch videos from YouTube
+      const response = await fetch(
+        `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(channelId)}&type=channel&key=${process.env.YOUTUBE_API_KEY}`
+      );
+      
+      if (!response.ok) {
+        throw new Error(`YouTube API error: ${response.statusText}`);
+      }
+      
+      const channelData = await response.json();
+      let actualChannelId;
+      
+      if (channelData.items && channelData.items.length > 0) {
+        actualChannelId = channelData.items[0].id.channelId;
+      } else {
+        return res.status(404).json({ message: 'Channel not found' });
+      }
+      
+      // Fetch videos from the channel
+      const videosResponse = await fetch(
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${actualChannelId}&maxResults=${maxResults}&order=date&type=video&key=${process.env.YOUTUBE_API_KEY}`
+      );
+      
+      if (!videosResponse.ok) {
+        throw new Error(`YouTube API error: ${videosResponse.statusText}`);
+      }
+      
+      const videosData = await videosResponse.json();
+      
+      // Process each video
+      const syncedVideos = [];
+      for (const item of videosData.items) {
+        // Get detailed video information
+        const detailsResponse = await fetch(
+          `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=${item.id.videoId}&key=${process.env.YOUTUBE_API_KEY}`
+        );
+        
+        if (!detailsResponse.ok) continue;
+        
+        const detailsData = await detailsResponse.json();
+        if (!detailsData.items || !detailsData.items[0]) continue;
+        
+        const videoDetails = detailsData.items[0];
+        
+        // Create or update video in our database
+        const videoData: Partial<Video> = {
+          title: videoDetails.snippet.title,
+          description: videoDetails.snippet.description || null,
+          imageUrl: videoDetails.snippet.thumbnails.high.url || null,
+          videoUrl: `https://www.youtube.com/watch?v=${videoDetails.id}` || null,
+          embedUrl: `https://www.youtube.com/embed/${videoDetails.id}` || null,
+          duration: videoDetails.contentDetails.duration || null,
+          publishDate: new Date(videoDetails.snippet.publishedAt),
+          views: parseInt(videoDetails.statistics.viewCount || "0"),
+          membershipRequired: "free" as const, // Default all YouTube videos to free
+          category: "youtube",
+          featured: false,
+          externalId: videoDetails.id,
+          source: "youtube"
+        };
+        
+        // Check if the video already exists in our database by externalId
+        const existingVideos = await storage.getVideos();
+        const existingVideo = existingVideos.find(v => v.externalId === videoDetails.id);
+        
+        let video;
+        if (existingVideo) {
+          // Update existing video
+          video = await storage.updateVideo(existingVideo.id, videoData);
+        } else {
+          // Create new video
+          video = await storage.createVideo(videoData);
+        }
+        
+        syncedVideos.push(video);
+      }
+      
+      res.json({ 
+        success: true, 
+        message: `Successfully synced ${syncedVideos.length} videos`,
+        videos: syncedVideos
+      });
+    } catch (error: any) {
+      console.error('Error syncing YouTube videos:', error);
+      res.status(500).json({ 
+        message: 'Failed to sync YouTube videos',
+        error: error.message 
+      });
+    }
+  });
+  
+  // Schedule daily YouTube sync at midnight
+  setInterval(async () => {
+    try {
+      const now = new Date();
+      // Check if it's midnight (00:00)
+      if (now.getHours() === 0 && now.getMinutes() === 0) {
+        console.log('Running scheduled YouTube sync...');
+        const channelId = '@s3vnstudies';
+        const maxResults = 20;
+        
+        // Fetch videos from YouTube - similar logic as the sync endpoint
+        const response = await fetch(
+          `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(channelId)}&type=channel&key=${process.env.YOUTUBE_API_KEY}`
+        );
+        
+        if (!response.ok) {
+          throw new Error(`YouTube API error: ${response.statusText}`);
+        }
+        
+        const channelData = await response.json();
+        let actualChannelId;
+        
+        if (channelData.items && channelData.items.length > 0) {
+          actualChannelId = channelData.items[0].id.channelId;
+        } else {
+          throw new Error('Channel not found');
+        }
+        
+        // Fetch videos from the channel
+        const videosResponse = await fetch(
+          `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${actualChannelId}&maxResults=${maxResults}&order=date&type=video&key=${process.env.YOUTUBE_API_KEY}`
+        );
+        
+        if (!videosResponse.ok) {
+          throw new Error(`YouTube API error: ${videosResponse.statusText}`);
+        }
+        
+        const videosData = await videosResponse.json();
+        
+        // Process each video
+        let syncedCount = 0;
+        for (const item of videosData.items) {
+          // Get detailed video information
+          const detailsResponse = await fetch(
+            `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=${item.id.videoId}&key=${process.env.YOUTUBE_API_KEY}`
+          );
+          
+          if (!detailsResponse.ok) continue;
+          
+          const detailsData = await detailsResponse.json();
+          if (!detailsData.items || !detailsData.items[0]) continue;
+          
+          const videoDetails = detailsData.items[0];
+          
+          // Create or update video in our database
+          const videoData: Partial<Video> = {
+            title: videoDetails.snippet.title,
+            description: videoDetails.snippet.description || null,
+            imageUrl: videoDetails.snippet.thumbnails.high.url || null,
+            videoUrl: `https://www.youtube.com/watch?v=${videoDetails.id}` || null,
+            embedUrl: `https://www.youtube.com/embed/${videoDetails.id}` || null,
+            duration: videoDetails.contentDetails.duration || null,
+            publishDate: new Date(videoDetails.snippet.publishedAt),
+            views: parseInt(videoDetails.statistics.viewCount || "0"),
+            membershipRequired: "free" as const, // Default all YouTube videos to free
+            category: "youtube",
+            featured: false,
+            externalId: videoDetails.id,
+            source: "youtube"
+          };
+          
+          // Check if the video already exists in our database by externalId
+          const existingVideos = await storage.getVideos();
+          const existingVideo = existingVideos.find(v => v.externalId === videoDetails.id);
+          
+          if (existingVideo) {
+            // Update existing video
+            await storage.updateVideo(existingVideo.id, videoData);
+          } else {
+            // Create new video
+            await storage.createVideo(videoData);
+            syncedCount++;
+          }
+        }
+        
+        console.log(`Scheduled YouTube sync complete - added ${syncedCount} new videos`);
+      }
+    } catch (error) {
+      console.error('Error in scheduled YouTube sync:', error);
+    }
+  }, 60000); // Check every minute
+  
   // Stripe Payment Integration
   app.post("/api/create-subscription-intent", requireAuth, async (req, res) => {
     try {
@@ -556,10 +750,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const subscription = await storage.createSubscription({
         userId: userId,
         tier: "pro",
-        startDate: new Date().toISOString(),
-        endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days from now
-        status: "active",
-        paymentId: paymentIntentId
+        endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
+        active: true,
+        autoRenew: true
       });
       
       // Update user's membership tier
@@ -588,10 +781,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const subscription = await storage.createSubscription({
         userId: userId,
         tier: "pro",
-        startDate: new Date().toISOString(),
-        endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days from now
-        status: "active",
-        paymentId: "test_" + Date.now()
+        endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
+        active: true,
+        autoRenew: true
       });
       
       // Update user's membership tier

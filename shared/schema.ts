@@ -157,20 +157,33 @@ export const videos = pgTable("videos", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
   description: text("description"),
-  youtubeId: text("youtube_id").notNull(),
-  thumbnail: text("thumbnail"),
-  duration: text("duration"),
+  videoUrl: text("video_url"),  // Full URL to the video
+  embedUrl: text("embed_url"),  // URL for embedding the video
+  imageUrl: text("image_url"),  // Thumbnail image URL
+  duration: text("duration"),   // Video duration
   publishDate: timestamp("publish_date").defaultNow().notNull(),
   membershipRequired: membershipTierEnum("membership_required").default("free").notNull(),
+  category: text("category").default("general").notNull(),
+  featured: boolean("featured").default(false).notNull(),
+  views: integer("views").default(0),
+  externalId: text("external_id"),  // YouTube video ID or other external ID
+  source: text("source").default("internal").notNull(),  // 'youtube' or 'internal'
 });
 
 export const insertVideoSchema = createInsertSchema(videos).pick({
   title: true,
   description: true,
-  youtubeId: true,
-  thumbnail: true,
+  videoUrl: true,
+  embedUrl: true,
+  imageUrl: true,
   duration: true,
+  publishDate: true,
   membershipRequired: true,
+  category: true,
+  featured: true,
+  views: true,
+  externalId: true,
+  source: true,
 });
 
 export const subscriptions = pgTable("subscriptions", {
