@@ -8,6 +8,7 @@ import HomePage from "@/pages/home-page";
 import AboutPage from "@/pages/about-page";
 import ArticlesPage from "@/pages/articles-page";
 import ArticleDetailPage from "@/pages/article-detail-page";
+import CategoryPage from "@/pages/category-page";
 import VideosPage from "@/pages/videos-page";
 import StorePage from "@/pages/store-page";
 import ProductDetailPage from "@/pages/product-detail-page";
@@ -40,6 +41,7 @@ function AppRoutes() {
       <Route path="/" component={HomePage} />
       <Route path="/about" component={AboutPage} />
       <Route path="/articles" component={ArticlesPage} />
+      <Route path="/articles/category/:category" component={CategoryPage} />
       <Route path="/articles/:id" component={ArticleDetailPage} />
       <Route path="/videos" component={VideosPage} />
       <Route path="/store" component={StorePage} />

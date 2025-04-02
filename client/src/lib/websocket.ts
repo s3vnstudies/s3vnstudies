@@ -40,71 +40,84 @@ export function useWebSocket() {
 
   // Initialize WebSocket connection
   const connectWebSocket = useCallback(() => {
-    // Create WebSocket connection
-    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-    const wsUrl = `${protocol}//${window.location.host}/ws`;
-    
-    socketRef.current = new WebSocket(wsUrl);
-    
-    // Connection opened
-    socketRef.current.addEventListener('open', () => {
-      console.log('Connected to WebSocket server');
-      setIsConnected(true);
-    });
-    
-    // Listen for messages
-    socketRef.current.addEventListener('message', (event) => {
-      try {
-        const data = JSON.parse(event.data) as WebSocketMessage;
-        
-        // Handle different message types
-        switch (data.type) {
-          case 'rooms_list':
-            setRooms(data.rooms || []);
-            break;
-          
-          case 'room_joined':
-            setCurrentRoom(data.room);
-            setMessages(data.messages || []);
-            break;
-          
-          case 'new_message':
-            setMessages(prevMessages => [...prevMessages, data.message]);
-            break;
-            
-          default:
-            console.log('Unknown message type:', data.type);
-        }
-      } catch (error) {
-        console.error('Error parsing WebSocket message:', error);
-      }
-    });
-    
-    // Connection closed
-    socketRef.current.addEventListener('close', () => {
-      console.log('Disconnected from WebSocket server');
-      setIsConnected(false);
-      
-      // Try to reconnect after a delay
-      setTimeout(() => {
-        if (socketRef.current?.readyState === WebSocket.CLOSED) {
-          connectWebSocket();
-        }
-      }, 3000);
-    });
-    
-    // Connection error
-    socketRef.current.addEventListener('error', (error) => {
-      console.error('WebSocket error:', error);
-      setIsConnected(false);
-    });
-    
-    // Cleanup
-    return () => {
+    const cleanup = () => {
       if (socketRef.current) {
         socketRef.current.close();
+        socketRef.current = null;
       }
     };
+    
+    try {
+      // Clean up any existing connection
+      cleanup();
+      
+      // Create WebSocket connection
+      const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+      const wsUrl = `${protocol}//${window.location.host}/ws`;
+      
+      console.log("Connecting to WebSocket at:", wsUrl);
+      socketRef.current = new WebSocket(wsUrl);
+      
+      if (socketRef.current) {
+        // Connection opened
+        socketRef.current.addEventListener('open', () => {
+          console.log('Connected to WebSocket server');
+          setIsConnected(true);
+        });
+        
+        // Listen for messages
+        socketRef.current.addEventListener('message', (event) => {
+          try {
+            const data = JSON.parse(event.data) as WebSocketMessage;
+            
+            // Handle different message types
+            switch (data.type) {
+              case 'rooms_list':
+                setRooms(data.rooms || []);
+                break;
+              
+              case 'room_joined':
+                setCurrentRoom(data.room);
+                setMessages(data.messages || []);
+                break;
+              
+              case 'new_message':
+                setMessages(prevMessages => [...prevMessages, data.message]);
+                break;
+                
+              default:
+                console.log('Unknown message type:', data.type);
+            }
+          } catch (error) {
+            console.error('Error parsing WebSocket message:', error);
+          }
+        });
+        
+        // Connection closed
+        socketRef.current.addEventListener('close', () => {
+          console.log('Disconnected from WebSocket server');
+          setIsConnected(false);
+          
+          // Try to reconnect after a delay
+          setTimeout(() => {
+            if (socketRef.current?.readyState === WebSocket.CLOSED) {
+              connectWebSocket();
+            }
+          }, 3000);
+        });
+        
+        // Connection error
+        socketRef.current.addEventListener('error', (error) => {
+          console.error('WebSocket error:', error);
+          setIsConnected(false);
+        });
+      }
+    } catch (error) {
+      console.error('Error setting up WebSocket:', error);
+      setIsConnected(false);
+    }
+    
+    return cleanup;
   }, []);
 
   // Initialize WebSocket on component mount
