@@ -53,7 +53,7 @@ export function useWebSocket() {
       
       // Create WebSocket connection with the correct path
       const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-      const host = window.location.host;
+      const host = window.location.host || "localhost:5000";
       const wsUrl = `${protocol}//${host}/ws`;
       
       console.log("Connecting to WebSocket at:", wsUrl);
@@ -63,7 +63,21 @@ export function useWebSocket() {
       } catch (error) {
         console.error("Failed to create WebSocket connection:", error);
         setIsConnected(false);
-        return;
+        
+        // If we're in a development environment and the main connection fails,
+        // try fallback to explicit localhost connection
+        if (import.meta.env.DEV) {
+          try {
+            const fallbackUrl = "ws://localhost:5000/ws";
+            console.log("Trying fallback WebSocket connection:", fallbackUrl);
+            socketRef.current = new WebSocket(fallbackUrl);
+          } catch (fallbackError) {
+            console.error("Fallback WebSocket connection also failed:", fallbackError);
+            return;
+          }
+        } else {
+          return;
+        }
       }
       
       if (socketRef.current) {
