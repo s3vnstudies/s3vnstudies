@@ -8,7 +8,9 @@ import {
   chatMessages, type ChatMessage, type InsertChatMessage,
   bulletinPosts, type BulletinPost, type InsertBulletinPost,
   videos, type Video, type InsertVideo,
-  subscriptions, type Subscription, type InsertSubscription
+  subscriptions, type Subscription, type InsertSubscription,
+  userFavorites, type UserFavorite, type InsertUserFavorite,
+  watchLater, type WatchLater, type InsertWatchLater
 } from "@shared/schema";
 import session from "express-session";
 import createMemoryStore from "memorystore";
@@ -75,6 +77,18 @@ export interface IStorage {
   createVideo(video: InsertVideo): Promise<Video>;
   updateVideo(id: number, videoData: Partial<Video>): Promise<Video | undefined>;
   
+  // Favorite videos operations
+  getFavoriteVideos(userId: number): Promise<Video[]>;
+  addVideoToFavorites(userId: number, videoId: number): Promise<UserFavorite>;
+  removeVideoFromFavorites(userId: number, videoId: number): Promise<boolean>;
+  isVideoFavorited(userId: number, videoId: number): Promise<boolean>;
+  
+  // Watch later operations
+  getWatchLaterVideos(userId: number): Promise<Video[]>;
+  addVideoToWatchLater(userId: number, videoId: number): Promise<WatchLater>;
+  removeVideoFromWatchLater(userId: number, videoId: number): Promise<boolean>;
+  isVideoInWatchLater(userId: number, videoId: number): Promise<boolean>;
+  
   // Subscription operations
   getSubscription(userId: number): Promise<Subscription | undefined>;
   createSubscription(subscription: InsertSubscription): Promise<Subscription>;
@@ -121,6 +135,8 @@ export class MemStorage implements IStorage {
     this.bulletinPosts = new Map();
     this.videos = new Map();
     this.subscriptions = new Map();
+    this.userFavorites = new Map();
+    this.watchLaterItems = new Map();
     
     this.sessionStore = new MemoryStore({
       checkPeriod: 86400000, // prune expired entries every 24h
@@ -1272,6 +1288,120 @@ export class MemStorage implements IStorage {
     }
     
     return true;
+  }
+
+  // User favorites implementation
+  private userFavorites: Map<number, UserFavorite> = new Map();
+  private userFavoriteId: number = 1;
+
+  async getFavoriteVideos(userId: number): Promise<Video[]> {
+    const favorites = Array.from(this.userFavorites.values())
+      .filter(favorite => favorite.userId === userId);
+    
+    const favoriteVideos: Video[] = [];
+    for (const favorite of favorites) {
+      const video = this.videos.get(favorite.videoId);
+      if (video) {
+        favoriteVideos.push(video);
+      }
+    }
+    
+    return favoriteVideos;
+  }
+
+  async addVideoToFavorites(userId: number, videoId: number): Promise<UserFavorite> {
+    // Check if already favorited
+    const existing = Array.from(this.userFavorites.values())
+      .find(fav => fav.userId === userId && fav.videoId === videoId);
+    
+    if (existing) {
+      return existing;
+    }
+    
+    // Create new favorite
+    const favorite: UserFavorite = {
+      id: this.userFavoriteId++,
+      userId,
+      videoId,
+      createdAt: new Date()
+    };
+    
+    this.userFavorites.set(favorite.id, favorite);
+    return favorite;
+  }
+
+  async removeVideoFromFavorites(userId: number, videoId: number): Promise<boolean> {
+    const favorite = Array.from(this.userFavorites.values())
+      .find(fav => fav.userId === userId && fav.videoId === videoId);
+    
+    if (!favorite) {
+      return false;
+    }
+    
+    this.userFavorites.delete(favorite.id);
+    return true;
+  }
+
+  async isVideoFavorited(userId: number, videoId: number): Promise<boolean> {
+    return !!Array.from(this.userFavorites.values())
+      .find(fav => fav.userId === userId && fav.videoId === videoId);
+  }
+
+  // Watch later implementation
+  private watchLaterItems: Map<number, WatchLater> = new Map();
+  private watchLaterId: number = 1;
+
+  async getWatchLaterVideos(userId: number): Promise<Video[]> {
+    const watchLaterItems = Array.from(this.watchLaterItems.values())
+      .filter(item => item.userId === userId);
+    
+    const watchLaterVideos: Video[] = [];
+    for (const item of watchLaterItems) {
+      const video = this.videos.get(item.videoId);
+      if (video) {
+        watchLaterVideos.push(video);
+      }
+    }
+    
+    return watchLaterVideos;
+  }
+
+  async addVideoToWatchLater(userId: number, videoId: number): Promise<WatchLater> {
+    // Check if already in watch later
+    const existing = Array.from(this.watchLaterItems.values())
+      .find(item => item.userId === userId && item.videoId === videoId);
+    
+    if (existing) {
+      return existing;
+    }
+    
+    // Create new watch later entry
+    const watchLater: WatchLater = {
+      id: this.watchLaterId++,
+      userId,
+      videoId,
+      addedAt: new Date()
+    };
+    
+    this.watchLaterItems.set(watchLater.id, watchLater);
+    return watchLater;
+  }
+
+  async removeVideoFromWatchLater(userId: number, videoId: number): Promise<boolean> {
+    const watchLater = Array.from(this.watchLaterItems.values())
+      .find(item => item.userId === userId && item.videoId === videoId);
+    
+    if (!watchLater) {
+      return false;
+    }
+    
+    this.watchLaterItems.delete(watchLater.id);
+    return true;
+  }
+
+  async isVideoInWatchLater(userId: number, videoId: number): Promise<boolean> {
+    return !!Array.from(this.watchLaterItems.values())
+      .find(item => item.userId === userId && item.videoId === videoId);
   }
 }
 

@@ -10,6 +10,8 @@ import ArticlesPage from "@/pages/articles-page";
 import ArticleDetailPage from "@/pages/article-detail-page";
 import CategoryPage from "@/pages/category-page";
 import VideosPage from "@/pages/videos-page";
+import FavoriteVideosPage from "@/pages/favorite-videos-page";
+import WatchLaterPage from "@/pages/watch-later-page";
 import StorePage from "@/pages/store-page";
 import ProductDetailPage from "@/pages/product-detail-page";
 import CartPage from "@/pages/cart-page";
@@ -44,6 +46,8 @@ function AppRoutes() {
       <Route path="/articles/category/:category" component={CategoryPage} />
       <Route path="/articles/:id" component={ArticleDetailPage} />
       <Route path="/videos" component={VideosPage} />
+      <ProtectedRoute path="/favorites" component={() => <FavoriteVideosPage />} />
+      <ProtectedRoute path="/watch-later" component={() => <WatchLaterPage />} />
       <Route path="/store" component={StorePage} />
       <Route path="/store/:id" component={ProductDetailPage} />
       <Route path="/cart" component={CartPage} />

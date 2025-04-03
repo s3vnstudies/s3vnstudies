@@ -186,6 +186,32 @@ export const insertVideoSchema = createInsertSchema(videos).pick({
   source: true,
 });
 
+// User favorites for videos
+export const userFavorites = pgTable("user_favorites", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").notNull(),
+  videoId: integer("video_id").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const insertUserFavoriteSchema = createInsertSchema(userFavorites).pick({
+  userId: true,
+  videoId: true,
+});
+
+// Watch later list for videos
+export const watchLater = pgTable("watch_later", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").notNull(),
+  videoId: integer("video_id").notNull(),
+  addedAt: timestamp("added_at").defaultNow().notNull(),
+});
+
+export const insertWatchLaterSchema = createInsertSchema(watchLater).pick({
+  userId: true,
+  videoId: true,
+});
+
 export const subscriptions = pgTable("subscriptions", {
   id: serial("id").primaryKey(),
   userId: integer("user_id").notNull(),
@@ -233,3 +259,9 @@ export type InsertVideo = z.infer<typeof insertVideoSchema>;
 
 export type Subscription = typeof subscriptions.$inferSelect;
 export type InsertSubscription = z.infer<typeof insertSubscriptionSchema>;
+
+export type UserFavorite = typeof userFavorites.$inferSelect;
+export type InsertUserFavorite = z.infer<typeof insertUserFavoriteSchema>;
+
+export type WatchLater = typeof watchLater.$inferSelect;
+export type InsertWatchLater = z.infer<typeof insertWatchLaterSchema>;

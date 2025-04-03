@@ -14,7 +14,10 @@ import {
   insertChatRoomSchema,
   insertBulletinPostSchema,
   insertVideoSchema,
-  insertSubscriptionSchema
+  insertSubscriptionSchema,
+  insertUserFavoriteSchema,
+  insertWatchLaterSchema,
+  type Video
 } from "@shared/schema";
 import { z } from "zod";
 import { getYouTubeVideos, getYouTubeVideoDetails } from "./youtube";
@@ -491,6 +494,142 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Invalid video data", errors: err.errors });
       }
       res.status(500).json({ message: "Failed to create video" });
+    }
+  });
+  
+  // Favorite Videos
+  app.get("/api/favorites", requireAuth, async (req, res) => {
+    try {
+      const userId = req.user?.id;
+      if (!userId) {
+        return res.status(401).json({ message: "User not authenticated" });
+      }
+      
+      const videos = await storage.getFavoriteVideos(userId);
+      res.json(videos);
+    } catch (err) {
+      res.status(500).json({ message: "Failed to fetch favorite videos" });
+    }
+  });
+  
+  app.post("/api/favorites/:videoId", requireAuth, async (req, res) => {
+    try {
+      const userId = req.user?.id;
+      if (!userId) {
+        return res.status(401).json({ message: "User not authenticated" });
+      }
+      
+      const videoId = parseInt(req.params.videoId);
+      const video = await storage.getVideoById(videoId);
+      
+      if (!video) {
+        return res.status(404).json({ message: "Video not found" });
+      }
+      
+      // Check if already favorited
+      const isAlreadyFavorited = await storage.isVideoFavorited(userId, videoId);
+      if (isAlreadyFavorited) {
+        return res.status(400).json({ message: "Video already in favorites" });
+      }
+      
+      const favorite = await storage.addVideoToFavorites(userId, videoId);
+      res.status(201).json({ message: "Video added to favorites", favorite });
+    } catch (err) {
+      res.status(500).json({ message: "Failed to add video to favorites" });
+    }
+  });
+  
+  app.delete("/api/favorites/:videoId", requireAuth, async (req, res) => {
+    try {
+      const userId = req.user?.id;
+      if (!userId) {
+        return res.status(401).json({ message: "User not authenticated" });
+      }
+      
+      const videoId = parseInt(req.params.videoId);
+      
+      // Check if favorited
+      const isVideoFavorited = await storage.isVideoFavorited(userId, videoId);
+      if (!isVideoFavorited) {
+        return res.status(404).json({ message: "Video not in favorites" });
+      }
+      
+      const success = await storage.removeVideoFromFavorites(userId, videoId);
+      if (!success) {
+        return res.status(500).json({ message: "Failed to remove from favorites" });
+      }
+      
+      res.status(204).end();
+    } catch (err) {
+      res.status(500).json({ message: "Failed to remove video from favorites" });
+    }
+  });
+  
+  // Watch Later Videos
+  app.get("/api/watch-later", requireAuth, async (req, res) => {
+    try {
+      const userId = req.user?.id;
+      if (!userId) {
+        return res.status(401).json({ message: "User not authenticated" });
+      }
+      
+      const videos = await storage.getWatchLaterVideos(userId);
+      res.json(videos);
+    } catch (err) {
+      res.status(500).json({ message: "Failed to fetch watch later videos" });
+    }
+  });
+  
+  app.post("/api/watch-later/:videoId", requireAuth, async (req, res) => {
+    try {
+      const userId = req.user?.id;
+      if (!userId) {
+        return res.status(401).json({ message: "User not authenticated" });
+      }
+      
+      const videoId = parseInt(req.params.videoId);
+      const video = await storage.getVideoById(videoId);
+      
+      if (!video) {
+        return res.status(404).json({ message: "Video not found" });
+      }
+      
+      // Check if already in watch later
+      const isAlreadyInWatchLater = await storage.isVideoInWatchLater(userId, videoId);
+      if (isAlreadyInWatchLater) {
+        return res.status(400).json({ message: "Video already in watch later" });
+      }
+      
+      const watchLater = await storage.addVideoToWatchLater(userId, videoId);
+      res.status(201).json({ message: "Video added to watch later", watchLater });
+    } catch (err) {
+      res.status(500).json({ message: "Failed to add video to watch later" });
+    }
+  });
+  
+  app.delete("/api/watch-later/:videoId", requireAuth, async (req, res) => {
+    try {
+      const userId = req.user?.id;
+      if (!userId) {
+        return res.status(401).json({ message: "User not authenticated" });
+      }
+      
+      const videoId = parseInt(req.params.videoId);
+      
+      // Check if in watch later
+      const isVideoInWatchLater = await storage.isVideoInWatchLater(userId, videoId);
+      if (!isVideoInWatchLater) {
+        return res.status(404).json({ message: "Video not in watch later" });
+      }
+      
+      const success = await storage.removeVideoFromWatchLater(userId, videoId);
+      if (!success) {
+        return res.status(500).json({ message: "Failed to remove from watch later" });
+      }
+      
+      res.status(204).end();
+    } catch (err) {
+      res.status(500).json({ message: "Failed to remove video from watch later" });
     }
   });
   
