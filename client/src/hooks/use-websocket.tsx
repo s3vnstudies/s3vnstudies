@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { useAuth } from './use-auth';
+import WebSocketManager from '@/lib/websocket-manager';
 
 interface Message {
   id?: number;
@@ -45,14 +46,34 @@ export function useWebSocket(): WebSocketHook {
     const connect = () => {
       try {
         setConnecting(true);
-        const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-        const host = window.location.host;
-        const wsUrl = `${protocol}//${host}/ws`;
-        console.log("Connecting to WebSocket at:", wsUrl);
         
-        const socket = new WebSocket(wsUrl);
+        // Use the WebSocketManager instead of creating a new WebSocket directly
+        const socket = WebSocketManager.getOrCreateSocket('/ws');
+        
+        if (!socket) {
+          console.error('Failed to create WebSocket connection');
+          setConnecting(false);
+          
+          // Try to reconnect after a delay
+          setTimeout(connect, 5000);
+          return;
+        }
+        
+        // Handle connection already being open
+        if (socket.readyState === WebSocket.OPEN) {
+          console.log('WebSocket already connected');
+          setConnected(true);
+          setConnecting(false);
+          
+          // Authenticate with the server
+          socket.send(JSON.stringify({
+            type: 'auth',
+            userId: user.id
+          }));
+        }
 
-        socket.onopen = () => {
+        // If socket is still connecting, set up handlers for when it opens
+        const openHandler = () => {
           console.log('WebSocket connected successfully');
           setConnected(true);
           setConnecting(false);
@@ -64,26 +85,22 @@ export function useWebSocket(): WebSocketHook {
           }));
         };
 
-        socket.onclose = () => {
+        const closeHandler = () => {
           console.log('WebSocket disconnected');
           setConnected(false);
           setConnecting(false);
           
           // Try to reconnect after a delay
-          setTimeout(() => {
-            if (socketRef.current?.readyState !== WebSocket.OPEN) {
-              connect();
-            }
-          }, 3000);
+          setTimeout(connect, 3000);
         };
 
-        socket.onerror = (error) => {
+        const errorHandler = (error: Event) => {
           console.error('WebSocket error:', error);
           setConnected(false);
           setConnecting(false);
         };
 
-        socket.onmessage = (event) => {
+        const messageHandler = (event: MessageEvent) => {
           try {
             const data = JSON.parse(event.data);
             
@@ -128,28 +145,40 @@ export function useWebSocket(): WebSocketHook {
           }
         };
 
+        // Add event listeners if needed (if socket isn't already open)
+        if (socket.readyState !== WebSocket.OPEN) {
+          socket.addEventListener('open', openHandler);
+        }
+        
+        socket.addEventListener('close', closeHandler);
+        socket.addEventListener('error', errorHandler);
+        socket.addEventListener('message', messageHandler);
+
         socketRef.current = socket;
+        
+        // Cleanup function to remove event listeners
+        return () => {
+          socket.removeEventListener('open', openHandler);
+          socket.removeEventListener('close', closeHandler);
+          socket.removeEventListener('error', errorHandler);
+          socket.removeEventListener('message', messageHandler);
+        };
       } catch (error) {
         console.error('Error setting up WebSocket connection:', error);
         setConnecting(false);
         
         // Try to reconnect after a delay
-        setTimeout(() => {
-          if (!socketRef.current || socketRef.current.readyState !== WebSocket.OPEN) {
-            connect();
-          }
-        }, 5000);
+        setTimeout(connect, 5000);
       }
     };
 
     connect();
 
     return () => {
-      if (socketRef.current) {
-        socketRef.current.close();
-      }
+      // We don't manually close the socket here since WebSocketManager handles the lifecycle
+      socketRef.current = null;
     };
-  }, [user]);
+  }, [user, currentRoom]);
 
   // Join a chat room
   const joinRoom = useCallback((roomId: number) => {
