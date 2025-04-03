@@ -30,6 +30,9 @@ import {
   Users,
   Star,
   PenTool,
+  Heart,
+  Clock,
+  Settings,
 } from "lucide-react";
 
 export default function Header() {
@@ -116,10 +119,77 @@ export default function Header() {
               </Link>
             </div>
           ) : (
-            <div className="flex items-center space-x-2">
-              <Button variant="ghost" size="sm" onClick={handleLogout}>
-                Log Out
-              </Button>
+            <div className="flex items-center space-x-4">
+              <Link href="/cart">
+                <Button variant="ghost" size="icon" className="relative">
+                  <ShoppingCart className="h-5 w-5" />
+                  {totalItems > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-primary text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">
+                      {totalItems}
+                    </span>
+                  )}
+                </Button>
+              </Link>
+              
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="flex items-center gap-2">
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src={user.avatarUrl || ""} />
+                      <AvatarFallback>
+                        {getInitials(user.displayName || user.username)}
+                      </AvatarFallback>
+                    </Avatar>
+                    <span className="hidden md:inline">{user.username}</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <div className="flex items-center space-x-2 p-2">
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src={user.avatarUrl || ""} />
+                      <AvatarFallback>
+                        {getInitials(user.displayName || user.username)}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="flex flex-col">
+                      <span className="text-sm font-medium">{user.displayName || user.username}</span>
+                      <span className="text-xs text-muted-foreground">{user.membershipTier === "pro" ? "Pro Member" : "Free Member"}</span>
+                    </div>
+                  </div>
+                  <DropdownMenuSeparator />
+                  <Link href="/profile">
+                    <DropdownMenuItem>
+                      <User className="mr-2 h-4 w-4" />
+                      <span>Profile</span>
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href="/favorites">
+                    <DropdownMenuItem>
+                      <Heart className="mr-2 h-4 w-4" />
+                      <span>Favorite Videos</span>
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href="/watch-later">
+                    <DropdownMenuItem>
+                      <Clock className="mr-2 h-4 w-4" />
+                      <span>Watch Later</span>
+                    </DropdownMenuItem>
+                  </Link>
+                  {user.isAdmin && (
+                    <Link href="/admin">
+                      <DropdownMenuItem>
+                        <Settings className="mr-2 h-4 w-4" />
+                        <span>Admin Dashboard</span>
+                      </DropdownMenuItem>
+                    </Link>
+                  )}
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleLogout}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Sign Out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           )}
         </div>
@@ -241,6 +311,43 @@ export default function Header() {
                         <p className="font-medium">{user.displayName || user.username}</p>
                         <p className="text-xs text-muted-foreground">{user.membershipTier === "pro" ? "Pro Member" : "Free Member"}</p>
                       </div>
+                    </div>
+                    
+                    <div className="flex flex-col space-y-1 mb-2">
+                      <Link 
+                        href="/profile" 
+                        className="flex items-center py-2 px-3 rounded-md text-white hover:bg-muted/20"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <User className="h-4 w-4 mr-2" />
+                        Profile
+                      </Link>
+                      <Link 
+                        href="/favorites" 
+                        className="flex items-center py-2 px-3 rounded-md text-white hover:bg-muted/20"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <Heart className="h-4 w-4 mr-2" />
+                        Favorite Videos
+                      </Link>
+                      <Link 
+                        href="/watch-later" 
+                        className="flex items-center py-2 px-3 rounded-md text-white hover:bg-muted/20"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <Clock className="h-4 w-4 mr-2" />
+                        Watch Later
+                      </Link>
+                      {user.isAdmin && (
+                        <Link 
+                          href="/admin" 
+                          className="flex items-center py-2 px-3 rounded-md text-white hover:bg-muted/20"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          <Settings className="h-4 w-4 mr-2" />
+                          Admin Dashboard
+                        </Link>
+                      )}
                     </div>
                     
                     <Button variant="outline" className="w-full" onClick={handleLogout}>

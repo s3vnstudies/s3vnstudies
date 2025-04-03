@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import PageLayout from "@/components/layout/page-layout";
+import { Link } from "wouter";
 import VideoCard from "@/components/videos/video-card";
 import { Video } from "@shared/schema";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -12,7 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Search, Filter } from "lucide-react";
+import { Search, Filter, Heart, Clock } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
 
 export default function VideosPage() {
@@ -67,7 +68,7 @@ export default function VideosPage() {
     : [];
 
   return (
-    <PageLayout>
+    <main className="flex-1">
       <div className="bg-primary text-white py-12">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <h1 className="text-3xl md:text-4xl font-bold font-poppins mb-4">Videos</h1>
@@ -78,6 +79,23 @@ export default function VideosPage() {
       </div>
 
       <div className="container mx-auto px-4 md:px-6 py-12 max-w-5xl">
+        {user && (
+          <div className="flex flex-wrap gap-3 mb-6">
+            <Link href="/favorites">
+              <Button variant="outline" size="sm" className="flex items-center gap-2">
+                <Heart className="h-4 w-4" />
+                <span>My Favorites</span>
+              </Button>
+            </Link>
+            <Link href="/watch-later">
+              <Button variant="outline" size="sm" className="flex items-center gap-2">
+                <Clock className="h-4 w-4" />
+                <span>Watch Later</span>
+              </Button>
+            </Link>
+          </div>
+        )}
+        
         <div className="flex flex-col md:flex-row gap-4 mb-8">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -192,6 +210,6 @@ export default function VideosPage() {
           </TabsContent>
         </Tabs>
       </div>
-    </PageLayout>
+    </main>
   );
 }
