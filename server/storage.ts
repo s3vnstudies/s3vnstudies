@@ -220,7 +220,12 @@ export class MemStorage implements IStorage {
         <p>Remember that developing a growth mindset is itself a process that requires practice and patience. Each day presents new opportunities to choose growth over limitation.</p>
       `,
       author: "S3vn Studies Team",
-      thumbnail: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      thumbnail: "/images/articles/self-improvement/growth-mindset.png",
+      images: [
+        "/images/articles/self-improvement/growth-mindset.png",
+        "/images/articles/self-improvement/positive-habits.png",
+        "/images/articles/self-improvement/mindfulness.png"
+      ],
       excerpt: "Discover how to develop a growth mindset that transforms challenges into opportunities for learning and personal development.",
       category: "self-improvement",
       membershipRequired: "free"
@@ -264,10 +269,14 @@ export class MemStorage implements IStorage {
         <p>Remember that goal setting is a skill that improves with practice. Each goal you set and pursue provides valuable experience that enhances your ability to achieve future aspirations.</p>
       `,
       author: "S3vn Studies Team",
-      thumbnail: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      thumbnail: "/images/articles/self-improvement/goal-setting.png",
+      images: [
+        "/images/articles/self-improvement/goal-setting.png",
+        "/images/articles/self-improvement/growth-mindset.png"
+      ],
       excerpt: "Learn how to set meaningful, achievable goals that propel you toward your desired future using proven strategies and frameworks.",
       category: "self-improvement",
-      membershipRequired: "free"
+      membershipRequired: "pro"
     });
 
     this.createArticle({
@@ -327,10 +336,14 @@ export class MemStorage implements IStorage {
         <p>Remember that developing emotional intelligence is a lifelong journey. Each interaction provides an opportunity to apply and refine these skills.</p>
       `,
       author: "S3vn Studies Team",
-      thumbnail: "https://images.unsplash.com/photo-1522511305405-13b8b7f2fdfb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      thumbnail: "/images/articles/self-improvement/emotional-intelligence.png",
+      images: [
+        "/images/articles/self-improvement/emotional-intelligence.png",
+        "/images/articles/self-improvement/mindfulness.png"
+      ],
       excerpt: "Explore the four pillars of emotional intelligence and learn practical strategies to enhance your ability to understand and manage emotions.",
       category: "self-improvement",
-      membershipRequired: "free"
+      membershipRequired: "pro"
     });
 
     this.createArticle({
@@ -391,10 +404,14 @@ export class MemStorage implements IStorage {
         <p>Remember that habits are the compound interest of self-improvement. Small changes may seem insignificant in the moment, but they can deliver remarkable results over time when performed consistently.</p>
       `,
       author: "S3vn Studies Team",
-      thumbnail: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      thumbnail: "/images/articles/self-improvement/positive-habits.png",
+      images: [
+        "/images/articles/self-improvement/positive-habits.png",
+        "/images/articles/self-improvement/goal-setting.png"
+      ],
       excerpt: "Discover how to build positive habits that stick using science-backed strategies and the four laws of behavior change.",
       category: "self-improvement",
-      membershipRequired: "free"
+      membershipRequired: "pro"
     });
 
     this.createArticle({
@@ -467,10 +484,14 @@ export class MemStorage implements IStorage {
         <p>Remember that mindfulness isn't about achieving a particular state, but rather about being aware of whatever is happening in the present moment. The essence of the practice is returning your attention again and again, cultivating awareness with kindness toward yourself.</p>
       `,
       author: "S3vn Studies Team",
-      thumbnail: "https://images.unsplash.com/photo-1532798442725-41036acc7489?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      thumbnail: "/images/articles/self-improvement/mindfulness.png",
+      images: [
+        "/images/articles/self-improvement/mindfulness.png",
+        "/images/articles/self-improvement/emotional-intelligence.png"
+      ],
       excerpt: "Learn practical mindfulness techniques that can be easily integrated into your daily routine to reduce stress and increase wellbeing.",
       category: "self-improvement",
-      membershipRequired: "free"
+      membershipRequired: "pro"
     });
 
     // Premium self-improvement articles (require membership)
@@ -587,7 +608,11 @@ export class MemStorage implements IStorage {
         <p>By developing awareness of your anger patterns, you create the foundation for learning more effective management techniques. The next articles in this series will explore specific strategies for managing anger in healthy, constructive ways.</p>
       `,
       author: "S3vn Studies Team",
-      thumbnail: "https://images.unsplash.com/photo-1581279813180-4dddc1008167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      thumbnail: "/images/articles/anger-management/understanding-anger.jpg",
+      images: [
+        "/images/articles/anger-management/understanding-anger.jpg",
+        "/images/articles/anger-management/anger-control.jpg"
+      ],
       excerpt: "Learn to recognize anger triggers, understand the anger cycle, and distinguish between healthy and unhealthy expressions of this powerful emotion.",
       category: "anger-management",
       membershipRequired: "free"
@@ -660,10 +685,14 @@ export class MemStorage implements IStorage {
         <p>Remember that these physical techniques work best as part of a comprehensive anger management approach that also addresses thoughts and behaviors—topics we'll explore in upcoming articles.</p>
       `,
       author: "S3vn Studies Team",
-      thumbnail: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      thumbnail: "/images/articles/anger-management/anger-control.jpg",
+      images: [
+        "/images/articles/anger-management/anger-control.jpg",
+        "/images/articles/anger-management/cognitive-strategies.jpg"
+      ],
       excerpt: "Discover practical physical techniques to manage anger in the moment, including breathing exercises, muscle relaxation, and grounding methods.",
       category: "anger-management",
-      membershipRequired: "free"
+      membershipRequired: "pro"
     });
 
     this.createArticle({
@@ -738,7 +767,11 @@ export class MemStorage implements IStorage {
         <p>With regular practice, these cognitive strategies can help you develop greater mental flexibility when facing anger triggers. Combined with the physical techniques from our previous article, they form a powerful toolkit for comprehensive anger management.</p>
       `,
       author: "S3vn Studies Team",
-      thumbnail: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      thumbnail: "/images/articles/anger-management/cognitive-strategies.jpg",
+      images: [
+        "/images/articles/anger-management/cognitive-strategies.jpg",
+        "/images/articles/anger-management/communication.jpg" 
+      ],
       excerpt: "Learn to identify and challenge unhelpful thought patterns that fuel anger, and develop more balanced ways of interpreting triggering situations.",
       category: "anger-management",
       membershipRequired: "pro"
@@ -829,7 +862,11 @@ export class MemStorage implements IStorage {
         <p>Remember that effective communication is a skill that improves with practice. Each time you express anger assertively rather than aggressively or passively, you strengthen this ability while building healthier relationships.</p>
       `,
       author: "S3vn Studies Team",
-      thumbnail: "https://images.unsplash.com/photo-1573497491765-dccce02b3324?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+      thumbnail: "/images/articles/anger-management/communication.jpg",
+      images: [
+        "/images/articles/anger-management/communication.jpg",
+        "/images/articles/anger-management/understanding-anger.jpg"
+      ],
       excerpt: "Master the art of assertive communication during conflicts with techniques for expressing feelings clearly while maintaining respect for others.",
       category: "anger-management",
       membershipRequired: "pro"
@@ -931,6 +968,7 @@ export class MemStorage implements IStorage {
       excerpt: articleData.excerpt,
       category: articleData.category,
       thumbnail: articleData.thumbnail || null,
+      images: articleData.images || [],
       membershipRequired: articleData.membershipRequired || "free",
       publishDate: now
     };
@@ -1197,11 +1235,17 @@ export class MemStorage implements IStorage {
     const video: Video = {
       id,
       title: videoData.title,
-      youtubeId: videoData.youtubeId,
-      thumbnail: videoData.thumbnail || null,
-      description: videoData.description || null,
-      duration: videoData.duration || null,
+      externalId: videoData.externalId ?? null,
+      imageUrl: videoData.imageUrl ?? null,
+      videoUrl: videoData.videoUrl ?? null,
+      embedUrl: videoData.embedUrl ?? null,
+      description: videoData.description ?? null,
+      duration: videoData.duration ?? null,
       membershipRequired: videoData.membershipRequired || "free",
+      category: videoData.category || "general",
+      featured: videoData.featured || false,
+      views: videoData.views || 0,
+      source: videoData.source || "internal",
       publishDate: now
     };
     
