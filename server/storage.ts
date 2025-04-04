@@ -14,8 +14,13 @@ import {
 } from "@shared/schema";
 import session from "express-session";
 import createMemoryStore from "memorystore";
+import { db } from "./db";
+import { eq, and, desc, asc } from "drizzle-orm";
+import connectPg from "connect-pg-simple";
+import { pool } from "./db";
 
 const MemoryStore = createMemoryStore(session);
+const PostgresSessionStore = connectPg(session);
 
 export interface IStorage {
   // User operations
@@ -1449,4 +1454,374 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+export class DatabaseStorage implements IStorage {
+  sessionStore: session.Store;
+
+  constructor() {
+    this.sessionStore = new PostgresSessionStore({ 
+      pool, 
+      createTableIfMissing: true 
+    });
+  }
+
+  // User operations
+  async getUser(id: number): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user;
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user;
+  }
+
+  async getUserByEmail(email: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.email, email));
+    return user;
+  }
+
+  async createUser(userData: InsertUser): Promise<User> {
+    const [user] = await db.insert(users).values(userData).returning();
+    return user;
+  }
+
+  async updateUser(id: number, userData: Partial<User>): Promise<User | undefined> {
+    const [updatedUser] = await db.update(users)
+      .set(userData)
+      .where(eq(users.id, id))
+      .returning();
+    return updatedUser;
+  }
+
+  // Article operations
+  async getArticles(limit: number = 10, offset: number = 0): Promise<Article[]> {
+    return await db.select().from(articles).limit(limit).offset(offset).orderBy(desc(articles.publishDate));
+  }
+
+  async getArticleById(id: number): Promise<Article | undefined> {
+    const [article] = await db.select().from(articles).where(eq(articles.id, id));
+    return article;
+  }
+
+  async getArticlesByCategory(category: string): Promise<Article[]> {
+    return await db.select().from(articles).where(eq(articles.category, category)).orderBy(desc(articles.publishDate));
+  }
+
+  async getArticlesByMembershipTier(tier: string): Promise<Article[]> {
+    return await db.select().from(articles).where(eq(articles.membershipRequired, tier as any)).orderBy(desc(articles.publishDate));
+  }
+
+  async createArticle(articleData: InsertArticle): Promise<Article> {
+    const [article] = await db.insert(articles).values(articleData).returning();
+    return article;
+  }
+
+  async updateArticle(id: number, articleData: Partial<Article>): Promise<Article | undefined> {
+    const [updatedArticle] = await db.update(articles)
+      .set(articleData)
+      .where(eq(articles.id, id))
+      .returning();
+    return updatedArticle;
+  }
+
+  async deleteArticle(id: number): Promise<boolean> {
+    const result = await db.delete(articles).where(eq(articles.id, id));
+    return true; // Assuming success if no error is thrown
+  }
+
+  // Product operations
+  async getProducts(limit: number = 10, offset: number = 0): Promise<Product[]> {
+    return await db.select().from(products).limit(limit).offset(offset);
+  }
+
+  async getProductById(id: number): Promise<Product | undefined> {
+    const [product] = await db.select().from(products).where(eq(products.id, id));
+    return product;
+  }
+
+  async getProductsByCategory(category: string): Promise<Product[]> {
+    return await db.select().from(products).where(eq(products.category, category));
+  }
+
+  async getFeaturedProducts(): Promise<Product[]> {
+    return await db.select().from(products).where(eq(products.isFeatured, true));
+  }
+
+  async createProduct(productData: InsertProduct): Promise<Product> {
+    const [product] = await db.insert(products).values(productData).returning();
+    return product;
+  }
+
+  async updateProduct(id: number, productData: Partial<Product>): Promise<Product | undefined> {
+    const [updatedProduct] = await db.update(products)
+      .set(productData)
+      .where(eq(products.id, id))
+      .returning();
+    return updatedProduct;
+  }
+
+  async deleteProduct(id: number): Promise<boolean> {
+    const result = await db.delete(products).where(eq(products.id, id));
+    return true; // Assuming success if no error is thrown
+  }
+
+  // Order operations
+  async getOrders(userId?: number): Promise<Order[]> {
+    if (userId) {
+      return await db.select().from(orders).where(eq(orders.userId, userId));
+    }
+    return await db.select().from(orders);
+  }
+
+  async getOrderById(id: number): Promise<Order | undefined> {
+    const [order] = await db.select().from(orders).where(eq(orders.id, id));
+    return order;
+  }
+
+  async createOrder(orderData: InsertOrder): Promise<Order> {
+    const [order] = await db.insert(orders).values(orderData).returning();
+    return order;
+  }
+
+  async updateOrderStatus(id: number, status: string): Promise<Order | undefined> {
+    const [updatedOrder] = await db.update(orders)
+      .set({ status })
+      .where(eq(orders.id, id))
+      .returning();
+    return updatedOrder;
+  }
+
+  // Order items operations
+  async getOrderItems(orderId: number): Promise<OrderItem[]> {
+    return await db.select().from(orderItems).where(eq(orderItems.orderId, orderId));
+  }
+
+  async createOrderItem(orderItemData: InsertOrderItem): Promise<OrderItem> {
+    const [orderItem] = await db.insert(orderItems).values(orderItemData).returning();
+    return orderItem;
+  }
+
+  // Chat room operations
+  async getChatRooms(): Promise<ChatRoom[]> {
+    return await db.select().from(chatRooms);
+  }
+
+  async getChatRoomById(id: number): Promise<ChatRoom | undefined> {
+    const [chatRoom] = await db.select().from(chatRooms).where(eq(chatRooms.id, id));
+    return chatRoom;
+  }
+
+  async getChatRoomsByMembershipTier(tier: string): Promise<ChatRoom[]> {
+    return await db.select()
+      .from(chatRooms)
+      .where(eq(chatRooms.membershipRequired, tier as any));
+  }
+
+  async createChatRoom(chatRoomData: InsertChatRoom): Promise<ChatRoom> {
+    const [chatRoom] = await db.insert(chatRooms).values(chatRoomData).returning();
+    return chatRoom;
+  }
+
+  // Chat message operations
+  async getChatMessages(roomId: number, limit: number = 50): Promise<ChatMessage[]> {
+    return await db.select()
+      .from(chatMessages)
+      .where(eq(chatMessages.roomId, roomId))
+      .orderBy(desc(chatMessages.sentAt))
+      .limit(limit);
+  }
+
+  async createChatMessage(messageData: InsertChatMessage): Promise<ChatMessage> {
+    const [message] = await db.insert(chatMessages).values(messageData).returning();
+    return message;
+  }
+
+  // Bulletin post operations
+  async getBulletinPosts(limit: number = 10, offset: number = 0): Promise<BulletinPost[]> {
+    return await db.select()
+      .from(bulletinPosts)
+      .orderBy(desc(bulletinPosts.postedAt))
+      .limit(limit)
+      .offset(offset);
+  }
+
+  async getBulletinPostById(id: number): Promise<BulletinPost | undefined> {
+    const [post] = await db.select().from(bulletinPosts).where(eq(bulletinPosts.id, id));
+    return post;
+  }
+
+  async getBulletinPostsByCategory(category: string): Promise<BulletinPost[]> {
+    return await db.select()
+      .from(bulletinPosts)
+      .where(eq(bulletinPosts.category, category))
+      .orderBy(desc(bulletinPosts.postedAt));
+  }
+
+  async createBulletinPost(postData: InsertBulletinPost): Promise<BulletinPost> {
+    const [post] = await db.insert(bulletinPosts).values(postData).returning();
+    return post;
+  }
+
+  async deleteBulletinPost(id: number): Promise<boolean> {
+    const result = await db.delete(bulletinPosts).where(eq(bulletinPosts.id, id));
+    return true; // Assuming success if no error is thrown
+  }
+
+  // Video operations
+  async getVideos(limit: number = 10, offset: number = 0): Promise<Video[]> {
+    return await db.select()
+      .from(videos)
+      .orderBy(desc(videos.publishDate))
+      .limit(limit)
+      .offset(offset);
+  }
+
+  async getVideoById(id: number): Promise<Video | undefined> {
+    const [video] = await db.select().from(videos).where(eq(videos.id, id));
+    return video;
+  }
+
+  async getVideosByMembershipTier(tier: string): Promise<Video[]> {
+    return await db.select()
+      .from(videos)
+      .where(eq(videos.membershipRequired, tier as any))
+      .orderBy(desc(videos.publishDate));
+  }
+
+  async createVideo(videoData: InsertVideo): Promise<Video> {
+    const [video] = await db.insert(videos).values(videoData).returning();
+    return video;
+  }
+
+  async updateVideo(id: number, videoData: Partial<Video>): Promise<Video | undefined> {
+    const [updatedVideo] = await db.update(videos)
+      .set(videoData)
+      .where(eq(videos.id, id))
+      .returning();
+    return updatedVideo;
+  }
+
+  // Favorite videos operations
+  async getFavoriteVideos(userId: number): Promise<Video[]> {
+    const favorites = await db
+      .select({
+        video: videos
+      })
+      .from(userFavorites)
+      .innerJoin(videos, eq(userFavorites.videoId, videos.id))
+      .where(eq(userFavorites.userId, userId));
+    
+    return favorites.map(f => f.video);
+  }
+
+  async addVideoToFavorites(userId: number, videoId: number): Promise<UserFavorite> {
+    const [favorite] = await db
+      .insert(userFavorites)
+      .values({ userId, videoId })
+      .returning();
+    return favorite;
+  }
+
+  async removeVideoFromFavorites(userId: number, videoId: number): Promise<boolean> {
+    const result = await db
+      .delete(userFavorites)
+      .where(and(
+        eq(userFavorites.userId, userId),
+        eq(userFavorites.videoId, videoId)
+      ));
+    return true; // Assuming success if no error is thrown
+  }
+
+  async isVideoFavorited(userId: number, videoId: number): Promise<boolean> {
+    const [favorite] = await db
+      .select()
+      .from(userFavorites)
+      .where(and(
+        eq(userFavorites.userId, userId),
+        eq(userFavorites.videoId, videoId)
+      ));
+    return !!favorite;
+  }
+
+  // Watch later operations
+  async getWatchLaterVideos(userId: number): Promise<Video[]> {
+    const watchLaterItems = await db
+      .select({
+        video: videos
+      })
+      .from(watchLater)
+      .innerJoin(videos, eq(watchLater.videoId, videos.id))
+      .where(eq(watchLater.userId, userId));
+    
+    return watchLaterItems.map(item => item.video);
+  }
+
+  async addVideoToWatchLater(userId: number, videoId: number): Promise<WatchLater> {
+    const [item] = await db
+      .insert(watchLater)
+      .values({ userId, videoId })
+      .returning();
+    return item;
+  }
+
+  async removeVideoFromWatchLater(userId: number, videoId: number): Promise<boolean> {
+    const result = await db
+      .delete(watchLater)
+      .where(and(
+        eq(watchLater.userId, userId),
+        eq(watchLater.videoId, videoId)
+      ));
+    return true; // Assuming success if no error is thrown
+  }
+
+  async isVideoInWatchLater(userId: number, videoId: number): Promise<boolean> {
+    const [item] = await db
+      .select()
+      .from(watchLater)
+      .where(and(
+        eq(watchLater.userId, userId),
+        eq(watchLater.videoId, videoId)
+      ));
+    return !!item;
+  }
+
+  // Subscription operations
+  async getSubscription(userId: number): Promise<Subscription | undefined> {
+    const [subscription] = await db
+      .select()
+      .from(subscriptions)
+      .where(eq(subscriptions.userId, userId))
+      .orderBy(desc(subscriptions.startDate))
+      .limit(1);
+    return subscription;
+  }
+
+  async createSubscription(subscriptionData: InsertSubscription): Promise<Subscription> {
+    const [subscription] = await db
+      .insert(subscriptions)
+      .values(subscriptionData)
+      .returning();
+    return subscription;
+  }
+
+  async updateSubscription(id: number, subscriptionData: Partial<Subscription>): Promise<Subscription | undefined> {
+    const [updatedSubscription] = await db
+      .update(subscriptions)
+      .set(subscriptionData)
+      .where(eq(subscriptions.id, id))
+      .returning();
+    return updatedSubscription;
+  }
+
+  async cancelSubscription(id: number): Promise<boolean> {
+    const [updatedSubscription] = await db
+      .update(subscriptions)
+      .set({ active: false, autoRenew: false })
+      .where(eq(subscriptions.id, id))
+      .returning();
+    return !!updatedSubscription;
+  }
+}
+
+// Use database storage for persistence
+export const storage = new DatabaseStorage();
