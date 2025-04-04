@@ -31,38 +31,19 @@ const ArticleThumbnail = () => (
 );
 
 const VideoThumbnail = () => (
-  <svg
-    viewBox="0 0 400 225"
-    xmlns="http://www.w3.org/2000/svg"
-    className="w-full rounded-md mb-4 h-44 bg-gradient-to-r from-blue-900 to-black"
-  >
-    <rect x="70" y="60" width="260" height="145" rx="8" fill="#1E40AF" opacity="0.7" />
-    <circle cx="200" cy="132.5" r="40" fill="#FFD700" opacity="0.9" />
-    <path d="M190 112.5l30 20-30 20z" fill="#1E3A8A" />
-    <path
-      d="M120 90h160M120 190h160"
-      stroke="#FFFFFF"
-      strokeWidth="4"
-      opacity="0.6"
-    />
-  </svg>
+  <img 
+    src="/images/video-thumbnail.gif" 
+    alt="Inspiring Video Content"
+    className="w-full rounded-md mb-4 h-44 object-cover"
+  />
 );
 
 const CommunityThumbnail = () => (
-  <svg
-    viewBox="0 0 400 225"
-    xmlns="http://www.w3.org/2000/svg"
-    className="w-full rounded-md mb-4 h-44 bg-gradient-to-r from-blue-900 to-black"
-  >
-    <circle cx="140" cy="100" r="30" fill="#1E40AF" opacity="0.9" />
-    <circle cx="200" cy="80" r="30" fill="#FFD700" opacity="0.9" />
-    <circle cx="260" cy="100" r="30" fill="#1E40AF" opacity="0.9" />
-    <path
-      d="M140 140c-20 0-60 10-60 30v10h120v-10c0-20-40-30-60-30zM200 120c-20 0-60 10-60 30v10h120v-10c0-20-40-30-60-30zM260 140c-20 0-60 10-60 30v10h120v-10c0-20-40-30-60-30z"
-      fill="#FFFFFF"
-      opacity="0.7"
-    />
-  </svg>
+  <img 
+    src="/images/community-thumbnail.gif" 
+    alt="Supportive Community"
+    className="w-full rounded-md mb-4 h-44 object-cover"
+  />
 );
 
 const featuredSections = [
