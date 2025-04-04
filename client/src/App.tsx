@@ -25,6 +25,7 @@ import FunGamesPage from "@/pages/fun-games-page";
 import PoliciesPage from "@/pages/policies-page";
 import MembershipPage from "@/pages/membership-page";
 import AdminPage from "@/pages/admin-page";
+import AdminDashboard from "@/pages/admin-dashboard";
 import { ProtectedRoute } from "./lib/protected-route";
 import { AuthProvider } from "./hooks/use-auth";
 import { CartProvider } from "./hooks/use-cart";
@@ -60,7 +61,8 @@ function AppRoutes() {
       <Route path="/fun-games" component={FunGamesPage} />
       <Route path="/policies" component={PoliciesPage} />
       <Route path="/membership" component={MembershipPage} />
-      <ProtectedRoute path="/admin" component={() => <AdminPage />} />
+      <ProtectedRoute path="/admin" component={() => <AdminPage />} adminOnly={true} />
+      <ProtectedRoute path="/admin/dashboard" component={() => <AdminDashboard />} adminOnly={true} />
       <Route component={NotFound} />
     </Switch>
   );

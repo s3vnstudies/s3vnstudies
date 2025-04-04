@@ -4,6 +4,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { setupAuth } from "./auth";
 import { setupWebsockets } from "./websocket";
+import { setupAdmin } from "./admin";
 import path from "path";
 import Stripe from "stripe";
 import { 
@@ -78,6 +79,9 @@ function requireMembership(tier: string) {
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication routes
   setupAuth(app);
+  
+  // Setup admin routes
+  setupAdmin(app);
   
   // Create HTTP server
   const httpServer = createServer(app);

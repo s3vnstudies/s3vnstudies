@@ -6,10 +6,12 @@ export function ProtectedRoute({
   path,
   component: Component,
   requiredMembership,
+  adminOnly = false,
 }: {
   path: string;
   component: () => React.JSX.Element;
   requiredMembership?: "free" | "pro";
+  adminOnly?: boolean;
 }) {
   const { user, isLoading } = useAuth();
 
@@ -29,6 +31,15 @@ export function ProtectedRoute({
     return (
       <Route path={path}>
         {() => <Redirect to="/auth" />}
+      </Route>
+    );
+  }
+  
+  // Check for admin access
+  if (adminOnly && !user.isAdmin) {
+    return (
+      <Route path={path}>
+        {() => <Redirect to="/" />}
       </Route>
     );
   }
