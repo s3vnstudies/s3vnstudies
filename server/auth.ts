@@ -147,6 +147,7 @@ export function setupAuth(app: Express) {
         
         // Remove password from response
         const { password, ...userWithoutPassword } = user;
+        console.log("User login successful, returning user data:", userWithoutPassword);
         res.status(200).json(userWithoutPassword);
       });
     })(req, res, next);
@@ -164,6 +165,7 @@ export function setupAuth(app: Express) {
     
     // Remove password from response
     const { password, ...userWithoutPassword } = req.user as SelectUser;
+    console.log("GET /api/user returning data:", userWithoutPassword);
     res.json(userWithoutPassword);
   });
 
