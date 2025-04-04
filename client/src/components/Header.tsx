@@ -163,18 +163,6 @@ export default function Header() {
                       <span>Profile</span>
                     </DropdownMenuItem>
                   </Link>
-                  <Link href="/favorites">
-                    <DropdownMenuItem>
-                      <Heart className="mr-2 h-4 w-4" />
-                      <span>Favorite Videos</span>
-                    </DropdownMenuItem>
-                  </Link>
-                  <Link href="/watch-later">
-                    <DropdownMenuItem>
-                      <Clock className="mr-2 h-4 w-4" />
-                      <span>Watch Later</span>
-                    </DropdownMenuItem>
-                  </Link>
                   {user.isAdmin && (
                     <Link href="/admin">
                       <DropdownMenuItem>
@@ -321,22 +309,6 @@ export default function Header() {
                       >
                         <User className="h-4 w-4 mr-2" />
                         Profile
-                      </Link>
-                      <Link 
-                        href="/favorites" 
-                        className="flex items-center py-2 px-3 rounded-md text-white hover:bg-muted/20"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        <Heart className="h-4 w-4 mr-2" />
-                        Favorite Videos
-                      </Link>
-                      <Link 
-                        href="/watch-later" 
-                        className="flex items-center py-2 px-3 rounded-md text-white hover:bg-muted/20"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        <Clock className="h-4 w-4 mr-2" />
-                        Watch Later
                       </Link>
                       {user.isAdmin && (
                         <Link 
