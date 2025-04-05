@@ -29,10 +29,10 @@ class WebSocketManager {
     }
 
     try {
-      // Create a new WebSocket with proper URL formation - no fallbacks!
+      // Get the current window location
       const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-      const host = window.location.host;
-      const wsUrl = `${protocol}//${host}${path}`;
+      // Always use host which includes hostname and port automatically
+      const wsUrl = `${protocol}//${window.location.host}${path}`;
       
       console.log(`WebSocketManager: Creating new WebSocket connection to ${wsUrl}`);
       

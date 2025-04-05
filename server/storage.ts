@@ -1612,9 +1612,15 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getChatRoomsByMembershipTier(tier: string): Promise<ChatRoom[]> {
-    return await db.select()
-      .from(chatRooms)
-      .where(eq(chatRooms.membershipRequired, tier as any));
+    // If user has pro membership, they should see all chat rooms
+    // If user has free membership, they should only see free chat rooms
+    if (tier === 'pro') {
+      return await db.select().from(chatRooms);
+    } else {
+      return await db.select()
+        .from(chatRooms)
+        .where(eq(chatRooms.membershipRequired, 'free'));
+    }
   }
 
   async createChatRoom(chatRoomData: InsertChatRoom): Promise<ChatRoom> {

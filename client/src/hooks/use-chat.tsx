@@ -48,74 +48,116 @@ export function useChat() {
     enabled: !!user,
   });
 
-  // Initialize WebSocket connection
+  // Initialize WebSocket connection using the WebSocketManager
   useEffect(() => {
     if (!user) return;
 
     try {
-      const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-      const host = window.location.host;
-      const wsUrl = `${protocol}//${host}/ws`;
-      console.log("Connecting to chat WebSocket at:", wsUrl);
-      
-      const ws = new WebSocket(wsUrl);
-      
-      ws.onopen = () => {
-        console.log("Chat WebSocket connected successfully");
-        setSocket(ws);
-        setConnected(true);
-      };
-
-      ws.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data);
-
-          switch (data.type) {
-            case 'message':
-            case 'system':
-              setMessages(prev => [...prev, data]);
-              break;
-            case 'joined':
-              setIsJoining(false);
-              toast({
-                title: "Joined Chat Room",
-                description: `You have joined ${data.roomName}`,
-              });
-              break;
-            case 'error':
-              toast({
-                title: "Chat Error",
-                description: data.content,
-                variant: "destructive",
-              });
-              break;
-          }
-        } catch (error) {
-          console.error("Error processing WebSocket message:", error);
+      // Import the WebSocketManager to use the shared connection
+      import('@/lib/websocket-manager').then((module) => {
+        const WebSocketManager = module.default;
+        
+        // Get or create a WebSocket connection using the manager
+        const ws = WebSocketManager.getOrCreateSocket('/ws');
+        
+        if (!ws) {
+          throw new Error('Failed to create WebSocket connection');
         }
-      };
-
-      ws.onclose = () => {
-        console.log("Chat WebSocket connection closed");
-        setSocket(null);
-        setConnected(false);
-        setCurrentRoom(null);
-      };
-
-      ws.onerror = (error) => {
-        console.error("Chat WebSocket error:", error);
+        
+        const setupSocket = () => {
+          console.log("Chat WebSocket connected successfully");
+          setSocket(ws);
+          setConnected(true);
+          
+          // Setup message handler
+          const messageHandler = (event: MessageEvent) => {
+            try {
+              const data = JSON.parse(event.data);
+              
+              switch (data.type) {
+                case 'message':
+                case 'system':
+                  setMessages(prev => [...prev, data]);
+                  break;
+                case 'joined':
+                  setIsJoining(false);
+                  toast({
+                    title: "Joined Chat Room",
+                    description: `You have joined ${data.roomName}`,
+                  });
+                  break;
+                case 'error':
+                  toast({
+                    title: "Chat Error",
+                    description: data.content,
+                    variant: "destructive",
+                  });
+                  break;
+              }
+            } catch (error) {
+              console.error("Error processing WebSocket message:", error);
+            }
+          };
+          
+          // Setup close handler
+          const closeHandler = () => {
+            console.log("Chat WebSocket connection closed");
+            setSocket(null);
+            setConnected(false);
+            setCurrentRoom(null);
+          };
+          
+          // Setup error handler
+          const errorHandler = (error: Event) => {
+            console.error("Chat WebSocket error:", error);
+            toast({
+              title: "Connection Error",
+              description: "Failed to connect to chat server",
+              variant: "destructive",
+            });
+          };
+          
+          // Add event listeners
+          ws.addEventListener('message', messageHandler);
+          ws.addEventListener('close', closeHandler);
+          ws.addEventListener('error', errorHandler);
+          
+          // Return cleanup function
+          return () => {
+            ws.removeEventListener('message', messageHandler);
+            ws.removeEventListener('close', closeHandler);
+            ws.removeEventListener('error', errorHandler);
+          };
+        };
+        
+        // If the socket is already open, setup immediately
+        if (ws.readyState === WebSocket.OPEN) {
+          const cleanup = setupSocket();
+          return () => {
+            cleanup && cleanup();
+          };
+        }
+        
+        // Otherwise, wait for it to open
+        const openHandler = () => {
+          const cleanup = setupSocket();
+          ws.removeEventListener('open', openHandler);
+        };
+        
+        ws.addEventListener('open', openHandler);
+        
+        // Return cleanup function
+        return () => {
+          ws.removeEventListener('open', openHandler);
+        };
+      }).catch(error => {
+        console.error("Error importing WebSocketManager:", error);
         toast({
           title: "Connection Error",
-          description: "Failed to connect to chat server",
+          description: "Failed to setup chat connection",
           variant: "destructive",
         });
-      };
-
-      return () => {
-        if (ws.readyState === WebSocket.OPEN) {
-          ws.close();
-        }
-      };
+      });
     } catch (error) {
       console.error("Error setting up chat WebSocket:", error);
       toast({

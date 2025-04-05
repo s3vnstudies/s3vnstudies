@@ -702,7 +702,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const videoDetails = detailsData.items[0];
         
         // Create or update video in our database
-        const videoData: Partial<Video> = {
+        const videoData = {
           title: videoDetails.snippet.title,
           description: videoDetails.snippet.description || null,
           imageUrl: videoDetails.snippet.thumbnails.high.url || null,
@@ -803,7 +803,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           const videoDetails = detailsData.items[0];
           
           // Create or update video in our database
-          const videoData: Partial<Video> = {
+          const videoData = {
             title: videoDetails.snippet.title,
             description: videoDetails.snippet.description || null,
             imageUrl: videoDetails.snippet.thumbnails.high.url || null,

@@ -59,47 +59,19 @@ export function useWebSocket(): WebSocketHook {
           return;
         }
         
-        // Handle connection already being open
-        if (socket.readyState === WebSocket.OPEN) {
-          console.log('WebSocket already connected');
-          setConnected(true);
-          setConnecting(false);
-          
+        const setupHandlers = () => {
           // Authenticate with the server
           socket.send(JSON.stringify({
             type: 'auth',
             userId: user.id
           }));
-        }
-
-        // If socket is still connecting, set up handlers for when it opens
-        const openHandler = () => {
-          console.log('WebSocket connected successfully');
+          
+          console.log('WebSocket connected and authenticated');
           setConnected(true);
           setConnecting(false);
-          
-          // Authenticate with the server
-          socket.send(JSON.stringify({
-            type: 'auth',
-            userId: user.id
-          }));
         };
-
-        const closeHandler = () => {
-          console.log('WebSocket disconnected');
-          setConnected(false);
-          setConnecting(false);
-          
-          // Try to reconnect after a delay
-          setTimeout(connect, 3000);
-        };
-
-        const errorHandler = (error: Event) => {
-          console.error('WebSocket error:', error);
-          setConnected(false);
-          setConnecting(false);
-        };
-
+        
+        // Message handler function
         const messageHandler = (event: MessageEvent) => {
           try {
             const data = JSON.parse(event.data);
@@ -144,9 +116,31 @@ export function useWebSocket(): WebSocketHook {
             console.error('Error processing WebSocket message:', error);
           }
         };
+        
+        const closeHandler = () => {
+          console.log('WebSocket disconnected');
+          setConnected(false);
+          setConnecting(false);
+          
+          // Try to reconnect after a delay
+          setTimeout(connect, 3000);
+        };
 
-        // Add event listeners if needed (if socket isn't already open)
-        if (socket.readyState !== WebSocket.OPEN) {
+        const errorHandler = (error: Event) => {
+          console.error('WebSocket error:', error);
+          setConnected(false);
+          setConnecting(false);
+        };
+        
+        // Handle connection already being open
+        if (socket.readyState === WebSocket.OPEN) {
+          setupHandlers();
+        } else {
+          // If socket is still connecting, set up handlers for when it opens
+          const openHandler = () => {
+            setupHandlers();
+            socket.removeEventListener('open', openHandler);
+          };
           socket.addEventListener('open', openHandler);
         }
         
@@ -158,7 +152,10 @@ export function useWebSocket(): WebSocketHook {
         
         // Cleanup function to remove event listeners
         return () => {
-          socket.removeEventListener('open', openHandler);
+          if (socket.readyState !== WebSocket.OPEN) {
+            const openHandler = () => { setupHandlers(); };
+            socket.removeEventListener('open', openHandler);
+          }
           socket.removeEventListener('close', closeHandler);
           socket.removeEventListener('error', errorHandler);
           socket.removeEventListener('message', messageHandler);
