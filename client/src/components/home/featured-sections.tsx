@@ -3,31 +3,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { ChevronRight, BookOpen, Video, Users } from "lucide-react";
 
-// SVG thumbnails for better quality and performance
+// Thumbnail for Articles section
 const ArticleThumbnail = () => (
-  <svg
-    viewBox="0 0 400 225"
-    xmlns="http://www.w3.org/2000/svg"
-    className="w-full rounded-md mb-4 h-44 bg-gradient-to-r from-blue-900 to-black"
-  >
-    <path
-      d="M80 70h240c5.523 0 10 4.477 10 10v65c0 5.523-4.477 10-10 10H80c-5.523 0-10-4.477-10-10V80c0-5.523 4.477-10 10-10z"
-      fill="#1E40AF"
-      opacity="0.7"
-    />
-    <path
-      d="M100 90h200v10H100zM100 110h180v10H100zM100 130h160v10H100z"
-      fill="#FFFFFF"
-      opacity="0.9"
-    />
-    <circle cx="320" cy="110" r="25" fill="#FFD700" opacity="0.9" />
-    <path
-      d="M310 100l20 20M310 120l20-20"
-      stroke="#1E3A8A"
-      strokeWidth="4"
-      strokeLinecap="round"
-    />
-  </svg>
+  <img 
+    src="/images/articles-thumbnail.gif" 
+    alt="Transformative Articles"
+    className="w-full rounded-md mb-4 h-44 object-cover"
+  />
 );
 
 const VideoThumbnail = () => (
