@@ -109,6 +109,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
   
+  app.get("/api/articles/category/:category", async (req, res) => {
+    try {
+      const category = req.params.category;
+      const articles = await storage.getArticlesByCategory(category);
+      res.json(articles);
+    } catch (err) {
+      res.status(500).json({ message: "Failed to fetch articles by category" });
+    }
+  });
+  
   app.get("/api/articles/:id", async (req, res) => {
     try {
       const id = parseInt(req.params.id);

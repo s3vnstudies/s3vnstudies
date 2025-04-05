@@ -107,6 +107,36 @@ export default function ArticlesPage() {
       icon: <BookOpen className="h-10 w-10 mb-4 text-rose-600" />,
       color: "bg-rose-50",
     },
+    "medicinal-remedies": {
+      title: "Medicinal Remedies",
+      description: "Natural and traditional remedies for various health conditions",
+      icon: <BookOpen className="h-10 w-10 mb-4 text-emerald-600" />,
+      color: "bg-emerald-50",
+    },
+    "past-life-regression": {
+      title: "Past Life Regression",
+      description: "Explore techniques and experiences related to past life therapy",
+      icon: <BookOpen className="h-10 w-10 mb-4 text-purple-600" />,
+      color: "bg-purple-50",
+    },
+    "law": {
+      title: "Law",
+      description: "Legal insights and educational content on various legal topics",
+      icon: <BookOpen className="h-10 w-10 mb-4 text-blue-600" />,
+      color: "bg-blue-50",
+    },
+    "investing": {
+      title: "Investing",
+      description: "Learn about different investment strategies and opportunities",
+      icon: <BookOpen className="h-10 w-10 mb-4 text-green-600" />,
+      color: "bg-green-50",
+    },
+    "hiking-and-camping": {
+      title: "Hiking and Camping",
+      description: "Tips, guides and advice for outdoor adventures",
+      icon: <BookOpen className="h-10 w-10 mb-4 text-amber-600" />,
+      color: "bg-amber-50",
+    },
   };
 
   return (

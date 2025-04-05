@@ -1,0 +1,18 @@
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1e293b" />
+  <circle cx="400" cy="200" r="120" fill="#0f172a" />
+  
+  <!-- Clock -->
+  <circle cx="400" cy="200" r="90" stroke="#3b82f6" stroke-width="12" fill="none" />
+  <circle cx="400" cy="200" r="5" fill="#3b82f6" />
+  <line x1="400" y1="200" x2="400" y2="140" stroke="#3b82f6" stroke-width="8" stroke-linecap="round" />
+  <line x1="400" y1="200" x2="450" y2="200" stroke="#3b82f6" stroke-width="8" stroke-linecap="round" />
+  
+  <!-- Clock ticks -->
+  <line x1="400" y1="110" x2="400" y2="120" stroke="#3b82f6" stroke-width="4" />
+  <line x1="490" y1="200" x2="480" y2="200" stroke="#3b82f6" stroke-width="4" />
+  <line x1="400" y1="290" x2="400" y2="280" stroke="#3b82f6" stroke-width="4" />
+  <line x1="310" y1="200" x2="320" y2="200" stroke="#3b82f6" stroke-width="4" />
+  
+  <text x="400" y="350" font-family="Arial, sans-serif" font-size="24" fill="#e2e8f0" text-anchor="middle">Time Management</text>
+</svg>

@@ -1,0 +1,14 @@
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1e293b" />
+  <circle cx="400" cy="200" r="120" fill="#0f172a" />
+  
+  <!-- Stock chart -->
+  <polyline points="300,260 340,220 380,240 420,180 460,160 500,120" 
+    stroke="#3b82f6" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round" />
+    
+  <!-- X and Y axis -->
+  <line x1="300" y1="120" x2="300" y2="260" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round" />
+  <line x1="300" y1="260" x2="500" y2="260" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round" />
+  
+  <text x="400" y="350" font-family="Arial, sans-serif" font-size="24" fill="#e2e8f0" text-anchor="middle">Investing</text>
+</svg>
