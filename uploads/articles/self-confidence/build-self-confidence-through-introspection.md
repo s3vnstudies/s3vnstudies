@@ -1,0 +1,29 @@
+---
+title: "Build Self Confidence Through Introspection"
+author: "S3vn Studies Team"
+excerpt: "This seem incredibly true for those who can actually handle themselves and those who can actually benefit from the knowledge they can derive and use f..."
+category: "self-confidence"
+membershipRequired: "pro"
+---
+
+Nobody knows himself better than him. 
+
+This seem incredibly true for those who can actually handle themselves and those who can actually benefit from the knowledge they can derive and use from knowing who they truly are.
+
+Introspection is the habit of looking inward. Like most human activities, this would either assert positive or negative effects. There are times that reflection of one's image may create healthy products in the person. That is, when he is focused on his entire being and in return, considers this whole picture as an effective juncture to find where and what is missing and lacking. That way, he would find means of compensating for such. However, introspection may also turn against a person when it has become too focused on the negative aspects of one's personality. This then is called thought rumination.
+
+Thought rumination is somewhat similar to that of a caged hamster. This is a way to run in tight circles by obsessing one's self on a loss, or a problem or any form of ambiguity that hinders the moving on process.
+
+But in order to build self confidence, one has to know where the problem truly rooted. This can only be done by reflecting one's values and behaviors. If you find it hard to detach yourself from the actual situation or to stay away from thought rumination, you may rely on other people's assistance.
+
+But you see, any form of self analysis is beneficial so long as it is properly guided. Depending on your focus, you can either help take out yourself from having too low self confidence or to land on the floor face flat. 
+
+If you can redirect your focus on your attributes that will help you build yourself confidence then by all means do. Sometimes, even when people are around to help us, it is only we that we can actually raise ourselves back. Life changing routes usually happen when we pass by a path and find that path to be the right way for us. People may point us to our direction but without our willingness to drive us there, no amount of help can truly help us except when it comes from our self.
+
+Self motivation will greatly affect the ways by which we build our self confidence. Unlike the detrimental habit of saying- "my life is messed up" or "my life is nothing but a good way to kill time", you can use positive reinforcements and say otherwise. 
+
+You may not have realized it but you are a genius in your own fashion. A philosopher once said that all men have an innate beast within him. True and we can actually see these beasts manifesting in our daily affairs. Yet this truth does not negate the fact that all of us has an innate genius struggling to come out. This genius will always perform for our benefit if only we would recognize and help him grow.
+
+It is not only negative to demean yourself but it is also unfair for the good person in you. Let that person shine and rule over your life and you will see, life truly has more than imaginable brighter sides. 
+
+In one way or another, you have to discover how to build your self confidence to actualize that genius. Whether you choose to have somebody else's help or find your own way to realization.

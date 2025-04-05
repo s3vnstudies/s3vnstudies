@@ -1,0 +1,19 @@
+---
+title: "Costa Rica Coffee-Keep Up With The Growing Market Of Coffee"
+author: "S3vn Studies Team"
+excerpt: "If you already love Costa Rica coffee, no doubt it's for the extremely mild, some say perfect, coffee flavor.  Very mild with no bitterness, a very ba..."
+category: "miscellaneous"
+membershipRequired: "pro"
+---
+
+If it's been a while since you tried Costa Rica coffee, you may want to try it again.  Changes in coffee production and an attempt to keep up with the growing market for coffee and gourmet coffee has caused some changes in the coffee coming out of this region.  The growing trend of small coffee mills also gives coffees from this region an even larger variety of flavors and qualities, so it might be time to revisit this coffee. 
+
+If you already love Costa Rica coffee, no doubt it's for the extremely mild, some say perfect, coffee flavor.  Very mild with no bitterness, a very balanced flavor that's worst criticism has always been its steadiness.  Some have long considered coffee from this region to be fairly bland or boring.  And some of the huge coffee-producing farms and mills did make an effort to produce a coffee that would please almost every coffee drinker. 
+
+These coffees were typically made from your average Arabica beans and produced on a mass scale.  Today, smaller mills are becoming more and more popular in the region.  The Costa Rica coffee produced on these smaller farms are carefully controlled by the mill owner and blended to produce a distinct flavor to set it apart from the other coffee in the area. Even on a small farm, different lots of coffee depending on soil drainage, elevation and other factors are found to have subtle taste differences.  Combine that with different roasting temperatures and times, and the range of flavors can be huge.  
+
+How the coffee is processed has much to do with the quality and flavor, and each mill uses its own signature process or a combination to create different micro-brands of Costa Rica coffee.  The region has been producing coffee since the late 18th century, with the first type of coffee grown there having come from Saudi Arabia�Arabica coffee.  It wasn't long before coffee became Costa Rica's largest exported crop, outselling even tobacco, sugar and cacao. 
+
+The Costa Rica coffee designed to remain in the country rather than be exported is tinted to distinguish it, and falls under government price regulations so that it's much cheaper than the coffee that's exported to the rest of the world.  Workers are typically immigrants from nearby countries like Nicaragua, and the best workers still only make between $12 and $18 per day, depending on how many baskets they pick.  Given the other wages in the area and that the wages are governmentally set, in Costa Rica, a seasonal worker actually makes a decent living, comparable to other agricultural workers in the area. 
+
+Costa Rica coffee is still a valuable export crop the world over, especially now that the production has become refined and the variety of different types and flavors of coffee coming from the region is so vast. If you're a big fan of Arabica and Arabica blends, you might find that your new favorite type of mild and well-balanced coffee is indeed Costa Rica coffee.

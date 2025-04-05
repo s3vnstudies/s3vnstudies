@@ -1,0 +1,31 @@
+---
+title: "Help 101: Tips on Overcoming Your Lack of Self Confidence"
+author: "S3vn Studies Team"
+excerpt: "We are all capable of being self confident. It not a thing that we can touch nor see. It not something that was given to the person sitting next to yo..."
+category: "self-confidence"
+membershipRequired: "pro"
+---
+
+Self confidence is one thing that most people think other people have except for themselves. All of us were endowed with special attributes though we rarely recognize these gifts. We may see that men were not created equal but there surely must be a universal stuff that balances all things.  
+
+We are all capable of being self confident. It not a thing that we can touch nor see. It not something that was given to the person sitting next to you while you may not share the blessings it might result to. It is not something that we don't all have. You may not posses it now yet this does not imply that you are deprived of the capacity to develop it. Everyone is entitled to self confidence and luckily, all opportunities are laid in our front, only we have to recognize them.
+
+We cannot afford to lose the value of one lifetime just because we missed too much of good life in exchange for not having been able to live our dreams. Dreams that were not driven by the confidence to pursue them. The key is to develop self confidence and escape from the demons of low self confidence.
+
+To overcome low self confidence you must be able to have faith in yourself. You need to feel good about your being you. This all boils down from appreciating the things that we are capable of doing and in accepting the fact that some things just wont change however hard we try changing them. 
+
+One good example is a physical condition that you have to struggle with. A couple of things may help you with them but this would not erase the facts that your physical conditions may hamper you from developing your confidence. 
+
+Ask yourself- what makes you more confident of yourself? Most likely, these are things that deal more on the physical attributes that one has and one can acquire. 
+
+Our standards of confidence will affect virtually all aspects of our happiness. Say, we find more value from being good looking then it is best that you start resolving your low self confidence by making yourself more beautiful. Luckily for us, there are various methods of transformation and enhancements. 
+
+However, if your standards deal more on the innate beauty a person may have like goodness of attitude or skills and talents, you may start revamping yourself by strengthening these areas. 
+
+Low self confidence is more aggravated by our failures. Failing is inevitable and so it must be dealt with a light heart. If you always take your failures seriously and amplify them by ruminating at your mistakes, then it is likely that you are close to self destruction. Practice an attitude that celebrates on victories but forgets about your own stupidities.
+
+People are subject to committing mistakes, you must understand that. And your failures must not be made an excuse to stop trying. Think of your losses as blessings that you must accept and be thankful that they come across your path. This is one proof that the Creator spends more time on you than you would have first imagined.
+
+Instead of allowing these to trouble you, treat them as your learning grounds for not committing mistakes. Then don't allow these failures to hold back your growth. 
+
+You see, in the end it all lies in the attitude we take to deal things out. We must be very careful with the way we handle things. If we think too negative of ourselves and the events interplaying with our lives, we would never learn to get over our low self confidence.

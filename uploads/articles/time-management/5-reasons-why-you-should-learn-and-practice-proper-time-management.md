@@ -1,0 +1,37 @@
+---
+title: "5 Reasons Why You Should Learn and Practice Proper Time Management"
+author: "S3vn Studies Team"
+excerpt: "As for what you can do to improve your time management, you will see that a number of different approaches can be taken.  Goal setting, to do lists, l..."
+category: "time-management"
+membershipRequired: "pro"
+---
+
+Do you have a problem with time management?  If you do, you have two main options.  One of those options and often the most popular is to continue on with your normal activities.  Unfortunately, doing so may have a negative impact on your personal life, as well as your work life.  The other option is to make a change.  The good news is that there a number of steps that you can take to improve your time management.
+
+As for what you can do to improve your time management, you will see that a number of different approaches can be taken.  Goal setting, to do lists, limiting tasking, prioritizing, and outsourcing are all effective ways to manage your time, but they are also just a few of your options.  As for why you should learn and practice proper time management, there are a number of reasons why, five of which are outlined below.
+
+1 � It Is Easy To Do
+
+As previously summarized, you have a number of different options when looking to make better use of your time.  These options are all easy and cost effective ways.  In fact, creating goals and task lists for yourself is free of charge.  Since it is easy for you to learn and practice proper time management techniques, why would you want to do anything else?
+
+2 � It Is Important To Your Personal Life
+
+As previously stated, having a poor sense of time management has a number of serious consequences, one of those being your personal life.  If you regularly pay your bills late, don�t make contact with friends, or arrive home later than normal, you may be hurting your personal relationships and often in more ways than you could have ever imagined.  Friends, spouses, and romantic partners will likely not want to put up with this behavior for long.
+
+3 � It Is Important For Your Job
+
+Poor time management will not only negatively effect your personal life, but your work life as well.  If you do not know how to properly manage your time, you may get easily distracted.  This may result in you wasting company time.  If you are caught doing so repeatedly, you may find yourself terminated from your current position.  This can also have a negative impact on your personal life, as it may leave your finances in serious trouble.
+
+4 � It Is Something That You Can Only Benefit From
+
+Taking the time to learn and practice successful time management techniques can only benefit you, your work, and your personal relationships.  Since no money technically needs to be spent on time management tools or training, you have nothing to lose, but everything to gain.  It is also important to ask yourself again the important question of �why not?�  Why not improve your life with the learning and practicing of time management techniques?
+
+5 � The Options That You Have
+
+Once again, it is important to focus on the options that you have when looking to learn and practice proper time management.  Creating a set of goals and a task list is easy and free to do.  Alarm clocks and timers can also be used to help you make better use of your time.  You likely already own a traditional alarm, but your cell phone, computer, and television may also come equipped with alarm clocks as well.  
+
+As a reminder, there are a number of other time management tools and techniques that you can easily learn and practice all from the comfort of your own home.
+
+PPPPP
+
+Word Count 584

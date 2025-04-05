@@ -1,0 +1,27 @@
+---
+title: "Network Operating System"
+author: "S3vn Studies Team"
+excerpt: "A network operating system is most frequently used with local area networks and wide area networks, but it can also have applications for larger netwo..."
+category: "meditation"
+membershipRequired: "pro"
+---
+
+A network operating system is software that controls a network of computer and its message traffic and queues.  It controls access by multiple users to network resources such as files and provides for certain administrative functions including security of the system.  A network operating system is not the same as the networking tools provided by some existing operating systems such as Windows XP.  A network operating system is one that has been specifically written to keep networks running at optimal performance.
+
+A network operating system is most frequently used with local area networks and wide area networks, but it can also have applications for larger network systems.  A network is a series of multiple computers connected to a central server and is most often used in businesses for the purpose of file sharing.
+
+The network operating system is one that includes special functions for connecting computers and devices into a local area network.  Some popular systems for both DOS and Windows systems include Novell Netware, Windows NT and 2000, Sun Solaris, and IBM OS/2.  A network operating system has many features that are essential to file sharing.  They include:
+
+* Providing basic operating system features like support for processors, protocols, automatic hardware detection and support for multi-processing of applications
+* Security features such as authentication, authorization, log-on restrictions and access control
+* Providing name and directory services
+* Allowing file, print, web services, back-up and replication services
+* Support for inter-networking such as routing and WAN ports
+* Give user management and support tools for log on and log off, remote access, system management, administration, and auditing tools with graphical interfaces
+* Clustering capabilities, fault tolerant, and high availability systems
+
+Many network operating systems are familiar to individual computer users in that they are often network versions of personal computer operating system.  That includes Windows 2000 Professional, Windows NT, and Red Hat Linux.  
+
+When you have a series of computers all hooked together on a network, the operating system used to control those computers is very important.  All effective network operating systems should have built-in measures of security that keep the computers on the network safe from breach by outsiders.  Monitoring capabilities by a system administrator is also very important to have in a network operating system.
+
+Many businesses, both large and small take great pains in choosing the right type of operating system for their network.  They want to make sure that sensitive information is not compromised in any way.  That�s why choosing a network operating system needs to be everything that the company needs it to be.

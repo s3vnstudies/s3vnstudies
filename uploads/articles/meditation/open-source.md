@@ -1,0 +1,23 @@
+---
+title: "Open Source"
+author: "S3vn Studies Team"
+excerpt: "Open source allows users to create user-generated software content through either incremental individual effort or through collaboration.  In layman�s..."
+category: "meditation"
+membershipRequired: "pro"
+---
+
+In general, the term open source refers to the principles and methodologies to promote open access to the production and design process for various goods, products, and resources.  The term is most commonly used in reference to source code of software that is made available to the general public with either relaxed or non-existent intellectual property restrictions.
+
+Open source allows users to create user-generated software content through either incremental individual effort or through collaboration.  In layman�s terms, open source means that software is made available to the general public for download.  People can then either work alone or with others to change the software, make it better, and re-distribute it.
+
+Some consider open source as one of various possible design approaches while others consider it a critical strategic element of their operations.  Before open source became widely adopted, developers and producers used a variety of phrases to describe the concept.  With the rise of the Internet and its enabling of diverse production models, communication paths, and interactive communities, the term open source gained popularity.  
+
+In 1998, Netscape released a new source code for its version of an Internet web browser called Navigator.  It was at this time that the term and concept of open source was introduced.  The idea was to release the company of the connotations that come with the terminology of free software.  They licensed and released their code as open source under the name Mozilla.
+
+Open source development has grown in popularity over the years and has even started a movement among proponents of the concept.  Open source has extended beyond the software market into other areas of production such as food as well as health and science.
+
+There are many places that facilitate the open source methodology.  The creation of blogs is one way to distribute information among the public.  Message boards on the Internet are another outlet.  These message boards are thought to be one of the integral ways to grow the open source movement as people can freely discuss and implement changes to various programs and products with the convenience of the Internet.
+
+The open source movement is not without its critics.  Those against open source say that direct compensation for intellectual property is essential to the creation of various new technologies.  They say that there is no real incentive to develop new products when they are available for free.  Critics also say that open source causes a chaotic environment when many people are working on the same projects with little to no leadership.
+
+Whatever side of the fence you are on, the fact remains that open source is a wave of the future and will hold new and exciting developments in various areas of consumer life.  Open source, whether good or bad, is here to stay.

@@ -1,0 +1,35 @@
+---
+title: "Activities For Stress Relief"
+author: "S3vn Studies Team"
+excerpt: "Taking a nice walk after dinner with your spouse, or a friend, or even your kids, is a great way to relax and have some fun, too."
+category: "miscellaneous"
+membershipRequired: "pro"
+---
+
+They say that exercise is one of the best activities for stress relief that you can do. And of all the exercises you can do, walking tops the list.
+
+Taking a nice walk after dinner with your spouse, or a friend, or even your kids, is a great way to relax and have some fun, too. 
+
+Make sure you have some good walking shoes with good support and wear some non-restricting clothing like sweat pants and a t-shirt. Throw a light jacket over everything if the weather is a little cool. You can always take it off if you get too warm.
+
+Start slowly, if you are not accustomed to walking or exercising, just make the first walk around the block in your neighborhood. Do this for a week or two until your body gets used to it then branch out and go two or three blocks.
+
+Keep doing this every day or mix things up a bit and go to a local park or forest preserve and walk the trails. 
+
+Maybe you live in an area that has a bike path or walking trail that the city or county keeps up for those who want to use it. Sometimes they can go for miles and let you see some of the area where you live.
+
+Just being out in nature has a calming effect on the body so walking through a nature preserve is one of the best activities for stress relief you can do for yourself. 
+
+Relieving the tension in your life is as important as eating and drinking. If you let it all build up it can have some detrimental effects on your body and overall health.
+
+Headaches, heartburn, depression, anger, and increased anxiety are all symptoms of increased tension. If all of these go unchecked for an extended period of time it can lead to more serious things like high blood pressure.
+
+High blood pressure can lead to any number of even more serious conditions like stroke and heart attack. It can have a domino effect where one thing leads to another and another.
+
+Any form of exercise will help reduce the amount of tension you feel especially after the first few times you do it and the soreness or stiffness all goes away. After a work out you will feel energized and able to take on the world again with confidence.
+
+I chose to tell you about walking because research has shown walking to be the best and it is easy to do. All you have to do is get up and start doing it. You do not have to join a gym to do your walking but you can if you want to.
+
+You can basically walk anywhere. If you live in a place that has winter and it is too cold to walk outside for some of the year, a lot of people choose to walk at a local mall when the weather is bad.
+
+Do yourself a favor, take care of yourself, get up and do one of the best activities for stress relief there is, take a walk.

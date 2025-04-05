@@ -1,0 +1,21 @@
+---
+title: "Professional Golf"
+author: "S3vn Studies Team"
+excerpt: "Nonetheless, it is a dream of many golfers to play professional golf one day and make a living doing something that they truly, truly love.  Your offi..."
+category: "meditation"
+membershipRequired: "pro"
+---
+
+As with any other sport golf also does have a professional level.  The difference between playing professional golf and amateur golf, however, can be a very fine line.  There are a lot of amateur golfers that can score at the professional level, however, they are unable to do it consistently and often miss out on the tournaments that can qualify them to get on the tour.
+
+Nonetheless, it is a dream of many golfers to play professional golf one day and make a living doing something that they truly, truly love.  Your office is the course, and your co-workers are people who love the game just as much as you do.  You share common interests at the professional level of golf and it can be a very satisfying career.  But isn�t that obvious?
+
+Qualifying to play professional golf is another story altogether.  The field is very competitive and it can be extremely difficult to break through.  Some people try their whole lives to qualify and always come up short.  It takes a lot of practice, a lot of dedication, and an ability to take a lot of disappointment to play professional golf, so know what you�re in for!
+
+To get started playing professional golf, you will first have to qualify for �Q School� or Qualifying School.  Q Schools are annual qualifying tournament for leading golf tours like the PGA and the LPGA.  In Q School, a fixed number of players win membership to the tour for the following season.  In professional golf, this is referred to as your �tour card�.  You will then be able to play in most of the tour�s events without having to qualify.
+
+Getting through the Q school is very competitive and most professional golfers never achieve it.  There can be up to four stages to negotiate each of them like a regular golf tournament with only a small number of players going on to the next state.  The final qualifying school may be played over up to six rounds compared with the standard four rounds in a professional golf tournament.  However, players who are successful at Q school can reach the elite level of competition very quickly.
+
+You can also qualify to play professional golf in other ways.  Finishing near the top of the money list on the tour�s developmental tour, winning a tournament on the tour after qualifying or as a sponsor�s invitee, or winning enough money on multiple events on the tour to meet whatever criteria the tour may lay down for promotion to full membership.  This last one was how Tiger Woods gained his first tour card.
+
+Playing professional golf is not an easy career to pursue, but it is a great way to make a living!  Persistence, patience, and a great game of golf can all get you on your way to playing professional golf, but be realistic and know that it will take time.

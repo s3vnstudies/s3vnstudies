@@ -1,0 +1,29 @@
+---
+title: "A Help for the Unconfident: Physical Presence for Confidence and Self Esteem"
+author: "S3vn Studies Team"
+excerpt: "We don't always want the responsibility of being the top dog. However, we all need recognition and as such, we have to develop our physical presence,"
+category: "self-confidence"
+membershipRequired: "pro"
+---
+
+Physical presence is known to be the state by which people would see us, would appreciate our worth and would acknowledge our presence. It is a state of occupying spaces without causing any tension at all.
+
+We don't always want the responsibility of being the top dog. However, we all need recognition and as such, we have to develop our physical presence, both for self realization and for other people's appreciation.
+
+A good physical presence would help us communicate our dominance or at least our value in a circle of people. It is also one way of recognizing the real condition of things when people begin to take dominance. But it may also be used as a help to recognize other people's failure to act or when we become invisible ourselves.
+
+Invisibility is an entrapment we must all avoid to maintain an ideal state of confidence and self esteem. For with visibility, our attributes would be recognized and our value as a person would remain. 
+
+You might be wondering why there is a need to develop physical presence when many times, we have been recognized even we were quiet of our achievements. Well, this principle worked rarely though this does not negate the fact that this works. However, everyone here is a mercenary on his own. He must act where everyone sees him before he is actually seen. Silent workers are almost always left behind.
+
+Once we are deprived of recognition, we begin to break down and retreat within ourselves. Then, we live on the frustrations that invisibility has caused us. We know that our talents must be recognized. We know that our works should be given proper value. But everyone fails to see how well we are doing, we tend to give up things and let our passion die with them.
+
+We only need recognition from others before we totally recognize ourselves. It is not that other people's opinions must rule our lives. Though we often realize that unless people notice us, we would continue to believe that we are of no great value. 
+
+Thus, our physical presence is one of the most ideal concept we can adapt when starting to build our confidence and self esteem. The only certain way though to achieving this is from within.
+
+We have to create a self concept that is focused on our attributes and not on our lacks. On our achievements and not on our defeats. On our own fence and not on the fence of a neighbor or of someone greater than us.
+
+We also must inculcate in us values that are helpful in recreating our self image and self worth. Notice how you talk with yourself. How many times do you hear yourself say how stupid you are or how idiotic your acts had been? Don't be harsh to yourself. For sure, you have done a lot of good things in your past that you might consider bargaining on so that you might start building your confidence and self esteem level. 
+
+You only have to be conscious of your self and take advantage of all the facilities that were given to you. That way, you will have a heightened self appreciation and the capacity to increase your physical presence. The key here is believing. Believing in who you truly are and believing in what you can actually make out from yourself.

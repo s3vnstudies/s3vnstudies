@@ -1,0 +1,21 @@
+---
+title: "Golf Driving Range"
+author: "S3vn Studies Team"
+excerpt: "In the game of golf, it�s essential to know how far you are able to hit your clubs on a consistent basis.  By taking advantage of the golf driving ran..."
+category: "meditation"
+membershipRequired: "pro"
+---
+
+Many golf courses have driving ranges.  These driving ranges are instrumental in helping you improve your game, and you should use them as much as you possibly can.  Even though it�s called a driving range, you can practice all of your golf shots on the range.  By taking advantage of this valuable tool offered by your golf course, you are sure to improve your game.
+
+In the game of golf, it�s essential to know how far you are able to hit your clubs on a consistent basis.  By taking advantage of the golf driving range, you will get a great idea of how far your driver can go as well as your 9 iron.  Once you know how far you can hit your clubs, you will be able to practice some great course management skills when you are out on the course.
+
+Start out with a bucket of balls and your driver.  Try out various stances and see which ones help you drive the ball farther.  Hit a lot of balls and pay close attention to what works and what doesn�t.  When you find a shot you are pleased with, hit several more balls using that same technique to see if it was just a fluke or if you can replicate it over and over again.
+
+Then you should move to your fairway woods or your irons.  Practice the same technique with these clubs.  You may have to buy another bucket � or bag on some courses � of balls, but believe me, it will be well worth the money when you are able to effectively know what clubs will give you the yardage you need and want.
+
+Many golf courses have lighted driving ranges, so even if you can�t play the course, you can still work on your swing in the evening hours.  Many people find that having a lighted driving range can help them work on their swing at inconvenient hours when daylight has left but they still feel the desire to swing a club.
+
+One point you need to keep in mind when on the golf driving range is that you are playing in perfect conditions.  There are no hills, there are no hazards, and you are concentrating to the best of your ability.  Just because you can hit a 300 yard drive on the range doesn�t necessarily mean you can do the same on the course.
+
+However, you can certainly learn a lot about your golf game when you are on the driving range.  Don�t pass up the chance to practice as much as you can.  Practicing is best done on the golf driving range, so buy a bucket of balls and whack away.  You never know what you�ll find out!

@@ -1,0 +1,25 @@
+---
+title: "The Importance of Time Management In the Workplace"
+author: "S3vn Studies Team"
+excerpt: "As nice as it is to hear that you must improve your time at work, especially if you have a poor sense of time management, you may wonder what the impo..."
+category: "time-management"
+membershipRequired: "pro"
+---
+
+Do you work?  If you do, you likely have a number of responsibilities at work.  If you do, how well do you perform those responsibilities?  Are you known as an overachiever at work or are you known for your poor time management skills, which often involves you showing up late to work or missing important deadlines?  If so, you need to make changes right away.
+
+As nice as it is to hear that you must improve your time at work, especially if you have a poor sense of time management, you may wonder what the importance is.  In all honesty, there are a number of ways that making good use of your time at work can help you.  On the same note, there are also a number of ways that poor time management skills can hurt you in the workplace.  For more information on these situations, please continue reading on.
+
+Poor time management at work is likely to have an impact of your public perception, as well as the public perception of your company as a whole.  This is due in part to organization.  If you do not know how to properly manage your time, you are likely very unorganized.  This means that your office desk is a mess and that you may spend extra time looking for misplaced documents or other important files.  A messy desk is not what you want your clients or your bosses to see.
+
+Poor time management can also have an impact on your ability to receive a promotion or a pay raise at work.  Even if you have what you would call a decent job now, there is a good chance that you do aspire to climb up the company ladder or to make more money.  Your chances of doing so are quite slim if you are known as the worker who likes to waste company time.  Learning how to make good use of your time at work can prevent that from happening, possibly resulting in your receiving a promotion or a pay raise.
+
+Having a poor sense of time and use of time at work can also put your job at risk.  You need to think about it from the standpoint of a business owner.  Why would you continue to pay an employee that performs poorly and who has a poor since of time management when there are many other workers out there who would love to have the same opportunity?  Don�t let your inability to properly manage your time cost you your job.
+
+One aspect of poor time management in the workplace that should be examined is that of your credit.  If you do not receive a needed pay raise, a promotion, or if you lose your job, there is a good chance that you will enter into financial despair.  This may impact your ability to buy a home, get a new car, as well as a new job.
+
+As you can see, time management is important if you want to have a happy, healthy, successful, and profitable career.  For that reason, you are urged to take action right away before it is to late.  Whether you temporarily lessen your job responsibilities, create daily task lists for yourself, learn to prioritize better, or seek time management training from a professional, you are encouraged to do so.  Remember, that your job can otherwise be put at risk.
+
+PPPPP
+
+Word Count 564

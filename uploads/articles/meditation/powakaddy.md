@@ -1,0 +1,20 @@
+---
+title: "PowaKaddy"
+author: "S3vn Studies Team"
+excerpt: "PowaKaddy golf carts are pull carts on which you put your club so you can easily walk your round of golf.  Most are run by small batteries that are on..."
+category: "meditation"
+membershipRequired: "pro"
+---
+
+The PowaKaddy Company is the world�s leading manufacturer of powered golf carts.  All carts made by PowaKaddy are designed by golfers for golfers.  That means you are getting a cart that will meet your needs because the advice from avid golfers goes into the design of every single cart.  It�s best to have a product designed by people who use that product.  PowaKaddy knows this all too well.
+
+PowaKaddy golf carts are pull carts on which you put your club so you can easily walk your round of golf.  Most are run by small batteries that are on the cart.  Here are some of their products along with a brief description of each:
+
+* Freeway Titanium Compact and All-Terrain � These carts break down for easy transportation.  In just two simple clicks, it opens and closes making these carts very easy to use.  PowaKaddy has made these carts from an AMST alloy chassis which makes them light and strong.  These are their best selling power carts.  The compact version is easily transportable, and the all-terrain version is designed for rugged, hilly courses.
+* Freeway Titanium Sport � This cart is similar to the Compact, but PowaKaddy has added some touches of refinement.  The chassis is also made with AMST alloy steel, but it also has low profile sport wheels and a nearly noiseless engine.  It also has an Electronic Distance Function which will automatically drive your cart forward.
+* Robokaddy � This cart is touted as the neatest, lightest powered cart that obeys your every command by remote control.  You direct operations via a small pocket sized transmitter.  The motors are very quiet and it easily folds up for convenient transportation and storage.
+* Classic Legend � This new cart combines all the best features of the Classic with the PowaKaddy Freeway.  It has a removable handle, and is made with AMST steel just like the other PowaKaddy carts.  
+
+PowaKaddy also sells state-of-the-art regular pull carts for golfers who don�t mind providing their own power to transport their clubs.  Their extensive line of golf bags fit perfectly on any of their carts as well as any other pull cart.  PowaKaddy provides a large line of golf accessories as well for golfers to choose from.
+
+This amazing company has great products for the avid golfer.  If you�ve never considered the possibility of a motorized pull cart, go to the PowaKaddy website and find out everything you need to know about these exciting new innovations!  Find them at www.powakaddyusa.com.

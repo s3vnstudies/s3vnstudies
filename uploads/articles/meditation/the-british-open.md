@@ -1,0 +1,21 @@
+---
+title: "The British Open"
+author: "S3vn Studies Team"
+excerpt: "Many people think that the U.S. Open was the first open championship to be founded, but that just isn�t true.  The British Open was being played 35 ye..."
+category: "meditation"
+membershipRequired: "pro"
+---
+
+For amateur golfers, having an �open� tournament is a great opportunity to break into the world of professional golf.  But the U.S. Open isn�t the only open tournament � there�s also the British Open for the golfers �across the pond�.  Open tournaments were designed to allow amateur golfers to perhaps break into the pro pool by winning one of these contests.
+
+Many people think that the U.S. Open was the first open championship to be founded, but that just isn�t true.  The British Open was being played 35 years before the United States got in on the open tournament phenomenon.  Since the turn of the century, the British Open has included amateurs from all countries.  The U.S. Open is currently trying to make a move towards this trend, but for years, The British Open has been known as �The World Open�.
+
+Originally designed as a way for unknown golfers to make a name for themselves, the �opens� have long been touted as the greatest chance an amateur has for worldwide fame and fortune as a professional golfer.  The British Open was the first tournament to bring forth this amazing idea, and golfers all over the world became excited at the prospect of becoming a pro.
+
+The British Open is one of the four major golf tournaments of the year and winning it is a great honor.  Just as with the U.S. Open, it is one of the championships that tournament professionals strive to achieve and wear the honor with pride.  However, amateurs should beware.  Because the British Open is an open event, the pros can play too.
+
+The last time an amateur won a British Open was back in 1930 when American legend Bobby Jones won with an overall score of 291.  Since that time, there have been many amateurs who have made good showings, but as far as winning the open, that hasn�t happened in quite some time.
+
+To qualify for the British Open, you must strive for one of the 156 places that are available.  Most of the field of players has achieved entry into the open through exemptions by playing well throughout the year on the tour.  The rest of the field has won qualifying rounds in local events that lead them to the �big show� and perhaps the chance of the lifetime!
+
+The British Open � just like the U.S. Open � is a wonderful way for excellent amateur golfers to break into the professional circuit by doing what they love � playing the game of golf.  The British Open has a long and storied history and while considered one of the major events in the PGA, still holds a bit of mystery and hope for those who dream of a life as a PGA professional.

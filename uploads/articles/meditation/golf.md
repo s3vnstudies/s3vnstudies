@@ -1,0 +1,23 @@
+---
+title: "Golf"
+author: "S3vn Studies Team"
+excerpt: "There has been a renewed interest in golf lately among the younger generations with the rise in popularity of golf phenomenon Tiger Woods.  These days..."
+category: "meditation"
+membershipRequired: "pro"
+---
+
+There�s no doubt about it that the game of golf is one that is massively popular all over the world.  Golf is a low-impact sport that can provide participants of all ages not only a fun recreational activity but also some type of exercise.  Golf is good for the body, it�s good for the mind, it�s good for social activities, and it�s good for business.
+
+There has been a renewed interest in golf lately among the younger generations with the rise in popularity of golf phenomenon Tiger Woods.  These days, golf is enjoyed by young and old alike.  It gives fathers time to spend with sons and daughters, brothers with sisters, and friends with other friends.
+
+The game of golf is played on both the amateur and professional levels with notoriety coming to good players locally and nationally.  The professional golfers who are most famous are well-known world-wide, and often people strive to emulate them and their amazing play styles.
+
+Of course, golf isn�t without its stressors.  It�s nice to be out on the course when it�s a sunny spring day with a mild breeze, but it can be spoiled by bad shots, horrible lies, water hazards, and missed putts.  You see, golf isn�t an exact science.  There are many variables that go into a good golf swing, and it�s nearly impossible to perfect them all � all at the same time.
+
+Even so, golf can become an obsession with some people as they strive to lower their scores and beat their friends.  Millions of dollars is spent every year on golf lessons, magazines, how-to videos, and programs that purport to improve your golf swing and lower your score.
+
+Golf equipment is also big business as clubs are always evolving with new technologies and equipment to build them.  Big head drivers, graphite shafts, and other equipment advancements are touted as being the new best things in golf.  They are advertised heavily and make claims that you just have to have these products if you want to play good golf.
+
+If you�re not a golfer, you might wonder what�s so wonderful about this game.  After all, taking a stick and hitting a little ball into a hole doesn�t sound like very much fun.  But golf is challenging and involves much more than just physical ability.  It requires thinking skills, deduction skills, and mental clarity.  Because it�s nearly impossible to perfect a golf game, it�s a great way to challenge yourself as well as others.
+
+We highly suggest you take up golf if you want a ways to meet new people, connect with old friends, and enjoy a fun, challenging activity.  The golf course is also a great place to conduct business.  There�s so much we can say about golf, but nothing extols the virtues of this sport like getting out on the links and just doing it!

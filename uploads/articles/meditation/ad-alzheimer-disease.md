@@ -1,0 +1,37 @@
+---
+title: "AD Alzheimer disease"
+author: "S3vn Studies Team"
+excerpt: "According to statistics, at least one of two families residing in the United States alone will experience Alzheimer symptoms. Statistics claim that ar..."
+category: "meditation"
+membershipRequired: "pro"
+---
+
+AD or Alzheimer�s disease and its patients begin showing symptoms around 25 years after the developing stage. The brain will start to collect �beta amyloaid plaque,� which builds up affecting the prime intellect. Most patients with Alzheimer�s disease have the illness present at a youthful age, yet the symptoms linger until an older age. Once the disease is present, you can use actions to slow the symptoms further. For instance, you can practice preventions, such as continued education, and memory provoking strategies. 
+
+According to statistics, at least one of two families residing in the United States alone will experience Alzheimer symptoms. Statistics claim that around �five million� American are diagnosed annually with Alzheimer disease. Out of the statistical forecasts claim those over sixty-five has double the odds of acquiring Alzheimer�s. 
+
+The United States of America spends billions of dollars annually to treat patients with Alzheimer disease. To stop the disorder geriatrists are recommended that preventive steps are taking. 
+
+Geriatrists claim that economics, socialism, lack of education, problematic healthcare systems, and people them selves play a part in reducing the diagnosis. Healthcare in the United States is outrageously priced so that elderly people find it hard to find medical coverage required to treat their illnesses. We see that if healthcare is lowered, the disease count might drop. 
+
+Elderly people often isolate as they age, which causes the symptoms of Alzheimer disease to increase. In addition, many American seniors lack education, which hinders them from noting symptoms at early stages. Still, we can ask the elderly to learn and take measures to slow their symptoms, yet until healthcare prices lower, we have a world of disease in our future. 
+
+In the UK ironically where medical care is covered, more than 800,000 residents are diagnosed with Alzheimer disease or dementia, which is produced by Alzheimer. In the next 20 years, the United Kingdom has predicted that Alzheimer disease will double. 
+
+There are currently around 799,000 people living with dementia in the United Kingdom today, and the figure is expected to twofold within twenty years. 
+
+According to the same statistics in a few seconds, someone around the world is diagnosed with dementia. 
+
+Globally around 24.4 million diagnoses in the world alone are cases of dementia, whereas another 4.7 million annually will be diagnosed with Alzheimer disease. 
+
+The only way you can explain the disease is to review the brain and the causes of dementia and/or Alzheimer disease. 
+
+Alzheimer disease is a disorder of the brain. The disorder is outlined in accelerated aging diseases, including Hutchinson-Gilford, and Progeroid syndromes. 
+
+Each disease causes aging symptoms prematurely. The disease has a major symptom, which is the increase of velocity in aging. Children can develop symptoms emerging from progeroid. The signs are apparent, which include hair loss, wrinkled skin, dry skin, hunchback, and so on. 
+
+Progeroid is also noted in the female reproductive organs. In addition, the male�s sex glands are signs of this disease, which causes menstrual cycles to cease in one and unproductiveness, or sterile in the male counterpart. The disease can also change the height. 
+
+Progeroid has sisters, which include Hutchinson-Gilford and Werner�s syndrome. Hutchinson starts youthfully, yet as the person becomes a young adult, Werner�s syndrome develops. The genetic diseases, i.e. at least Werner�s are a condition that manufacturers �scleroderma.� Scleroderma is a condition that causes the skin to thicken and harden. In addition, the disease progressively moves to accelerate aging. Werner�s disease is often akin to accelerated aging, lung disease, and so forth. The disease increases atherosclerosis, which as Werner�s increases balding and skin conditions. 
+
+Atherosclerosis is an artery disease, which increases degenerative diseases, and cholesterol plaque deposits that form in the arteries.

@@ -1,0 +1,28 @@
+---
+title: "The Basics of Alzheimers disease"
+author: "S3vn Studies Team"
+excerpt: "Dementia and Alzheimer�s go together making the mind change in many ways.  Alzheimer�s and Dementia together will make many changes in ones mind; like..."
+category: "meditation"
+membershipRequired: "pro"
+---
+
+Caring for someone with Alzheimer�s disease will affect everyone�s life as well as the loved ones and the caregivers. An Alzheimer�s patient has and will continue to have many changes throughout the rest of their life. The symptoms start developing slowly and gradually work into a progressive disorder. 
+
+Dementia and Alzheimer�s go together making the mind change in many ways.  Alzheimer�s and Dementia together will make many changes in ones mind; like mood swings; behavior, and thinking. Daily tasks are often difficult to handle. The more the family and caregivers can learn and the earlier it is diagnosed the better for them. The condition not only robs the patient with Alzheimer�s of life, it also wears down the care provider.
+
+How to take care of you
+If you take care of a patient with Alzheimer�s disease, it is wise to maintain your mental and physical well-being. The road is long, yet if you eat right, exercise, and take vitamins, you can endure the long haul. In addition, you want to set up a support group, someone who will support you when you need an ear. 
+
+Alzheimer�s usually affects people over 65 but it can happen to people as early as 50 years of age. In some cases of Alzheimer�s disease, it will progress slowly if treated early but others it can progress at a faster rate. It depends on how much damage to the brain the condition has caused. 
+
+There is no known cause for Alzheimer�s disease. The condition is rarely noted early, except when symptoms like memory loss, mood swings, etc develop. The condition worsens, making it hard for the provider, since even feeding them could be a problem.  You will notice as time goes on that simple tasks will become hard and the person affected with the disorder will need more and more assistance.
+
+Many things can cause changes in the brain. Alzheimer�s can be passed down from another generation. A head injury can cause Alzheimer�s symptoms to develop. Women are at a higher risk then men are of getting Alzheimer�s disease.
+
+Catching Alzheimer�s at an early stage is very important. Doctors can do test and diagnosis easier in the beginning stages. The task is difficult for the doctors to give medication to the person who is being tested. However, they can adjust it as needed to slow the process down. Doctors recommend that patients with Alzheimer�s disease consider regimens of Gingko, or related memory enhancers. Vitamin C, E, etc are great for slowing the symptoms. In addition, the patient should eat healthy foods, such as fruits and vegetables. Fish oils, fish, etc, has proven to benefit those with Alzheimer�s disease. In addition, you may want to learn more about White Powder Gold. 
+
+There are many signs of Alzheimer�s that may make a person think it is just normal for their age.  Your healthcare provider needs to know these symptoms as soon as possible.  Some of the beginning signs of Alzheimer�s are memory loss, since of direction, even dressing them.  You will notice that as time goes on each and every task will become harder and harder for them to perform.  See your healthcare provider as soon as these symptoms or other strange things are noticed.  Medication can slow down or reverse the progress and make the person who is being affected a better life.  
+
+Once a person has been diagnoisised with Alzheimer�s there are many support groups for them and the loved ones to talk to.  Get a support team together like a group, an older child maybe, a friend, anyone who will be there for them.  Life will be a lot easier for everyone involved.
+
+Independence is very important for the person who has Alzheimer�s and they will need someone there for them as time goes on to help get through the bad times.  Finding a support group will make life a lot easier for everyone.

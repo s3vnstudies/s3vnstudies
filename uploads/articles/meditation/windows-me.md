@@ -1,0 +1,27 @@
+---
+title: "Windows ME"
+author: "S3vn Studies Team"
+excerpt: "It was marketed as a home edition version of Windows as the other operating system released in 2000 � Windows 2000 � was generally thought of as a bus..."
+category: "meditation"
+membershipRequired: "pro"
+---
+
+On September 14, 2000, programming software giant Microsoft Corporation released their latest version of Windows they called Windows ME.  Originally, because of the year of release, it was codenamed Windows Millennium and is sometimes known by that name even today.  Windows ME was a hybrid operating system combining both 16-bit and 32-bit technologies.
+
+It was marketed as a home edition version of Windows as the other operating system released in 2000 � Windows 2000 � was generally thought of as a business application.  Windows ME gave personal computer users many new features that made their computer experience easier and more convenient.
+
+It provided Internet Explorer 5.5, Windows Media Player 7, and the new Windows Movie Maker software, which provided basic video editing and was designed to be easy for home users. Microsoft also updated the graphical user interface in Windows Me with some of the features that were first introduced in Windows 2000.
+
+Windows ME was an MS-DOS based version like its predecessors but with access to real mode MD-DOS restricted for faster system boot time.  This was one of the most publicized changes in Windows ME because applications that needed real mode DOS to run such as with older disk utilities.  These older utilities would not run under the Windows ME operating system.
+
+Compared with other releases, Windows ME had a short shelf-life.  It was soon replaced by Windows XP which was released in 2001.  The computer magazine PC World declared in 2006 that Windows ME was the fourth �worst tech product of all time� because of various technical issues.
+
+Despite that, Windows ME did provide users with some advancements that previous versions of Windows did not have including:
+
+* System Restore � used to simplify troubleshooting and solve problems easier
+* Universal Plug and Play � which allowed user to simply plug in a peripheral device and have it operate properly
+* Image Acquisition � allowed for the operating system software to transparently communicate with imaging devices such as digital cameras and scanners
+* Automatic Updates � which automatically downloaded and installed any critical updates from the Microsoft website with little user interaction
+* Help and Support � in the form of an HTML program to allow user to find and access various support for problems with the computer software
+
+Because there were so many issues related with the installation and running of Windows ME, Microsoft quickly addressed the problem and immediately began working on a new Windows version which, as we�ve already said, would show up on the market about a year later.  Just like with any other operating system software, despite bugs and problems, constant �tweaking� and improving is done to make a better product.

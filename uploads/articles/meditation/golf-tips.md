@@ -1,0 +1,34 @@
+---
+title: "Golf Tips"
+author: "S3vn Studies Team"
+excerpt: "So what kind of golf tips can we offer up in this article?  Space is limited, so we�ll try to focus only on those tips that are most asked for.  First..."
+category: "meditation"
+membershipRequired: "pro"
+---
+
+People are always on the lookout for tips to make their golf game better.  Golf isn�t an easy sport to master.  Those of us who love the game know that the more information you have regarding the swing, course management, putting, etc. the more chance you have of playing better.  That�s why we will take golf tips from almost anyone who�s willing to offer.
+
+So what kind of golf tips can we offer up in this article?  Space is limited, so we�ll try to focus only on those tips that are most asked for.  First, if you have a bad temper, you probably shouldn�t take up golf.  We�re just kidding, really.  Actually, golf can be good for your mental state.  You may find that you can take out your frustration on the golf course in productive ways and perhaps you can gain better control of that temper!
+
+Since most people have trouble with their setup, our first set of golf tips will deal with the setup.  
+
+* Position your body so your body is parallel with the target line
+* Your feet should be shoulder width apart
+* With short irons, put the ball in the center of your stance
+* Middle irons should have the ball placed one ball toward the target side from center
+* For long irons and fairway woods, place the ball two ball lengths toward the target from center
+* The ball should be three ball lengths toward the target from center
+* Balance your weight on the balls of your feet
+* Bend your knees slightly and keep your spine straight
+* Move your body from the hips and make it a smooth, fluent motion
+
+Keep your eye on the ball until well after you complete your follow-through swing.  If you don�t do this, you will have a tendency to stand up on the ball which will cause you to top the ball.  Do this with all shots.  Look at the back of the ball and don�t take your eyes off of it until it�s natural to look and see where the ball has gone.
+
+When putting, the best golf tips we can offer up are:
+
+* Visualize the path your ball will travel so that it will go in the hole
+* Read the green and take into account any dips that may cause your ball to change its direction.  Then you can compensate with your aim.
+* The putting swing is a smooth, pendulum-like action with no wrist break.  You will swing with your shoulders and should always keep your head down.
+* Be sure you put enough speed on the ball so that you will actually make it to the hole.  There�s nothing worse than coming up short on a putt.  These lead to three putt disasters and can be very frustrating!
+
+There are all sorts of golf tips out there to be found.  Take any tips on your golf game that you can find and then try them out to see if they work.  You can never have too many tips if you really want to make your golf game better.

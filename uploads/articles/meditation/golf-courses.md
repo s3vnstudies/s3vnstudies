@@ -1,0 +1,27 @@
+---
+title: "Golf Courses"
+author: "S3vn Studies Team"
+excerpt: "* Augusta National; Augusta, Georgia � Home to the Masters Tournament, Augusta is one of the most beautiful and popular golf courses to play.  It was"
+category: "meditation"
+membershipRequired: "pro"
+---
+
+There are literally hundreds and hundreds of golf courses all around the world.  With the popularity of the game rising, you can find golf courses in even the smallest of towns � or, at the very least within a short driving distance.  Have you ever wondered what golf courses are ranked as the top golf courses in the world?  Here�s a short list in no particular order:
+
+* Augusta National; Augusta, Georgia � Home to the Masters Tournament, Augusta is one of the most beautiful and popular golf courses to play.  It was planned and designed by golf legend Bobby Jones and architect Alister Mackenzie.  It is a very exclusive golf club and open only to members and their guests.
+
+* Pebble Beach; Pebble Beach, California � This has been a perennial favorite golf course among pros and amateurs alike.  It hosts an annual celebrity pro-am tournament that brings all sorts of celebrities to play with pro golfers.  It is a public course, but be warned, it isn�t cheap to play here!
+
+* Shinnecock Hills; Southampton, New York � This is an old golf club with old traditions and is probably one of the oldest US golf course design dating back to 1891.  It is a members only club as well.
+
+* Pinehurst Resort; Pinehurst, North Carolina � This is an old golf course as well with rich tradition as being one of the favorites of golfers everywhere.  Pinehurst has played host to two US opens and is a public course.
+
+* Prairie Dunes; Hutchison, Kansas � Set in the Midwest, this golf course has proven to be quite a challenging 18 holes with numerous sand traps and wind playing a factor in the game.  It is, however, a rather exclusive club, so you�ll have to work extra hard to get on the link at Prairie Dunes.
+
+* St. Andrews; St. Andrews, Scotland � This is where golf started and the tradition in rich on this beautiful golf course in this amazing country.  There are six golf courses associated with the St. Andrews Links Organization including �The Old One� where golf was born.
+
+* Royal County Down; Newcastle, N. Ireland � This is one of the oldest golf clubs in Ireland and is a great golf course for anyone who is looking for a challenging round in a breathtakingly beautiful place.  Be prepared to walk, though, they don�t allow �buggies� on this course.
+
+* Muirfield; Gullane, Scotland � This golf course is one of the oldest in the world and provides challenge for golfers of all experience levels.  It has played host to several different tournaments and championships over the years and remains one of the most sought out trips for golfers.
+
+You certainly have your choice of golf courses all around the world depending on how far you want to travel.  But don�t forget to look right in your own backyard.  Some of the small local golf courses can present just as much challenge.

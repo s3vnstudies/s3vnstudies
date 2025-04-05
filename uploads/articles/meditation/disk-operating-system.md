@@ -1,0 +1,23 @@
+---
+title: "Disk Operating System"
+author: "S3vn Studies Team"
+excerpt: "In the early days of micro computing, memory space was often limited so the disk operating system was an extension of the operating system.  This comp..."
+category: "meditation"
+membershipRequired: "pro"
+---
+
+The words disk operating system refers to system software used in most computers that provides the abstraction and management of secondary storage devices and the information on them.  For example, you have several files systems meant for organizing data files of all sorts.  Such software is referred to as a disk operating system when the storage devices it manages are made of rotating platters such as hard disks or floppy disks.
+
+In the early days of micro computing, memory space was often limited so the disk operating system was an extension of the operating system.  This component was only loaded if it was needed.  Otherwise, disk access would be limited to low-level operating such as reading and writing disks at the sector level.
+
+Examples of disk operating systems that were extensions to the main operating system include Apple DOS for Apple computers, Commodore DOS for Commodore computers, and Disc Filing System or DFS
+
+Sometimes a disk operating system can refer to the entire operating system if it is loaded off a disk and supports the abstraction and management of disk devices.  Disk operating systems are often referred to as DOS.  Some examples would include DOS/360 and Free DOS.  On the PC compatible platform, an entire family of operating systems was called DOS.
+
+Microsoft used the disk operating system as a basis for their first marketable operating system on the computer market.  MS-DOS (Microsoft Disk Operating System) was the first of its kind although it wasn�t exactly user-friendly.  It required the entry of commands manually by the user to manipulate data and navigate the computer.  This proved to be confusing for the everyday user.
+
+DOS, however, would prove to be the basis for many of the operating systems we now know today.  Some versions of Windows still contain ways for a user to bring up the MS-DOS system from the GUI which can be good when trying to fix system errors or to activate system restore.
+
+The disk operating system runs in the background and lets the computer know what to do upon start up, where to store files, what to name those files, and formatting disks to name just a few of the functions of this system.  DOS has helped bring personal computing into our homes and businesses on a new level.  Prior to the invention of the disk operating system, using a computer was too complicated for most people.
+
+Today, thanks to the technology that the disk operating system has offered, we can work on computers with ease and not worry about what�s going on when we push the �Power� button.  The disk operating system does it for us!  Now that�s productive!

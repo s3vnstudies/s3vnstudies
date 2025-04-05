@@ -1,0 +1,21 @@
+---
+title: "Download Linux Operating System"
+author: "S3vn Studies Team"
+excerpt: "The best place to download the official version of the Linux operating system is to go to www.linux.org and click on their download link.  You should"
+category: "meditation"
+membershipRequired: "pro"
+---
+
+With the growing popularity of the Linux operating system, many people wonder where to go and how to go about downloading the program.  Because Linux is a free operating system, it is available for download in a few places, and installing it is easy to do.
+
+The best place to download the official version of the Linux operating system is to go to www.linux.org and click on their download link.  You should receive a pop-up box asking if you want to save it or run it � just save to your �My Documents� folder (if you are using Windows) and then let it download.
+
+You don�t actually have to install Linux to your hard drive in order to use the Linux operating system.  There are special versions that can be downloaded and then burned to a CD.  When you do that, you can boot your computer directly from that CD without having to install it completely and overriding the information already on your system.  This is a great way to go ahead and try out the Linux operating system without compromising your current operating system.
+
+You can also download versions of the Linux operating system that are designed to be installed to your hard disk permanently.  Before you do this, however, take heed of the system requirements needed to run Linux properly.
+* You should have a high-speed Internet connection (T3, T1, xDSL, cable modem). Trying to download a major vendor's version of Linux will most likely be a frustrating experience with a dial-up modem connection. 
+* You'll need the ISO images or a DVD image for the distribution you want to download which you must then copy or "burn" into a CD or DVD. 
+* If you already run another operating system, you must re-partition your hard disk in order to install a "standard" Linux distributing. 
+* When you download Linux from the Internet. You are not entitled to that particular distributor's technical support.  You will have to look for the documentation that you need in order to resolve any problems you might run into or seek appropriate help on websites or in other Internet forums. 
+In other words, if you don't have a high-speed Internet connection or a drive that writes to blank CDs or DVDs, then downloading is probably not the best way for you to get a full-featured Linux distribution. You can, though, depending on your location, get Linux free in magazines or from retailers that will sell you a distribution on one or more CDs at very low cost. Distributions obtained in this way do not usually include documentation or support. There are also many books that include a Linux distribution. 
+When you go to download the Linux operating system, you need to know what you are getting into prior to beginning the download.  Once you�re sure you want to try it out, go for it and see what types of options you have in operating systems.

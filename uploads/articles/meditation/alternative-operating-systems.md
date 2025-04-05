@@ -1,0 +1,23 @@
+---
+title: "Alternative Operating Systems"
+author: "S3vn Studies Team"
+excerpt: "Of course, Windows is one of the easiest operating systems to have.  It is loaded on most computer systems, so you can use other systems besides your"
+category: "meditation"
+membershipRequired: "pro"
+---
+
+Even though most personal computers are sold today with Windows pre-loaded, there are alternative operating systems that you can choose to install yourself.  Advances are constantly being made in computer programming that allows computer users to choose what operating system they want to use.
+
+Of course, Windows is one of the easiest operating systems to have.  It is loaded on most computer systems, so you can use other systems besides your own with ease and without having to learn a new program.  Windows is designed to be user-friendly with point and click technology that allows nearly anyone to easily become a computer expert.
+
+One of the alternative operating systems you can look at is rising in popularity � especially in recent years.  The Linux operating system is a freeware product developed within the last several years as an alternative to Windows.  It is also designed to be user-friendly with a graphical user interface that allows for easy navigation.
+
+Linux has been accepted by many large corporations as a viable alternative to other operating systems.  These companies include IBM, Novell, and Sun Micro Systems.  Many of them have adopted them as their primary operating system for their mainframe computers as well as individual PCs.
+
+As we�ve said, Linux is meant to be freeware available to anyone.  It is meant to be shared between users and programmers alike so that they can make changes to the system and re-distribute it freely with those changes.  The concept is that rather than having one programmer working on the system, many programmers can ultimately make the system better.
+
+Besides Linux, Apple Corporation has an alternative operating system made for their PCs called Mac OS.  This operating system is usually just run on Macintosh computers, but it is always evolving and being developed so that eventually, it can be run on any computer.  Mac OS was actually the model operating system used to develop Windows.
+
+There are many other alternative operating systems � most of which were developed as freeware like Linux.  These include GNU, Gnome, Solaris, and Unix.  They are all viable alternatives to any operating system and most are as user-friendly as Windows and Mac OS.
+
+You don�t have to stick with any pre-loaded operating system on your new computer.  There are many alternative operating systems you can choose from and they are all meant to be easy to use and visually appealing.  You can easily install these operating systems and be well on your way to a new experience.

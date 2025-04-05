@@ -1,0 +1,18 @@
+Windows 98
+
+
+Windows 98 – codenamed Memphis – was released by Microsoft Corporation on June 25, 1998.  Windows 98 was the successor to Windows 95 and presented a hybrid 16-bit/32-bit monolithic product which was based on MS-DOS.  It was quickly followed by an updated to the operating system with Windows 98 SE (second edition) as Microsoft attempted to fix many bugs that were present in the original version.
+
+Among the newer features of Windows 98 were better AGP (accelerated graphics port) support, functional USB (universal serial bus) drivers, and support for multiple monitors and Web TV.  It also featured support for the FAT32 file system allowing it to support disk partitions larger than the two gigabyte maximum accepted by Windows 95.  It was also the first version of Windows to support ACPI (advanced configuration and power interface.  
+
+Windows 98 was also the first operating system to use Windows Driver Model which standardized device driver programs and allowed for more peripherals to runs smoothly on the system.  When Windows 98 was released, this fact was not well published and device manufacturers continued to develop devices with drivers under the old system which would make them incompatible with the new operating system.
+
+One huge advantage of Windows 98 as an operating system was that the system requirements were low.  That means that even older machines can effectively and efficiently run Windows 98 and users can take advantage of the new updates to the system.
+
+Windows 98 also offered up full support for DOS applications because it can easily be switched to DOS mode.  In doing this, DOS based applications can handle the system in their native environment.  Having DOS mode available also provides for easier ways to fix system errors without having to enter into the graphical user interface.
+
+Like other previous versions of Windows, this operating system wasn’t without its problems.  Windows 98 was never as stable as common users had hoped.  Often, the software developers of drivers and applications had insufficient experience with the creation of programs for this new system.  This caused many errors generally described as system errors by users even if the error was not caused by parts of Windows or DOS.
+
+Newer versions of Windows would fix these problems, and Microsoft worked quickly to provide patches to the Windows 98 system for users to download and make their system much more stable.
+
+As with most operating system, Windows 98 was updated soon after its release and improved upon.  It did provide some great updates that would serve as models for subsequent versions of Windows.

@@ -1,0 +1,45 @@
+---
+title: "Animals And Stress Relief Therapy"
+author: "S3vn Studies Team"
+excerpt: "I probably should not be writing this article today since my dog ate my phone 2 days ago, not exactly stress relief! So, aside from the occasional ann..."
+category: "miscellaneous"
+membershipRequired: "pro"
+---
+
+There are many experts who tout the advantages of animals and stress relief. According to science the very act of petting a dog or a cat can actually lower your blood pressure. I have had animals my whole life and I have to say that I agree with that, most of the time!
+
+I probably should not be writing this article today since my dog ate my phone 2 days ago, not exactly stress relief! So, aside from the occasional annoyance, animals and stress relief really do go hand in hand. 
+
+If you already have a pet you probably already know this. If you have a pet who is increasing your blood pressure because they misbehave, do yourself a favor and take them to a qualified professional and work on their behavior problems. 
+
+Don't think that you can't train cats or help them act better either, you can. This type of "intervention" is not just for our canine friends. 
+
+Don't short yourself on the opportunity to have a healthy,loving and peaceful relationship with your pet just because of some bad habits. If you are willing to invest the time you can train your pet to overcome their bad habits and become a stress free and fun companion. 
+
+Animals really just want you to love them and for the most part they will try to do what you want them to do. With some training most animals will turn into civilized and gentle loving companions for you. 
+
+If you don't currently have a pet there are many species of pet that can help you relax. Just take some time to realistically consider your lifestyle and how much time you have to spend with a pet. 
+
+Too many would be pet owners do not take these things into consideration and they get a pet that is not a good fit for them or their lifestyle. You do not want to do that. It will make your life and that of your pets very uncomfortable. 
+
+Once you adopt a pet they become part of your life, it isn't fair to just get rid of them because it is no longer convenient for you, that is just really selfish on your part. 
+
+You can help eliminate the chance of that happening by carefully considering your personality and lifestyle and choosing the right type of pet for you.
+
+Here are some things to consider:
+
+1. If you are a really neat person and can't stand a mess you might be better off with a cat or at least a non-shedding dog breed. But remember, every animal that has hair, including humans, will shed a little it's just a matter of degree. 
+
+You may even want to get fish since they obviously won't shed on the carpet or have to have their litter box cleaned though you will need to clean the tank weekly. 
+
+2. If you like peace and quiet a cat or a fish may be a good option as well. If you want a dog find a breed that is not overly nervous or "yappy".
+
+3. Consider how much time you spend at home. Animals, especially dogs, are social and they like companionship. If you do not spend much time at home getting a fish or maybe a cat will probably work out better for you than a dog. 
+
+Sometimes getting two dogs may work since they can provide companionship for each other but at the end of the day, your pets want to spend time with you. 
+
+4. If you are active and like the idea of having an active companion you can take with you on your adventures consider a bigger breed of dog. A golden retriever can be a great companion to take on your hikes or walks. They are also mild mannered and good natured. But, they like to be around you a lot and they do shed. 
+
+All in all, if you want to have a pet, make sure that you take your time, ask questions and find the best fit for you. All pets can provide companionship but just like with your human companions you will be more compatible with some than with others. 
+
+Animals and stress relief will provide you with more benefit if you choose the right pet for your personality and lifestyle. If you've never had a pet before, take your time to consider these factors first.

@@ -1,0 +1,23 @@
+---
+title: "Finding the Truth within the Pages of a Meditation Book"
+author: "S3vn Studies Team"
+excerpt: "Near as they are, getting in touch with all these realities, all the solutions needed to lift the world from its misery, is actually a great feat that..."
+category: "meditation"
+membershipRequired: "pro"
+---
+
+This world is made up of many different realities. All of these, diverse as they may seem, actually work and revolve around one thing � the meaning of life. The search for things like happiness, victory, and personal satisfaction is actually a quest for life's real essence. Where do you find all these things? You might be amazed, but everything is actually found within one's self. The answer to life's endless questions, the unlocking of the many mysteries of living, all these are hidden in the deepest recesses of man's soul.
+
+Near as they are, getting in touch with all these realities, all the solutions needed to lift the world from its misery, is actually a great feat that requires will and determination. If you wish to unravel the many treasures within yourself, you will find a great help from meditation books.
+
+Meditation is a practice, an activity that has its origin thousands of generations ago. Many philosophers and thinkers are known in the promotion of this activity and the benefits that it provides. In this modern era of fast living, meditation still finds a place in the lifestyle of many people. There are various forms of meditation being introduced and practiced, meditation programs being offered, and even meditation books which are all designed to lead people in the path and direction towards themselves and to the truths that many are looking for. 
+
+Meditations books offer insights about taking full advantage of meditation in man's everyday living. Whether you are a beginner, someone curious about meditation, or a person whose goal in life is to find the real essence of existence, there are actually various meditation books to help you get started. 
+
+Every meditation book is written for enlightenment, which is actually the goal of every meditation practice. Enlightenment lurks within the pure silence of the soul, and it is only when you are able to establish connection with your inner self will you be able to find the truths that you need in order to live a happier and a healthier life. 
+
+Meditation books do not stop on teaching you how to start a regular personal or structured meditation session. Each book is designed to help you go through the process, deal with the possible obstacles that you may encounter along the way, and to successfully apply meditation to everyday living. 
+
+Although the concrete activity when doing meditation is performed within a specific span of time and with certain guidelines that you must observe, real meditation is actually a lifestyle. Whatever you do, wherever you are, whatever the current experience you are in, you can turn that into a meditation. When done successfully, you will be able to find fulfillment in everything that you do and improve the total quality of your life.
+
+Meditation books are treasure troves of knowledge. They bring abstract concepts into the setting of the real and the concrete world and help you find the best way by which you can get the best out of your life.

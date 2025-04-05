@@ -1,0 +1,18 @@
+Windows 98
+
+
+In 1998, Microsoft Corporation released their latest update of the popular Windows operating system – Windows 98.  It was a successor to the previous version of Windows 95 and was an improvement on technology contained in its predecessor.
+
+One of the great advantages to Windows 98 was that it required relatively low system requirements making it easier to gain its full potential even on older machines.  This version of Windows gave full support to DOS applications because it could be switched between DOS mode and Windows mode.  Being able to do this allowed the user to fix certain system errors manually.
+
+Windows 98 was never as stable as regular computer users needed.  This was due to many reasons.  Often the software developers of drivers and applications had insufficient experience with the creation of programs for the new system.  This caused many errors generally described as system errors by the user even if the error was not cause by parts of Windows or DOS.
+
+Microsoft realized these problems and released many patches that allowed the operating system to gain extreme stability comparable with higher versions of Windows through the use of the most current device drivers and careful installation of the operating system.  Many older computers still run Windows 98, so having these patches has proven to be a great advantage for them.
+
+The biggest advantage to Windows 98 as an operating system is its compatibility.  It can safely handle very old applications or hardware from the late 80’s and early 90’s while running most newer applications at the time without problems.  Its software environment is very similar to Windows 2000 and Windows XP.
+
+Windows 98 had a limitation in the area of hardware handling.  This operating system did not support more than 512 megabytes of RAM as an internal limitation of the system.  RAM over this limit could be used by applying patches and changing the system settings natively.  What this means is that high-end graphics cards and peripherals will probably not work properly.
+
+Windows 98 also contained many system tools for the computer user to take advantage of.  These tools include scan disk, disk defragmentation, scanreg, and msconfig among others.  All of these tools help the computer system run much more efficiently and eliminate problems that may arise due to Internet use and possible infection with viruses.
+
+Eventually, Windows 98 would be succeeded by other versions of Windows that would improve on other areas of functionality, but at the time, it was very well received as a technological advancement in the area of operating systems in general.  

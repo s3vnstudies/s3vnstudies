@@ -1,0 +1,27 @@
+---
+title: "Time Management Tips for Students"
+author: "S3vn Studies Team"
+excerpt: "When looking to improve your time management, it is important to know that there are a number of tools that you can use to your advantage.  As a stude..."
+category: "time-management"
+membershipRequired: "pro"
+---
+
+Are you a high school or college student who finds it difficult to manage your time?  If you are, there are a number of steps that you will want to take to improve your time management.  After all, having poor time management in school can have a number of serious consequences, including poor grades.
+
+When looking to improve your time management, it is important to know that there are a number of tools that you can use to your advantage.  As a student, you likely have a computer and a cell phone.  Many already come equipped with time management programs that you just need to start using.  These programs can include calendar alert programs where a special message will appear on your screen or you will receive an email or a text message.  A standard internet search can also help you find and buy additional programs that can be installed on your computer or even your cell phone.
+
+Another time management tip for students, like yourself, is to stay organized.  Organization is key to staying on task and focused.  If your school locker or desk is messy or cluttered, you will likely end up wasting a considerable amount of time.  For many students, a considerable amount of time is wasted looking for lost or misplaced items, like books or homework assignments.  If your locker, home desk or dorm room desk is not clean and clutter free, take a few minutes to get organized.
+
+Another easy and effective way for you and other students to better manage their time is to prioritize.  When doing so, it is important to take a close look at what you have to do.  For example, what homework assignments, study sessions, and so forth need to be completed first?  Simply just creating a to do list isn�t enough for many students.  By determining ahead of time which tasks are of more importance, you are better likely to manage your time and produce the best results.
+
+One of the many reasons why high school and college students have poor time management is because they find it easy to get distracted.  If you find it easy for you to get distracted, it is important to examine the source of your problems.  For example, do you end up surfing the internet when using your computer?  If you try to watch television when doing homework or studying, do you find that most of your focus is placed on the television?  If you do, action should be taken.  Temporarily disconnect the internet from your computer or turn off your television.
+
+It is also important to be flexible.  If you are an individual who hates change or the unexpected, you need to get use to it.  Even those who have good time management skills and those who rely on the use of schedules are often presented with unexpected events, an example of this being coming down with a cold.  That is why it is always important to leave �wiggle room,� for yourself.  Set aside a little bit of extra time each day to do with as you please.  Whether you use that time to finish a project, study, or socialize with friends, it is important to have it.
+
+As nice as it is to know that you should be able to effectively manage your time as a high school or college student, it is also important to know the consequences of not doing so.  As previously stated, poor time management may translate into poor grades.  If you do not know how to properly manage your time, you may find yourself not studying properly or you may be unable to complete important assignments before they are due.  From the standpoint of a student, proper time management may also help to eliminate stressful late night study sessions.
+
+As highlighted above, there are a number of steps that you can take to improve your time management.  As a student, it is extremely important that you know how to effectively use your time.
+
+PPPPP
+
+Word Count 667

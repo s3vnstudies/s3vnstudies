@@ -1,0 +1,27 @@
+---
+title: "Free Background Checks Online-It Pays To Pay"
+author: "S3vn Studies Team"
+excerpt: "After some research I have found that if you want detailed information on someone you may have to pay to get exactly what you want. There are many sit..."
+category: "miscellaneous"
+membershipRequired: "pro"
+---
+
+There are many reasons you may be looking for free background checks online to gather important information on another person, for instance, someone you are thinking of hiring to do work for you in your home or someone to watch over your children when you have to go to work. 
+
+After some research I have found that if you want detailed information on someone you may have to pay to get exactly what you want. There are many sites out there that tell you you can search for free but when it comes right down to finding specific information you will have to shell out some money.
+
+To get free background checks online you could go to any one of these sites and maybe get a free seven day trial but if you go beyond the seven days then your credit card will be charged.
+
+You can always get a little bit of information on someone at these sites like, who possible relatives are and what other names they have used in the past. Any information you want that goes deeper than that you may have to pay for. They will ask you to pay a fee in order to get an address, phone number, criminal history, and the other information you may need.
+
+If you want totally free information on someone you are basically going to have to do some leg work to find it. So, what type of free information can you find about someone? Online or off there are many ways to get the information you need or want about that person.
+
+You can use the search engines to find information about the person. You can find quite a bit of information about someone just by typing their name in the search engine, but you will not have access to any criminal history about them with the search engines at all. 
+
+To get specific results about the person you must make sure you put quotations around their name when you type it in so that the search engine gives you results for that exact name.
+
+Another option to try is to use the social networking sites to help you find out about the person. You may be able to find out a phone number, where they live, or other information from the profile they set up. The only problem is their profile may be restricted from just anyone seeing their personal information. 
+
+There are many reasons why you may want to check someone out, but if you need to see if the person you are checking out has a criminal history you may have to pay to get it. If you are only looking for a phone number, address, or a bit of personal information you may be able to find this with a quick Google search or search on the social media sites.
+
+Be careful when performing a free background checks online by making sure that the information you find is for the person you really want and not someone else. It could get quite embarrassing for you if you judge someone on someone else's information.

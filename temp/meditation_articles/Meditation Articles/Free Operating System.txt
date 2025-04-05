@@ -1,0 +1,17 @@
+Free Operating System
+
+
+A free operating system is one that is available to the general public.  It is software that can be used, copied, studied, modified, and redistributed with little or no restriction.  Therefore, software is free if its source code (the human readable form of the software) is available with a software license that grants recipients these permissions or if the source code is in the public domain.
+
+The concept of free software came about as a reaction by several people who felt that big companies like Microsoft were limiting the software market by making their programs available only for a fee.  They felt that computer usage should be free for everyone.  That includes the software that comes with the computers.
+
+Free operating systems have been in development for years.  Free software, and especially free operating systems have a very high market penetration in server side Internet web applications.  Completely free computing environments are available as large packages of basic system software as with the GNU or Linux operating systems.
+
+Free software developers have also created free versions of almost all commonly used desktop applications such as web browsers, office productivity suites, and multimedia players. It is important to note, however, that in many categories, free software for individual workstation or home users has only a fraction of the market share of their proprietary competitors. Most free software is distributed online without charge, or off-line at the marginal cost of distribution, but this is not required, and people may sell copies for any price.
+
+Large corporations are recognizing the economic advantages to offering up free operating systems.  IBM, Red Hat, and Sun Micro Systems are endorsing free operating systems like Linux as a viable alternative to Windows or Mac OS X.  They are using these operating systems as models for creating their own free software for distribution to the mainstream public.
+
+When free operating systems are made available, you can certainly see the advantages that will result.  Proprietary software – that which is sold – will probably have lower prices as the companies who develop that software will have to compete with the free movement.  They will also have to develop newer and better products that will give them the operational capabilities that free software won’t have.
+
+There is some controversy over the free software movement as well as the distribution of free operating systems such as Linux or GNU.  Opponents say the free operating systems can’t offer the same security or capabilities that Windows, for example, can.  However, there’s no doubt about it that free software and free operating systems open up the computer world to new and radical ideas that can change the way we operate our computers.
+

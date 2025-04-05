@@ -1,0 +1,33 @@
+---
+title: "Replace Self-Defeat With Self-Control In 5 Steps"
+author: "S3vn Studies Team"
+excerpt: "It will just make things worse instead. Here are some steps on how to change this behavior and exhibit a personality which has self-control especially..."
+category: "self-defeating"
+membershipRequired: "pro"
+---
+
+There are a lot of things which may contribute to possessing a self-defeat attitude. These factors may include stress, depression, anxiety or even an awful life event. There are a lot of people who turn to having this kind of behavior once they are faced with challenges however; doing so will not solve anything.
+
+It will just make things worse instead. Here are some steps on how to change this behavior and exhibit a personality which has self-control especially in times of hardships. 
+
+1. Attitude Is Important
+
+How you respond to certain stimuli is the main factor which defines you as a person. They said, you are given problems which only you can solve. This may be easy to say but it is very hard to accomplish. You need to have a positive attitude in everything that will happen in your life. This will require changing your views. You need to remember that how you deal with situations will affect your present and your future in ways you could never imagine. 
+
+2. Accept that it�s Your Mistake
+
+Whenever you go through troubles, you will normally blame others for the things that had happened to you. This is very common for those who have an attitude of self-defeat. They are not willing to be accountable for what is happening in their own life. They put the blame on someone else. 
+
+If you wish to have self-control in your life, then you need to have a sense of accountability. You need to bear in mind that you are the captain of your ship you must take responsibility for all the actions which you are taking and you need to be ready for whatever the outcomes of those actions will be. 
+
+3. Control Your Anger
+
+If you have a self-damaging behavior, you will either suppress your anger or you can also constantly let it loose with no regard to the feelings of other people that surrounds you. Having self-control means that you need to be honest with how you feel and accept this feeling as a part of your human nature. It is alright to be angry but you must never vent out on other people. Learn how to control by finding its source and know how to tame it. 
+
+4. Be Contented
+
+Having self-control means that you also have to be contented with what you have right now. You do not have to constantly ask for unrealistic things or event that will not likely happen. Stop dwelling in your own shortcomings but instead try to figure out how you can make the most out of your life and how to reach your full potential. 
+
+5. Express Your Feelings
+
+Learning how to express your feelings is a sign that you are starting to have self-control. However, you need to make sure that you know when and where to do it. Unloading your emotional stress is one good way of helping you cope with your life�s daily stressors. You just need to find the right way to do it.

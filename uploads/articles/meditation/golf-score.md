@@ -1,0 +1,19 @@
+---
+title: "Golf Score"
+author: "S3vn Studies Team"
+excerpt: "The way golf scores are tallied can mean so many things.  Just because you shoot an 8 on a par 4 doesn�t necessarily mean you are a bad golfer.  It mi..."
+category: "meditation"
+membershipRequired: "pro"
+---
+
+When you are playing the great game of golf, your golf scores become both your best friends as well as your worst enemies.  Many players live by their golf scores and judge their progress according to what the score card says.  While you might think that your golf scores are the best gauge of how you are coming along as a golfer, that isn�t necessarily the case.
+
+The way golf scores are tallied can mean so many things.  Just because you shoot an 8 on a par 4 doesn�t necessarily mean you are a bad golfer.  It might mean that you had a bad drive and a mis-aimed chip � but it doesn�t make you a bad golfer.  So don�t put too much stock into what the scorecard says.  Judge your golf game by how you play rather than what your scores are.
+
+Golf scores are only meant to help you keep track of the strokes you take to get from tee box to the hole.  They don�t ever take into consideration things like hazards, weather conditions, or anxiety.  Sure, you can�t keep track of how you are doing without paying attention to your golf scores, but you still need to keep in mind that there are a million variables that can make your score fluctuate.
+
+Of course, if you�re a golfer, you know all the terminology � birdie, eagle, bogey, double eagle (if you�re really lucky) � but the real story in golf scores lies in how you played the course and navigated the hole.  Instead of keeping track of scores, why don�t you keep track of where you were for a particular shot and how that shot came out?
+
+Let�s say, you make a horrible drive on a par 4 and only end up 100 yards off the tee box.  Let�s hope it�s past the women�s tee � if you know what I mean!  So now you are faced with a long fairway shot.  You pick up your favorite club and smack a beautiful flyer right on the green.  Who�s going to say that wasn�t a good golf shot?  You end up with a par on the hole, but your score doesn�t really reflect that amazing shot now does it?
+
+The point is, don�t put too much emphasis on the amount of strokes on your scorecard.  Think about your golf score as a reflection of the amazing shots you�ve made as well as the flubbers you�ve had to live through as well.  Then you can find out what kind of a golfer you are and not have to live by the golf score alone.

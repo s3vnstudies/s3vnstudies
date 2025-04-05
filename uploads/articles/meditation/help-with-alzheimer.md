@@ -1,0 +1,34 @@
+---
+title: "Help with Alzheimer"
+author: "S3vn Studies Team"
+excerpt: "Alzheimer causes a person to loose intellectual functions, which are characterized by a variety of illnesses and symptoms, including degeneration. The..."
+category: "meditation"
+membershipRequired: "pro"
+---
+
+Alzheimer disease (AD) arrives from a variety of complications, including Down syndrome. Alzheimer disease also spreads to dementia, which makes it a progressive condition. 
+
+Alzheimer causes a person to loose intellectual functions, which are characterized by a variety of illnesses and symptoms, including degeneration. The brain tissues begin to deteriorate and collapse over time. In addition, Alzheimer disease affects the nerve tosses, which also deteriorate and erode gradually. 
+
+Alzheimer�s disease will gradually affect the mind to the point the patient becomes mentally less acute in the later stage. Senile causes the patient to forget and feel confused.  Once maturity deficiencies increase, the problem leads to plague or epidemic buildup. In time the patient will loose microscopic strands of neurofibrillary, which occurs in cell bodies, dendrites, and axon, revolving around the nerve cells, concluding with tangling. 
+
+Alzheimer�s disease gradually moves to dementia, which is a cognitive, intellectual deterioration. The progressive disorder deteriorates the brain tissues increasingly, thus affecting the intellectual functions. The memory losses time, place, names, etc, which the actions causing dementia derive from brain complications whereas movement is uncontrolled, as well as senses are restrained. 
+
+Over �65%� of the elderly people diagnosed with dementia have a mother disease called Alzheimer. The condition often affects people �60� years of age and older. The condition will target the age group 85 years and older, which more than �30%� are stricken with Alzheimer�s disease. Amazingly, Alzheimer�s disease only affects around 1% of the elderly generation 60 years of age. 
+
+According to statistics, around �4 million� individuals in America alone are diagnosed with Alzheimer�s disease. (AD)  
+
+At present, no one knows why, what, or how Alzheimer�s disease starts. For this reason, patients diagnosed with Alzheimer�s disease are recommended to stay in safe environments, as well as stable environments. Moreover, patients diagnosed with Alzheimer�s disease are recommended to stay in familiar areas, as well as around familiar faces consistently. Medical experts are recommended to set up plans the help the patient with orientation. 
+
+How the plan works:
+According to medical experts patients diagnosed with Alzheimer�s disease and/or dementia can benefit in safe environments, especially when safety is increased. For example, family members can use large posters to leave messages for the patient diagnosed with Alzheimer�s disease. The signs can help the patient remember what is expected of him or her. 
+
+Families are recommended to purchase ID bracelets to prevent mishaps. In addition, families are recommended to prevent accidents by concealing vehicle keys. The notion is to increase the patient�s safety. 
+
+If your loved one at home has been diagnosed with Alzheimer�s disease, or dementia, experts recommend a familiar environment and people at all times. In short, avoid rearranging the environment. In addition, try to stay in a stable environment, since moving to new locations will disrupt the patient. 
+
+Stability is important. Stability gives person strength and a firm ground to stand. Experts in medicine recommend that patients diagnosed with Alzheimer�s disease or dementia adhere to routines. The routine includes regular meal times, consistent sleeping patterns, steadfast bathing practices and so on. 
+
+In addition, you want to plan for your loved one. Experts recommend that you purchase large clocks, calendars, etc, to help the person recall dates, time, and so forth. If the patient awakens during sleep hours, you may want to provide the patient a lighted pathway. Experts recommend that families assisting loved ones who suffer with Alzheimer�s disease or dementia keep nightlights around the home. 
+
+In addition, families are recommended to keep the patient informed by reminding him or her of the plans laid out by you or your doctor.

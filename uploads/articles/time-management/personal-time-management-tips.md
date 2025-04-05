@@ -1,0 +1,25 @@
+---
+title: "Personal Time Management Tips"
+author: "S3vn Studies Team"
+excerpt: "As for how poor time management can have a negative impact on your personal life, you may be surprised just what it can do.  For example, if you have"
+category: "time-management"
+membershipRequired: "pro"
+---
+
+Are you an individual who just feels as if you can never catch up?  Do you feel like you can�t get everything that you need to do done?  If so, it is important that you take steps to rectify the problem.  Poor time management is often associated with the workplace, but did you know that your personal life can be negatively impacted as well?  It can be.
+
+As for how poor time management can have a negative impact on your personal life, you may be surprised just what it can do.  For example, if you have a poor sense of time you may find that your relationship with your spouse, romantic partner, friends, or children suffers.  Those who have a poor sense of time are often stressed, frustrated, and unorganized.  This is likely to put a significant strain on otherwise healthy relationships.
+
+Despite the fact that time management can have a negative impact on your personal life, there is good news.  That good news is that there are ways that you can prevent your poor use of time from becoming too much of a problem.  The biggest way to prevent this from happening involves learning how to make better use of your time.  To help you get started, a number of personal time management tips are outlined below.
+
+An easy way to learn how to make better use of your time involves creating and relying on to do lists.  If you have everyday tasks that have become a part of your routine, like getting your kids ready for school or going to work, you do not necessarily have to include these items on your list.  With that said, other non-daily tasks should be added.  These tasks may include running an errand before work, attending a child�s sporting event, helping your child with an important school project, going on a date, and so forth.
+
+Learning how to prioritize is another important component of being able to properly manage your time.  It is important to remember that the day and its time is limited.  If you have a family and a fulltime job, you may find it difficult or downright impossible to get everything done.  If that is the case, be sure to prioritize.  You can leave the lesser important tasks, such as dusting your house as opposed to doing laundry for later or the following day.
+
+The use of time management tools is another easy way that you can go about making better use of your time.  There are a number of tools that you can use to your advantage.  A to do list was sited as an example above.  Other tools that you may be able to benefit from the use of include alarm clocks and daily or weekly planners.  Since most time management tools are affordable, already in your home, or free to create, you should use them to your advantage.
+
+One of the many reasons why people end up wasting time is because they are easily distracted.  If you feel this the main source of your time management problems, you will want to determine what your biggest distractions are.  For example, do you spend too much time socializing with coworkers after work or with the neighbors?  If so, you don�t have to completely eliminate this contact, but try to limit it.  The same can be said with television and internet use.
+
+PPPPP
+
+Word Count 563

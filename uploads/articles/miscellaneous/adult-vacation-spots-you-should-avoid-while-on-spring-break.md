@@ -1,0 +1,23 @@
+---
+title: "Adult Vacation Spots You Should Avoid While On Spring Break"
+author: "S3vn Studies Team"
+excerpt: "So if you are not some rowdy college student, what are you suppose to do during spring? Well there is no Adult Vacation spots you should avoid if on s..."
+category: "miscellaneous"
+membershipRequired: "pro"
+---
+
+Spring break is a time of fun and a lot of drunken antics by the college communities out there. All those college students are heading to the warm beaches to play their hearts out and stretch their legs after a long winter. But this can be disruptive to the more adult crowd out there who are looking to do similar, albeit in a much more controlled fashion.
+
+So if you are not some rowdy college student, what are you suppose to do during spring? Well there is no Adult Vacation spots you should avoid if on spring break. You should not have to go somewhere else and deprive yourself of the rest and relaxation you deserve. There are ways you can go about mitigating the annoyances caused by rowdy and drunken college students so that you can still enjoy these sunny vacation spots.
+
+1: Look into adult hotels. What I mean by this, is that in the traditional hot spots like say, Cancun or Miami, a lot of hotels will have age restrictions. Nobody under the age of 25 can rent a room there. 
+
+This is because they not only want to forgo the hassle of dealing with a bunch of drunken college kids, but also understand that people like you want to have fun in the sun as well. This age restriction only applies to the person renting the room, though. So if you want to bring your family along you can.
+
+2: Avoid the hot spots. There are a lot of specific areas that college kids like to congregate to. These are easily spotted simply by watching MTV. Some of these Adult Vacation spots you should avoid if on spring break can make all the difference. If you simply go places the college kids are not at, such as a quiet beach a little farther away, you can enjoy yourself much better without having to worry about all the ruckus.
+
+3: Complain and complain often. Now a little disclaimer right off the bat, be aware that these kids are just there to have fun and do not mean you any harm or trouble, so do not go overboard. But if they are being so rowdy that they are disrupting your vacation, do not hesitate to complain to the manager. If you make your complaint known, they will often do something about it. Whether it be in the form of compensation, or moving you away from them or something.
+
+While you should not go out of your way to ruin their vacation, you do not have to be a doormat and allow them to ruin yours. Moderation is key after all.
+
+While there are a lot of Adult Vacation spots you should avoid if on spring break due to just how hectic it can get, you can also find ways around these problems. It may be a little bit of a hassle and may require some extra planning, but you have every right to have a nice time at a sunny beach resort so do what it takes to ensure you have a nice, fun, and relaxing vacation.

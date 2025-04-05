@@ -1,0 +1,24 @@
+---
+title: "10 Ways To Relieve Stress"
+author: "S3vn Studies Team"
+excerpt: "The solution centers on focus and relaxation. These 10 ways to relieve stress will help you maintain a balance between keeping your blood pressure dow..."
+category: "miscellaneous"
+membershipRequired: "pro"
+---
+
+Stress is not a very pleasant experience but unfortunately life throws situations full of incongruence at us that challenge our ability to remain calm. The reasons are endless from the noisy neighbor to the pizza boy whom keeps delivering a pepperoni pizza when I asked for a Hawaiian pizza with extra cheese and�..well, you get my drift.
+
+The solution centers on focus and relaxation. These 10 ways to relieve stress will help you maintain a balance between keeping your blood pressure down and blowing a gasket at work, at home or during other social times.
+
+1.Don�t focus on the problem, focus on the solution. Replace a negative thought with something positive like a funny moment recently or something personally enlightening e.g. birth of a baby.
+2.If at work, change your seating position or go for a stroll around the office if stress is hitting you. 
+3.Try some yoga as this teaches you through exercise to focus on being calm.
+4.Go for a walk in the park or go for a swim, activities like these help to relieve stress.
+5.Get a head massage or do it yourself. Gentle rubbing of the scalp is a very effective way to put you at ease. Meditation and also massage techniques offer great therapy. A great way to meditate is to close your eyes and focus on one thing such as your controlled breathing. 
+6.Play a game (if allowed while at work) or do a crossword. Activities like these allow you to easily find at least 10 ways to relieve stress so shift your focus away from whatever is stressing you. It�s a known fact that computer game lovers enjoy obliterating aliens or whatever as a means to alleviate stress.
+7.This is an issue at work though if you can, play some music. Perhaps your employer will allow headphones. Sound that invokes feelings of serenity such as sea waves or forests can act as an excellent reliever.
+8.Perhaps, you have heard the song �the drugs don�t work� from The Verve and it�s all true. Being lethargic or stressed should not mean reaching for the pharmaceutical cupboard.  Stimulants cannot remove the problem or help to forget it. Grab a huge drink of water instead and enjoy the feeling of refreshment.
+9.Try Humor! As part of this list explaining 10 ways to relieve stress, this is probably the most effective method. Laughing brings you into the brighter side of your daily life. Read some jokes, or tell them to colleagues.
+10.Try to sleep for at least 7 or 8 hours every night. More early nights and a proper sleep pattern will allow you to feel more relaxed each day and less prone to procrastination and lethargic behavior.
+
+Follow these 10 ways to relieve stress to start leading a healthy life and improve your ways of tackling daily stress to feel better each day.

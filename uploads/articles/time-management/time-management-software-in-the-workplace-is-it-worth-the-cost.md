@@ -1,0 +1,25 @@
+---
+title: "Time Management Software in the Workplace:  Is It Worth the Cost?"
+author: "S3vn Studies Team"
+excerpt: "Since wasted time in the workplace is a problem that should be fixed and right away, there are many business owners who choose to use time management"
+category: "time-management"
+membershipRequired: "pro"
+---
+
+Are you a business owner?  If you are, do you have any idea how much time is wasted by your employees?  Chances are, you will find that quite a bit of time is wasted.  In fact, you may be surprised to know just how much time many of your employees spend time doing something other than working.  Remember that even five minutes here and there of socializing with coworkers or surfing the internet is likely to cost you a considerable amount of money in the long run.
+
+Since wasted time in the workplace is a problem that should be fixed and right away, there are many business owners who choose to use time management software to their advantage.  Unfortunately, most time management software programs are costly.  With that said, there are a number of instances in which time management software is more than worth the costs.  Will it be for you?  It will honestly all depends on a number of factors, a few of which are highlighted below for your convenience.
+
+The amount of money that your company is losing by employees who don�t know how to manage their time should be taken into consideration.  Although it will be difficult to determine an exact figure, closely watch those in the office for one day or even one hour.  How much money do you think was wasted?  Times that amount by one whole year or even just a month.  Chances are, time management software will more than pay for itself.  This makes it a good investment.  In fact, if you have multiple employees in your office who just don�t seem to be able to manage their time, an office wide software program is advised and well worth any costs.
+
+Speaking of costs, the amount of money that you will have to spend on time management software for the office should also help you determine if it is a wise business investment.  Of course, you don�t want to end up paying more than you need to, but it is also important to keep quality in mind.  Quality software programs are more than worth the extra cost, as they will likely allow you to see a return on your investment.  It may, however, be in your best interest to take a few minutes or a few hours to research, examine, and compare time management software programs.
+
+In keeping with time management software programs, you may want to examine those that work on an office wide basis.  Can you access a program and it contents from multiple computers in the office?  You should look for software programs that allow you to do so.  This can allow you to checkup on your problem employees.  It is also ideal for projects where team members must work together and share important information.  Another neat future to look for is the ability to send company messages through the software program, sort of like an alert.
+
+As a reminder, it may be a good idea to first research and compare time management software programs before purchasing one.  This will help you protect your business investment.  Since time management software programs do come in a number of different formats and do have different features, it is important that you know what to look for in a software program.  Most companies find success with tracking features that allow them to track the progress of problem employees, regular, yet automated updates and reminders on important deadlines, desktop calendars, and so forth.
+
+As for whether or not your office can benefit from the use of time management software, you should be able to.  If you want to test out a program before purchasing one, see if a free trial period is available.  If not, first search for free programs online and give them a try.  If you like what you see, consider investing in a similar time management software program that gives you more features and better results.
+
+PPPPP
+
+Word Count 665

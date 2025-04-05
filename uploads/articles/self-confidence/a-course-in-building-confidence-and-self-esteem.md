@@ -1,0 +1,31 @@
+---
+title: "A Course in Building Confidence and Self esteem"
+author: "S3vn Studies Team"
+excerpt: "Unfortunately, many of us cannot grasp optimism from a life that is muddled with miseries, morbidity, and struggles. Of course, life's pleasure would"
+category: "self-confidence"
+membershipRequired: "pro"
+---
+
+Optimism! It all lies in our positive perception of our personality, the events occurring around us and life itself. So long as we believe in the goodness that we may have in life, we are bound to enjoy it the way every man should.
+
+Unfortunately, many of us cannot grasp optimism from a life that is muddled with miseries, morbidity, and struggles. Of course, life's pleasure would not be appreciated if it were not equaled with unhappiness. Pain cannot be felt if all we know is joy. Tears would lose its worth if we always experience happiness. Confidence would not be recognized if we do not fall flat on our face sometimes.
+
+Life is a gratifying privilege and we can make everything we want from it. We have to start early in building our foundations so that we wont have to loose precious moments that shall never pass by us again. A moment that's gone is gone forever but your light won't even lose its value long after you have gone.
+
+With optimism in life we would be able to recognize the fullness of our potentials. Everyone has an equal chance for recognition yet many of us fail to share with the limelight because we surrender even before the battle begun.
+
+If you would want to share with what the world offers, you must be brave enough. Nothing should stop your from living your life, not even the miserable demons of low self confidence.
+
+Those who braved life are those who are confident enough of themselves. Sometimes, we just have to take risks so that we might discover what lies in our road. Taking risks though requires lots of faith in yourself. Without this, you would be like a warrior who has lost his armor.
+
+From birth, we were equipped with all the skills that we will use in the later stages of our lives. One such skill is the ability to face challenges and to face them with faith, both in ourselves and to Him who has created all of us.
+
+All of us had an equal chance to develop our sense of self, even when it feels like our fellow is much blessed than us.
+
+We normally have the common notion that life is unfair when in fact, it is not. We all have our shares of blessing and our shares of challenges. It just lies in our perception of things and the manner by which we handle things.
+
+The same thing goes with self confidence and self esteem. Many of us think that the man we are looking up to shared much of life's blessings because he can bear himself better, he can face the public better and he is much eloquent and more confident than most of us. Remember that before he even got there, he ahs to face challenges that contributed to his self-esteem and self confidence. All of us can be that man, only if we believe in ourselves enough. 
+
+We just have to find our own enlightenment to be able to achieve the building of good foundations for our self esteem and self confidence. Changes must come from within before we can accept the assistance that comes from outside. Realization of how valuable you are and how beautifully you were created cannot be helped by outside reinforcement if you, yourself do not want to accept this one simple truth.
+
+Go on, help in the discovery of yourself and that is among the most wonderful venture you will take in life.

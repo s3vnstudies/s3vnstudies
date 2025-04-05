@@ -1,0 +1,37 @@
+---
+title: "Nanny Background Check-Absolute Must For Childcare"
+author: "S3vn Studies Team"
+excerpt: "This is a great idea but be ready to conduct some nanny background checks on all of the applicants who reply to your ad."
+category: "miscellaneous"
+membershipRequired: "pro"
+---
+
+If you have recently decided that you are done having children and now feel that you are ready to get back into the workforce you may consider hiring a nanny to care for your children when you must be at work.
+
+This is a great idea but be ready to conduct some nanny background checks on all of the applicants who reply to your ad.
+
+Nanny background checks are an absolute must, and you also must be as thorough as possible. So many people slip through the cracks and pass these background checks after committing some pretty heinous crimes against children. 
+
+Sometimes the people who seem the sweetest and most caring turn out to be convicted felons. They seem nice because they are masters at getting what they want an they know how to manipulate the system and individuals like you could pay the price for their knowledge. 
+
+Here are some pointers you should keep in mind while doing your interviewing:
+
+First, you should tell the applicants that you plan to check out their background. If you are doing this all yourself you should get them to sign a form giving you their permission to do so. 
+
+If they come from an agency your work may already have been done for you, so call the agency first to find out more. Do not stop there, however, still conduct your own mini investigation into their past.
+
+The following is a list of questions that should be asked:
+
+Personal information: Ask for the applicant's date and place of birth, social security number, and addresses where they lived going back five years.
+
+Employment records: Ask for a full employment history going back ten years. Have them explain, to your satisfaction, any gaps in employment. Contact at least the last three employers for professional references. You alos have the right to ask for personal references as well.
+
+Education records: Verifying an applicant's education records can help you figure out if they are who they say they are. Call the school and ask for transcripts or if the applicant claims to have formal nursing or childcare qualifications and experience, you can verify their license number online and see if there are any disciplinary actions against them.
+
+Driver's license: Get their driver's license number and make a note of the issue date and the date it expires. You can then check out their driving record.
+
+Criminal records: Always ask about any prior criminal history. They may feel embarrassed to tell you but if you are going to trust them and hire them you need to know the full truth. You can do this yourself by visiting the county courthouses in each of the areas the applicant has lived.
+
+All of this can be time consuming for you to do by yourself but there are organizations out there that will help do the screenings of your applicants for you.
+
+A nanny agency that is a member of the Alliance of Professional Nanny Agencies will know all about how to do nanny background checks because it is a pre-requisite for membership.

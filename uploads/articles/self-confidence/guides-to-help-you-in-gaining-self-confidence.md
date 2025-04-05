@@ -1,0 +1,25 @@
+---
+title: "Guides to Help You in Gaining Self Confidence"
+author: "S3vn Studies Team"
+excerpt: "People are not born with confidence. We have to develop it and there are many interplaying factors that must be put to balance before we can actually"
+category: "self-confidence"
+membershipRequired: "pro"
+---
+
+Self confidence is one of the many things we think everyone else have expect us. Don't be harsh with yourself. Of course you are in equal footing with the person standing next to you. If he has the confidence you admire and you loath for not having the same confidence then don't get caught with the idea that you can't be like him. In fact, if you just set your mind to gaining confidence then you are sure to be like him someday.
+
+People are not born with confidence. We have to develop it and there are many interplaying factors that must be put to balance before we can actually create an ideal self confidence that would guide us through our achievements. 
+
+Self confidence stems down from within and in how we think and feel for ourselves. Its development is affected by things that we normally don't have control of. Say, the models we had who either encouraged us or who watched us fall face flat. It is also affected by the events in our life to which we either reacted positively or negatively, thus our anchors for developing our own sense of self. It is also dependent on how well we were able to maximize our potentials.
+
+Here are some guidelines that you can follow to lead you in gaining your self confidence:
+
+If your past bothers you and you think that it has greatly affected the level of your self confidence (which is by the way a solid truth) then just remember one thing- anyone can begin something at any given moment of his life. You can always start gaining your self confidence even if you are already staring to have those dreaded lines in the face.
+
+The past is a stale check, the future is a blind hope. You can only bargain on the "now" that you have. Build your foundations on it and start anew. It is never too late to gain back the confidence you have lost or the confident you never actually have. 
+
+Take stock of yourself. From the moment of our birth to the day we die, our gifts would remain in us. The difference though lies in the way we were able to accept and enhance these realities. If we would only recognize the innate genius that lives in each of us then we would be able to achieve far more than our wildest dreams would command.
+
+We only have one life and we only have one self to live with. Why waste this life because the self did not believe in the potentials he has? Now, if you don't want to fall into history who is someone who failed to start dreaming then you must act now and be convinced that dreams don't starts with "d" and end with "s". Instead, it ends with reaping the fruits of your achievements and starts with believing in yourself.  
+
+Sometimes, lack of self confidence is only a product of our imagination. There are people who believe in us, only we don't believe in what they believe. We choose not to listen to their encouragement because we find no hope in things. We make ourselves believe that we are not capable of doing anything good when actually, there are those people who stand in awe of our subtle achievements. You won believe it but sometimes, these things do happen. And when they do, the people who are caught in these instances are often unaware of their value to the other person caught in the same event.

@@ -1,0 +1,23 @@
+---
+title: "GNU"
+author: "S3vn Studies Team"
+excerpt: "In 1983, a gentleman named Richard Stallman publicly announced the beginning of development for the GNU software.  His goal was to bring a wholly free..."
+category: "meditation"
+membershipRequired: "pro"
+---
+
+GNU � pronounced guh-noo � is computer operating system software comprised entirely of free software.  Its name is a recursive acronym for �GNU�s not UNIX� which was chosen because its design is UNIX-like by being free software without containing any UNIX code.  As of 2007, GNU is being actively developed, but a complete GNU system has yet to be released.
+
+In 1983, a gentleman named Richard Stallman publicly announced the beginning of development for the GNU software.  His goal was to bring a wholly free software operating system into existence.  He wanted computer users to be free as most were in the 1960�s and 1970�s.  This meant having the freedom to study the source code of the software they use, the freedom to share the software with other people, the freedom to modify the behavior of the software, and the freedom to publish their modified versions of the software.
+
+The initial plan for GNU was to be mostly UNIX compatible while adding enhancements where they would be useful.  A lot of the programs had to be written from scratch, but there were some existing compatible free software components that were able to be used.
+
+By 1990, GNU had a text editor, a successful optimizing compiler, and most of the core libraries and utilities of a standard UNIX distribution.  However, the main component � the kernel � was missing.  The kernel is the main part of any operating system that manages the system�s resources as well as communication between hardware and software components.
+
+By 1992, the operating system was essentially finished except for the ongoing kernel situation.  The GNU project had a microkernel, and to add the necessary UNIX-kernel-like functionality to their microkernel, they began developing a project called �Hurd�, but Hurd was still very incomplete.
+
+That year, another UNIX-like operating system with a UNIX-like kernel was released as free software under the name Linux.  The combination of the Linux kernel and the GNU system made for a whole, Unix-like, free software operating system.
+
+GNU is an ongoing project that continues to evolve.  The developers of the GNU project hope to offer a viable alternative to the other operating systems that are on the market.  They hope to offer a free operating system that can provide computer users � large and small alike � with a choice that will not compromise their requirements or needs when it comes to computer technology.
+
+In the future, GNU could become a viable player in the computer operating system market.  But, for now, it remains a dream � one that is nearly complete � but one that still needs extensive work before it can be released to the mass market.  Keep an eye out in the future for the UNIX-based GNU operating system.

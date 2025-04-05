@@ -1,0 +1,39 @@
+---
+title: "Stress Relief-Learn To Deal Effectively"
+author: "S3vn Studies Team"
+excerpt: "Some of the most common effects prolonged exposure to stressful situations have on your body, mood, and behavior are:"
+category: "miscellaneous"
+membershipRequired: "pro"
+---
+
+S-t-r-e-s-s, it is everywhere and unless you learn to deal effectively with it and find ways to get some stress relief, it can cause some serious health problems. 
+
+Some of the most common effects prolonged exposure to stressful situations have on your body, mood, and behavior are:  
+
+1. Headaches, muscle aches, fatigue, loss of interest in sex, and changes in your sleep pattern and bowel habits.
+
+2. Increased anxiousness, lack of motivation, depression and restlessness. 
+
+3. Overeating or not eating enough, using alcohol or drugs, withdrawing from social situations, or lashing out in anger can become behavioral problems.
+
+If you notice that you are experiencing any of these symptoms you should go speak to your doctor and have a physical to make sure that you do not have any underlying problems caused by the stressful situations in your life like increased blood pressure.
+
+Have the doc give you the once over and then ask them how to decrease the stressful situations in your life.
+
+You could just need to talk a walk everyday after dinner to alleviate some anxiety. Nothing beats exercise for stress relief and to know you are doing something good for yourself is a plus as well.
+
+It does not even have to be intense exercise. A walk around the neighborhood will do nicely.
+
+If you have the time you could try a yoga class. Yoga is extremely effective for relieving tension and helping you remain centered and calm.
+
+No one has to be a victim of the stressful situations life throws at us everyday. All you have to do is find ways to deal with it that work for you. Maybe some aroma therapy would be nice.
+
+Heck, you could even do this at work if you could find some time. Lavender is one of the best scents used for calming. Do some research online and then order some essential oils or go buy some in the store. 
+
+Remember, though, a little goes a long way. Place only a drop or two on a cotton ball or tissue and put it up to your nose and inhale slowly and deeply. Exhale through your mouth and close your eyes and lay your head back, relaxing your entire body as you exhale. Repeat as needed.
+
+Include some soft music and dim lights to enhance the calming effects of the essential oils. Like I said, this is so easy to do, you could even manage to do this at work especially during a particularly rough day. 
+
+When was the last time you laughed...at anything? If you cannot remember when you last had a good belly laugh then maybe you need to go rent a good comedy on your way home tonight.
+
+Everyone has heard that laughter is the best medicine, right? Well, it is also one of the best stress relief activities you can do for yourself, and it's free for everyone to do. If the movie doesn't do it for you then get together with some old friends and reminisce about old times. Just laugh.

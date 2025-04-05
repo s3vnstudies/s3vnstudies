@@ -1,0 +1,23 @@
+---
+title: "The Concept of an Operating System"
+author: "S3vn Studies Team"
+excerpt: "Then, some savvy programmers decided that it would be a good idea to make computers easier to use and the concept of the operating system was born.  A..."
+category: "meditation"
+membershipRequired: "pro"
+---
+
+In the early days of computers, the concept of an operating system wasn�t really thought of.  When users needed to input information into the computer, they fed it into the system on punched pieces of paper.  The computer would go to work on the information until it finished, or more often than not, it crashed.
+
+Then, some savvy programmers decided that it would be a good idea to make computers easier to use and the concept of the operating system was born.  A small corporation on the West Coast called Microsoft set to work at making computers more user-friendly for the general public.  They had a vision that would put computers in everyone�s home and business.
+
+MS-DOS was the operating system developed by Microsoft.  However, it wasn�t as user-friendly as they had hoped.  It required users to know certain commands to navigate the system and for them to manually enter in those commands.  The programmers weren�t done there, however.
+
+After MS-DOS was developed, another company, Apple, decided to work on their own concept of an operating system.  They wanted the system to truly be user-friendly and developed the graphical user interface.  It was not only easier for everyday people to use, but it was visually appealing as well.  Mac OS was born.
+
+Not to be outdone, Microsoft took the technology Apple had developed and used it as a model for their newest operating system dubbed Windows.  However, Windows was much more advanced than Mac OS and was much easier to use.  It took the computer world by storm and quickly became the most popular operating system among individuals and businesses alike.
+
+Over the years, both Apple and Microsoft took the concept of the operating system to new levels as each would come up with multiple improvements to their existing systems.  Their operating systems would be the basis for other programmers to develop their own software and there have been several others that have come about as a result of these advancements.
+
+While not initially thought of as a required component of a computer system, the operating system has become an integral part of bringing computer technology to the mainstream public.  Once the concept of the operating system was born, programmers began to realize that this development would make owning and using a computer a reality for even the everyday Joe.
+
+Just like any other new concept, the operating system has become an integral part of our computer usage.  Without the operating system, we would still be in the days of punched paper programming.  What a terrific advancement!

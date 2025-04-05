@@ -1,0 +1,18 @@
+Problems with Windows Vista
+
+
+The newest version of the Windows operating system family is Windows Vista.  Just as with other versions of Windows, Windows Vista operating system is not without its share of problems.  Some of them people consider minor while others might not be so minor after all.
+
+Probably the biggest problems with Windows Vista operating system that people have reported is that it is so large that it cannot be accommodated by regular, everyday computer systems.  Windows Vista requires a huge chunk of system memory in order to run.  That means that a lot of your system resources are being taken up by simply running your operating system.  Thus, your computer system will run slower.  Consumers report this is their number one complaint with Windows Vista.
+
+Many programs are not compatible between versions of Windows making the problems with Windows Vista operating system a real headache for everyday users.  One user burned a CD with Windows Vista and then tried to play it on a computer with Windows XP and it wouldn’t work.  That makes portability a real problem.
+
+There is a lot of computer software that is not compatible with Windows Vista.  Many games and utilities were designed to run with prior versions of Windows.  Many users are having problems running games and utilities like word processing programs on this new operating system.
+
+In an effort to upgrade user account security within the operating system, Windows Vista attempted to a User Account Protection model designed to keep an individual user’s information private and secure.  The problem with this in Windows Vista is that the operating system software throws up dialog boxes requesting access for even the most simple of tasks.  Users find this to be quite annoying and a real problem with Windows Vista.
+
+Another problem reported with Windows Vista is that while it is visually appealing, it becomes difficult to differentiate between open windows, closed windows, and which one you need to shut down when you don’t need it anymore.  The graphical user interface is gorgeous, but it can be confusing – especially for a new user.
+
+The Media Center – highly touted with Windows Vista as a feature before its time – has proven to be a problem as well.  It has been reported to be disjointed, confusing, and incomplete.  When Windows began including Media Player in previous versions of their operating systems, it was a great technological advance.  With Windows Vista, it just seems like a headache.
+
+It’s often difficult to change from one operating system to another.  Microsoft has done their fair share of advertising touting Windows Vista as the next wave of computer innovation, but Windows Vista certainly isn’t without its problem.  However, keep in mind that other versions of Windows also had problems.  In time, it’s very possible that Microsoft will address these issues and solve them in due time.

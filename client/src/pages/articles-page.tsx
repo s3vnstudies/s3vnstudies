@@ -47,6 +47,66 @@ export default function ArticlesPage() {
       icon: <BookOpen className="h-10 w-10 mb-4 text-amber-600" />,
       color: "bg-amber-50",
     },
+    "meditation": {
+      title: "Meditation",
+      description: "Find peace and mindfulness through meditation practices",
+      icon: <BookOpen className="h-10 w-10 mb-4 text-indigo-600" />,
+      color: "bg-indigo-50",
+    },
+    "self-confidence": {
+      title: "Self Confidence",
+      description: "Develop your confidence and believe in yourself",
+      icon: <BookOpen className="h-10 w-10 mb-4 text-green-600" />,
+      color: "bg-green-50",
+    },
+    "self-help": {
+      title: "Self Help",
+      description: "Practical advice for personal growth and success",
+      icon: <BookOpen className="h-10 w-10 mb-4 text-blue-600" />,
+      color: "bg-blue-50",
+    },
+    "time-management": {
+      title: "Time Management",
+      description: "Learn to make the most of your time and boost productivity",
+      icon: <BookOpen className="h-10 w-10 mb-4 text-purple-600" />,
+      color: "bg-purple-50",
+    },
+    "self-defeating": {
+      title: "Overcoming Self-Defeating Behaviors",
+      description: "Identify and overcome self-sabotaging patterns",
+      icon: <BookOpen className="h-10 w-10 mb-4 text-orange-600" />,
+      color: "bg-orange-50",
+    },
+    "health": {
+      title: "Health & Wellness",
+      description: "Articles on health, medicine, and well-being",
+      icon: <BookOpen className="h-10 w-10 mb-4 text-teal-600" />,
+      color: "bg-teal-50",
+    },
+    "vitamins": {
+      title: "Vitamins & Supplements",
+      description: "Learn about essential vitamins and dietary supplements",
+      icon: <BookOpen className="h-10 w-10 mb-4 text-emerald-600" />,
+      color: "bg-emerald-50",
+    },
+    "finances": {
+      title: "Personal Finance",
+      description: "Tips and strategies for managing your money wisely",
+      icon: <BookOpen className="h-10 w-10 mb-4 text-cyan-600" />,
+      color: "bg-cyan-50",
+    },
+    "miscellaneous": {
+      title: "Miscellaneous",
+      description: "Interesting articles on various topics",
+      icon: <BookOpen className="h-10 w-10 mb-4 text-violet-600" />,
+      color: "bg-violet-50",
+    },
+    "motorhomes": {
+      title: "Motor Homes",
+      description: "Everything you need to know about motorhomes and RVs",
+      icon: <BookOpen className="h-10 w-10 mb-4 text-rose-600" />,
+      color: "bg-rose-50",
+    },
   };
 
   return (

@@ -1,0 +1,29 @@
+---
+title: "The Importance of Teaching Your Children About Time Management"
+author: "S3vn Studies Team"
+excerpt: "As for why you should teach your children about time management, namely the importance of it and how to achieve, you will find that there are a number..."
+category: "time-management"
+membershipRequired: "pro"
+---
+
+Are you a parent?  If you are, do you know the importance of properly managing your time?  Since you have the responsibly of working, getting your children clothed for the day, and sending them off to school or daycare, there is a good chance that you know the importance of time management alto well.  But, do your children know?  If not, you should teach them.
+
+As for why you should teach your children about time management, namely the importance of it and how to achieve, you will find that there are a number of benefits to doing so.  A few of those benefits are highlighted below for your convenience.
+
+For starters, it is important to know that time management is a lifelong lesson.  It is one that your children will need to learn anyways, so why not get them started now?  A head start on important life lessons can never hurt a child.  In fact, poor time management, especially at the high school and college level can hinder your children�s ability to get a good job and make a good living.
+
+Another one of the many reasons why you are encouraged to teach your children about time management, as well as share time managing tips with your child is because it is easy to do so.  One of the best ways to teach your children how to properly manage their time is to set a good example.  For instance, before leaving for an important event, show your children the clock and tell them what time you need to be ready to leave by.  When you are ready to leave, be sure to make note of the time.  If you and your family are able to beat that time, be sure to congratulate and praise your children, especially those that are young in age.
+
+As sited as an example above, setting goals to be ready to leave the house by is a good way to teach your children about management.  A fun approach for younger children is to rely on a kitchen timer.  You can make a time management game out of brushing teeth, cleaning up a room, and so forth.  This is ideal for toddlers and preschoolers.  In addition to showing by example, it is also important to talk to your children about time management.  Around the ages of eight to ten, children are better able to understand the consequences of running late.  These consequences may involve missing a fun activity.  
+
+Another reason why you should talk to your children about time management and share important tips with them is because there are a number of benefits to doing so.  These benefits are ones that will help your child for years to come.
+
+At the elementary school, high school, and college levels, having a good sense of time can help your children get better grades.  When in high school and in college, your children will have more freedom, in terms of studying and completing homework assignments.  Those who have a poor sense of time and those who do not know how to manage their time are likely to get poor grades on tests and homework assignments.
+
+Another one of the many benefits to teaching your child how to improve their time is that you can receive some additional help at home.  As parent, you should be relying on your children, especially teenagers to complete small tasks.  These tasks should depend on their age.  For example, toddlers and preschoolers should be able to clean their rooms and teenagers can help with laundry or dishes.  These important skills are all skills that children should learn anyways, so why not turn them into time management lessons?
+
+Since there are a number of benefits to educating your child on the importance of time management, you are advised to do so right away.  As a reminder, toddlers and preschoolers, although young, can still benefit from a few important lessons.
+
+PPPPP
+
+Word Count 654

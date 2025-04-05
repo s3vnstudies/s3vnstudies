@@ -1,0 +1,31 @@
+---
+title: "Lewy and Alzheimer Vascular"
+author: "S3vn Studies Team"
+excerpt: "Lewy is a body dementia, which experts have discovered as being the cause of dementia. The condition causes involuntary loss of intellectual or mental..."
+category: "meditation"
+membershipRequired: "pro"
+---
+
+Lewy and Alzheimer Vascular 
+
+Lewy is a body dementia, which experts have discovered as being the cause of dementia. The condition causes involuntary loss of intellectual or mental functions. The progressive disorder targets the brain tissues, which it gradually deteriorates the tissues and nerve cells. Lewy bodies will often build up in the nerve cells, which start the progression of degeneration within various areas of the brain in and around the stem. The condition is prevalently causing symptoms of dementia or Alzheimer�s disease to emerge, yet many experts dispute its implication.
+
+Men are the primary targets of �Lewy Body Dementia.� Unlike Alzheimer�s disease where the brain starts to form clusters of �beta amyloid plaque,� Lewy bodies will cluster. Lewy bodies will target the entire brain. The significance of this disease is that it produces alike or similar symptoms as that of Alzheimer�s disease. 
+
+Once a person has developed to the progressive stage of Alzheimer�s disease, he will begin to hallucinate. Lewy hallucinations are slightly different, since the visuals are vivid. In addition, Lewy bodies disable doctors from prescribing anti-psychotic medications, since the patient will respond reversely. 
+
+Lewy bodies also causes a person to drift daily, thus shifting mentally more dramatically than that of Alzheimer�s disease�s symptoms. Most people diagnosed with Lewy will feel sluggish, move slowly, and find it difficult to walk. This condition is far severe, since to date no present treatment has proven to relieve the patient. However, doctors will often use similar medications to treat Lewy, same as used to treat Alzheimer�s disease. 
+
+The stroke: 
+In addition to Lewy, another condition known as multi-infarct dementia or vascular dementia causes similar symptoms as Alzheimer�s disease. Vascular is caused by a series of strokes, or a single stroke. The condition causes dementia to arise. What happens is the brain becomes dysfunctional. The tissues are destroyed, (Infarcts) which is what causes the dysfunction. Men are the prime targets of this type of dementia. The condition can cause diabetes, as well as high blood pressure. Diabetes and/or high blood will damage the vessels, which stem to the brain. 
+
+Once vascular dementia sets in it begins to destroy tissues in the brain, which in turn blocks blood from flowing to the brain. The condition causes the patient to feel week and in some instances paralyzed. The person will experience loss of memory as well. Alzheimer�s disease once progressed will flow rapidly as it tears down the tissues and nerve cells. Vascular dementia will have its high and low moments. That is the disease will progress, slow, and re-progress later. The condition causes involuntary wandering, as well as weakness, which makes tasking a problem. 
+
+Alzheimer�s disease causes the personality to shift, as well as hindering judgment. Abstract thinking is interrupted when Alzheimer�s is present also. Dementia of this nature may not have the same affects. 
+
+In addition, vascular dementia can cause a person to loose sight, i.e. the ability to see effectively. Speech may be slurred and/or slowed as well. The patient may find it difficult to walk, since a limb may feel paralyze. 
+
+Treatment
+Doctors have not found a cure for this form of dementia. In some instances however, medications such as anti-coagulants will slow the symptoms. Aspirin is prescribed as well since the blood flow is blocked when vascular dementia is present. 
+
+Alzheimer�s disease symptoms include dementia. The forms of dementia must be reviewed and understand however before one can decide if their future poses a threat of Alzheimer�s disease. In this instance, it may be likely the patient will develop symptoms of Alzheimer. Still one must consider other types of dementia, including Pick�s disease, Parkinson�s disease, and so on.

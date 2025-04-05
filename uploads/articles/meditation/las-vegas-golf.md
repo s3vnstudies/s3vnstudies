@@ -1,0 +1,15 @@
+---
+title: "Las Vegas Golf"
+author: "S3vn Studies Team"
+excerpt: "There may be a lot of things that Las Vegas is famous for, but golf isn�t the first thing that comes to mind.  However, golf in Las Vegas is becoming"
+category: "meditation"
+membershipRequired: "pro"
+---
+
+There may be a lot of things that Las Vegas is famous for, but golf isn�t the first thing that comes to mind.  However, golf in Las Vegas is becoming a sport for the well-to-do and the common man alike. 
+Twenty-nine years ago, locals and visitors played at The Tropicana Golf Course, which has been replaced by the MGM Grand Hotel and Casino. The Dunes course, since replaced by Bellagio and Monte Carlo Hotels, Desert Inn Country Club, is still there, though it will be gone soon. The Municipal Golf Course, Las Vegas Country Club, Craig Road, Sahara Country Club, Winter Wood, two courses at Nellis and Paradise Country Club, are all still there, though the names may have changed. They were pretty much the only courses in the valley. 
+Today, there are 57 golf courses in and around Las Vegas.  They're not all up and running yet as that number includes under construction and on the planning board. Also, the number includes courses within a two hour drive of Las Vegas, Mesquite, Primm, Laughlin and Pahrump. 
+Even so, that's a lot of golf courses for a city of less than one and a half million. Of course, thirty-six million plus tourists a year add to the profitability of opening one.  Greens fees for Las Vegas golf can be quite steep for the common man and many locals have given up local golf for just that reason.
+Las Vegas golf courses were designed by the pros who also played them in tournaments every year. Palmer, Nicklaus, Chi Chi Rodriques, Johnny Miller and Fuzzy Zoeller have all designed courses there. All of the major pro tours, PGA, LPGA and the SPGA have annual tourneys here. They started to play Las Vegas in 1953. 
+Golf is a year-round sport in Las Vegas. Even on those forty days a year that there's some rain, you still might get 18 holes in. There are only about 5 days a year when you can't play. In the spring there may be a few days of high winds that postpone your game. On cold days in the winter, you tee off at noon. On hot days from June to September, try to get a tee time from 6-9 am, to be off the course in the afternoon. Call very early for a tee time.
+You will have a lot of options when you choose to golf in Las Vegas.  But the best part about a Las Vegas golf trip?  You can always try out the blackjack tables if your golf game stinks.

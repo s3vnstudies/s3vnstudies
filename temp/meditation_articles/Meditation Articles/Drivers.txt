@@ -1,0 +1,14 @@
+Drivers
+
+
+A device driver or a software driver is a specific type of computer software typically developed to allow interaction with hardware devices such as a mouse or a printer.  This software causes an interface for communicating with the device through the specific computer “bus” or communication subsystem that the hardware is connected to.  The software provides commands to and receives data from the device and, on the other end, the requisite interfaces to the operating system and software applications.
+
+In plain English, a device driver is a program that allows various hardware to work on your system.  The driver will allow your hardware to communicate with your operating system making the devices operable in the proper way.  The user installs the driver and then the program allows the hardware to operate transparently without user input.
+
+Computers and their operating systems cannot be expected to know how to control every device both now and in the future.  To solve this problem, operating systems basically dictate how every type of device should be controlled.  The device driver then translates these operating system mandated function cells into device specific calls.  In theory, a new device which is controlled in a new manner should function correctly is a suitable driver is available.  This new driver will insure that the device appears to operate as usual from the operating system’s point of view.
+
+Depending on the specific computer architecture, drivers can be 8-bit, 16-bit, 32-bit and more recently 64-bit.  This corresponds directly to the way the operating system is set up for which those drivers were developed.  For example, in 16-bit Windows 3.11, most drivers were 16-bits which most drivers for 32-bit Windows XP are 32-bit.
+
+New computers will often have device drivers already loaded into the system to make it easier for the user to just open the box and use their new system.  But if you should happen to buy a separate component for your system such as a joystick, you will most likely need to install a device driver.  The driver will come with the system, usually on a storage device like a CD-ROM.  They will give you instructions on how to install the software and it is really quite easy if you follow the directions.
+
+You cannot operate your computer system with separate components like a mouse without a device driver for that mouse.  If you find that any part of your computer is not running properly, you may need to update your device drivers.  Simply go to the website of the manufacturer of your hardware and they will usually have updated drivers available free for download.

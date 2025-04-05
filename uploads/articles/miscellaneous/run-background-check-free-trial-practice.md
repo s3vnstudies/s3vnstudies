@@ -1,0 +1,31 @@
+---
+title: "Run Background Check-Free Trial Practice"
+author: "S3vn Studies Team"
+excerpt: "These days we all have instant access to any amount of information we want and because of that we need to know all we can about the people we do busin..."
+category: "miscellaneous"
+membershipRequired: "pro"
+---
+
+Some people will do anything they can to take advantage of others. To minimize the possibility that something bad happens to you or a member of your family, before inviting someone into your life learn how to run background check on them.
+
+These days we all have instant access to any amount of information we want and because of that we need to know all we can about the people we do business with and invite into our lives. 
+
+Identity theft and scams are running rampant and can have very negative effects on the lives of those who find themselves in the middle of one. 
+
+There are many reasons to want to run background check on someone and they include:
+
+1. Your family - If you have small children in daycare, you do not want to just plunk them into the nearest daycare facility, you must look out for them by checking out the owner and employees.
+
+You may be a single parent who has met someone who you think could be special. Check them out so you can be sure you are not bringing someone dangerous into your household who could hurt either you or your children. Do this also for your teenage daughter's new boyfriend.
+
+2. A new job - Most employers will check out prospective new hire's. If you are one of those prospective new hire's expect a check into your history. If you have been honest on your resume and in the interview then you should have nothing to worry about but if you have told lies, they may well come out in the background check. 
+
+Some may see this is an invasion of privacy, but as a potential employee, they must be able to trust that you are going to benefit their company and not run off with all their money. 
+
+3. Privacy - Especially important when making purchases on the internet. Willfully giving out your private, sensitive information could be used against you and by the time you figure it all out it could be too late. Learning all you can about who you are doing business with can save you some major headaches in the future.
+
+There are many sites online that offer this service. Some will let you start with a seven day free trial to practice doing searches before they charge your credit card. You could do the work yourself but if you do not really know what you are doing, it could take a while to get the information you need.
+
+Your quickest, best option is to use an online service. It really does not get any easier. Research these sites as well, you want to be able to get the most for your money especially if all you have to go on is a name, phone number, or email address.
+
+Learn how to run background check and keep your peace of mind. Avoidance is the best way to keep the bad people away and keep yourself and your family as safe as possible.

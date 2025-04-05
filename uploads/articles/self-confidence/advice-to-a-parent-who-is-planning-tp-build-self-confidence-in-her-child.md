@@ -1,0 +1,29 @@
+---
+title: "Advice to a Parent Who is Planning tp Build Self Confidence in Her Child"
+author: "S3vn Studies Team"
+excerpt: "Parenthood does not escape that reality."
+category: "self-confidence"
+membershipRequired: "pro"
+---
+
+For long, man has searched for the most perfect environment by which he must immerse children into. The main aim of which is to raise ideal children that are whole heartedly devoted to the purity of their being and in the service of Him who Created all things. The sad truth though is that once men touch something, that thing would be flawed. It is our nature to be perfect though but it is inescapable for us humans to integrate grains of impurity in everything we do.
+
+Parenthood does not escape that reality.
+
+Every parent dreams the best for his or her child. But what defines that "best" would be largely dependent on how the parent was raised in return. Major contributors would also include the events that has passed by during the time by which the child is being raised and the models to which he has learned to associate his realities.
+
+We were all born and raised in virtually dissimilar settings. Like the fingerprints that are embedded into our skin, all of us developed uniquely. And this very uniqueness can directly affect how self confident we are, from childhood to grave.
+
+Raising children is not enough. Parents must be careful not to affect their children's sense of self in any negative way possible. Every experience he has encountered in his childhood that would be detrimental to his self confidence must be avoided because in the end, it is not only the child who would suffer, the parent would suffer with him.
+
+At a very early stage, parents should be able to build self confidence in their children. Negative inputs must be avoided except of course those that would be beneficial to his development. 
+
+Every negative comment must be minimized before children, with their minds as blank as a white paper would take every foul remarks, every pessimistic word and every discouragement as facts that he would learn to believe into. If you would want your child to believe into something, assure to it that he is believing in something that is good. Be careful though of over emphasizing his good attributes. At any point in time, always try to hit the balance. 
+
+All children have something he can be proud of. Everyone is properly equipped with all the facilities that one can develop from, with a few exemptions of course. Each child has an innate capacity to succeed, only adults should be able to trigger his development. 
+
+Childhood is the most ideal juncture from which we may build the foundations of self confidence. It is when a person hasn't experienced much of life's bitterness yet. It is the stage of one's life when he is not yet fearful of failing and of falling. It is when every avenue of development is opened. Thus, it is also where a person is fit for building self confidence from which he may benefit from for the remaining of his lifetime. 
+
+You, as the parent, are responsible for putting your child in the right track. Many of us may not have enough of the self confidence that we can boast to our children but we can always take advantage of the chances that were given to us to let our children boast of the confidence that we have given them. 
+
+Wont you get proud if you succeed in this aspect of parenthood? Think of this as an exchange of benefits. Your child would benefit from your help and your help would benefit you to be self confident as well. And besides, eyes are looking from a distance to check if we are using the gifts that were given to us properly.

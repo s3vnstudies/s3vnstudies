@@ -1,0 +1,29 @@
+---
+title: "Things that Matter If You are to Develop Self Confidence"
+author: "S3vn Studies Team"
+excerpt: "We treat ourselves severely while giving regards for other people. We laugh at our own mistakes while contemplating on how stupid we have become. We h..."
+category: "self-confidence"
+membershipRequired: "pro"
+---
+
+Man seems to have found many excuses that eventually help him develop insecurities. The sad truth though is that self confidence is often hard to be achieved and whenever it passes us by, we try to suppress it.
+
+We treat ourselves severely while giving regards for other people. We laugh at our own mistakes while contemplating on how stupid we have become. We hate to see ourselves commit errors. We believe that other people can perform better than we can. We say to ourselves that we are ugly and incapable of doing things. The irony though is that people think otherwise. They view us as wonderful people who are worth admiration. 
+
+It is obvious that low self confidence can hinder us from our growth. It will always pull us down into the realms of mediocre life and dullness. It will make ways so that we would fit in the gaps of the non-achievers, the humiliated and the lowly people. There is no such world but because men tend not to listen to the voices that encourage them to believe in themselves, this world came forth to life. 
+
+The thing though is that experience and time are often good teachers, if we truly take them as such. We will live with ourselves for as long as we live with them. Our "self" will accompany us through the course of our life. Somehow, we would learn to live with it. To love it and to accept the truth that many things about it do change and develop. 
+
+It may not be out of our chronological age that we would mature but the fact is, we would still mature regardless of the time we would take.
+
+Sometimes, development comes out naturally. Sometimes, we would need effective stimulation. Self confidence roots down from these two.
+
+Development of self confidence may suddenly dawn on you. The realization would come as if something breathed life into you and awoke you from a long sleep. From your inner self comes the voice that would tell you what to do and how to do them. It would help you see the stock that you have- your talents, your skills, the crafts that you can do, the stuffs that you are really good at and all attributes that it can use to positively reinforce you.
+
+This inner voice, in a sense, will lay everything in your front. It is for you to accept that these things are yours and must be used for your own development.
+
+But as we have said, it would require stimulation before your belief in yourself materializes. 
+
+You may not have noticed it lately but you are talking with yourself. We all do! The difference though lies in the fashion of talking and words we are uttering. 
+
+Self talk may either be detrimental or positive. Whatever we say to ourselves will be recorded in our unconsciousness. This in turn would rely on more dominant beliefs we record. Thus, we frequently assert that we're worth nothing, or that we are the ugliest person or the most ill performing. It would create an environment in ourselves that would be ideal in pulling us down. However, the opposite is also true. We only have to take advantage of positive talk so that we would reap from the benefits of self confidence.

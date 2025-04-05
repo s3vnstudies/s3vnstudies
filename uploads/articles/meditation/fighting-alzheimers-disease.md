@@ -1,0 +1,29 @@
+---
+title: "Fighting Alzheimers disease"
+author: "S3vn Studies Team"
+excerpt: "Alzheimer�s disease is a disorder of the mind. The disorder often causes progressive memory loss, as well as robbing those who suffer the disease of t..."
+category: "meditation"
+membershipRequired: "pro"
+---
+
+Fighting Alzheimers disease 
+
+Alzheimer�s disease is a disorder of the mind. The disorder often causes progressive memory loss, as well as robbing those who suffer the disease of their intellectual purpose. Alzheimer�s disease runs along the course and aside dementias. Dementias are a cognitive deterioration, as well as intellectual decaying of the mind. The disorder progressively works to deteriorate the intellectual purpose, robbing the soul of memory. Dementias often occurs while the brain is functioning, i.e. controlling progress, or movement, etc, which the senses are detained. 
+
+Alzheimer�s often targets the older generation. In fact, the older generation often experiences at one time various disorders of the mind, including Alzheimer. Technically, Alzheimer�s disease is a medical disorder, since it causes dementias. The degenerative illness affects the brain, usually late in one�s life. 
+
+According to medical experts,� such as those who specialize in geriatrician, claim that socialism and its roles are one of the leading factors that characterize diseases in which the older generation develops. According to medical experts,� older people who do not socialize or live alone is subject to Alzheimer�s disease, dementias, and various other brain disorders. In addition, medical experts� claim that elders with a higher education can detect disorders of the mind sooner than those with lower education do. The experts� are venturing to say that if symptoms are noted sooner, intervention strategies can reduce the amount of those suffering Alzheimer�s disease, or related disorders. 
+
+The economics also factors into health. Health care is the leading cause that many people do not seek complete medical attention. According to medical experts� the older generation has less insurance coverage than any other group of societians�. Lack of healthcare leaves the older souls fighting their own illnesses without the medical care they deserve. In fact the economic conditions has lead to increases in Parkinson�s disease, Osteoporosis, Hypothyroidism, Strokes, Urine incontinence, herpes zoster shingles, bedsores, diabetes, prostatic hyperplasia, and so on. 
+
+The problem behind healthcare limits has caused enormous conditions in the system, such as Alzheimer�s disease. The disease if noted earlier is curable, yet because many people lack medical care, thus the disease develops into a life-long condition that has no cure. 
+
+The problem continues, since the older generation develops several diseases at a single time. The conditions cause�s interruptions as the chain reaction of diseases affect the other. For instance, those with Alzheimer�s develop dementias, which work against the first disease and causes rapid deterioration. 
+
+As well as socializing, economics, etc, the older generation will also delay medical conditions once symptoms develop. For instance, an older person may develop a cold, and put it off, failing to realize that the immune system has weaken as they have grown, which the cold could develop into pneumonia.  
+
+In addition, behind all diseases, depression follows. Depression will work against the disease, which increases the symptoms. Depression often affects the mental and emotional well-being, thus causing dejection, falls, sadness, and hopelessness to rob the soul of medical treatment. Depression will also recess the person, causing provisional loss of self-rule, which can lead to undeviating loss. 
+
+Geriatrists often look for answers to reduce such problems as discussed. The doctors who specialize in healthcare for senior citizens has advised the older generation, as well as loved ones to join in multi-disciplinary healthcare. Instead of the elders planning their own care, the strategy moves experts in healthcare, as well as social workers to plan healthcare strategies for the older souls. Of course, each member involved with the executed plan has an overseeing physician. 
+
+Perhaps to reduce diseases that target the older generation, the implemented plans is not enough however.

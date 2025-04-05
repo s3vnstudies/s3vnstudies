@@ -1,0 +1,20 @@
+Windows 2000
+
+
+In February of 2000, Microsoft Corporation released its newest update to the popular Windows operating system.  Windows 2000 was made available in four editions:  Professional, Server, Advanced Server, and Data Center Server.  Windows 2000 was marketed as “the most secure Windows ever shipped.”
+
+Despite claims that Windows 2000 had advanced security measures, it did become the target of a number of profile virus attacks like Code Red and Nimda.  More than seven years after its release, Windows 2000 continues to receive patches for security vulnerabilities on a near-monthly basis.
+
+Even though security is an issue with Windows 2000, many computers still use this version as their main operating system.  Even though there have been updates to the Windows product, it still remains a favorite especially with businesses because of its advanced file sharing capabilities.
+
+All editions of Windows 2000 have common functionality including many system utilities such as the Microsoft Management Console and standard system management applications like disk defragmentation utility.  Support for people with disabilities was improved with a number of new assistive technologies.  Microsoft also included increased support for different languages with Windows 2000.
+
+Windows 2000 also saw the advent of file encryption which could protect sensitive data.  It offered personalized menus that could be adapted to the way the user worked adding to its efficiency for individual users.  
+
+Because Windows 2000 was primarily developed for business use, it was often referred to as Windows Professional.  Its server technology was unlike anything ever seen, as is usually the case with any Windows product.  Networking simplification was one of the main goals for Windows 2000 programmers, and it seemed to achieve its objective.
+
+Monitoring other computers on the server became much easier with Windows 2000.  For example, if a computer has been disconnected from the server, it shows immediately.  Plus, you can easily see when a computer is working on something with a separate dialog box that indicates the computer is working.
+
+When Windows 2000 was released, it had a markedly different look from previous versions of Windows.  The graphical user interface was still easy to navigate, but it allowed for things like having multiple windows open at one time and easier navigation between those windows.
+
+It wouldn’t be long before Microsoft released a newer version of Windows, but the advent of Windows 2000 proved to be a great advantage to business operating systems.  With the new server technologies, it made securing computers on a network much easier and provided for more behind-the-scenes processing capabilities that made work on the computer much, much more efficient.
