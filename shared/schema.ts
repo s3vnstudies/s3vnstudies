@@ -1,8 +1,11 @@
-import { pgTable, text, serial, integer, boolean, timestamp, pgEnum } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, timestamp, pgEnum, jsonb } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
 export const membershipTierEnum = pgEnum("membership_tier", ["free", "pro"]);
+export const visibilityEnum = pgEnum("visibility", ["public", "private", "connections"]);
+export const messageStatusEnum = pgEnum("message_status", ["sent", "delivered", "read"]);
+export const userContentTypeEnum = pgEnum("content_type", ["article", "video", "image", "audio"]);
 
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
@@ -17,6 +20,14 @@ export const users = pgTable("users", {
   isAdmin: boolean("is_admin").default(false).notNull(),
   resetPasswordToken: text("reset_password_token"),
   resetPasswordExpires: timestamp("reset_password_expires"),
+  // New profile fields
+  location: text("location"),
+  website: text("website"),
+  interests: text("interests").array(),
+  profileVisibility: visibilityEnum("profile_visibility").default("public").notNull(),
+  socialLinks: jsonb("social_links"), // JSON object for social media links
+  coverImageUrl: text("cover_image_url"),
+  lastLogin: timestamp("last_login"),
 });
 
 export const insertUserSchema = createInsertSchema(users)
@@ -29,6 +40,84 @@ export const insertUserSchema = createInsertSchema(users)
   .extend({
     email: z.string().email(),
     displayName: z.string().min(1).max(50).optional(),
+  });
+
+// For extended profile update operations
+export const updateProfileSchema = createInsertSchema(users)
+  .pick({
+    displayName: true,
+    bio: true,
+    avatarUrl: true,
+    location: true,
+    website: true,
+    interests: true,
+    profileVisibility: true,
+    socialLinks: true,
+    coverImageUrl: true,
+  })
+  .partial();
+
+// User connections (friends/followers)
+export const userConnections = pgTable("user_connections", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").notNull(), // The user who initiated the connection
+  connectedUserId: integer("connected_user_id").notNull(), // The user being connected to
+  status: text("status").notNull(), // pending, accepted, blocked
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const insertUserConnectionSchema = createInsertSchema(userConnections)
+  .pick({
+    userId: true,
+    connectedUserId: true,
+    status: true,
+  });
+
+// Private messages between users
+export const privateMessages = pgTable("private_messages", {
+  id: serial("id").primaryKey(),
+  senderId: integer("sender_id").notNull(),
+  recipientId: integer("recipient_id").notNull(),
+  content: text("content").notNull(),
+  sentAt: timestamp("sent_at").defaultNow().notNull(),
+  status: messageStatusEnum("status").default("sent").notNull(),
+});
+
+export const insertPrivateMessageSchema = createInsertSchema(privateMessages)
+  .pick({
+    senderId: true,
+    recipientId: true,
+    content: true,
+  });
+
+// User created content
+export const userContent = pgTable("user_content", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").notNull(),
+  title: text("title").notNull(),
+  description: text("description"),
+  contentType: userContentTypeEnum("content_type").notNull(),
+  contentUrl: text("content_url").notNull(), // URL to the content file
+  thumbnailUrl: text("thumbnail_url"),
+  visibility: visibilityEnum("visibility").default("public").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  views: integer("views").default(0),
+  likes: integer("likes").default(0),
+  metadata: jsonb("metadata"), // Additional metadata for the content
+});
+
+export const insertUserContentSchema = createInsertSchema(userContent)
+  .pick({
+    userId: true,
+    title: true,
+    description: true,
+    contentType: true,
+    contentUrl: true,
+    thumbnailUrl: true,
+    visibility: true,
+    metadata: true,
   });
 
 export const articles = pgTable("articles", {
@@ -234,6 +323,7 @@ export const insertSubscriptionSchema = createInsertSchema(subscriptions).pick({
 
 export type User = typeof users.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
+export type UpdateProfile = z.infer<typeof updateProfileSchema>;
 
 export type Article = typeof articles.$inferSelect;
 export type InsertArticle = z.infer<typeof insertArticleSchema>;
@@ -267,3 +357,13 @@ export type InsertUserFavorite = z.infer<typeof insertUserFavoriteSchema>;
 
 export type WatchLater = typeof watchLater.$inferSelect;
 export type InsertWatchLater = z.infer<typeof insertWatchLaterSchema>;
+
+// New types for user profile features
+export type UserConnection = typeof userConnections.$inferSelect;
+export type InsertUserConnection = z.infer<typeof insertUserConnectionSchema>;
+
+export type PrivateMessage = typeof privateMessages.$inferSelect;
+export type InsertPrivateMessage = z.infer<typeof insertPrivateMessageSchema>;
+
+export type UserContent = typeof userContent.$inferSelect;
+export type InsertUserContent = z.infer<typeof insertUserContentSchema>;

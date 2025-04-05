@@ -65,6 +65,12 @@ export default function ArticlesPage() {
       icon: <BookOpen className="h-10 w-10 mb-4 text-blue-600" />,
       color: "bg-blue-50",
     },
+    "self-help & personal development": {
+      title: "Self Help & Personal Development",
+      description: "Premium content for personal growth and transformation",
+      icon: <BookOpen className="h-10 w-10 mb-4 text-blue-600" />,
+      color: "bg-blue-50",
+    },
     "time-management": {
       title: "Time Management",
       description: "Learn to make the most of your time and boost productivity",
