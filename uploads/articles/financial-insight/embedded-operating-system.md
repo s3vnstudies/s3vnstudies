@@ -1,0 +1,19 @@
+---
+title: "Embedded Operating System"
+author: "S3vn Studies Team"
+excerpt: "An embedded system is some combination of computer hardware and software, either fixed in capability or programmable, that is specifically designed fo..."
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+An embedded operating system is one that is designed to be very compact and efficient forsaking many functionalities that non-embedded computer operating systems provide.  They may not be used by the specialized applications that they run and are frequently real-time operating system.  
+
+An embedded system is some combination of computer hardware and software, either fixed in capability or programmable, that is specifically designed for a particular kind of application device. Industrial machines, automobiles, medical equipment, cameras, household appliances, airplanes, vending machines, and toys (as well as the more obvious cellular phone and PDA) are among the myriad possible hosts of an embedded system. Embedded systems that are programmable are provided with a programming interface, and embedded systems programming is a specialized occupation. 
+Certain operating systems or language platforms are tailored for the embedded market, such as Embedded Java and Windows XP Embedded. However, some low-end consumer products use very inexpensive microprocessors and limited storage, with the application and operating system both part of a single program. The program is written permanently into the system's memory in this case, rather than being loaded into RAM (random access memory), as programs on a personal computer are. 
+So essentially, an embedded operating system is one that runs �in the background� that allows a certain electronic device to run and operate efficiently.  They are found in products like TiVo, games systems like Nintendo and Playstation, as well as cell phones and PDAs.
+
+Unlike a computer operating system which is at the forefront of the computer user�s interface with the computer, an embedded system is not generally noticeable or controllable by the user of the device.  Embedded operating systems are designed to perform a small amount of tasks and are specially designed to perform these tasks with very specific requirements.
+
+Embedded operating systems are used in many different devices in various areas of industry.  They can be found in medical devices like an EKG machine, thermostats, microwave ovens, washers, dryers, routers, printers, and much more.  They can even be found in the operation and deployment of military missiles which is where the embedded operating system was first developed back in the 1940�s.
+
+We have come to depend on certain gadgets to help make our lives easier and less stressful.  Without an embedded operating system, these products could not operate or function properly.  While we generally don�t think about an embedded operating system, just know that they are out there and we use them every day without ever thinking about the technology that went into creating them.  But then again, we don�t have to!

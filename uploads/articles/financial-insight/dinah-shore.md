@@ -1,0 +1,19 @@
+---
+title: "Dinah Shore"
+author: "S3vn Studies Team"
+excerpt: "The golf tournament she founded has been touted as the largest gathering of lesbians in any one place at any one time.  Now some people really don�t c..."
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+Dinah Shore was a very famous entertainer, actress and songstress.  In the course of her career, she won 10 Emmy awards and was often revered as a great actress.  In the world of golf, Dinah Shore is known in a much different way.  Long an avid golfer, Shore wanted to pass on her love of golf and especially female golf to the world.
+Shore founded one of the most prestigious golf tournaments on the LPGA tour, the Colgate/Dinah Shore Winner's Circle Golf Championship which is now the Kraft Nabisco Championship in Rancho Mirage, California.  This is one of the four major tournaments on the LPGA Tour.  Even though the tournament no longer bears her name, people still refer to it as the Dinah Shore.
+Ironically, the Dinah Shore golf tournament, kind of like its founder, is not without controversy.  In her lifetime, it was speculated that Shore was a lesbian � a fact that her fans have adamantly denied given her scandalous relationship with Burt Reynolds who was twenty years her junior.  There was also an allegation that she was part African/American which lost her some popularity among her more closed-minded fans.
+
+The golf tournament she founded has been touted as the largest gathering of lesbians in any one place at any one time.  Now some people really don�t care about this.  They just want to see the greatest women�s golfers take to the links and compete for the prize.  But others are just not comfortable being around so many people �like that�.  I�d like to note that this author falls into the first category � who cares!
+
+The Dinah Shore tournament has seen its share of great wins � just like on the men�s tournament.  In 1988, pro golfer and winner Amy Alcott started a tradition that is still practiced today.  At the conclusion of her round when she was declared the winner of the competition for the second time, she jumped in the lake off of the 18th green.  Today, it is a winner�s tradition to participate in the �swim at the Shore�.
+
+When the Kraft/Nabisco Company took over the tournament in 1982, the possibility of some huge prize money became a reality.  This giant conglomerate certainly had the resources and wanted to make this event THE event to win on the LPGA.  They consistently increased the purse over the years and today, the winner takes home a whopping $2 million dollars!
+
+Dinah Shore died in 1994, but her name lives on the golf world.  She has been inducted into the LPGA hall of fame and is well-respected among golfers of the world.

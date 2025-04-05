@@ -1,0 +1,21 @@
+---
+title: "Ping Golf"
+author: "S3vn Studies Team"
+excerpt: "Karsten Solheim invented his 1-A putter, manufactured in his garage.  He named it Ping for the sound it makes when it hits the ball.  Thus, a company"
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+For over forty years, the Ping Company has been manufacturing golf equipment that is both innovative and practical for both the casual and professional golfer.  Since 1959, Ping Golf has been dedicated to one idea:  innovation and design can produce a set of golf clubs that maximize the enjoyment of the game for all.
+
+Karsten Solheim invented his 1-A putter, manufactured in his garage.  He named it Ping for the sound it makes when it hits the ball.  Thus, a company was born.  Solheim was frustrated with his putting game as the putters of the era didn�t give him what he felt he needed in his short game.  Once the 1-A putter hit the general market, they became so popular, Solheim quit his job at General Electric and began Ping Golf.
+
+Solheim decided not to stop at putters and developed a set of irons dubbed �69� which he considered to be a good golf score.  Solheim continued to experiment with the effects of good heel-toe weighting in his irons and also milled a cavity into the steel back of the irons for added forgiveness.  Ping golf was growing by leaps and bound in the golf industry.
+
+In 1966, Ping golf experienced possibly the greatest even of their company�s history.  Solheim had an idea for a new putter.  After he finalized the design � originally sketched on the dust cover of a 78 rpm record, he needed a name for the club.  His wife suggested �answer� since it would give golfers an answer to their putting problems.  It was shortened to �Anser� to fit on the club itself.
+
+The Ping Anser would go on to be the most influential putter in golf while setting the standard for what is considered to be the conventional putter.  It has racked up 500 professional golf wins making it the �winningest� putter in golf history.  The Anser had a cavity back low center of gravity that provided superior feel for golfers of all abilities.
+
+Ping golf faced a major obstacle at the end of 1966 as the USGA outlawed all Ping putters other than the Answer for tournament and handicapped play.  This decision was made because the USGA felt the other Ping models had a special bend in the shaft under the grip that was thought to give players a special advantage in the putting stroke.
+
+Of course, Ping survived and went on to become a premier manufacturer of golf equipment that is widely used on the professional tours as well as by amateurs all over the world.  Ping golf has proven to be one of the powerhouses when it comes to golf equipment and it will probably remain so for a long time.

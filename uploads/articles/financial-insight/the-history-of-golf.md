@@ -1,0 +1,21 @@
+---
+title: "The History of Golf"
+author: "S3vn Studies Team"
+excerpt: "However, the Scots are generally adamant that the game of golf was a Scottish invention on St. Andrews golf course.  The name �golf� is a derivative o..."
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+The history of golf is a debate as to whether the game was invented by the Chinese, the Dutch, or the Scottish.  A game somewhat similar to golf was first mentioned in Dongxuan Records which is a Chinese book of the Eleventh Century.  It was also mentioned in the year 1297 in the Netherlands where the Dutch played a game with a stick and a leather ball.  Whoever hit the ball in a target several hundreds of meters away the least number of times, won.
+
+However, the Scots are generally adamant that the game of golf was a Scottish invention on St. Andrews golf course.  The name �golf� is a derivative of the Dutch word �kolf� however, so as for who really invented the game, we say who really cares!
+
+It really doesn�t matter who actually invented the game, but what does matter is how the history of golf has evolved over the years.  Golf courses have not always had eighteen holes.  St. Andrews began with eleven holes dictated by the topography of the land the course was located on.  Players would play the eleven holes out and then back in to total 22 holes.  Later, several of the holes were deemed too short and were combined with each other.  That reduced the number from 11 down to 9 so a complete round of golf was comprised of 18 holes.
+
+By 1744, the game of golf had become wildly popular.  So much so that a group of men called Gentlemen Golfers decided that a set of rules must be laid out for fair play.  They came up with a list of thirteen guidelines on playing the game.
+
+Major changes since the 19th century have occurred in the equipment needed for play.  Better mowers made greens easier to play on.  Golf balls designs would evolve by using rubber and man-made materials which made the ball fly longer on a drive.  The wooden golf tee would make the drive easier.
+
+No discussion of golf history would be complete without talking about the advances made in golf clubs.  Metal shafts came about in the 1930s and most drivers were made of wood which is why they are called woods today even though they are most commonly made these days of metal or titanium.  The golf shaft design has also gravitated towards graphite which is lighter and makes the club easier to swing.
+
+When referring to the history of golf, we can debate exactly where the game originated, but the game of golf as we know it today, most certainly came about in Scotland.  Even if we�re wrong, we do still have this wonderful game � and most of us are very glad about that!

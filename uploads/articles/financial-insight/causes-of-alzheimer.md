@@ -1,0 +1,26 @@
+---
+title: "Causes of Alzheimer"
+author: "S3vn Studies Team"
+excerpt: "Alzheimer�s disease presently is a confusing disease, since experts are unclear as to what causes the condition. According to experts, genes (DNA/RNA)..."
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+Causes of Alzheimer 
+
+Alzheimer�s disease presently is a confusing disease, since experts are unclear as to what causes the condition. According to experts, genes (DNA/RNA) play a part in what causes the disorder. Particular areas of DNA and RNA when abnormal may be linked to the disease that causes memory loss. Apo-E, or apolipoprotein deficiencies is said to link to Alzheimer�s disease. The apolipoprotein are proteins that carry lipids (Lipoprotein) within the bloodstream. The proteins contain lipid molecules. Lipids are fat constituents that group with organic compounds that consist of carbohydrates, fats, oils, etc. The elements relate to substances and work along with atomic arrangements within the living cells. Alipoproteins work with lipid whereas cholesterol is transferred through its channel and into the bloodstream. 
+
+Apo-E makes up three groups. The groups include Apo-E2, Apo-E3, and Apo-E4. According to experts, Apo-E4 is commonly linked to Alzheimer�s disease. Experts claim that Apo-E4 is partially responsible for Alzheimer�s disease developing at an early age. At present complications that cause deficiencies of E2 and three, have no apparent traces that link it to Alzheimer�s disease. 
+
+Alzheimer�s disease causes sections of the brain to disintegrate. The condition destroys the nerve cells, which transmit signals to the brain, muscles, etc. Once the condition destroys the nerves, it reduces receptiveness of continuing nerve cells. The condition begins to slow, or cause failure to nerve impulses, which transmit signals to the brain. Neurotransmitters are chemical carrying nerve impulses, which send communication between the nerves. The messages communicate with nerve cells, muscles, etc. 
+
+Once the neurotransmitters are affected, it begins to damage the brain tissues. The tissues and nerves once damaged cause a condition, such as �Senile,� and/or �neuritic plague,� to set in, i.e. a cluster of dead cells will cause the production of amyloid. Amyloid affects the organs, tissues, etc, which can cause serious conditions to emerge when the �insoluble proteins� build. In fact, amyloid acids are linked to multiple myeloma, rheumatoid arthritis, and tuberculosis. Amyloid proteins contain polysaccharides, which when the proteins combine it causes degenerative conditions that emerge from impaired tissues. 
+
+Amyloid also leads to neurofibrillary tangling. The condition entangles amyloid within the nerve cells. Alzheimer�s disease speeds up this condition. Naturally, amyloids build in our system as we age, yet the production if faster when Alzheimer�s disease is present. 
+
+I wanted to note that if the neurotransmitters are impaired it affects serotonin, endorphins, acetylcholine, dopamine, norepineprhine, and gamma-aminobutyric acids. If elements that link to the nerves are interrupting the neurotransmitters, it causes a deficiency or over consumption of serotonin, endorphins, acetylcholine, dopamine, norepineprhine, and last but not least gamma-aminobutyric acids. The disruptive condition will cause a commotion, which affects the nerve impulses. The nerve impulses process communication and transmit signals. 
+
+Serotonin is our neurotransmitter chemicals. The chemicals stem from amino acids, which are commonly known as tryptophan. Nerve chemicals spread out widely channeling to the tissues carrying communication between nerves, or neurotransmitters.
+Messages transmit amidst an array of nerve cells, which gestures the muscles. Throughout the process, impulses are propelled down the channel to constrict blood vessels near damaged sites. Serotonin can cause interruption to the emotional responses, which also slows intellectual thinking. 
+
+Alzheimer�s disease gradually causes dementia to set in, which dementia is a cognitive disorder that deteriorates the intellectual mind. The progressive disease deteriorates the intellectual functions, which is why Alzheimer�s disease causes memory loss. Movement is controlled by cognitive intellect, which senses are restrained if interruptions are present. Still, we need to study Apo-E4, and its constituents, such as fats, oils, and carbohydrates to see how it can link to Alzheimer�s disease.

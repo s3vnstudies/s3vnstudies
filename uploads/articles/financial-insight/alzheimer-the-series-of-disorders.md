@@ -1,0 +1,32 @@
+---
+title: "Alzheimer the Series of Disorders"
+author: "S3vn Studies Team"
+excerpt: "Alzheimer disease may start however with sleep apnea, Parkinson�s disease, Down syndrome, heart disease, strokes, sleeping disorders, and so forth. Va..."
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+Most people believe that Alzheimer disease is a single disorder. What these people do not know is that Alzheimer�s disease is a series of disorders. The misunderstanding of Alzheimer disease is noted, since most patients with the disease appear to have healthy bodies, yet their mind is deteriorating. 
+
+Alzheimer disease may start however with sleep apnea, Parkinson�s disease, Down syndrome, heart disease, strokes, sleeping disorders, and so forth. Various medical conditions can link to Alzheimer disease. 
+
+How does Alzheimer affect the brain? 
+Alzheimer disease damaged vital aspects of the brain. The disease causes damage to the parietal lobe. The parietal lobe once damaged will cause loss of capabilities to recognize people, places, and things. The disease affects the frontal lobe, which causes common symptoms of Alzheimer, such as urinary incontinence. The disease causes facial paralysis on one side or the other. Since personality rests at the frontal lobe, the person�s personality may change, as well as his or her behavior. The patient will feel apathy and inattention which results from the damage caused by Alzheimer's disease. The frontal lobe when damaged will also cause broca aphasia, which makes it difficult for a person to communicate fluently. Words are slurred, or the person will find it difficult to express words. The damage also causes the patient to loose the ability to interpret sound. 
+
+Alzheimer damages the lobes, which also causes injure to the temporal lobe, which is above the brain stem. The cerebellum is at the opposite side of the brain stem. Occipital lobe is damaged as well, which causes Wermicke�s aphasia. The damage causes the patient to garble when speaking, or loose senses of speech. The frontal and temporal lobe is where recent memories are stored, which is why Alzheimer�s affect the short-term memory. 
+
+How do doctors determine what causes brain degeneration? 
+The brain separates into two halves of its cerebrum, which each side functions differently. For this reason, doctors will consider one side of the brain or the other when searching for damage. The left-brain is where our language arrives. If Alzheimer�s disease is sending messages to the doctor, i.e. if the patient�s language is slurred or interrupted, the expert will review the left-brain looking for cause. 
+
+How do patients manage when the disease progresses? 
+At what time the disease progresses, experts recommend that the patient assigns a proxy, or Power of Attorney to manage their health care needs, and financial needs. The patient is encouraged to assist the doctor with making good decisions with his or her treatment. 
+
+Once the disease progresses, comfort is the prime focus of health care. Since doctors do not have a cure that prolongs the condition, keeping the patient as comfortable as possible is essential. 
+
+Once the disease progresses it is up to the family and proxy to decide if the patient will need additional treatment for pneumonia, which is common when Alzheimer disease progresses. In addition, the family and proxy are responsible to decide if the patient should be feed artificially. Alzheimer patients at progressive stage will dismiss meals. 
+
+What medications are giving to help the patient? 
+Doctors will prescribe painkillers, as well as rivastigmine, donepezil, antipsychotic drugs, galantamine, etc to treat the condition. As Alzheimer progresses the patient will hallucinate, and illustrate other symptoms of psychoses. Risperidone, haloperidol, or olanzapine is considered to treat psychotic episodes. 
+
+How can supplements help the patient? 
+Certain supplements have been proven to enhance memory and prolong Alzheimer symptoms. Doctors consider Ginkgo Biloba, lecithin, cyclandelate, ALC, ergoloid mesylates, etc to slow dementia, or Alzheimer�s disease. Vitamins, such as B9, B12, E, etc, are considered as well.

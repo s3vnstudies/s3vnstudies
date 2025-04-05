@@ -38,7 +38,7 @@ const featuredSections = [
   },
   {
     title: "Inspiring Video Content",
-    description: "Watch our collection of engaging videos featuring guided meditation sessions, motivational talks, and step-by-step tutorials on various self-help techniques. Our visual content is designed to inspire and guide your personal growth journey.",
+    description: "Watch our collection of engaging videos featuring financial insights, motivational talks, and step-by-step tutorials on various self-help techniques. Our visual content is designed to inspire and guide your personal growth journey.",
     path: "/videos",
     icon: <Video className="h-5 w-5" />,
     thumbnail: <VideoThumbnail />,

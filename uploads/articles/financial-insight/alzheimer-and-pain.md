@@ -1,0 +1,30 @@
+---
+title: "Alzheimer and Pain"
+author: "S3vn Studies Team"
+excerpt: "Alzheimer�s disease causes serious pain for families, friends, and the person suffering. As the person progresses however in his or her condition, the..."
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+How they feel
+
+Alzheimer�s disease causes serious pain for families, friends, and the person suffering. As the person progresses however in his or her condition, the pain will cease. In fact, the person may fall and never feel pain at all. Alzheimer�s disease kills the brain tissues, nerve cells, fibers, central nervous system, etc, and gradually kills the person. The condition ironically progresses the person back to youthful years. The person can use long-term memory at first, yet short-term memory is faulty.
+
+The disease Alzheimer will slowly tear down the brain functions. The disease targets the frontal and temporal lobe were recent memories are stored. Slowly, the degenerative disease shrinks the mind, until finally the muscles, bones, joints, etc, are despondent. 
+
+At the initial stages of Alzheimer, the patient will experience many changes. The changes emerge from symptoms, which include memory loss. The patient will find it difficult to handle daily tasks. In addition, the patient will find it hard to dress alone. The changes should be written down and handed to the overseeing doctor. The doctor can use the helpful details to decide, which medications are best suited for the patient. In addition, the doctor can use the notes to assess the stage of the disease. Doctors may often prescribe Aricept to treat the condition, since it has proven to slow Alzheimer symptoms. The medications have proven to promote longitivity of life as well. 
+
+No cures are available; therefore, if your loved one has Alzheimer�s disease you will need to make changes. Caregivers of Alzheimer patients are encouraged to learn new skills. The caregiver will need to focus on making the patient as comfortable as possible. In addition, the patient requires a need to feel safer. 
+
+How do caregivers handle patients?
+Caregivers of Alzheimer�s patients do not have an easy job. In fact, there job is far more demanding than any other job. Usually as the disease progresses, it takes up to ten or 12 years before the patient reaches the final stage of the disease. You want to plan because death is the ultimate recourse. Plan for your future as well, since it will help everyone involved to cope, and prepare for the ultimate recourse of Alzheimer's disease. 
+
+What legal actions do I need to consider
+in time you will need a Power of Attorney. You will also need a will. As the patient�s disorder progresses, he or she will not have the ability to manage their own life. 
+
+At the mild stage of Alzheimer�s disease, the patient can take care of him or her self. As time passes however, the disease will move to the moderate stage. At this time, the disease will progress, finally reaching the severe stage. During the moderate stage, the patient will argue, hallucinate, feel depressed, fight, etc. 
+
+The patient in the moderate stage should not be left alone. At this stage, they often wander, getting lost. Once the disease is severe, the patient will have difficulty talking, walking, standing, etc. The confusion and brain disorders make it difficult for the patient to recall simple words. 
+
+How can I help: 
+If the patient is finding it difficult to understand or talk, speak in a soft voice? Keep calm and make eye contact at all times. Do not treat the patient like an infant rather show respect. If you listen closely, it helps the patient as well. If you continue to ask the patient what he or she is trying to say, it will only confuse the patient. The patient at this stage may become angry, throw tantrums, or become violent.

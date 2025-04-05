@@ -1,0 +1,29 @@
+---
+title: "Progressive Alzheimer Disease"
+author: "S3vn Studies Team"
+excerpt: "How to care for patients with Alzheimer�s disease 
+Be sure to keep their living environment safe and comfortable. Lock up the cleaning supplies, medic..."
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+Alzheimers disease gradually develops into dementia, which starts a progressive stage and begins rapidly to deteriorate brain tissues, nerve cells, dendrites, etc. Alzheimer�s disease can affect anyone over the age 65 and in rare instances; the condition will affect people earlier. The condition to date has affected more than 4 million United States citizens. The figure is growing. In addition, millions of people in the UK are diagnosed each year of Alzheimer�s disease. When a person has Alzheimer�s disease, it is important to learn a few helpful steps to take care of your loved one. Caregivers are instructed as well to take measures to protect their own health. 
+
+How to care for patients with Alzheimer�s disease 
+Be sure to keep their living environment safe and comfortable. Lock up the cleaning supplies, medications, anything that could be harmful to them. Take the mirrors down; sometimes when they look into the mirror they are seeing someone they don�t know and it is scary. Keep your loved one as active as possible. Activities and exercise will help the sleep disorder they sometimes get. Always make your loved one feel secure and safe at all times.
+
+How to decide when treatment is needed
+Alzheimer�s disease sometimes will progress slowly making one think that it is just a normal way of life. Always see your health care provider as soon as you notice changes occurring. The sooner you see your health care provider the better for all. If the health care provider can diagnose the disease at the beginning stage, they can treat it quicker and prolong the progress of Alzheimer�s disease. 
+
+Alzheimer�s is a disease that slows the brain functions, since it deteriorates the dendrites, tissues, nerve cells, nerve fibers, and so on. The disease gradually kills a person otherwise healthy. Alzheimer�s slowly develops as dementia, which starts the progressive stage. At this time, it begins to become frustrating for caregivers. 
+
+Alzheimer patients will play in their own feces, smear feces on the walls, etc. The patients will wander, which is why at nursing homes the patients are placed in lock down, or designated areas.
+
+Alzheimer�s disease is a baffling cluster of disorders. The condition forces a person back in time, until finally the person is at the age of an infant child. The person will fear mirrors, darkness, etc. To help relieve their fears nursing homes will keep night-lights in the room. 
+
+In few instances, loved ones will deal with Alzheimer�s disease. The family learns adapt to the Alzheimer�s lifestyle. For example, caregivers will take care of the Alzheimer patient in their home, which forces them to adjust to a new life. The care provider must leave furniture in one area at all times, hide harmful chemicals, remove mirrors, and keep the area lit. In addition, the care provider must constantly watch the patient�s behaviors, action, etc. Taking care of an Alzheimer patients is an around the clock duty. 
+Alzheimer�s disease causes memory loss. The person will forget short-term details, yet will recall things that happen to them fifteen years earlier. For example, if a loved one comes to visit the patient, leaves, and returns in a few minutes the patient may forget. 
+
+Alzheimer�s disease puts the patient at great or even grave risks. For instance, one woman with Alzheimer�s disease placed a newspaper in the oven, turned on the oven, and failed to remember her actions. Alzheimer�s causes a person to forget often, which is why the patient should not be left alone. 
+
+If you have a loved one with Alzheimer�s disease, we encourage you to take action now by searching for helpful insight to guide you through your long journey.

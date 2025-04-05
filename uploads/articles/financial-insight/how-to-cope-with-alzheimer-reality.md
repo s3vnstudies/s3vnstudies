@@ -1,0 +1,27 @@
+---
+title: "How to Cope with Alzheimer Reality"
+author: "S3vn Studies Team"
+excerpt: "Grandma�s isn�t here now with us, since the disease claimed her life.� She didn�t die of this mind robbing disease. It just killed her brain and left"
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+Alzheimer�s is touchy subject for me to write about .You may ask why is that?� Grandma had the disease and we knew nothing of the kind at first. We thought she was just getting old. We didn�t know anything about this disease and if we did, we would likely say it wouldn�t happen to us. Well it did happen and there wasn�t nothing we could do as a family, other than watch it take over my grandma�s life the way that it did.
+
+Grandma�s isn�t here now with us, since the disease claimed her life.� She didn�t die of this mind robbing disease. It just killed her brain and left her not knowing nothing or feeling any pain.� I went though all the stages of Alzheimer�s with my grandma and not knowing and understanding this illness. It made things harder for us to deal with, which is why I want to tell you how the disease Alzheimer�s robs your soul.
+
+We thought grandma was just getting older. We didn�t think that it would happen to us but it did.� Alzheimer�s affected me again. My grandparents had a friend that had Alzheimer�s and we would have to go to Indiana and get him because he lost his way. Again, it wouldn�t happen to us we thought until it happen. In the first stage of Alzheimer�s they forget some things like names, as well the person often haves trouble doing everyday task.�
+
+Alzheimer�s disease will affect the mind, causing the person to forget as dementia develops. For example, I went to grandmas one day and she was crying. I asked her why she was crying and she said the bank had called telling her she had written some bad�checks. I asked her why and she said your grandpa gave me the money. She couldn�t recall what happen to the money. 
+
+Of course, family members will help work out situations, yet in this instance, it was too late, since we lacked knowledge. The money was never recovered. Did she even get money, or was it the disease deceiving her? 
+
+Grandma would always forget small things like our name and call us someone else. The action is common for those with Alzheimer�s disease. Things that a person would do everyday become harder. Again, we thought she was just getting old. 
+
+What woke us up is when grandma would go for her drive on the weekends to see everyone and she wouldn�t come home until dark. She hated to drive after dark. One day she was coming to our house and she never made it, she was lost for hours. We had no idea where she went. So we thought it was best if we took her driver license. We thought it was going to help her. We later found out that taking the license just made her want to give up.
+
+We didn�t know we were hurting her. So we let her have them back and then my grandpa got rid of the car. He told her it was junk, which went better for all of us at that point. Stage 2 of Alzheimer�s disease came and that�s where grandma got depressed. She didn�t want to go anywhere. She loved going to town but not�now.� All she wanted to do is stay home and sleep everyday. 
+
+Chores became harder and harder for her to do. So now, at this point we had to do something. We couldn�t take care of her anymore so we put her in a nursing home where she could be taken care of all the time. And this is where the stage came in and grandma was gone out of her mind.
+
+The disease ceased her willingness to talk, eat, enjoy activities, etc. Grandma was robbing of seeing her grandchildren grow up. She seen them but she didn�t. Grandma died about 2 years ago of old age. Her body was healthy but her mind was taken by this awful disease called Alzheimer. I hope that you don�t know anyone that has this disease. It is very sad to see what it does to a mind, therefore learn more now to take steps later.

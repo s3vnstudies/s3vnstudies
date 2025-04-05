@@ -1,0 +1,23 @@
+---
+title: "Used Golf Clubs"
+author: "S3vn Studies Team"
+excerpt: "First, you need to check the club heads for face wear.  Clubs that have been used for a long time might have a shiny worn spot in the center.  This is..."
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+Golf clubs can be very expensive; so many people are starting to buy used golf clubs instead of new ones.  The cost is the main reason people give for buying used golf clubs.  Plus, recycling anything is good for the environment!  What should you know before you buy a set of used golf clubs?
+
+First, you need to check the club heads for face wear.  Clubs that have been used for a long time might have a shiny worn spot in the center.  This is not good because the club face won�t hold the ball as well as it should.  Make sure the grooves still have well-defined edges and stay away from used golf clubs that show indentations in the club face as these can affect the ball flight.
+
+Another important thing to look for in used golf clubs is the shafts.  Make sure graphite shafts don�t have worn areas or indentations that could cause weakness.  Twist the grip and the head in opposite directions.  If there isn�t great resistance, it�s a sign of weakness in the shaft.  This test is for graphite shafts.  With steel shafts, just look down the shaft to make sure it hasn�t been bent back into shape.
+
+You will also need to make sure the grips in used golf clubs are good.  You will be looking for cracks, splits, and worn areas.  You can re-grip used golf clubs, but this will run between $6 and $15 per club adding to your cost.
+
+Does the set have consistency?  Line them up and compare them.  Make sure they all appear to have been in the original set.  You don�t want a set of used golf clubs with different shaft types or model from club to club.  Mixing and matching can throw off the progression of lofts throughout the set.
+
+Compare prices for new clubs versus what you will be paying for your used clubs.  Sometimes you can get a new set for less than what the used set is selling for.  You can also find some great discounts at golf stores, so don�t jump in too quickly to buy your used golf club.
+
+You can�t really tell how well a set of used golf clubs will perform unless you are able to test drive them.  Find a place to take a few test swings and see how they feel to you.
+
+Buying a set of used golf clubs is a great way to save some money on one of the most expensive parts of the golf game.  However, be careful and know what you are doing before you buy.  It can make a world of difference!

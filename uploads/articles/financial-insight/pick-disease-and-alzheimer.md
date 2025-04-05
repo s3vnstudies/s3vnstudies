@@ -1,0 +1,35 @@
+---
+title: "Pick Disease and Alzheimer"
+author: "S3vn Studies Team"
+excerpt: "Various types of dementia stem from Alzheimer�s disease. Alzheimer�s is a disease of the brain whereas tissues are damaged and finally destroyed. The"
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+Pick�s disease 
+
+Various types of dementia stem from Alzheimer�s disease. Alzheimer�s is a disease of the brain whereas tissues are damaged and finally destroyed. The nerve cells are also diminished. Pick�s disease is uncommon. The disease progresses speedily, yet it only affects a particular area of the brain. The symptoms emerge from this disease include inability to maintain hygiene, memory loss, negligence, indifference, etc. 
+
+Pick�s disease can develop into Alzheimer�s disease. As well, around 20% of those diagnosed with Parkinson�s disease will develop Alzheimer�s disease eventually. 
+
+In addition, Alzheimer�s may develop from �Normal-Pressure Hydrocephalus.� The condition is caused from development of fluids emerging from cerebrospinal. Cerebrospinal is the part of the brain and spinal cord. If the fluids do not naturally reabsorb, it can cause a type of dementia to emerge. 
+
+The condition is deemed normal-pressure, since the fluids build and apply pressure to the tissues in the brain. The condition will cause abnormal and unusual symptoms to develop. For instance, the patient will incapacitate the mental functions, which affects the involvement of urine, which include incontinence, or the inability to control urine. The condition also causes unusual symptoms to emerge, such as wide-leg movement, or walking. The patient will move slowly and appear to loose balance. 
+
+During early stages if the patient is diagnosed the doctor may use �Drainage tubes� to remove excess fluids. The tubes are called shunts. Doctors have found that removing excessive fluids improves various symptoms, excluding the mental functionality. 
+
+Dementia is a symptom of Alzheimer�s disease, which Alzheimer�s may occur if the patient is diagnosed with �Creutzfedt-Jacob disease.� Pick�s disease also subjects a person to Alzheimer�s disease. Creutzfedt-Jacob however is a disease that emerges from infections. The rare progressive disease coming from infection will often cause interruptions of proteins, which emerge from prion. The particle lacks the nucleic acids that the body needs naturally to grow smoothly. The disease is thought to be the leading cause of Creutzfedt disease, as well as other diseases. 
+
+Creutzfedt-Jacob disease will rapidly destroy the brain, which the ultimate action is death. Prion spread is the leading cause of this dementia; as well, experts believe that the infections may arise from eating infected meats, such as beef. To date there is no cure for Creutzfedt-Jacob disease. Creutzfedt-Jacob disease has lead to the most severe cases of dementia. 
+
+Dementia also emerges from HIV, or AIDS. Like Alzheimer�s disease when dementia is present in AIDS patients, it will subtly creep in symptoms and gradually progress. Once symptoms develop, the patient will find it difficult to think. 
+
+The slowness interrupts the patient�s ability to show expression. In addition, the patient may find it difficult to concentrate. The person may feel indifferent, as well find it difficult to move around. Gradually the muscles will weaken, which affects coordination. 
+
+The only known treatment of dementia when AIDS is the cause is to treat the patient with zidovudine. 
+
+Another type of dementia includes the condition known as pugilistica. The condition is an inveterate disorder that progressively causes traumatic brain disease (encephalopathy) to emerge. The condition is commonly caused from recurring brain injuries, yet other causes are considered. 
+
+If you or someone you love has Alzheimer�s disease or dementia, it is wise to keep the person in familiar surroundings and around familiar faces. Changing patterns will only cause severe interruptions. In addition, the patient should be kept in a safe and stable environment. Plan for the patient and help him or her keep those plans. 
+
+Alzheimer�s disease has affected over 4 million United States American citizens. The disease is currently affected millions of other people worldwide.

@@ -1,0 +1,30 @@
+---
+title: "Progressing in Alzheimer"
+author: "S3vn Studies Team"
+excerpt: "Alzheimer�s disease in few instances will progress slowly. In such cases, people will believe that the person is experiencing a normal way of life. Si..."
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+How it progresses
+
+Alzheimer�s disease in few instances will progress slowly. In such cases, people will believe that the person is experiencing a normal way of life. Since the disease silently creeps in, it is best to visit your healthcare provider immediately. As soon as you notice changes in behaviors, speech, etc, it is time to seek help. In fact, if you have a family history of the condition, it is wise to continue frequent checkups. If the doctor can detect the disease at an early stage, likely he can take measures to prolong the disease. 
+
+How to handle diagnostics
+If you doctor notes Alzheimer�s disease early, stay tuned since what you are about to learn will threaten your emotions. You will likely have many questions, which it is important that you ask your doctor. Do not feel like you are ignorant, rather ask questions, and learn willingly. Make a list of the questions you may have forgotten to take with you on the next visit. It is wise to remain open, as well as honest about the disease. Sometimes the information you hear will hurt, yet to learn you must accept the pain. 
+
+Once you have answers, it is time to take steps. You will need precise details of any changes. The list of changes should be written down, since it will help your doctor make wise decisions in treatment. In addition, the changes will help your doctor notice the stages, as well as the speed of progression. 
+
+How do I note changes?
+Look for signs of memory loss. For instance, if the patient is telling you of his or her memories twenty years earlier, yet he or she cannot recall details about ten minutes earlier you have change. The change is a tale tells that the patient�s condition is progressing. If the patient finds it difficult to handle small tasks, it is likely the disease is progressing to the next stage. 
+
+As Alzheimer�s disease progresses to dementia, the patient will find it difficult to dress alone. The patient will forget how to button or zip his or her pants, dress, etc. The patient may put shirts on backwards. If you notice such changes, take notes and show your doctor upon the next visit. Again, the notes will help your doctor decide, which treatment is best for your loved one. In time, you will need to make painful decisions. 
+
+How Alzheimer�s affect you
+In time you will need to make decisions that will cause you pain. For instance, as the patient progresses to the third stage of Alzheimer�s, he or she may become incompetent. Throughout the stages, the person will shift moods and may become aggressive or violent. In some instances the patient will kick, choke, pull hair, punch, etc, which you will need to learn steps in how to protect you without harming the patient. In time you may have to place your loved one in a nursing home. 
+
+Each day as the disease progresses, your pain will increase. You will watch your loved one-throw feces, fear water, fear darkness, and finally stop eating, talking, etc. In many instances at the final stage the patient will sit and stair aimlessly out the window, or at a wall. The person at this stage is readying for the ultimate symptom of Alzheimer�s, which is death. 
+
+To date, experts have not found a cure for Alzheimer�s disease. However, experts are looking more into the condition, searching effortlessly in an attempt to find a cure. 
+
+Alzheimer�s disease is claiming millions of minds annually. If you have a family history, take care and visit your healthcare provider frequently, since Alzheimer�s kill.

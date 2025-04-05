@@ -1,0 +1,34 @@
+---
+title: "Preventing Alzheimer"
+author: "S3vn Studies Team"
+excerpt: "Doctors� themselves are taking Vitamin E, lipoid acids, Ginkgo Biloba, Vitamin C, and low doses of ibuprofen. According to the experts is a way to red..."
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+Preventing Alzheimer 
+How to take steps to prevent disease 
+
+Doctors� themselves are taking Vitamin E, lipoid acids, Ginkgo Biloba, Vitamin C, and low doses of ibuprofen. According to the experts is a way to reduce risks that could lead to heart disease, strokes, etc, which can also cause Alzheimer�s disease. Taking acetyl-L carnitine or ALC up to 2000 milligrams per day can also help reduce dementia, heart attack, strokes, or Alzheimer�s disease. Fish oil, aspirin, fruits, vegetables, and non-steroid remedies that are anti-inflammatory can also help reduce your risks. 
+
+One of the rules of thumbs we all should keep in mind is to take preventive steps to prevent disease. According to experts, it�s possible to delay heart disease, stroke, and dementia (ADRD) for a number of years. 
+
+Mitochondria are a small body in cells that are discovered in cytoplasm. Cytoplasm produces in nearly all living cells, which this element produces enzymes. Enzymes are helpful for promoting the metabolic by converting food into energy. According to experts mitochondria is behind the majority of disorders and disease. That is mitochondria produces energy, which breakdowns have lead to a variety of disease. 
+
+Amino acids are another link to dementia, Alzheimer�s disease and various other illnesses. The constituents of protein contain several amino, which are vital to the living cells. Amino acids transmit fatty acids, which arrive at mitochondria cells. The ultimate purpose of this source is to generate energy.
+
+One of the supplements available in Europe that has helped delay Alzheimer�s disease is ALC, or acetyl-L carnitine. The supplements were researched thoroughly. Studies have shown that ALC can promote energy, as well as reducing aging signs. In fact, ALC has proven to improve cognition, as well as memory. 
+
+NOTE: Alzheimer�s disease may be linked to increases of aluminum, which targets the brain. The metallic elements form as silvery white, malleable ductiles. 
+
+ALC has proven to slow Alzheimer�s progressive condition. Studies have shown that more than 200 case studies showed evident signs of improvement of memory. In addition, the patients were capable of speaking fluent after taking ALC. 
+
+After carefully studying ALC the supplements has proven to improve symptoms, emerging from dementia, Alzheimer�s disease, heard disease and so on. In addition, doctors recommend ALC as well as the reduction of alcohol. 
+
+ALC is becoming a popular solution to Alzheimer�s disease as well as many other illnesses. New studies showed that maintaining phosphatidylserine is the start to better health. Lecithin works in harmony with phosphatidylserine, which produces in the brain naturally. 
+
+According to experts taking 100 milligrams of phosphatidylserine around 3 times, each day can dramatically improve memory. You want to look for natural preserves when seeking phosphatidylserine. 
+
+The main goal is to keep blood clots from occurring in the blood vessels. To start you will need to maintain a balance of platelets. Platelets are blood particles, which involve it self with blood clotting. The small colorless platelets form like a disk and carries through the blood in bulks. Maintaining platelets require a balance of alcohol consumption. Experts state that drinking one to three drinks weekly is ok, yet if you drink higher volumes of alcohol, it could put you at risk of various diseases. In fact, when alcohol is controlled it has proven that one glass of wine daily or alcohol-based drink can lower the risk of Alzheimer�s disease, heart disease, cancer, and so on. 
+
+Doctors also claim that vegetables and fruits, as well as exercise can reduce cholesterol. Cholesterol is solid compounds within the blood. Cholesterol stores steroid (sterol) alcohol, which is found in fats, as well as various other constituents. When cholesterol increases, it can cause diabetes, dementia, gallstones, heart disease, atherosclerosis, and so on. To maintain cholesterol, exercise is essential.

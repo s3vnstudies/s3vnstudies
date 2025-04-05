@@ -1,0 +1,35 @@
+---
+title: "Stability and Alzheimer Disease AD"
+author: "S3vn Studies Team"
+excerpt: "Stability is essential for all of us, yet more so for those diagnosed with Alzheimer�s disease. Stability promotes strength of character. Experts tell..."
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+How stability helps 
+
+Stability is essential for all of us, yet more so for those diagnosed with Alzheimer�s disease. Stability promotes strength of character. Experts tell us, if you keep patients diagnosed with Alzheimer�s disease or dementia stable it helps them to remember, which keeps them safe. Stability includes adhering to scheduled meal times, sleep, unwavering bathing practices and so forth. 
+
+Plans are an essential part of life as well. Plans are our graph in life that helps us to arrange, organize, and sketch images in our minds. When planning for Alzheimer patients try to add things that help them remember, such as large clocks, calendars and so forth. The large numbers can help them to remember details that may ordinary forget. 
+
+Do I stay up all night to watch my loved one? 
+No, if the patient has difficulty sleeping at night and you fear he or she may wander, put a nightlight in his or her pathway. Patients with Alzheimer�s disease fear the dark. The light may help him or her to sleep. Once you set up your plans, frequently remind your loved one. 
+
+Plans set the grounds for stability. A stable environment is a safe environment. If your loved one has stages of Alzheimer, it is wise to block them from using the stove. One woman almost burn up had her grand daughter did not find her, since she put newspaper in the oven. The house was smoking, so at most she could have died of smoke inhalation, or carbon inhalation. 
+
+If you have throw rugs around the house, remove the rugs. The patient can easily fall as Alzheimer�s disease progresses.  
+
+How do loved ones cope with Alzheimer�s disease?
+Caregivers will struggle to maintain mental and physical well-being. Caregivers should seek a support line. The support line should be someone to talk to, someone who can fill in to take weight off the giver, and so forth. Caregivers should exercise, eat right, and take care of their health. When a person is stressed, it causes emotional charges. You may feel hate toward the Alzheimer patient and take it out on them. Keep stress at bay. 
+
+How Alzheimer patients cope?
+For the most part, during the first stage the patient feels that he or she is getting old. The patient may not recognize his or her condition. As the disease progresses however, the patient will find it difficult to handle common tasks. In addition, the person will forget more frequently, which the symptoms will cause depression. It is important to allow the patient to express his or her feelings. 
+
+While it is helpful to allow Alzheimer patients to express their feelings, it is also wise to caution yourself when speaking.
+
+If you ask an Alzheimer patient to repeat something said, it could lead to biting, kicking, yelling, cussing, and so forth. Alzheimer patients do not mean to, yet many will become aggressive and violent in later stage. 
+
+How does the disease make them violent or aggressive? 
+Think about it, if your brain was shrinking and you had to struggle to remember names, address, etc, how you would feel. If you had to tear down the area to find your car keys each time you wanted to drive, what would you feel? The condition shrinks the mind of the person back to infancy, slowly killing the person. How would you feel? If you had to repeat something repeatedly, what results would arise? 
+
+Alzheimer�s disease causes brain deterioration symptoms, which destroys brain tissues, cells, nerves, etc. The disease is a killer that needs defined. Since over 8 million people this year are expected to hear the diagnostics of Alzheimer�s disease.

@@ -1,0 +1,21 @@
+---
+title: "Golf for Entertainment"
+author: "S3vn Studies Team"
+excerpt: "Some people get plenty of entertainment when they simply play the game of golf.  But it can be made so much more fun when you put twists on regular ga..."
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+We live in a stressful world, so it�s only natural that we look for new venues of entertainment to ease our minds.  You can get a lot of entertainment when you play the game of golf.  Especially if you�re willing to have a little fun with it!
+
+Some people get plenty of entertainment when they simply play the game of golf.  But it can be made so much more fun when you put twists on regular games.  You can modify the way you play and get a lot more enjoyment from the game.  
+
+For example, why not play a game of �monkey golf�.  For this game, you put slips of paper in a hat that bears the name of each club in a normal bag.  Players pick out a slip of paper and they have to use only that club for the entire round.  The entertainment possibilities here are endless as you can imagine a person driving off the tee with a putter or chipping with a driver!
+
+You can find great entertainment in the golf game when you play a little night golf.  Golf courses aren�t lighted, but you can get glow in the dark balls and have grease pots on the greens so you can see where you�re going � well, sort of.  It�s great fun to drive your ball and then have to navigate in the dark to see where it went!  Let�s hope you didn�t slice into the woods!
+
+A friendly game of Wolf is hilarious entertainment.  With this game, you have the option of picking players to be on your team based on how they hit the ball.  Teams can change often.  But the most fun of this game is when a player is putting to win the hole.  The other players are allowed to do anything they want as long as they don�t touch the ball.  That leaves the field wide open.  You can cover the player�s eyes, place obstacles in front of the hole � the possibilities are endless � and great fun!
+
+Some friendly side bets can also increase the entertainment value of the golf game.  Try making these bets with dares instead of money.  Wouldn�t it be funny to make your opponent play with his or clothes turned inside out if they don�t make that putt?  Use your imagination and be creative � however, keep it G-rated.  The golf course is, after all, a public place!
+
+Finding entertainment on the golf course is actually quite easy when you think outside of the proverbial box.  Just remember that the whole point of a friendly game is to have fun.  So go out and do it!

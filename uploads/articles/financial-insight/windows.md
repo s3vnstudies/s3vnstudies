@@ -1,0 +1,25 @@
+---
+title: "Windows"
+author: "S3vn Studies Team"
+excerpt: "Windows has come to dominate the operating system market overtaking Mac OS and Mac OS X.  It was reported in 2004 that Windows was loaded on approxima..."
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+In November of 1985, Microsoft Corporation introduced a new operating system named Windows as an extension of their previous system software called MS-DOS.  The development of Windows came about with a rising interest in graphical user interfaces (GUI) by the average computer user.
+
+Windows has come to dominate the operating system market overtaking Mac OS and Mac OS X.  It was reported in 2004 that Windows was loaded on approximately ninety percent of the computers in the world.
+
+Even though Windows took the operating system market by storm, it wasn�t without its share of bugs and problems.  This caused many people to lose faith in Windows, but Microsoft was quick to come up with fixes to the problems and newer versions of Windows ran smoothly with few problems.
+
+The biggest advantage to Windows as a solid operating system is the GUI technology that Windows offers.  This means that besides being visually pleasing, even the most inexperienced computer users are able to easily adapt to Windows and make it possible for anyone to use a personal computer.
+
+Early versions of Windows showed some problems with security.  In fact, even the Microsoft computers were subject to security breaches.  Microsoft took this issue very seriously, and newer versions of Windows (those after NT) come with built-in security features that make systems much safer.  These features include some basic virus protection as well as anti-spyware features.
+
+Most computers today run on Windows XP, but earlier versions of Windows can still be found on some older computers.  Windows 95 and 98 are still used by some users because older computers are not able to accommodate the newer Windows XP.  Users with older versions of Windows can still run some programs but with limited functionality.
+
+Almost all computer software programs are designed to be compatible with Windows.  Microsoft has also been a forerunner in developing other programs that make personal computing as well as business computing easier.  Microsoft Office is the premier business program offering word processing, spreadsheets, and publishing capabilities in one software package.
+
+The advent of Windows as an operating system was a huge milestone in the computer industry.  They continue to come up with new products that are bigger and better than the ones before.  The most recent release is Windows Vista that promises flashy graphics and tools that users have been asking for.
+
+Using Windows is easy, fast, and efficient.  It is easily recognizable, and with so many computers running Windows as an operating system, you can operate almost any computer with ease.  The invention of Windows as an operating system has been a great advantage for computer users everywhere.

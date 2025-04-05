@@ -1,0 +1,29 @@
+---
+title: "Alzheimer and Dementia"
+author: "S3vn Studies Team"
+excerpt: "Alzheimer�s disease develops dementia. Alzheimer�s disease is a condition that causes relentless symptoms, such as memory loss. The progressive disord..."
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+Alzheimer and Dementia 
+
+Alzheimer�s disease develops dementia. Alzheimer�s disease is a condition that causes relentless symptoms, such as memory loss. The progressive disorder destroys the brain tissues. Alzheimer�s disease attacks the frontal lobe located in the brain. The frontal lobe stores the intellectual functions, personality, as well as the motor speech. 
+
+Once the disease destroys the tissues, it begins to deteriorate the nerve cells. Once the nerve cells become damaged, it affects development and growth, which a person will become senile. Once a person becomes senile, it affects the mental intellect, which the person will become less acute. The condition causes confusion, forgetfulness, etc. The condition is said to hit people 65 years and older. Plaque of senile states moves to tangle the neurofibrillary. 
+
+Alzheimer�s disease is the leading cause of dementia. The condition develops into dementia, which the symptoms of dementia will rapidly deteriorate the mind. Dementia has affected around �65%� of the people diagnosed with Alzheimer�s disease. People aged 60 and up to 65 rarely are diagnosed with Alzheimer�s disease, or dementia. 
+
+In the USA alone around four million citizens are diagnosed with Alzheimer�s disease. Around �30%� of the population aged 85 and older is diagnosed with dementia. Dementia affects the cognitive mind, since it deteriorates the intellectual resting at the frontal lobe of the brain. The disease is normally progressive, which the deterioration rapidly targets the intellectual functions. The condition marks the symptoms behind memory loss. Movement, which is normally controlled, is also affected, which means the patient looses his or her senses. The sensory is retained within the disease, which affects natural heightening of sensory awareness. 
+
+According to experts genes (RNA/DNA) plays a part in the illnesses Alzheimer. Genes are the basic units of the human makeup, which hereditary characteristics are transmitted from one gene to the next. 
+
+Nuclei cells or nucleus is vital elements of the living cells. The central body of cells makes up round elements that reside within the eukaryotic cell. The membrane encases a mass of protoplasm, which contain chromosomes, as well as other genes that control cell growth, as well as reproduction. Eukaryotic cells are organisms that have one or even more cells that include evident organelles or nuclei. Organelles are cell parts, which produces nucleus as well, as mitochondrion, which is a smaller body of cells that are shaped like rods, and are round like. The cells reside in cytoplasm, which produces enzymes that promote the metabolic conversions of food, converting it to energy. 
+
+Cytoplasm makes up cell material that excludes nucleus. The chemicals are compound and complex. Protoplasm is content that makes up the living cells, which compose fats, proteins, as well as other vital organic substances, including water, nucleus, and cytoplasm. Now, nuclei acids are complex. The acids are found within the living cells, and forms as high molecular weight acids. 
+
+The acids store DNA/RNA, and consist of nucleotide chains. The chains convey messages to the genes, which are discovered in viruses, as well as the living cells. 
+
+Hydrogen bonds are chemicals, which are electrostatic elements that interact with molecules of bodily compounds. The compounds link to hydrogen atoms in which these atoms combined with the structure bounds to the electronegative atoms, such as nitrogen and oxygen. 
+
+Now each structure, cell, etc plays a part in Alzheimer�s disease and dementia. Phosphate poses an interest although Alzheimer�s disease is linked to genes, yet experts are not clear what causes the illness. Phosphate is a salt-like phosphoric acid, which forms by the reactions of alcohol, metal, etc. To understand how phosphate may be linked to Alzheimer�s disease and dementia, you must understand its structure, as well as its involvement and production process.

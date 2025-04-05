@@ -1,0 +1,25 @@
+---
+title: "St. Andrews"
+author: "S3vn Studies Team"
+excerpt: "The beautiful golf links in St. Andrews (acquired by the town in 1894) is the most frequent venue for The Open Championship, the oldest of golf's four..."
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+St. Andrews is located in Scotland and is commonly thought of as the birthplace of golf as we know it today.  St. Andrews is home to the Royal and Ancient Golf Club, founded in 1754, who exercises legislative authority over the game worldwide except in the U.S. and Mexico. 
+
+The beautiful golf links in St. Andrews (acquired by the town in 1894) is the most frequent venue for The Open Championship, the oldest of golf's four major championships.  Visitors travel to St Andrews in great numbers for several courses ranked amongst the finest in the world, as well as for the sandy beaches.
+
+The St Andrews Links occupy a narrow strip of land along the sea. As early as the 15th century, golfers at St. Andrews established a customary route through the undulating terrain, playing to holes whose locations were dictated by topography. 
+
+The course that emerged featured eleven holes, laid out end to end from the clubhouse to the far end of the property. One played the holes out, turned around, and played the holes in, for a total of 22 holes. In 1764, several of the holes were deemed too short, and were therefore combined. The number was thereby reduced from 11 to nine, so that a complete round of the links comprised 18 holes.
+
+There are six golf courses in St. Andrews including The Old Course which is where the game was first played.  The clubs are open to the public as are the courses, but be prepared to wait!  The Old Course has over 40,000 rounds of golf played on it every year.  In fact, as of this writing, the official St. Andrews website reports that tee times for April through October of 2007 are completely booked.
+
+You may have the best luck on one of the other courses, but you will need to make reservations well in advance.  St. Andrews allow you to book tee times online, so check out their website and make a reservation as soon as you know when you�ll be there.
+
+Be prepared to pay to play St. Andrews, however.  Greens fees during the prime season between April and October are $235 for an adult on the Old Course.  Of course, the other courses are slightly cheaper and you�ll save some money in the off-season as well.
+
+There are plenty of places to stay when you want to golf at St. Andrews.  There are over 500 hotels and numerous dining places nearby.  There is easy access from local airstrips, so you won�t have much problem actually getting to the links on your scheduled day to play.  In the meantime, you�ll enjoy some of the most beautiful countryside in the world complete with old castles and historical sites!
+
+You can visit the official St. Andrews Link website at www.standrews.org.uk.

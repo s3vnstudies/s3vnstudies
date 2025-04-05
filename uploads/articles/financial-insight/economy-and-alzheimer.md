@@ -1,0 +1,38 @@
+---
+title: "Economy and Alzheimer"
+author: "S3vn Studies Team"
+excerpt: "Recent studies have showed that Alzheimer�s disease is accelerating. The cause is linked to education, healthcare, social, and economy. Lack of educat..."
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+How the economy affects the mind
+
+Recent studies have showed that Alzheimer�s disease is accelerating. The cause is linked to education, healthcare, social, and economy. Lack of education alone can diminish the changes of a person noting symptoms that link to Alzheimer�s disease. Social avoidance is another interest that peeked, the interest of experts. Experts feel that those who do not socialize often may develop symptoms of Alzheimer. 
+
+Healthcare faults are a leading cause as to why the figure of Alzheimer�s disease is climbing the ladder. Expert tells us that cures are available, especially if symptoms are noted early. Yet, healthcare costs make it impossible for some people to seek proper medical care. For this reason, healthcare experts who focus on senior citizens are shaking their hind legs to find alternatives. 
+
+Alzheimer�s forms as dementia, the condition can cause the acceleration of progeroid syndrome. Progeroid syndrome prompts early aging signs that increase dramatically. This means that the lifespan is shortened. Ironically, Alzheimer�s disease targets the older generation of people, yet the syndrome progeroid will affect young children, causing them to bald, hunchback, or accelerate aging.
+
+Hutchinson-Gilford syndrome is a form of progeria, which is linked to Alzheimer�s disease. In addition, Werner�s syndrome is also linked to Alzheimer. Likely if the patient is diagnosed with Werner�s disease, later he will be diagnosed with Down syndrome, and finally Alzheimer. As you can see, Alzheimer is a series of disorders. Alzheimer is the relative to progeroid syndrome.
+
+How does Down syndrome cause Alzheimer? 
+Down syndrome will speed up the aging process. The disorder targets insulin, glucose, etc, which is where we get our source of energy. Sugar within glucose promotes fats, proteins, and carbohydrates. If the region is disturbed, it can cause the blood vessels to intolerance. Slowly the disease will affect the body. Down syndrome unfortunately can cause cancer, or bone disease. 
+
+Down syndrome causes the patient�s to lose hair. The condition can also lead to premature death. Down syndrome targets the CNS (Central Nervous System). The patient may become retarded. The disease causes the brain to deteriorate, which Alzheimer�s disease develops and gradually progresses to dementia.
+
+How is the disease controlled?
+Early detections are useful. If symptoms are spotted early, the doctor may find a cure, or treatments to slow the disease. 
+
+How do healthcare experts help? 
+Proven records show that those who communicate effectively with their healthcare provider can livelonger and happier. 
+
+Patients with Alzheimer disease, at the early stage should talk often with their provider, as well as participate in care. The patient should visit his or her medical experts frequently. Sister diseases will often counteract the other, which can make the condition more threatening. According to experts, if a doctor can detect the warnings early, it is possible to cure the disease. 
+
+How do doctors cure the disease?
+I am not sure. I believe they use medications, Ginkgo Biloba, Vitamins, Fish Oil, etc to cure the disease. Experts found that particular vitamins, Ginkgo Biloba, Fish Oil, fruits, vegetables, etc have proven useful in slowing Alzheimer�s symptoms. 
+
+How do doctors handle the patient? 
+Doctors are aware that the patient will suffer short-term memory loss at first. The doctor may calmly explain in details to the patient what he or she needs to do. Family members should participate to assist the patient. In fact, having family members present is smart, since the patient could walk out the door and forget every word his doctor said. 
+
+Alzheimer�s disease is a series of disorders, yet in many cases, the patient had no apparent medical condition, such as heart disease that causes suffering. Yet, strokes and heart disease is linked to Alzheimer.

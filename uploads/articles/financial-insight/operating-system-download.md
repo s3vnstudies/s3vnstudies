@@ -1,0 +1,19 @@
+---
+title: "Operating System Download"
+author: "S3vn Studies Team"
+excerpt: "When you are downloading a new operating system, you need to find a place in your file system to store it to.  You will not want to run the software b..."
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+With the advent of free software, it is possible to download a new operating system for you to install on your computer.  The idea behind free software is that you won�t have to pay for something that could quite possibly be new and better than what you are already using.  This freeware is available for download at no charge and then you can install it right away.
+
+When you are downloading a new operating system, you need to find a place in your file system to store it to.  You will not want to run the software before you save it.  Once you click on the �download� link, let your current system work and store it in a place that is easily accessible.  It could take quite some time to download an operating system, so be patient.
+
+Before you start installing the new operating system that you have downloaded, you�ll need to take precautions that you don�t lose all of your existing information.  You can easily back up your current system with the use of tools available for download like Norton Ghost (at www.symantec.com).  Having a back-up of your current system is good because if you don�t like the operating system you have just downloaded, you can always go back to what you had before � with all of the programs still intact.
+
+After you download your new operating system, you�ll need to install it.  Simply go to the place where you saved the program and click on the icon or file name.  The computer should take it from there.  Be prepared to sit by your computer for awhile.  You will often be prompted to enter some information as the program installs itself.  The input of this information will be needed after your new operating system is installed.
+
+Most new operating systems available for download are those of the freeware type such as Linux.  These freeware programs are new and innovative, so be prepared for a different experience.  Although many of these operating systems are based on the Windows platform, they are still different than most operating systems, so you�ll want to take some time getting to know your new operating system.
+
+There are many opportunities in the computer world for you to take advantage of when it comes to download operating systems.  New technologies are being developed all the time.  If you want to take advantage of these great new operating systems, you have full access to a download when you take the time to look for the programs.

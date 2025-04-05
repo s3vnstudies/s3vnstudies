@@ -1,0 +1,39 @@
+---
+title: "How Often Should You Work On Your Follow Up?"
+author: "S3vn Studies Team"
+excerpt: "�How soon?� you ask.
+ 
+That depends solely on you."
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+It�s true that you will easily get to the point where you can automate a lot of your follow up: And if it isn�t literally on autopilot, it will eventually feel like it is.
+
+�How soon?� you ask.
+ 
+That depends solely on you.  
+
+The best way to create excellent and solid follow up is to set aside time every day.  Create your follow up emails one day, load them into the autoresponder the next, check your �support@� webmail or email daily.
+
+This latter is the most important thing you can do, if you are handling all your customer support yourself.  Dealing with problems or questions, promptly and personally, will set you way above other marketers who have previously given the message (even if it doesn�t happen to be true) that they�re too �big� to bother with mere mortals.
+
+Being Effective
+
+If you do choose to handle your customer support daily, however, make sure you do it by setting aside a specific period, at a specific time, each day. Don�t fall into the trap of being reactive, dashing to answer an email whenever it comes in � that�s the quickest road to customer support burnout and an exercise in leaking perhaps hours out of your day, every day.
+
+Answering customer requests and helping solve problems within a 24 hour period is pretty darned impressive, by today�s standards. And having to wait a few hours teaches your customer that you respect both yourself and your business. 
+
+If an incoming email reports a complaint or problem, however � give it top priority!
+
+(And that, of course, goes for refunds, too. All refunds should be given promptly and cheerfully, if you�re not letting ClickBank or your shopping cart automatically do it.)
+
+Of course, you don�t need to sit there twiddling your thumbs, if there are no queries or complaints. Work on your follow up emails for the rest of the hour; or on something else � just check your �support@� email periodically till the hour is done. 
+
+Then close the program, so you won�t be tempted to start checking it.
+
+But if your customer service period spills over to needing more than one hour a day � time to call in an assistant! (Just make sure that both of you are on line with how you want things handled.)
+
+So set aside that hour or half hour every day, and hang out your shingle: �The Doctor is In� (metaphorically speaking).  It will not only build confidence in your customers, if you�re there within 24 hours to answer questions or solve problems, you�ll find it creates confidence and competence in yourself � within a very short period of time!
+
+So set aside that hour or half hour every day, and start creating that best follow up asset of all � reliable follow up habits.

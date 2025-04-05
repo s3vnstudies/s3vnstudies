@@ -1,0 +1,25 @@
+---
+title: "How Alzheimer Makes we forget"
+author: "S3vn Studies Team"
+excerpt: "So we talk to people about what�s going on with us and then we find ourselves going to a doctor. They take test and find nothing at first so we don�t"
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+At one point and time, we all sit and wonder if forgetting is due to the fact that we are getting older. Getting old is kind of scary for me what about you. But as we go on in life and we keep forgetting, it becomes difficult. Then we find ourselves forgetting where we put the keys, the purse, etc, so we say what is going on, or what is happening to me?
+
+So we talk to people about what�s going on with us and then we find ourselves going to a doctor. They take test and find nothing at first so we don�t worry about it as much. But as time goes on we are noticing how we forget to go to the bathroom and have feces on ourselves.
+
+It gets worse, since then the big thing is we are trying to make a nice dinner that we made 100 times in our life, and all of the sudden you can�t remember how to do it, so we are confused. But we don�t think too much about this because we are still thinking it�s just because our age is walking up on us.
+
+So then we want to go see the leaves, we go every year it�s so pretty out so we begin to take a stroll. Before we know it we are so lost and don�t know where we are, or why we are there.
+
+We are thinking now, what to do so we put up the cell phone to make a call and don�t remember the number. Now we are very scared. The feeling of being all alone creeps in, and you feel lost and can�t make a phone call. So you decide to drive down the road and you find a gas station, so you stop and ask for help, but you can�t remember your address. You dig in the purse and find your driver license and then they help you call home.� 
+
+Some one comes and gets you, takes you home. Your fully angry at this time because you don�t know what to do, your so scared and all alone, you think but your not.
+
+Then one day the family all gets together and everyone decides that maybe you should go get checked out by a doctor. So you go to the doctor and again they don�t find anything for sure, but they think you have Alzheimer�s disease. 
+
+You are so angry inside that you don�t know what you feel, so then�because you can�t go anywhere you became depressed and then you don�t want even to go to church. You noticed that you are starting to yell and rebel toward the family and friends. So now, you�re off in our own world, how scary that must be�for anyone. But as time goes on and on things are getting worse for you, which makes it difficult for a care provider, since they must watch your suffer and shift moods.�
+
+Now you need someone to watch over you all the time because you are unable to be left alone. I don�t know, but I don�t want to live like this. I know that people with this disease can�t help it, yet this is a scary feeling for me. Just writing about Alzheimer�s disease I don�t want to think about it happening to me, or anyone in my life although I have worked with AD patients and I lost a grandma that had the disorder as well. I know a lot about this God forsaking disease, yet I don�t like the feeling at all. I just hope that someday maybe we will get a cure for this disease that is slowly killing all the memory one has of the past, and gradually killing the soul.

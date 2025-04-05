@@ -1,0 +1,27 @@
+---
+title: "PGA"
+author: "S3vn Studies Team"
+excerpt: "Dedicated to the promotion of the game of golf everywhere, the American Professional Golfers Association (PGA) can trace its origins back to 1916 when..."
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+PGA stands for Professional Golf Association and is a generic term referring to the professional organization that most pro golfers belong to.  There are several PGAs around the world including the British Isles PGA and the Ladies PGA.  Many of these PGAs will have an indication of the territory they belong to such as LPGA of Japan, etc.
+
+Dedicated to the promotion of the game of golf everywhere, the American Professional Golfers Association (PGA) can trace its origins back to 1916 when a group of New York area golf professionals, accompanied by several prominent amateur golfers attended a luncheon hosted by department store magnate Rodman Wanamaker.  The purpose of the gather was to discuss forming a national organization to promote interest in the game of golf.
+
+The PGA�s first order of business was to establish the organization�s objectives.  The members agreed to the following:
+
+* Promote interest in the game of golf
+* Elevate the standards of the golf professional�s vocation
+* Protect the mutual interest of its members
+* Hold meetings and tournaments for the benefit of members
+* Assist desesrving unemployed members to obtain positions
+* Establish a benevolent relief fund for deserving members
+* Accomplish any other objective which may be determined by the Association from time to time
+
+The first PGA Championship tournament was held in October of 1916 at the Siwanoy Country Club in Bronxville, NY.  Jim Barnes defeated Jock Hutchison.  Wanamaker honored his pledge and donated a prize purse of $2,580 and the trophy which today still bears his name.
+When the PGA of America was formed, there was no distinction between club and touring professionals. As the PGA began to develop and promote tournaments, it became easier for the touring professionals to devote their efforts to just playing toumaments and exhibitions. In 1968, PGA tournament players, who comprised a small percentage of the membership, broke away from the Association to form a Tournament Players Division and acquire more control of the tournament schedule. 
+In 1975, the Tournament Players Division was renamed the PGA Tour. Today, the PGA Tour is headquartered in Ponte Vedra, Fla. The PGA Tour and the PGA of America maintain a close working relationship, and most professional golfers maintain dual membership in the organizations. 
+The PGA of America conducts more than 30 tournaments for its members and apprentices. Through a network of 41 section offices, the Association maintains a total commitment to the club professional, helping the membership meet the demands of today's marketplace and addressing vital issues such as pace of play, environmental concerns and accessibility. 
+Since 1916, the PGA of America has established new standards of excellence by expanding educational opportunities, programs and services for its members. However, the Association stands firm and continues to flourish on the principles that were set down by its founders.

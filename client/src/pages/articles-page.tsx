@@ -47,9 +47,9 @@ export default function ArticlesPage() {
       icon: <BookOpen className="h-10 w-10 mb-4 text-amber-600" />,
       color: "bg-amber-50",
     },
-    "meditation": {
-      title: "Meditation",
-      description: "Find peace and mindfulness through meditation practices",
+    "financial-insight": {
+      title: "Financial Insight",
+      description: "Valuable knowledge and strategies for financial success",
       icon: <BookOpen className="h-10 w-10 mb-4 text-indigo-600" />,
       color: "bg-indigo-50",
     },

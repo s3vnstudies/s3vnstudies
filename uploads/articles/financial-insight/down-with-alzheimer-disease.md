@@ -1,0 +1,23 @@
+---
+title: "Down with Alzheimer Disease"
+author: "S3vn Studies Team"
+excerpt: "Alzheimer�s disease slowly affects the brain. The condition affects tithe patient, which causes him or her to become mentally delicate. The senile con..."
+category: "financial-insight"
+membershipRequired: "pro"
+---
+
+Down syndrome is one of the leading causes behind Alzheimer�s disease and dementia. In fact, some illnesses start at early stages in life and gradually work its way up to Alzheimer�s disease. Alzheimer�s disease is a series of illnesses that gradually leads to dementia. However to understand Alzheimer�s disease, dementia, Down syndrome, etc, you must understand dendrites. 
+
+Alzheimer�s disease slowly affects the brain. The condition affects tithe patient, which causes him or her to become mentally delicate. The senile condition leads to confusion and memory loss. As the disease progresses, the problems continue to plague the brain. The patient gradually looses atomic strands of neurofibrillary. The condition develops into a degeneration state, which causes deterioration of cell bodies, dendrites, and axon, which surround the nerve cells. Now if you dare to venture we can travel down dendrite lane to see why this element causes Alzheimer�s disease to develop into dementia. 
+
+First, understand that to date there is no explanation to reach the cause of Alzheimer�s disease. Yet, I dare to venture and explore its cause. Dendrites are neurons within the anatomy, which these nerve cells make up the fundamental structure of the Central Nervous System. Now, if you would read the history of medical complications, you would see that most diseases target the Central Nervous System. (CNS) 
+
+Within the central nervous system, dendrites consist of axon (The extension of nerve cells, which transmit impulses to external cell bodies) and cell bodies. The elements join by enclosing around neurological �conducts of impulses� and spread transversely and from corner to corner crossways of the space amid nerve endings. (Synapse) The junction amid the two nerve cells is shaped similar to clubs, and at the tips of the cells are nerve fibers. The fibers nearly stroke the other cells in an effort to convey signals to the muscles and glands, finally reaching the organs. Now, if these nerves are interrupted the neurotransmitters, which include serotonin, endorphins, acetylcholine, dopamine, norepineprhine, and lastly gamma-aminobutyric acids will cause a disruption of nerve impulses and its process to transmit signals. We see a series of deterioration starting to unfold. 
+
+NOTE: Serotonin is neurotransmitter chemicals, which derive from amino acids, such as tryptophan. The nerve chemicals are widely spread out to tissues and acts as a chemical that carries communication between nerves. (Neurotransmitters) The messages are carried amid a selection of nerve cells and amid nerve cells, which signal the muscles. The action causes impulses to constrict blood vessels at damaged sites, which if serotonin is interrupted it will cause states of emotional response. 
+
+We see that when serotonin is interrupted it affects the emotions, which slows intellectual actions. 
+
+Dendrites channel through to the central nervous system. In this area the brain and spinal cord meets with CNS. The brain makes up cerebral divisions that separate into �two� halves and contain eight lobes, i.e. four lobes on both halves each. At the front lobes is where the personality develops, as well as motor speech and intellectual functions. Now, Alzheimer�s disease diminishes the intellectual functions, which means the disease is striking the frontal lobe perhaps initially. Ultimately, the disease has affected the nerve cells, muscles, and CNS, which slowly moves to deteriorate the frontal lobe by blocking its development. 
+
+Many experts are led to believe that outside illnesses cause symptoms of Alzheimer�s disease to develop. Perhaps the notion is logically. Yet, if you consider that dendrites make up the parietal lobe, which is where sensations start and carry over to integrate with sensory, and finally forms a relationship with spatial which is space, we see that perhaps this space is blocked. Now, if Alzheimer�s disease targets the parietal lobe, which extends to space that heightens sensory consciousness and targets the sense organs, we see that awareness is diminished.
