@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import { Loader2, Send, RefreshCw } from "lucide-react";
+import { Loader2, Send, RefreshCw, Bot, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/use-auth";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 interface Presenter {
   id: string;
@@ -28,6 +29,7 @@ export function AiAssistant() {
   const [isLoading, setIsLoading] = useState(false);
   const [presenters, setPresenters] = useState<Presenter[]>([]);
   const [selectedPresenter, setSelectedPresenter] = useState<string | null>(null);
+  const [apiError, setApiError] = useState<string | null>(null);
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
   const { toast } = useToast();
   const { user } = useAuth();
@@ -58,18 +60,34 @@ export function AiAssistant() {
   async function fetchPresenters() {
     try {
       const response = await apiRequest("GET", "/api/ai/presenters");
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "API Error");
+      }
+      
       const data = await response.json();
+      
+      // Check if we got valid presenter data
+      if (!Array.isArray(data) || data.length === 0) {
+        setApiError("No AI presenters available. Please check your D-ID API configuration.");
+        return;
+      }
+      
       setPresenters(data);
+      setApiError(null);
       
       // Select the first presenter by default
-      if (data.length > 0) {
-        setSelectedPresenter(data[0].id);
-      }
-    } catch (error) {
+      setSelectedPresenter(data[0].id);
+    } catch (error: any) {
       console.error("Error fetching presenters:", error);
+      
+      // Set a user-friendly error message
+      setApiError("Unable to connect to the AI Assistant service. Please check your API configuration.");
+      
       toast({
-        title: "Error",
-        description: "Failed to load AI presenters. Please try again later.",
+        title: "AI Service Unavailable",
+        description: "Our AI assistant is currently unavailable. The administrator has been notified.",
         variant: "destructive",
       });
     }
@@ -197,6 +215,35 @@ export function AiAssistant() {
 
   return (
     <div className="flex flex-col h-[600px] max-w-3xl mx-auto border rounded-lg overflow-hidden">
+      {/* API Error Alert */}
+      {apiError && (
+        <Alert variant="destructive" className="m-4">
+          <AlertCircle className="h-4 w-4" />
+          <AlertTitle>API Connection Error</AlertTitle>
+          <AlertDescription>
+            {apiError}
+            {user?.isAdmin && (
+              <div className="mt-2 text-sm">
+                <p>Admin actions:</p>
+                <ul className="list-disc pl-5 mt-1">
+                  <li>Check the D_ID_API_KEY environment variable</li>
+                  <li>Verify the D-ID API key format and permissions</li>
+                  <li>Check server logs for detailed error information</li>
+                </ul>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="mt-2"
+                  onClick={fetchPresenters}
+                >
+                  <RefreshCw className="h-3 w-3 mr-1" /> Retry Connection
+                </Button>
+              </div>
+            )}
+          </AlertDescription>
+        </Alert>
+      )}
+      
       {/* Presenter selection */}
       <div className="bg-muted p-4 border-b">
         <h3 className="text-sm font-medium mb-2">Choose an AI presenter:</h3>
@@ -219,7 +266,7 @@ export function AiAssistant() {
               {presenter.name}
             </button>
           ))}
-          {presenters.length === 0 && (
+          {presenters.length === 0 && !apiError && (
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full text-sm bg-secondary">
               <Loader2 className="w-4 h-4 animate-spin" />
               Loading presenters...
