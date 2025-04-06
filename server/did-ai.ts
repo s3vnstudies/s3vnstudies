@@ -29,7 +29,7 @@ export async function createTalkRequest(req: Request, res: Response) {
     const response = await fetch("https://api.d-id.com/talks", {
       method: "POST",
       headers: {
-        "Authorization": `Basic ${process.env.D_ID_API_KEY}`,
+        "Authorization": `Bearer ${process.env.D_ID_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -80,7 +80,7 @@ export async function getTalkStatus(req: Request, res: Response) {
     const response = await fetch(`https://api.d-id.com/talks/${id}`, {
       method: "GET",
       headers: {
-        "Authorization": `Basic ${process.env.D_ID_API_KEY}`,
+        "Authorization": `Bearer ${process.env.D_ID_API_KEY}`,
         "Content-Type": "application/json",
       },
     });
@@ -123,7 +123,7 @@ export async function getAvailablePresenters(req: Request, res: Response) {
     const response = await fetch("https://api.d-id.com/presenters", {
       method: "GET",
       headers: {
-        "Authorization": `Basic ${process.env.D_ID_API_KEY}`,
+        "Authorization": `Bearer ${process.env.D_ID_API_KEY}`,
         "Content-Type": "application/json",
       },
     });
@@ -158,7 +158,7 @@ export async function getAvailableVoices(req: Request, res: Response) {
     const response = await fetch("https://api.d-id.com/tts/voices", {
       method: "GET",
       headers: {
-        "Authorization": `Basic ${process.env.D_ID_API_KEY}`,
+        "Authorization": `Bearer ${process.env.D_ID_API_KEY}`,
         "Content-Type": "application/json",
       },
     });

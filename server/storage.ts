@@ -1466,17 +1466,98 @@ export class DatabaseStorage implements IStorage {
 
   // User operations
   async getUser(id: number): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.id, id));
+    const [user] = await db.select({
+      id: users.id,
+      username: users.username,
+      password: users.password,
+      email: users.email,
+      displayName: users.displayName,
+      bio: users.bio,
+      avatarUrl: users.avatarUrl,
+      membershipTier: users.membershipTier,
+      memberSince: users.memberSince,
+      isAdmin: users.isAdmin,
+      resetPasswordToken: users.resetPasswordToken,
+      resetPasswordExpires: users.resetPasswordExpires
+    }).from(users).where(eq(users.id, id));
+    
+    // Add empty values for fields that exist in the schema but not in the database yet
+    if (user) {
+      return {
+        ...user,
+        location: null,
+        website: null,
+        interests: [],
+        profileVisibility: "public" as const,
+        socialLinks: null,
+        coverImageUrl: null,
+        lastLogin: null
+      };
+    }
     return user;
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.username, username));
+    const [user] = await db.select({
+      id: users.id,
+      username: users.username,
+      password: users.password,
+      email: users.email,
+      displayName: users.displayName,
+      bio: users.bio,
+      avatarUrl: users.avatarUrl,
+      membershipTier: users.membershipTier,
+      memberSince: users.memberSince,
+      isAdmin: users.isAdmin,
+      resetPasswordToken: users.resetPasswordToken,
+      resetPasswordExpires: users.resetPasswordExpires
+    }).from(users).where(eq(users.username, username));
+    
+    // Add empty values for fields that exist in the schema but not in the database yet
+    if (user) {
+      return {
+        ...user,
+        location: null,
+        website: null,
+        interests: [],
+        profileVisibility: "public" as const,
+        socialLinks: null,
+        coverImageUrl: null,
+        lastLogin: null
+      };
+    }
     return user;
   }
 
   async getUserByEmail(email: string): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.email, email));
+    const [user] = await db.select({
+      id: users.id,
+      username: users.username,
+      password: users.password,
+      email: users.email,
+      displayName: users.displayName,
+      bio: users.bio,
+      avatarUrl: users.avatarUrl,
+      membershipTier: users.membershipTier,
+      memberSince: users.memberSince,
+      isAdmin: users.isAdmin,
+      resetPasswordToken: users.resetPasswordToken,
+      resetPasswordExpires: users.resetPasswordExpires
+    }).from(users).where(eq(users.email, email));
+    
+    // Add empty values for fields that exist in the schema but not in the database yet
+    if (user) {
+      return {
+        ...user,
+        location: null,
+        website: null,
+        interests: [],
+        profileVisibility: "public" as const,
+        socialLinks: null,
+        coverImageUrl: null,
+        lastLogin: null
+      };
+    }
     return user;
   }
 
