@@ -24,6 +24,7 @@ import SelfHelpStudiesPage from "@/pages/self-help-studies-page";
 import FunGamesPage from "@/pages/fun-games-page";
 import PoliciesPage from "@/pages/policies-page";
 import MembershipPage from "@/pages/membership-page";
+import AiAssistantPage from "@/pages/ai-assistant-page";
 import AdminPage from "@/pages/admin-page";
 import AdminDashboard from "@/pages/admin-dashboard";
 import { ProtectedRoute } from "./lib/protected-route";
@@ -61,6 +62,7 @@ function AppRoutes() {
       <Route path="/fun-games" component={FunGamesPage} />
       <Route path="/policies" component={PoliciesPage} />
       <Route path="/membership" component={MembershipPage} />
+      <Route path="/ai-assistant" component={AiAssistantPage} />
       <ProtectedRoute path="/admin" component={() => <AdminPage />} adminOnly={true} />
       <ProtectedRoute path="/admin/dashboard" component={() => <AdminDashboard />} adminOnly={true} />
       <Route component={NotFound} />

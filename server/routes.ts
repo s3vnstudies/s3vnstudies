@@ -5,6 +5,7 @@ import { storage } from "./storage";
 import { setupAuth } from "./auth";
 import { setupWebsockets } from "./websocket";
 import { setupAdmin } from "./admin";
+import { createTalkRequest, getTalkStatus, getAvailablePresenters, getAvailableVoices } from "./did-ai";
 import path from "path";
 import Stripe from "stripe";
 import { 
@@ -1092,6 +1093,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (err) {
       res.status(500).json({ message: "Failed to update profile" });
     }
+  });
+  
+  // D-ID AI Assistant Integration
+  app.post("/api/ai/talk", async (req, res) => {
+    createTalkRequest(req, res);
+  });
+
+  app.get("/api/ai/talk/:id", async (req, res) => {
+    getTalkStatus(req, res);
+  });
+
+  app.get("/api/ai/presenters", async (req, res) => {
+    getAvailablePresenters(req, res);
+  });
+
+  app.get("/api/ai/voices", async (req, res) => {
+    getAvailableVoices(req, res);
   });
   
   return httpServer;

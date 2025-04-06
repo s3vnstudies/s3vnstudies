@@ -33,6 +33,7 @@ import {
   Heart,
   Clock,
   Settings,
+  Bot,
 } from "lucide-react";
 
 export default function Header() {
@@ -49,6 +50,7 @@ export default function Header() {
     { name: "Community", path: "/community" },
     { name: "Self Help Studies", path: "/self-help-studies" },
     { name: "Store", path: "/store" },
+    { name: "AI Assistant", path: "/ai-assistant" },
   ];
 
   const isActive = (path: string) => {
@@ -262,6 +264,9 @@ export default function Header() {
                       break;
                     case "Store":
                       icon = <Store className="h-4 w-4 mr-2" />;
+                      break;
+                    case "AI Assistant":
+                      icon = <Bot className="h-4 w-4 mr-2" />;
                       break;
                     default:
                       icon = <Star className="h-4 w-4 mr-2" />;
