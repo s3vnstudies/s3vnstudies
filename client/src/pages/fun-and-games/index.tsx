@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import PageLayout from "@/components/layout/page-layout";
 import { useLocation } from "wouter";
 import { useAuth } from "@/hooks/use-auth";
-import { SunIcon, Palmtree, Flower2, LockIcon } from "lucide-react";
+import { SunIcon, Palmtree as TreesIcon, Flower2 as ParkIcon, LockIcon } from "lucide-react";
 
 const sections = [
   {
@@ -16,14 +16,14 @@ const sections = [
   {
     title: "Nature Exploration",
     description: "Guides for exploring the natural world with your family and friends.",
-    icon: Palmtree,
+    icon: TreesIcon,
     path: "/fun-and-games/nature",
     comingSoon: true
   },
   {
     title: "Park Adventures",
     description: "Tips and ideas for making the most of your local park visits.",
-    icon: Flower2,
+    icon: ParkIcon,
     path: "/fun-and-games/parks",
     comingSoon: true
   }
