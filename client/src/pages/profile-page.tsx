@@ -48,6 +48,7 @@ import {
   UserPlus,
   Tag,
   Clock,
+  MessageSquare,
 } from "lucide-react";
 import { formatDistanceToNow, format } from "date-fns";
 import { Order } from "@shared/schema";
