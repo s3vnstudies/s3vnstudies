@@ -1,0 +1,36 @@
+[vite] connecting...
+DOMException {}
+
+at t.value (https://4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:17465)
+at new t (https://4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:12630)
+at t.value (https://4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:32766)
+at https://4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:34400
+Login error details: 401: {"message":"Invalid username or password"}
+at t.value (https://4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:17465)
+at new t (https://4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:12630)
+at t.value (https://4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:32766)
+at https://4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:34400
+Error fetching presenters: 
+Error {}
+
+at t.value (https://4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:17465)
+at new t (https://4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:12630)
+at t.value (https://4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:32766)
+at https://4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:34400
+Failed to fetch
+at window.fetch (https://4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:218642)
+at https://agent.d-id.com/v1/index.js:20933:13
+at https://agent.d-id.com/v1/index.js:125:37
+at Dc (https://agent.d-id.com/v1/index.js:87:22)
+at mS (https://agent.d-id.com/v1/index.js:114:19)
+at r (https://agent.d-id.com/v1/index.js:125:28)
+at Object.get (https://agent.d-id.com/v1/index.js:146:14)
+at Object.getById (https://agent.d-id.com/v1/index.js:184:16)
+at VS (https://agent.d-id.com/v1/index.js:918:58)
+at re (https://agent.d-id.com/v1/index.js:1822:26)
+at Object.__ (https://agent.d-id.com/v1/index.js:1886:16)
+at Fc (https://agent.d-id.com/v1/index.js:1657:13)
+at Array.forEach (<anonymous>)
+at ay (https://agent.d-id.com/v1/index.js:1600:42)
+at r (https://agent.d-id.com/v1/index.js:23936:16)
+Failed to fetch
