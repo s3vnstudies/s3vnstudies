@@ -1,13 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import PageLayout from "@/components/layout/page-layout";
 import { AiAssistant } from "@/components/ai-assistant";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { InfoIcon } from "lucide-react";
 
 export default function AiAssistantPage() {
   // Set page title
+  // State to track D-ID agent loading status
+  const [didAgentStatus, setDidAgentStatus] = useState<"loading" | "success" | "error">("loading");
+  
   useEffect(() => {
     document.title = "S3vn Studies - AI Assistant";
     
-    // Load the D-ID Agent script with error handling
+    // We're temporarily disabling the D-ID agent integration
+    // due to connection issues until we get the proper API key
+    setDidAgentStatus("error");
+    
+    // This is the original D-ID Agent loading code, kept for reference
+    // but commented out to prevent further errors
+    /*
     const loadDidAgent = () => {
       try {
         // Check if the script is already loaded
@@ -27,26 +38,19 @@ export default function AiAssistantPage() {
         // Add error handling
         didAgentScript.onerror = (e) => {
           console.error('D-ID Agent script failed to load:', e);
+          setDidAgentStatus("error");
         };
-        
-        // Create container element if it doesn't exist
-        const container = document.getElementById('d-id-agent-container');
-        if (!container) {
-          const newContainer = document.createElement('div');
-          newContainer.id = 'd-id-agent-container';
-          newContainer.style.width = '100%';
-          newContainer.style.marginBottom = '2rem';
-          document.querySelector('.container')?.prepend(newContainer);
-        }
         
         document.body.appendChild(didAgentScript);
         
         // Add event listener for D-ID agent loaded
         window.addEventListener('did-agent:ready', () => {
           console.log('D-ID Agent successfully loaded');
+          setDidAgentStatus("success");
         });
       } catch (error) {
         console.error('Error setting up D-ID Agent:', error);
+        setDidAgentStatus("error");
       }
     };
     
@@ -61,6 +65,7 @@ export default function AiAssistantPage() {
         document.body.removeChild(script);
       }
     };
+    */
   }, []);
 
   return (
@@ -72,8 +77,29 @@ export default function AiAssistantPage() {
           and provide guidance on using the S3vn Studies platform.
         </p>
         
+        {/* D-ID Agent status messages */}
+        {didAgentStatus === "loading" && (
+          <div className="flex items-center justify-center p-8 mb-8 bg-secondary/30 rounded-lg">
+            <div className="animate-spin h-6 w-6 border-2 border-primary border-t-transparent rounded-full mr-2"></div>
+            <p>Loading interactive AI assistant...</p>
+          </div>
+        )}
+        
+        {didAgentStatus === "error" && (
+          <Alert className="mb-8">
+            <InfoIcon className="h-4 w-4" />
+            <AlertTitle>Interactive Assistant Temporarily Unavailable</AlertTitle>
+            <AlertDescription>
+              Our interactive AI assistant is currently undergoing maintenance. 
+              In the meantime, you can use our text-based AI assistant below.
+            </AlertDescription>
+          </Alert>
+        )}
+        
         {/* D-ID Agent will be injected here by the script */}
-        <div id="d-id-agent-container" className="mb-8"></div>
+        {didAgentStatus === "success" && (
+          <div id="d-id-agent-container" className="mb-8"></div>
+        )}
         
         {/* Our custom AI assistant implementation */}
         <AiAssistant />

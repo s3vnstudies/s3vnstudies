@@ -59,19 +59,30 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     onError: (error: Error) => {
       // Provide a more user-friendly error message
       let errorMessage = "Please check your username and password and try again.";
+      let toastTitle = "Login failed";
       
       if (error.message.includes("401")) {
         errorMessage = "Invalid username or password. Please try again.";
+        
+        // Add hint for admin login
+        if (error.message.toLowerCase().includes("s3vn")) {
+          errorMessage = "Admin login requires the correct case-sensitive credentials. Please try again.";
+        }
       } else if (error.message.includes("500")) {
-        errorMessage = "Server error. Please try again later.";
+        toastTitle = "Server error";
+        errorMessage = "We're experiencing technical difficulties. Please try again later.";
+      } else if (error.message.includes("Network") || error.message.includes("Failed to fetch")) {
+        toastTitle = "Connection error";
+        errorMessage = "Could not connect to the server. Please check your internet connection.";
       }
       
       toast({
-        title: "Login failed",
+        title: toastTitle,
         description: errorMessage,
         variant: "destructive",
       });
       
+      // For debugging
       console.error("Login error details:", error.message);
     },
   });
