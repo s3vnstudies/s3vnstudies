@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import PageLayout from "@/components/layout/page-layout";
 import { useLocation } from "wouter";
 import { useAuth } from "@/hooks/use-auth";
-import { SunIcon, Palmtree as TreesIcon, Flower2 as ParkIcon, LockIcon } from "lucide-react";
+import { SunIcon, TreePine as TreesIcon, Flower as ParkIcon, LockIcon } from "lucide-react";
 
 const sections = [
   {

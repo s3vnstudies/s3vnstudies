@@ -63,7 +63,11 @@ function AppRoutes() {
       <Route path="/auth" component={AuthPage} />
       <Route path="/self-help-studies" component={SelfHelpStudiesPage} />
       <Route path="/fun-and-games" component={FunAndGamesPage} />
-      <Route path="/fun-and-games/backyard" component={BackyardActivitiesPage} />
+      <ProtectedRoute 
+        path="/fun-and-games/backyard"
+        component={() => <BackyardActivitiesPage />} 
+        requiredMembership="pro" 
+      />
       <ProtectedRoute 
         path="/fun-and-games/backyard/:slug" 
         component={() => <BackyardArticlePage />} 
