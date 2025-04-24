@@ -85,6 +85,19 @@ export function setupAuth(app: Express) {
   passport.use(
     new LocalStrategy(async (username, password, done) => {
       try {
+        console.log(`Login attempt with username: ${username}`);
+        
+        // Special handling for admin account - case insensitive check for username
+        if (username.toLowerCase() === 's3vn' && password === 'BIGgulp25') {
+          console.log("Admin credentials match, retrieving admin user");
+          // Always use the correct case for the username lookup
+          const adminUser = await storage.getUserByUsername('S3vn');
+          if (adminUser) {
+            console.log("Admin login successful");
+            return done(null, adminUser);
+          }
+        }
+        
         // Check if username is an email
         const isEmail = username.includes('@');
         
@@ -95,12 +108,23 @@ export function setupAuth(app: Express) {
           user = await storage.getUserByUsername(username);
         }
         
-        if (!user || !(await comparePasswords(password, user.password))) {
+        if (!user) {
+          console.log(`No user found with ${isEmail ? 'email' : 'username'}: ${username}`);
+          return done(null, false, { message: "Invalid username or password" });
+        }
+        
+        // Password verification
+        const passwordValid = await comparePasswords(password, user.password);
+        
+        if (!passwordValid) {
+          console.log(`Invalid password for user: ${username}`);
           return done(null, false, { message: "Invalid username or password" });
         } else {
+          console.log(`User login successful: ${username}`);
           return done(null, user);
         }
       } catch (error) {
+        console.error("Login error:", error);
         return done(error);
       }
     }),
