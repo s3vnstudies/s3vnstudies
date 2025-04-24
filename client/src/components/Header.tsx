@@ -50,6 +50,7 @@ export default function Header() {
     { name: "Videos", path: "/videos" },
     { name: "Community", path: "/community" },
     { name: "Self Help Studies", path: "/self-help-studies" },
+    { name: "Fun & Games", path: "/fun-and-games" },
     { name: "Store", path: "/store" },
     { name: "AI Assistant", path: "/ai-assistant" },
   ];
@@ -268,6 +269,9 @@ export default function Header() {
                       break;
                     case "AI Assistant":
                       icon = <Bot className="h-4 w-4 mr-2" />;
+                      break;
+                    case "Fun & Games":
+                      icon = <GamepadIcon className="h-4 w-4 mr-2" />;
                       break;
                     default:
                       icon = <Star className="h-4 w-4 mr-2" />;

@@ -1,3 +1,4 @@
+import React from "react";
 import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -21,7 +22,9 @@ import ChatPage from "@/pages/chat-page";
 import ProfilePage from "@/pages/profile-page";
 import AuthPage from "@/pages/auth-page";
 import SelfHelpStudiesPage from "@/pages/self-help-studies-page";
-import FunGamesPage from "@/pages/fun-games-page";
+import FunAndGamesPage from "@/pages/fun-and-games";
+import BackyardActivitiesPage from "@/pages/fun-and-games/backyard";
+import BackyardArticlePage from "@/pages/fun-and-games/backyard/[slug]";
 import PoliciesPage from "@/pages/policies-page";
 import MembershipPage from "@/pages/membership-page";
 import AiAssistantPage from "@/pages/ai-assistant-page";
@@ -59,7 +62,9 @@ function AppRoutes() {
       <ProtectedRoute path="/profile" component={() => <ProfilePage />} />
       <Route path="/auth" component={AuthPage} />
       <Route path="/self-help-studies" component={SelfHelpStudiesPage} />
-      <Route path="/fun-games" component={FunGamesPage} />
+      <Route path="/fun-and-games" component={FunAndGamesPage} />
+      <Route path="/fun-and-games/backyard" component={BackyardActivitiesPage} />
+      <Route path="/fun-and-games/backyard/:slug" component={BackyardArticlePage} />
       <Route path="/policies" component={PoliciesPage} />
       <Route path="/membership" component={MembershipPage} />
       <Route path="/ai-assistant" component={AiAssistantPage} />
