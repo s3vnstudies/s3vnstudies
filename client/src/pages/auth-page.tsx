@@ -36,11 +36,9 @@ import { User, Lock, Mail, UserPlus, LogIn } from "lucide-react";
 // Login form schema
 const loginSchema = z.object({
   username: z.string()
-    .min(3, "Username must be at least 3 characters")
-    .max(50, "Username cannot exceed 50 characters"),
+    .min(1, "Username or email is required"),
   password: z.string()
-    .min(6, "Password must be at least 6 characters")
-    .max(100, "Password is too long"),
+    .min(1, "Password is required"),
 });
 
 // Registration form schema

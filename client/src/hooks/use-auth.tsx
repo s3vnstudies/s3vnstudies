@@ -61,12 +61,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       let errorMessage = "Please check your username and password and try again.";
       let toastTitle = "Login failed";
       
+      console.log("Login error received:", error.message);
+      
       if (error.message.includes("401")) {
         errorMessage = "Invalid username or password. Please try again.";
         
-        // Add hint for admin login
-        if (error.message.toLowerCase().includes("s3vn")) {
+        // Special case for admin login
+        if (error.message.toLowerCase().includes("admin")) {
           errorMessage = "Admin login requires the correct case-sensitive credentials. Please try again.";
+        }
+        
+        // Special message if the input might be the admin username (S3vn)
+        if (error.message.toLowerCase().includes("s3vn")) {
+          errorMessage = "Remember that the admin password is case-sensitive. Please try again.";
         }
       } else if (error.message.includes("500")) {
         toastTitle = "Server error";
