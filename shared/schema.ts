@@ -6,6 +6,8 @@ export const membershipTierEnum = pgEnum("membership_tier", ["free", "pro"]);
 export const visibilityEnum = pgEnum("visibility", ["public", "private", "connections"]);
 export const messageStatusEnum = pgEnum("message_status", ["sent", "delivered", "read"]);
 export const userContentTypeEnum = pgEnum("content_type", ["article", "video", "image", "audio"]);
+export const accountStatusEnum = pgEnum("account_status", ["active", "suspended", "banned", "under_review"]);
+export const moderationReasonEnum = pgEnum("moderation_reason", ["spam", "inappropriate_content", "harassment", "hate_speech", "violation_of_terms", "other"]);
 
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
@@ -28,6 +30,12 @@ export const users = pgTable("users", {
   socialLinks: jsonb("social_links"), // JSON object for social media links
   coverImageUrl: text("cover_image_url"),
   lastLogin: timestamp("last_login"),
+  // Moderation fields
+  accountStatus: accountStatusEnum("account_status").default("active").notNull(),
+  moderationReason: moderationReasonEnum("moderation_reason"),
+  moderationNotes: text("moderation_notes"),
+  moderatedBy: integer("moderated_by"),
+  moderatedAt: timestamp("moderated_at"),
 });
 
 export const insertUserSchema = createInsertSchema(users)
@@ -204,6 +212,12 @@ export const chatRooms = pgTable("chat_rooms", {
   isPrivate: boolean("is_private").default(false).notNull(),
   membershipRequired: membershipTierEnum("membership_required").default("free").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
+  // Moderation fields
+  isModerated: boolean("is_moderated").default(false).notNull(),
+  isMuted: boolean("is_muted").default(false).notNull(),
+  moderatorId: integer("moderator_id"),
+  moderationNotes: text("moderation_notes"),
+  moderatedAt: timestamp("moderated_at"),
 });
 
 export const insertChatRoomSchema = createInsertSchema(chatRooms).pick({
@@ -220,6 +234,11 @@ export const chatMessages = pgTable("chat_messages", {
   userId: integer("user_id").notNull(),
   message: text("message").notNull(),
   sentAt: timestamp("sent_at").defaultNow().notNull(),
+  // Moderation fields
+  isHidden: boolean("is_hidden").default(false).notNull(),
+  hiddenBy: integer("hidden_by"),
+  hiddenAt: timestamp("hidden_at"),
+  hiddenReason: moderationReasonEnum("hidden_reason"),
 });
 
 export const insertChatMessageSchema = createInsertSchema(chatMessages).pick({
@@ -235,6 +254,12 @@ export const bulletinPosts = pgTable("bulletin_posts", {
   userId: integer("user_id").notNull(),
   category: text("category").notNull(),
   postedAt: timestamp("posted_at").defaultNow().notNull(),
+  // Moderation fields
+  isHidden: boolean("is_hidden").default(false).notNull(),
+  hiddenBy: integer("hidden_by"),
+  hiddenAt: timestamp("hidden_at"),
+  hiddenReason: moderationReasonEnum("hidden_reason"),
+  moderationNotes: text("moderation_notes"),
 });
 
 export const insertBulletinPostSchema = createInsertSchema(bulletinPosts).pick({
