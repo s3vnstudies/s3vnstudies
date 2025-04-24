@@ -34,6 +34,7 @@ import {
   Clock,
   Settings,
   Bot,
+  GamepadIcon,
 } from "lucide-react";
 
 export default function Header() {
