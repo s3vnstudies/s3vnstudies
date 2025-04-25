@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react';
 import { Route, Redirect } from 'wouter';
 import { useAuth } from '@/hooks/use-auth';
 import ArticleUploader from '@/components/admin/ArticleUploader';
+import UserManagement from '@/components/admin/UserManagement';
+import ChatModeration from '@/components/admin/ChatModeration';
+import ContentModeration from '@/components/admin/ContentModeration';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Users, MessageSquare, AlertCircle, FileText, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useQuery } from '@tanstack/react-query';
@@ -39,15 +42,32 @@ export default function AdminDashboard() {
       <div>
         <h1 className="text-3xl font-bold mb-2">Admin Dashboard</h1>
         <p className="text-muted-foreground">
-          Manage your website content, users, and settings from this central dashboard.
+          Manage your website content, users, and moderation from this central dashboard.
         </p>
       </div>
 
       <Tabs defaultValue="articles" value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="mb-8">
-          <TabsTrigger value="articles">Articles</TabsTrigger>
-          <TabsTrigger value="users">Users</TabsTrigger>
-          <TabsTrigger value="settings">Settings</TabsTrigger>
+          <TabsTrigger value="articles" className="flex items-center gap-1.5">
+            <FileText size={16} />
+            <span>Articles</span>
+          </TabsTrigger>
+          <TabsTrigger value="users" className="flex items-center gap-1.5">
+            <Users size={16} />
+            <span>Users</span>
+          </TabsTrigger>
+          <TabsTrigger value="chat" className="flex items-center gap-1.5">
+            <MessageSquare size={16} />
+            <span>Chat Rooms</span>
+          </TabsTrigger>
+          <TabsTrigger value="content" className="flex items-center gap-1.5">
+            <AlertCircle size={16} />
+            <span>Content Moderation</span>
+          </TabsTrigger>
+          <TabsTrigger value="settings" className="flex items-center gap-1.5">
+            <Settings size={16} />
+            <span>Settings</span>
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="articles" className="space-y-8">
@@ -117,19 +137,15 @@ export default function AdminDashboard() {
         </TabsContent>
 
         <TabsContent value="users">
-          <Card>
-            <CardHeader>
-              <CardTitle>User Management</CardTitle>
-              <CardDescription>
-                View, edit, or delete users in the system. Manage user permissions and roles.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="py-8 text-center text-muted-foreground">
-                User management functionality will be implemented soon.
-              </p>
-            </CardContent>
-          </Card>
+          <UserManagement />
+        </TabsContent>
+
+        <TabsContent value="chat">
+          <ChatModeration />
+        </TabsContent>
+
+        <TabsContent value="content">
+          <ContentModeration />
         </TabsContent>
 
         <TabsContent value="settings">

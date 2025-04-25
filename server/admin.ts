@@ -3,6 +3,7 @@ import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
 import { storage } from './storage';
+import { registerAdminRoutes } from './admin-routes';
 import AdmZip from 'adm-zip';
 import { promisify } from 'util';
 import { InsertArticle } from '@shared/schema';
@@ -96,6 +97,9 @@ export function setupAdmin(app: Express) {
   });
 
   app.use('/api/admin', adminRoutes);
+  
+  // Register moderation routes
+  registerAdminRoutes(app);
 }
 
 // Define result types
