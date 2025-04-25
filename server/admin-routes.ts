@@ -1,4 +1,5 @@
-import { Request, Response, NextFunction, Router } from 'express';
+import express, { Request, Response, NextFunction, Router } from 'express';
+import type { Express } from 'express';
 import { db } from './db';
 import { 
   users, 
@@ -23,7 +24,7 @@ export function requireAdmin(req: Request, res: Response, next: NextFunction) {
   next();
 }
 
-export function registerAdminRoutes(app: Router) {
+export function registerAdminRoutes(app: Express) {
   const router = Router();
 
   // Get all users
