@@ -219,7 +219,7 @@ export default function ContentModeration() {
         );
       case 'reviewed':
         return (
-          <Badge variant="success" className="flex items-center gap-1">
+          <Badge variant="secondary" className="flex items-center gap-1 bg-green-100 text-green-700 hover:bg-green-200">
             <Eye size={12} />
             <span>Reviewed</span>
           </Badge>
