@@ -1,4 +1,4 @@
-const postgres = require('postgres');
+import postgres from 'postgres';
 
 // Create a PostgreSQL connection
 const connectionString = process.env.DATABASE_URL;
