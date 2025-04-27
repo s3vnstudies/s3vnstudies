@@ -24,6 +24,7 @@ import {
 } from "@shared/schema";
 import { z } from "zod";
 import { getYouTubeVideos, getYouTubeVideoDetails, handleYouTubeSync, syncYouTubeVideos } from "./youtube";
+import { getOrCreateSubscription, handleStripeWebhook } from "./stripe";
 
 // Initialize Stripe
 if (!process.env.STRIPE_SECRET_KEY) {

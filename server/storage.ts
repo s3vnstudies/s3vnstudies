@@ -119,6 +119,7 @@ export class MemStorage implements IStorage {
   private bulletinPosts: Map<number, BulletinPost>;
   private videos: Map<number, Video>;
   private subscriptions: Map<number, Subscription>;
+  private stripeCustomerIds: Map<string, number>; // Map from stripeCustomerId to userId
   
   private userId: number = 1;
   private articleId: number = 1;
@@ -146,6 +147,7 @@ export class MemStorage implements IStorage {
     this.subscriptions = new Map();
     this.userFavorites = new Map();
     this.watchLaterItems = new Map();
+    this.stripeCustomerIds = new Map();
     
     this.sessionStore = new MemoryStore({
       checkPeriod: 86400000, // prune expired entries every 24h
@@ -153,6 +155,57 @@ export class MemStorage implements IStorage {
     
     // Initialize with some example data
     this.initSampleData();
+  }
+  
+  // Stripe related operations
+  async getUserByStripeCustomerId(customerId: string): Promise<User | undefined> {
+    const userId = this.stripeCustomerIds.get(customerId);
+    if (userId) {
+      return this.getUser(userId);
+    }
+    return undefined;
+  }
+  
+  async updateStripeCustomerId(userId: number, customerId: string): Promise<User | undefined> {
+    const user = this.users.get(userId);
+    if (user) {
+      const updatedUser = {
+        ...user,
+        stripeCustomerId: customerId
+      };
+      this.users.set(userId, updatedUser);
+      this.stripeCustomerIds.set(customerId, userId);
+      return updatedUser;
+    }
+    return undefined;
+  }
+  
+  async updateStripeSubscriptionId(userId: number, subscriptionId: string): Promise<User | undefined> {
+    const user = this.users.get(userId);
+    if (user) {
+      const updatedUser = {
+        ...user,
+        stripeSubscriptionId: subscriptionId,
+        subscriptionStatus: 'incomplete'
+      };
+      this.users.set(userId, updatedUser);
+      return updatedUser;
+    }
+    return undefined;
+  }
+  
+  async updateUserMembership(userId: number, membershipTier: string): Promise<User | undefined> {
+    const user = this.users.get(userId);
+    if (user) {
+      const updatedUser = {
+        ...user,
+        membershipTier: membershipTier as "free" | "pro",
+        subscriptionStatus: membershipTier === 'pro' ? 'active' : 'inactive'
+      };
+      this.users.set(userId, updatedUser);
+      return updatedUser;
+    }
+    return undefined;
   }
   
   private initSampleData() {
@@ -1466,6 +1519,45 @@ export class DatabaseStorage implements IStorage {
       pool, 
       createTableIfMissing: true 
     });
+  }
+  
+  // Stripe related operations
+  async getUserByStripeCustomerId(customerId: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.stripeCustomerId, customerId));
+    return user;
+  }
+  
+  async updateStripeCustomerId(userId: number, customerId: string): Promise<User | undefined> {
+    const [user] = await db
+      .update(users)
+      .set({ stripeCustomerId: customerId })
+      .where(eq(users.id, userId))
+      .returning();
+    return user;
+  }
+  
+  async updateStripeSubscriptionId(userId: number, subscriptionId: string): Promise<User | undefined> {
+    const [user] = await db
+      .update(users)
+      .set({ 
+        stripeSubscriptionId: subscriptionId,
+        subscriptionStatus: 'incomplete'
+      })
+      .where(eq(users.id, userId))
+      .returning();
+    return user;
+  }
+  
+  async updateUserMembership(userId: number, membershipTier: string): Promise<User | undefined> {
+    const [user] = await db
+      .update(users)
+      .set({ 
+        membershipTier: membershipTier as "free" | "pro",
+        subscriptionStatus: membershipTier === 'pro' ? 'active' : 'inactive'
+      })
+      .where(eq(users.id, userId))
+      .returning();
+    return user;
   }
 
   // User operations
