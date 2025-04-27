@@ -23,7 +23,7 @@ import {
   type Video
 } from "@shared/schema";
 import { z } from "zod";
-import { getYouTubeVideos, getYouTubeVideoDetails } from "./youtube";
+import { getYouTubeVideos, getYouTubeVideoDetails, handleYouTubeSync } from "./youtube";
 
 // Initialize Stripe
 if (!process.env.STRIPE_SECRET_KEY) {
