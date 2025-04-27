@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Route, Redirect } from 'wouter';
+import { Route, Redirect, Link } from 'wouter';
 import { useAuth } from '@/hooks/use-auth';
 import { useToast } from '@/hooks/use-toast';
 import ArticleUploader from '@/components/admin/ArticleUploader';
@@ -16,7 +16,9 @@ import {
   Settings,
   Github,
   RefreshCw,
-  CheckCircle2
+  CheckCircle2,
+  Youtube,
+  ExternalLink
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
@@ -24,7 +26,7 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 import { apiRequest, queryClient } from '@/lib/queryClient';
 import { Article } from '@shared/schema';
 
-type TabType = 'articles' | 'users' | 'chat' | 'content' | 'settings' | 'deployment';
+type TabType = 'articles' | 'users' | 'chat' | 'content' | 'settings' | 'deployment' | 'youtube';
 
 export default function AdminDashboard() {
   const { user, isLoading } = useAuth();
@@ -107,6 +109,10 @@ export default function AdminDashboard() {
           <TabsTrigger value="deployment" className="flex items-center gap-1.5">
             <Github size={16} />
             <span>Deployment</span>
+          </TabsTrigger>
+          <TabsTrigger value="youtube" className="flex items-center gap-1.5">
+            <Youtube size={16} />
+            <span>YouTube</span>
           </TabsTrigger>
           <TabsTrigger value="settings" className="flex items-center gap-1.5">
             <Settings size={16} />
@@ -240,6 +246,88 @@ export default function AdminDashboard() {
                   <CheckCircle2 className="h-5 w-5" />
                   <span>Webhook is active and configured correctly</span>
                 </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+        
+        <TabsContent value="youtube">
+          <Card>
+            <CardHeader>
+              <CardTitle>YouTube Management</CardTitle>
+              <CardDescription>
+                Manage YouTube videos and synchronization with the S3vn Studies YouTube channel.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="flex items-center gap-2 p-4 bg-red-50 text-red-700 rounded-md">
+                <Youtube className="h-5 w-5 flex-shrink-0" />
+                <p>Connected to <strong>@s3vnstudies</strong> YouTube channel</p>
+              </div>
+              
+              <div>
+                <h3 className="text-lg font-medium mb-2">Manual Synchronization</h3>
+                <p className="text-muted-foreground mb-4">
+                  Trigger a manual sync to pull the latest videos from your YouTube channel.
+                </p>
+                <Button 
+                  onClick={() => {
+                    fetch('/api/youtube/sync', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({ channelId: '@s3vnstudies', maxResults: 50 }),
+                    })
+                    .then(response => {
+                      if (!response.ok) throw new Error('Failed to sync YouTube videos');
+                      return response.json();
+                    })
+                    .then(() => {
+                      toast({
+                        title: "Success",
+                        description: "YouTube videos successfully synchronized",
+                      });
+                      queryClient.invalidateQueries({ queryKey: ['/api/youtube/videos'] });
+                    })
+                    .catch(error => {
+                      toast({
+                        title: "Error",
+                        description: error.message || "Failed to sync videos",
+                        variant: "destructive",
+                      });
+                    });
+                  }}
+                  className="flex items-center gap-2"
+                >
+                  <RefreshCw className="h-4 w-4" />
+                  <span>Sync YouTube Videos</span>
+                </Button>
+              </div>
+
+              <div className="border-t pt-6">
+                <h3 className="text-lg font-medium mb-2">Automatic Synchronization</h3>
+                <p className="text-muted-foreground">
+                  The site is configured to automatically sync new videos from your YouTube channel once a day.
+                  You can also trigger a manual sync using the button above.
+                </p>
+                <div className="mt-2 flex items-center gap-2 text-green-600">
+                  <CheckCircle2 className="h-5 w-5" />
+                  <span>Daily synchronization is active</span>
+                </div>
+              </div>
+              
+              <div className="border-t pt-6">
+                <h3 className="text-lg font-medium mb-2">Video Management</h3>
+                <p className="text-muted-foreground mb-4">
+                  View and manage videos synchronized from your YouTube channel.
+                </p>
+                <Button asChild>
+                  <Link href="/videos" target="_blank">
+                    <ExternalLink className="h-4 w-4 mr-2" />
+                    View Videos Page
+                  </Link>
+                </Button>
               </div>
             </CardContent>
           </Card>
