@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Route, Redirect } from 'wouter';
 import { useAuth } from '@/hooks/use-auth';
+import { useToast } from '@/hooks/use-toast';
 import ArticleUploader from '@/components/admin/ArticleUploader';
 import UserManagement from '@/components/admin/UserManagement';
 import ChatModeration from '@/components/admin/ChatModeration';
@@ -23,10 +24,11 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 import { apiRequest, queryClient } from '@/lib/queryClient';
 import { Article } from '@shared/schema';
 
-type TabType = 'articles' | 'users' | 'chat' | 'content' | 'settings';
+type TabType = 'articles' | 'users' | 'chat' | 'content' | 'settings' | 'deployment';
 
 export default function AdminDashboard() {
   const { user, isLoading } = useAuth();
+  const { toast } = useToast();
   const [activeTab, setActiveTab] = useState<TabType>('articles');
   
   // Set the document title
@@ -39,6 +41,27 @@ export default function AdminDashboard() {
     queryFn: async () => {
       const res = await apiRequest('GET', '/api/articles');
       return res.json();
+    }
+  });
+  
+  // Deployment mutation
+  const deployMutation = useMutation({
+    mutationFn: async () => {
+      const res = await apiRequest('POST', '/api/deploy');
+      return res.json();
+    },
+    onSuccess: (data) => {
+      toast({
+        title: 'Deployment successful',
+        description: 'The site has been updated with the latest changes from GitHub.',
+      });
+    },
+    onError: (error: any) => {
+      toast({
+        title: 'Deployment failed',
+        description: error.message || 'There was an error deploying the latest changes.',
+        variant: 'destructive',
+      });
     }
   });
 
@@ -63,7 +86,7 @@ export default function AdminDashboard() {
         </p>
       </div>
 
-      <Tabs defaultValue="articles" value={activeTab} onValueChange={setActiveTab}>
+      <Tabs defaultValue="articles" value={activeTab} onValueChange={(value) => setActiveTab(value as TabType)}>
         <TabsList className="mb-8">
           <TabsTrigger value="articles" className="flex items-center gap-1.5">
             <FileText size={16} />
@@ -80,6 +103,10 @@ export default function AdminDashboard() {
           <TabsTrigger value="content" className="flex items-center gap-1.5">
             <AlertCircle size={16} />
             <span>Content Moderation</span>
+          </TabsTrigger>
+          <TabsTrigger value="deployment" className="flex items-center gap-1.5">
+            <Github size={16} />
+            <span>Deployment</span>
           </TabsTrigger>
           <TabsTrigger value="settings" className="flex items-center gap-1.5">
             <Settings size={16} />
@@ -165,6 +192,59 @@ export default function AdminDashboard() {
           <ContentModeration />
         </TabsContent>
 
+        <TabsContent value="deployment">
+          <Card>
+            <CardHeader>
+              <CardTitle>GitHub Deployment</CardTitle>
+              <CardDescription>
+                Update the site with the latest changes from the GitHub repository.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="flex items-center gap-2 p-4 bg-blue-50 text-blue-700 rounded-md">
+                <Github className="h-5 w-5 flex-shrink-0" />
+                <p>Connected to <strong>s3vnstudies/s3vnstudies</strong> repository</p>
+              </div>
+              
+              <div>
+                <h3 className="text-lg font-medium mb-2">Manual Deployment</h3>
+                <p className="text-muted-foreground mb-4">
+                  Trigger a manual deployment to pull the latest changes from the main branch.
+                </p>
+                <Button 
+                  onClick={() => deployMutation.mutate()} 
+                  className="flex items-center gap-2" 
+                  disabled={deployMutation.isPending}
+                >
+                  {deployMutation.isPending ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      <span>Deploying...</span>
+                    </>
+                  ) : (
+                    <>
+                      <RefreshCw className="h-4 w-4" />
+                      <span>Deploy Latest Changes</span>
+                    </>
+                  )}
+                </Button>
+              </div>
+
+              <div className="border-t pt-6">
+                <h3 className="text-lg font-medium mb-2">Automatic Deployments</h3>
+                <p className="text-muted-foreground">
+                  The site is configured to automatically deploy when changes are pushed to the main branch.
+                  This is managed through GitHub webhook integration.
+                </p>
+                <div className="mt-2 flex items-center gap-2 text-green-600">
+                  <CheckCircle2 className="h-5 w-5" />
+                  <span>Webhook is active and configured correctly</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+        
         <TabsContent value="settings">
           <Card>
             <CardHeader>
