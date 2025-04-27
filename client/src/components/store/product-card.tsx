@@ -44,7 +44,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       </Link>
       <CardContent className="p-5">
         <h3 className="font-bold text-lg mb-2 font-poppins">{product.name}</h3>
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-2">
           <span className="text-neutral-900 font-bold">
             {formatPrice(product.price)}
           </span>
@@ -58,6 +58,9 @@ export default function ProductCard({ product }: ProductCardProps) {
               ({Math.floor(Math.random() * 50) + 10})
             </span>
           </div>
+        </div>
+        <div className="text-xs text-neutral-500 mb-2">
+          By: {product.creator || "S3vn Studies"}
         </div>
         <div className="flex space-x-2 mb-4">
           <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-black"></span>

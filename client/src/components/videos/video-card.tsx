@@ -141,6 +141,9 @@ export default function VideoCard({ video, showLockIcon = true }: VideoCardProps
             {video.membershipRequired === "free" ? "Free" : video.membershipRequired}
           </Badge>
         </div>
+        <div className="flex items-center text-xs text-neutral-500 mb-3">
+          <span>By: {video.author || "S3vn Studies"}</span>
+        </div>
         <p className="text-neutral-600 text-sm line-clamp-2">
           {video.description || "Watch this exciting video from S3vn Studies."}
         </p>

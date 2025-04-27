@@ -141,6 +141,9 @@ export default function ProductDetailPage() {
 
           <div>
             <h1 className="text-3xl font-bold font-poppins mb-2">{product.name}</h1>
+            <div className="text-sm text-neutral-600 mb-2">
+              By: {product.creator || "S3vn Studies"}
+            </div>
             <div className="flex items-center mb-4">
               <div className="flex text-yellow-400 mr-2">
                 <Star className="h-4 w-4 fill-current" />
