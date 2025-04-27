@@ -119,7 +119,7 @@ export default function ArticleDetailPage() {
             <Calendar className="h-4 w-4 mr-1" />
             <span>{formatDate(article.publishDate)}</span>
           </div>
-          <div className="text-neutral-600">By {article.author}</div>
+          <div className="text-neutral-600">By {article.author || "S3vn Studies"}</div>
           
           {article.membershipRequired !== "free" && (
             <Badge variant="outline" className="ml-auto flex items-center">

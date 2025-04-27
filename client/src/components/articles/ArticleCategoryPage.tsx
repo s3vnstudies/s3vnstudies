@@ -163,7 +163,7 @@ export default function ArticleCategoryPage({ category }: ArticleCategoryPagePro
                         </CardDescription>
                         <div className="flex items-center text-sm text-muted-foreground">
                           <User className="mr-1 h-4 w-4" />
-                          <span className="mr-4">{articles[0].author}</span>
+                          <span className="mr-4">{articles[0].author || "S3vn Studies"}</span>
                           <Calendar className="mr-1 h-4 w-4" />
                           <span>{formatDate(articles[0].publishDate)}</span>
                         </div>
@@ -237,8 +237,9 @@ export default function ArticleCategoryPage({ category }: ArticleCategoryPagePro
                     </CardContent>
                     <CardFooter className="border-t border-border pt-4">
                       <div className="flex w-full justify-between items-center">
-                        <div className="text-xs text-muted-foreground">
-                          {formatDate(article.publishDate)}
+                        <div className="flex flex-col text-xs text-muted-foreground">
+                          <div className="mb-1">By: {article.author || "S3vn Studies"}</div>
+                          <div>{formatDate(article.publishDate)}</div>
                         </div>
                         <Link href={`/articles/${article.id}`}>
                           <Button variant="ghost" size="sm" className="text-primary">
