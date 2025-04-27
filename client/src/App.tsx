@@ -35,6 +35,8 @@ import SubscriptionSuccess from "@/pages/subscribe-success";
 import { ProtectedRoute } from "./lib/protected-route";
 import { AuthProvider } from "./hooks/use-auth";
 import { CartProvider } from "./hooks/use-cart";
+import ConsentModal from "@/components/ads/ConsentModal";
+import { useAdConsent } from "@/hooks/use-ad-consent";
 
 // Routes that should not use the main layout
 const noLayoutRoutes = ['/auth'];
@@ -90,12 +92,21 @@ function AppRoutes() {
 }
 
 function App() {
+  // Use the consent hook to manage ad consent
+  const { isConsentModalOpen, grantConsent, denyConsent } = useAdConsent();
+
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <CartProvider>
           <AppRoutes />
           <Toaster />
+          {/* Ad consent modal */}
+          <ConsentModal 
+            isOpen={isConsentModalOpen}
+            onAccept={grantConsent}
+            onDecline={denyConsent}
+          />
         </CartProvider>
       </AuthProvider>
     </QueryClientProvider>
