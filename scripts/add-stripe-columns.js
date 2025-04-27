@@ -1,7 +1,8 @@
 /**
  * This script adds Stripe customer and subscription fields to the users table
  */
-const { Pool } = require("pg");
+import pg from 'pg';
+const { Pool } = pg;
 
 async function main() {
   try {

@@ -105,7 +105,7 @@ export default function SubscribePage() {
   useEffect(() => {
     if (user) {
       // Create subscription
-      fetch('/api/get-or-create-subscription', {
+      fetch('/api/subscription/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

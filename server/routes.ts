@@ -824,6 +824,44 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
   
+  // Stripe subscription endpoints
+  app.post('/api/subscription/create', requireAuth, getOrCreateSubscription);
+  
+  // Stripe webhook handler - raw body parser for signature verification
+  app.post('/api/webhook/stripe', 
+    express.raw({ type: 'application/json' }), 
+    (req, res, next) => {
+      if (req.body) {
+        // Keep the raw body for signature verification
+        (req as any).rawBody = req.body;
+        next();
+      } else {
+        res.status(400).json({ error: 'Empty body' });
+      }
+    }, 
+    handleStripeWebhook
+  );
+  
+  app.get('/api/pricing', (req, res) => {
+    // Return the subscription pricing information
+    res.json({
+      pro: {
+        name: 'Pro Membership',
+        price: 2.99,
+        currency: 'usd',
+        interval: 'month',
+        features: [
+          'Access to all premium articles',
+          'Access to all premium videos',
+          'Access to all premium chat rooms', 
+          'Enhanced profile features',
+          'Ability to share your own content',
+          'Priority support'
+        ]
+      }
+    });
+  });
+  
   app.post("/api/subscriptions", requireAuth, async (req, res) => {
     try {
       const userId = req.user?.id;
