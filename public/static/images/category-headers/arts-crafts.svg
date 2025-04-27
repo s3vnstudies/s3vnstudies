@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="300" viewBox="0 0 800 300">
+  <rect width="800" height="300" fill="#f43f5e" opacity="0.1" />
+  <rect x="0" y="0" width="800" height="300" fill="url(#dots)" opacity="0.3" />
+  <rect x="0" y="280" width="800" height="20" fill="#f43f5e" opacity="0.6" />
+  
+  <!-- Palette -->
+  <path d="M400 60 C320 60 270 130 270 180 C270 230 310 240 340 240 C370 240 380 220 400 220 C420 220 430 240 460 240 C490 240 530 230 530 180 C530 130 480 60 400 60 Z" fill="#fda4af" stroke="#f43f5e" stroke-width="2" />
+  
+  <!-- Color dots -->
+  <circle cx="330" cy="110" r="20" fill="#fed7aa" stroke="#f97316" stroke-width="2" />
+  <circle cx="350" cy="170" r="20" fill="#a7f3d0" stroke="#10b981" stroke-width="2" />
+  <circle cx="430" cy="100" r="20" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2" />
+  <circle cx="470" cy="160" r="20" fill="#ddd6fe" stroke="#8b5cf6" stroke-width="2" />
+  
+  <!-- Paintbrush -->
+  <rect x="380" y="130" width="10" height="100" rx="5" fill="#a16207" stroke="#78350f" stroke-width="1" transform="rotate(45, 385, 180)" />
+  <path d="M355 130 Q365 120 375 130 L400 155 Q390 165 380 155 Z" fill="#fef9c3" stroke="#ca8a04" stroke-width="1" transform="rotate(45, 385, 180)" />
+  
+  <!-- Craft Items -->
+  <g transform="translate(150, 100)">
+    <rect x="0" y="0" width="100" height="80" rx="5" fill="#f8fafc" stroke="#64748b" stroke-width="2" />
+    <rect x="10" y="10" width="80" height="60" fill="#ede9fe" stroke="#8b5cf6" stroke-width="1" />
+    <path d="M25 25 L50 15 L75 25 L75 55 L50 65 L25 55 Z" fill="#ddd6fe" stroke="#8b5cf6" stroke-width="1" />
+  </g>
+  
+  <g transform="translate(550, 100)">
+    <rect x="10" y="0" width="80" height="100" rx="2" fill="#fda4af" stroke="#f43f5e" stroke-width="2" />
+    <path d="M30 20 L70 20 M30 40 L70 40 M30 60 L70 60 M30 80 L70 80" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" />
+  </g>
+  
+  <defs>
+    <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="1" fill="#f43f5e" />
+    </pattern>
+  </defs>
+</svg>

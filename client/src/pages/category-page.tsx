@@ -4,13 +4,26 @@ import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/use-auth";
 import PageLayout from "@/components/layout/page-layout";
 import CategoryLandingPage from "@/components/articles/category-landing-page";
+import ArticleCategoryPage from "@/components/articles/ArticleCategoryPage";
+
+// List of new categories that should use the new ArticleCategoryPage component
+const NEW_CATEGORY_PAGES = [
+  "hobbies-collecting",
+  "arts-crafts",
+  "travel-leisure"
+];
 
 export default function CategoryPage() {
   const { user } = useAuth();
   const [match, params] = useRoute("/articles/category/:category");
   const category = match ? params.category : null;
 
-  // Fetch all articles in this category
+  // For new categories, use ArticleCategoryPage component directly
+  if (category && NEW_CATEGORY_PAGES.includes(category)) {
+    return <ArticleCategoryPage category={category} />;
+  }
+
+  // Fetch all articles in this category (for legacy categories)
   const { data: articles, isLoading } = useQuery<Article[]>({
     queryKey: ["/api/articles"],
     select: (data) => data.filter(article => article.category === category),
