@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { formatDistanceToNow, parseISO } from "date-fns"
+import { formatDistanceToNow, parseISO, format } from "date-fns"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -24,4 +24,12 @@ export function getInitials(name: string): string {
 export function formatRelativeTime(date: Date | string): string {
   const parsedDate = typeof date === 'string' ? parseISO(date) : date;
   return formatDistanceToNow(parsedDate, { addSuffix: true });
+}
+
+/**
+ * Formats a date to a readable format (e.g., "April 15, 2025")
+ */
+export function formatDate(date: Date | string): string {
+  const parsedDate = typeof date === 'string' ? parseISO(date) : date;
+  return format(parsedDate, 'MMMM d, yyyy');
 }

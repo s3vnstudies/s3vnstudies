@@ -25,6 +25,7 @@ import {
 import { z } from "zod";
 import { getYouTubeVideos, getYouTubeVideoDetails, handleYouTubeSync, syncYouTubeVideos } from "./youtube";
 import { getOrCreateSubscription, handleStripeWebhook } from "./stripe";
+import { renderAmpArticle, handleAmpConsent, handleAmpCorsRequest } from "./amp";
 
 // Initialize Stripe
 if (!process.env.STRIPE_SECRET_KEY) {
@@ -841,6 +842,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }, 
     handleStripeWebhook
   );
+  
+  // AMP Routes
+  app.get('/amp/articles/:id', renderAmpArticle);
+  app.get('/api/amp/consent', handleAmpConsent);
+  app.options('/api/amp/*', handleAmpCorsRequest);
+  app.post('/api/amp/*', handleAmpCorsRequest);
   
   app.get('/api/pricing', (req, res) => {
     // Return the subscription pricing information

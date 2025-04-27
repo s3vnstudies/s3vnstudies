@@ -1,71 +1,66 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
 
 interface AdSenseAdProps {
   adSlot: string;
-  adFormat?: "auto" | "rectangle" | "horizontal" | "vertical";
-  style?: React.CSSProperties;
+  adFormat?: 'auto' | 'horizontal' | 'vertical' | 'rectangle';
   className?: string;
   responsive?: boolean;
 }
 
 /**
- * AdSense Ad Component
+ * AdSense Advertisement Component
  * 
- * Use this component to display Google AdSense ads throughout the site.
- * You must have a valid AdSense account and have been approved by Google.
- * 
- * @param adSlot - The ad slot ID from your AdSense account
- * @param adFormat - Ad format (auto, rectangle, horizontal, vertical)
- * @param style - Additional CSS styles
- * @param className - CSS class names
- * @param responsive - Whether the ad should be responsive
+ * This component renders Google AdSense advertisements with proper
+ * initialization and responsive behavior.
  */
-export const AdSenseAd: React.FC<AdSenseAdProps> = ({
+const AdSenseAd: React.FC<AdSenseAdProps> = ({
   adSlot,
-  adFormat = "auto",
-  style = {},
-  className = "",
+  adFormat = 'auto',
+  className = '',
   responsive = true,
 }) => {
   const adRef = useRef<HTMLDivElement>(null);
+  const clientId = import.meta.env.VITE_ADSENSE_CLIENT_ID || 'ca-pub-XXXXXXXXXXXXXXXX';
   
   useEffect(() => {
+    // Skip in dev environment if no client ID is set
+    if (clientId === 'ca-pub-XXXXXXXXXXXXXXXX') {
+      if (adRef.current) {
+        adRef.current.innerHTML = '<div style="background-color: #f0f0f0; padding: 16px; text-align: center; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; border: 1px dashed #ccc; border-radius: 4px;">Advertisement Placeholder</div>';
+      }
+      return;
+    }
+    
     try {
-      // Add ad after component mounts
+      // Initialize ads when the component mounts
       if (window.adsbygoogle && adRef.current) {
-        // @ts-ignore
         (window.adsbygoogle = window.adsbygoogle || []).push({});
       }
     } catch (error) {
-      console.error("AdSense error:", error);
+      console.error('Error initializing AdSense ad:', error);
     }
-  }, [adSlot]);
-
-  const formatMap = {
-    auto: { height: 90, width: 728 },
-    rectangle: { height: 250, width: 300 },
-    horizontal: { height: 90, width: 728 },
-    vertical: { height: 600, width: 160 },
-  };
-
-  const { height, width } = formatMap[adFormat];
-
-  return (
-    <div ref={adRef} className={`adsense-container ${className}`} style={style}>
-      <ins
-        className="adsbygoogle"
-        style={{
-          display: "block",
-          height: responsive ? "auto" : height,
-          width: responsive ? "100%" : width,
-          ...style,
-        }}
-        data-ad-client={import.meta.env.VITE_ADSENSE_CLIENT_ID || "ca-pub-XXXXXXXXXXXXXXXX"}
-        data-ad-slot={adSlot}
-        data-ad-format={responsive ? "auto" : ""}
-        data-full-width-responsive={responsive ? "true" : "false"}
+  }, [clientId]);
+  
+  // Don't render real ads if we don't have a valid client ID
+  if (clientId === 'ca-pub-XXXXXXXXXXXXXXXX') {
+    return (
+      <div
+        ref={adRef}
+        className={`adsense-placeholder ${className}`}
       />
-    </div>
+    );
+  }
+  
+  return (
+    <ins
+      className={`adsbygoogle ${className}`}
+      style={{ display: 'block' }}
+      data-ad-client={clientId}
+      data-ad-slot={adSlot}
+      data-ad-format={adFormat}
+      {...(responsive ? { 'data-full-width-responsive': 'true' } : {})}
+      ref={adRef}
+    />
   );
 };
 
