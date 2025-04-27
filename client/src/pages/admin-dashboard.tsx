@@ -6,16 +6,33 @@ import UserManagement from '@/components/admin/UserManagement';
 import ChatModeration from '@/components/admin/ChatModeration';
 import ContentModeration from '@/components/admin/ContentModeration';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Loader2, Users, MessageSquare, AlertCircle, FileText, Settings } from 'lucide-react';
+import { 
+  Loader2, 
+  Users, 
+  MessageSquare, 
+  AlertCircle, 
+  FileText, 
+  Settings,
+  Github,
+  RefreshCw,
+  CheckCircle2
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { useQuery } from '@tanstack/react-query';
-import { apiRequest } from '@/lib/queryClient';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { useQuery, useMutation } from '@tanstack/react-query';
+import { apiRequest, queryClient } from '@/lib/queryClient';
 import { Article } from '@shared/schema';
+
+type TabType = 'articles' | 'users' | 'chat' | 'content' | 'settings';
 
 export default function AdminDashboard() {
   const { user, isLoading } = useAuth();
-  const [activeTab, setActiveTab] = useState('articles');
+  const [activeTab, setActiveTab] = useState<TabType>('articles');
+  
+  // Set the document title
+  useEffect(() => {
+    document.title = "Admin Dashboard - S3vn Studies";
+  }, []);
 
   const { data: articles, isLoading: isLoadingArticles } = useQuery<Article[]>({
     queryKey: ['/api/articles'],

@@ -75,7 +75,7 @@ function AppRoutes() {
       <Route path="/policies" component={PoliciesPage} />
       <Route path="/membership" component={MembershipPage} />
       <Route path="/ai-assistant" component={AiAssistantPage} />
-      <ProtectedRoute path="/admin" component={() => <AdminPage />} adminOnly={true} />
+      <ProtectedRoute path="/admin" component={() => <AdminDashboard />} adminOnly={true} />
       <ProtectedRoute path="/admin/dashboard" component={() => <AdminDashboard />} adminOnly={true} />
       <Route component={NotFound} />
     </Switch>
