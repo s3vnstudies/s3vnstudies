@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f9a825" />
+      <stop offset="50%" stop-color="#ffd54f" />
+      <stop offset="100%" stop-color="#ff8f00" />
+    </linearGradient>
+    <radialGradient id="blue-glow" cx="0.5" cy="0.5" r="0.5" fx="0.5" fy="0.5">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#0288d1" stop-opacity="0.2" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <circle cx="50" cy="50" r="45" fill="#0a1929" opacity="0.9"/>
+  <circle cx="50" cy="50" r="35" fill="#1a2e45" opacity="0.7"/>
+  
+  <!-- Beach scene with S3vn colors -->
+  <path d="M20 70 L80 70" stroke="#0288d1" stroke-width="2"/>
+  <path d="M30 70 Q50 40 70 70" fill="none" stroke="#00e5ff" stroke-width="2"/>
+  <circle cx="65" cy="30" r="10" fill="url(#gold-gradient)" stroke="#ffd54f" stroke-width="1"/>
+  
+  <!-- S3vn brand elements -->
+  <circle cx="30" cy="25" r="4" fill="#00e5ff"/>
+  <circle cx="70" cy="25" r="4" fill="#00e5ff"/>
+  <circle cx="50" cy="15" r="6" fill="#ffd54f"/>
+</svg>

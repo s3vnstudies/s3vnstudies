@@ -26,35 +26,35 @@ import PageLayout from "@/components/layout/page-layout";
 import AdLayout from "@/components/ads/AdLayout";
 import useAdConsent from "@/hooks/use-ad-consent";
 
-// Category information for UI display
+// Category information for UI display with S3vn brand colors
 const categoryInfo = {
   "hobbies-collecting": {
     title: "Hobbies & Collecting",
     description: "Explore interesting hobbies and collection ideas that can enrich your life and home",
-    headerImage: "/static/images/category-headers/hobbies-collecting.jpg",
-    color: "bg-amber-500",
+    headerImage: "/static/images/category-headers/hobbies-collecting.svg",
+    color: "bg-blue-600", // S3vn blue
     icon: "Trophy"
   },
   "arts-crafts": {
     title: "Arts & Crafts",
     description: "Creative hands-on projects for all ages and skill levels",
-    headerImage: "/static/images/category-headers/arts-crafts.jpg",
-    color: "bg-rose-500",
+    headerImage: "/static/images/category-headers/arts-crafts.svg",
+    color: "bg-blue-600", // S3vn blue
     icon: "Palette"
   },
   "travel-leisure": {
     title: "Travel & Leisure",
     description: "Tips and guides for making the most of your vacation and leisure time",
-    headerImage: "/static/images/category-headers/travel-leisure.jpg",
-    color: "bg-cyan-500",
+    headerImage: "/static/images/category-headers/travel-leisure.svg",
+    color: "bg-blue-600", // S3vn blue
     icon: "Palmtree"
   },
   // Fallback for other categories
   "default": {
     title: "Articles",
     description: "Explore our collection of informative articles",
-    headerImage: "/static/images/category-headers/default.jpg",
-    color: "bg-blue-500",
+    headerImage: "/static/images/category-headers/default.svg",
+    color: "bg-blue-600", // S3vn blue
     icon: "BookOpen"
   }
 };

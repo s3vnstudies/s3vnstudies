@@ -151,88 +151,143 @@ async function createSVGImages() {
   }
 }
 
-// Helper function to create collection-themed SVGs
+// Helper function to create collection-themed SVGs with S3vn brand colors
 function createCollectionSVG(type) {
-  let primaryColor = '#f59e0b'; // Amber
-  let secondaryColor = '#fbbf24';
+  // S3vn brand colors
+  let blueGlow = `<defs>
+    <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f9a825" />
+      <stop offset="50%" stop-color="#ffd54f" />
+      <stop offset="100%" stop-color="#ff8f00" />
+    </linearGradient>
+    <radialGradient id="blue-glow" cx="0.5" cy="0.5" r="0.5" fx="0.5" fy="0.5">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#0288d1" stop-opacity="0.2" />
+    </radialGradient>
+  </defs>`;
+  
   let icon = '';
   
   if (type.includes('stamp')) {
-    icon = '<rect x="20" y="20" width="60" height="45" rx="2" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>' +
-           '<rect x="30" y="30" width="40" height="25" rx="1" fill="#f1f5f9" stroke="#64748b" stroke-width="1" stroke-dasharray="2"/>';
+    icon = '<rect x="20" y="20" width="60" height="45" rx="2" fill="#0a1929" stroke="#00e5ff" stroke-width="2"/>' +
+           '<rect x="30" y="30" width="40" height="25" rx="1" fill="#1a2e45" stroke="#0288d1" stroke-width="1" stroke-dasharray="2"/>';
   } else if (type.includes('art')) {
-    icon = '<rect x="20" y="15" width="60" height="50" rx="1" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>' +
-           '<path d="M30 55 L50 25 L70 55 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/>';
+    icon = '<rect x="20" y="15" width="60" height="50" rx="1" fill="#0a1929" stroke="#00e5ff" stroke-width="2"/>' +
+           '<path d="M30 55 L50 25 L70 55 Z" fill="url(#gold-gradient)" stroke="#00e5ff" stroke-width="1"/>';
   } else if (type.includes('civil')) {
-    icon = '<path d="M30 30 L50 20 L70 30 L70 60 L50 70 L30 60 Z" fill="#94a3b8" stroke="#475569" stroke-width="2"/>';
+    icon = '<path d="M30 30 L50 20 L70 30 L70 60 L50 70 L30 60 Z" fill="#0a1929" stroke="#00e5ff" stroke-width="2"/>' +
+           '<path d="M40 35 L50 30 L60 35 L60 55 L50 60 L40 55 Z" fill="url(#gold-gradient)" stroke="#ffd54f" stroke-width="1"/>';
   } else if (type.includes('ebay')) {
-    icon = '<rect x="25" y="25" width="50" height="35" rx="2" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>' +
-           '<path d="M35 40 L45 40 M35 45 L65 45 M35 50 L55 50" stroke="#64748b" stroke-width="2" stroke-linecap="round"/>';
+    icon = '<rect x="25" y="25" width="50" height="35" rx="2" fill="#0a1929" stroke="#00e5ff" stroke-width="2"/>' +
+           '<path d="M35 40 L45 40 M35 45 L65 45 M35 50 L55 50" stroke="url(#gold-gradient)" stroke-width="2" stroke-linecap="round"/>';
   }
   
+  // S3vn brand decorative elements
+  let brandElements = '<circle cx="30" cy="25" r="4" fill="#00e5ff"/>' +
+                     '<circle cx="70" cy="25" r="4" fill="#00e5ff"/>' +
+                     '<circle cx="50" cy="15" r="6" fill="#ffd54f"/>';
+  
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-    <circle cx="50" cy="50" r="45" fill="${primaryColor}" opacity="0.2"/>
-    <circle cx="50" cy="50" r="35" fill="${secondaryColor}" opacity="0.3"/>
+    ${blueGlow}
+    <circle cx="50" cy="50" r="45" fill="#0a1929" opacity="0.9"/>
+    <circle cx="50" cy="50" r="35" fill="#1a2e45" opacity="0.7"/>
     ${icon}
+    ${brandElements}
   </svg>`;
 }
 
-// Helper function to create crafts-themed SVGs
+// Helper function to create crafts-themed SVGs with S3vn brand colors
 function createCraftsSVG(type) {
-  let primaryColor = '#f43f5e'; // Rose
-  let secondaryColor = '#fb7185';
+  // S3vn brand colors
+  let blueGlow = `<defs>
+    <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f9a825" />
+      <stop offset="50%" stop-color="#ffd54f" />
+      <stop offset="100%" stop-color="#ff8f00" />
+    </linearGradient>
+    <radialGradient id="blue-glow" cx="0.5" cy="0.5" r="0.5" fx="0.5" fy="0.5">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#0288d1" stop-opacity="0.2" />
+    </radialGradient>
+  </defs>`;
+  
   let icon = '';
   
   if (type.includes('foam')) {
-    icon = '<rect x="25" y="30" width="50" height="30" rx="15" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>' +
-           '<rect x="35" y="40" width="30" height="10" rx="5" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/>';
+    icon = '<rect x="25" y="30" width="50" height="30" rx="15" fill="#0a1929" stroke="#00e5ff" stroke-width="2"/>' +
+           '<rect x="35" y="40" width="30" height="10" rx="5" fill="#1a2e45" stroke="#0288d1" stroke-width="1"/>';
   } else if (type.includes('christmas')) {
-    icon = '<path d="M50 20 L60 40 L40 40 Z" fill="#10b981" stroke="#059669" stroke-width="2"/>' +
-           '<path d="M50 35 L65 55 L35 55 Z" fill="#10b981" stroke="#059669" stroke-width="2"/>' +
-           '<path d="M50 50 L70 70 L30 70 Z" fill="#10b981" stroke="#059669" stroke-width="2"/>' +
-           '<rect x="45" y="70" width="10" height="10" fill="#92400e" stroke="#78350f" stroke-width="1"/>';
+    icon = '<path d="M50 20 L60 40 L40 40 Z" fill="url(#gold-gradient)" stroke="#ffd54f" stroke-width="2"/>' +
+           '<path d="M50 35 L65 55 L35 55 Z" fill="url(#gold-gradient)" stroke="#ffd54f" stroke-width="2"/>' +
+           '<path d="M50 50 L70 70 L30 70 Z" fill="url(#gold-gradient)" stroke="#ffd54f" stroke-width="2"/>' +
+           '<rect x="45" y="70" width="10" height="10" fill="#0a1929" stroke="#00e5ff" stroke-width="1"/>';
   } else if (type.includes('clay')) {
-    icon = '<path d="M35 30 C35 30 35 60 35 65 C35 70 40 75 50 75 C60 75 65 70 65 65 C65 60 65 30 65 30 L35 30 Z" fill="#f97316" stroke="#ea580c" stroke-width="2"/>' +
-           '<path d="M35 30 C35 25 40 20 50 20 C60 20 65 25 65 30 L35 30 Z" fill="#f97316" stroke="#ea580c" stroke-width="2"/>';
+    icon = '<path d="M35 30 C35 30 35 60 35 65 C35 70 40 75 50 75 C60 75 65 70 65 65 C65 60 65 30 65 30 L35 30 Z" fill="#1a2e45" stroke="#00e5ff" stroke-width="2"/>' +
+           '<path d="M35 30 C35 25 40 20 50 20 C60 20 65 25 65 30 L35 30 Z" fill="#1a2e45" stroke="#00e5ff" stroke-width="2"/>';
   } else if (type.includes('kid')) {
-    icon = '<rect x="20" y="30" width="60" height="40" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>' +
-           '<path d="M30 40 L40 50 L30 60 M70 40 L60 50 L70 60" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
-           '<circle cx="50" cy="50" r="10" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/>';
+    icon = '<rect x="20" y="30" width="60" height="40" fill="#0a1929" stroke="#00e5ff" stroke-width="2"/>' +
+           '<path d="M30 40 L40 50 L30 60 M70 40 L60 50 L70 60" stroke="url(#gold-gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+           '<circle cx="50" cy="50" r="10" fill="url(#blue-glow)" stroke="#00e5ff" stroke-width="1"/>';
   } else if (type.includes('mural')) {
-    icon = '<rect x="20" y="25" width="60" height="45" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>' +
-           '<path d="M35 35 L45 45 M55 35 L65 45 M35 55 L45 65 M55 55 L65 65" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round"/>';
+    icon = '<rect x="20" y="25" width="60" height="45" fill="#0a1929" stroke="#00e5ff" stroke-width="2"/>' +
+           '<path d="M35 35 L45 45 M55 35 L65 45 M35 55 L45 65 M55 55 L65 65" stroke="url(#gold-gradient)" stroke-width="4" stroke-linecap="round"/>';
   } else if (type.includes('fabric')) {
-    icon = '<rect x="30" y="30" width="40" height="40" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>' +
-           '<path d="M30 30 L70 70 M30 70 L70 30" stroke="#cbd5e1" stroke-width="2"/>';
+    icon = '<rect x="30" y="30" width="40" height="40" fill="#0a1929" stroke="#00e5ff" stroke-width="2"/>' +
+           '<path d="M30 30 L70 70 M30 70 L70 30" stroke="url(#gold-gradient)" stroke-width="2"/>';
   }
   
+  // S3vn brand decorative elements
+  let brandElements = '<circle cx="30" cy="25" r="4" fill="#00e5ff"/>' +
+                     '<circle cx="70" cy="25" r="4" fill="#00e5ff"/>' +
+                     '<circle cx="50" cy="15" r="6" fill="#ffd54f"/>';
+  
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-    <circle cx="50" cy="50" r="45" fill="${primaryColor}" opacity="0.2"/>
-    <circle cx="50" cy="50" r="35" fill="${secondaryColor}" opacity="0.3"/>
+    ${blueGlow}
+    <circle cx="50" cy="50" r="45" fill="#0a1929" opacity="0.9"/>
+    <circle cx="50" cy="50" r="35" fill="#1a2e45" opacity="0.7"/>
     ${icon}
+    ${brandElements}
   </svg>`;
 }
 
-// Helper function to create travel-themed SVGs
+// Helper function to create travel-themed SVGs with S3vn brand colors
 function createTravelSVG(type) {
-  let primaryColor = '#06b6d4'; // Cyan
-  let secondaryColor = '#22d3ee';
+  // S3vn brand colors
+  let blueGlow = `<defs>
+    <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f9a825" />
+      <stop offset="50%" stop-color="#ffd54f" />
+      <stop offset="100%" stop-color="#ff8f00" />
+    </linearGradient>
+    <radialGradient id="blue-glow" cx="0.5" cy="0.5" r="0.5" fx="0.5" fy="0.5">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#0288d1" stop-opacity="0.2" />
+    </radialGradient>
+  </defs>`;
+  
   let icon = '';
   
   if (type.includes('beach')) {
-    icon = '<path d="M20 70 L80 70" stroke="#64748b" stroke-width="2"/>' +
-           '<path d="M30 70 Q50 40 70 70" fill="none" stroke="#64748b" stroke-width="2"/>' +
-           '<circle cx="65" cy="30" r="10" fill="#f59e0b" stroke="#d97706" stroke-width="1"/>';
+    icon = '<path d="M20 70 L80 70" stroke="#00e5ff" stroke-width="2"/>' +
+           '<path d="M30 70 Q50 40 70 70" fill="none" stroke="#00e5ff" stroke-width="2"/>' +
+           '<circle cx="65" cy="30" r="10" fill="url(#gold-gradient)" stroke="#ffd54f" stroke-width="1"/>';
   } else if (type.includes('cruise')) {
-    icon = '<path d="M20 60 L80 60" stroke="#64748b" stroke-width="2"/>' +
-           '<path d="M30 60 L30 40 L70 40 L70 60 Z" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>' +
-           '<path d="M40 40 L40 30 L60 30 L60 40" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>';
+    icon = '<path d="M20 60 L80 60" stroke="#00e5ff" stroke-width="2"/>' +
+           '<path d="M30 60 L30 40 L70 40 L70 60 Z" fill="#0a1929" stroke="#00e5ff" stroke-width="2"/>' +
+           '<path d="M40 40 L40 30 L60 30 L60 40" fill="#1a2e45" stroke="#0288d1" stroke-width="2"/>';
   }
   
+  // S3vn brand decorative elements
+  let brandElements = '<circle cx="30" cy="25" r="4" fill="#00e5ff"/>' +
+                     '<circle cx="70" cy="25" r="4" fill="#00e5ff"/>' +
+                     '<circle cx="50" cy="15" r="6" fill="#ffd54f"/>';
+  
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-    <circle cx="50" cy="50" r="45" fill="${primaryColor}" opacity="0.2"/>
-    <circle cx="50" cy="50" r="35" fill="${secondaryColor}" opacity="0.3"/>
+    ${blueGlow}
+    <circle cx="50" cy="50" r="45" fill="#0a1929" opacity="0.9"/>
+    <circle cx="50" cy="50" r="35" fill="#1a2e45" opacity="0.7"/>
     ${icon}
+    ${brandElements}
   </svg>`;
 }
 
