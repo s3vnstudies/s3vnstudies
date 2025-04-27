@@ -20,7 +20,7 @@ const DOMPurify = createDOMPurify(window);
 const upload = multer({
   storage: multer.diskStorage({
     destination: function (req, file, cb) {
-      const uploadDir = path.join(__dirname, '..', 'uploads');
+      const uploadDir = path.join(process.cwd(), 'uploads');
       if (!fs.existsSync(uploadDir)) {
         fs.mkdirSync(uploadDir, { recursive: true });
       }
@@ -64,7 +64,7 @@ export function setupAdmin(app: Express) {
       }
 
       const zipFilePath = req.file.path;
-      const extractPath = path.join(__dirname, '..', 'uploads', 'extracted-' + Date.now());
+      const extractPath = path.join(process.cwd(), 'uploads', 'extracted-' + Date.now());
       
       // Ensure the extract directory exists
       if (!fs.existsSync(extractPath)) {
