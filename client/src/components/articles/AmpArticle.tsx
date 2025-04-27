@@ -1,5 +1,5 @@
 import React from "react";
-import { Article } from "@shared/schema";
+import { type Article } from "@shared/schema";
 import { getAmpAttributes, getAmpTagName, generateAmpSchema } from "@/lib/amp-utils";
 import { formatDate } from "@/lib/utils";
 
@@ -18,12 +18,12 @@ export const AmpArticle: React.FC<AmpArticleProps> = ({ article }) => {
   const articleSchema = generateAmpSchema("Article", {
     headline: article.title,
     description: article.excerpt || "",
-    image: article.coverImage || "",
-    datePublished: article.publishedAt?.toISOString() || new Date().toISOString(),
-    dateModified: article.updatedAt?.toISOString() || new Date().toISOString(),
+    image: article.thumbnail || "",
+    datePublished: article.publishDate.toISOString(),
+    dateModified: article.publishDate.toISOString(),
     author: {
       "@type": "Person",
-      name: article.authorName || "S3vn Studies",
+      name: article.author || "S3vn Studies",
     },
     publisher: {
       "@type": "Organization",
@@ -105,10 +105,10 @@ export const AmpArticle: React.FC<AmpArticleProps> = ({ article }) => {
 
       <h1 className="text-3xl font-bold mb-3">{article.title}</h1>
 
-      {article.coverImage && (
+      {article.thumbnail && (
         <div className="mb-6">
           <amp-img
-            src={article.coverImage}
+            src={article.thumbnail}
             alt={article.title}
             width="1200"
             height="630"
@@ -119,10 +119,10 @@ export const AmpArticle: React.FC<AmpArticleProps> = ({ article }) => {
 
       <div className="flex items-center text-sm text-gray-600 mb-6">
         <span className="mr-4">
-          By {article.authorName || "S3vn Studies"}
+          By {article.author || "S3vn Studies"}
         </span>
         <span>
-          {formatDate(article.publishedAt || new Date())}
+          {formatDate(article.publishDate)}
         </span>
       </div>
 
@@ -145,36 +145,6 @@ export const AmpArticle: React.FC<AmpArticleProps> = ({ article }) => {
           __html: processContent(article.content),
         }}
       />
-
-      {/* AMP-compliant related articles, if available */}
-      {article.relatedArticles && article.relatedArticles.length > 0 && (
-        <div className="mt-12">
-          <h2 className="text-2xl font-bold mb-6">Related Articles</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {article.relatedArticles.map((related) => (
-              <div key={related.id} className="border rounded-lg overflow-hidden">
-                {related.coverImage && (
-                  <amp-img
-                    src={related.coverImage}
-                    alt={related.title}
-                    width="400"
-                    height="225"
-                    layout="responsive"
-                  />
-                )}
-                <div className="p-4">
-                  <h3 className="text-xl font-semibold mb-2">
-                    <a href={`/articles/${related.id}`}>{related.title}</a>
-                  </h3>
-                  <p className="text-gray-600 line-clamp-2">
-                    {related.excerpt}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
 
       {/* AMP-compliant ads */}
       <div className="my-6">

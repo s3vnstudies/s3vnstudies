@@ -120,12 +120,12 @@ export async function renderAmpArticle(req: Request, res: Response) {
               "@context": "https://schema.org",
               "@type": "Article",
               "headline": "${article.title}",
-              "image": "${article.coverImage || ''}",
-              "datePublished": "${article.publishedAt?.toISOString() || new Date().toISOString()}",
-              "dateModified": "${article.updatedAt?.toISOString() || new Date().toISOString()}",
+              "image": "${article.thumbnail || ''}",
+              "datePublished": "${article.publishDate.toISOString()}",
+              "dateModified": "${article.publishDate.toISOString()}",
               "author": {
                 "@type": "Person",
-                "name": "${article.authorName || 'S3vn Studies'}"
+                "name": "${article.author || 'S3vn Studies'}"
               },
               "publisher": {
                 "@type": "Organization",
@@ -193,15 +193,15 @@ export async function renderAmpArticle(req: Request, res: Response) {
             <h1>${article.title}</h1>
             
             <div class="article-meta">
-              <span>By ${article.authorName || 'S3vn Studies'}</span>
+              <span>By ${article.author || 'S3vn Studies'}</span>
               <span> • </span>
-              <span>${new Date(article.publishedAt || new Date()).toLocaleDateString()}</span>
+              <span>${new Date(article.publishDate).toLocaleDateString()}</span>
             </div>
             
             ${article.category ? `<div class="article-category">${article.category}</div>` : ''}
             
-            ${article.coverImage ? 
-              `<amp-img src="${article.coverImage}" alt="${article.title}" width="1200" height="630" layout="responsive"></amp-img>` 
+            ${article.thumbnail ? 
+              `<amp-img src="${article.thumbnail}" alt="${article.title}" width="1200" height="630" layout="responsive"></amp-img>` 
               : ''
             }
             
@@ -223,20 +223,6 @@ export async function renderAmpArticle(req: Request, res: Response) {
             
             <div class="article-footer">
               <p>Thanks for reading! Follow us for more content.</p>
-              
-              <!-- Related Articles, if available -->
-              ${article.relatedArticles && article.relatedArticles.length > 0 ? 
-                `<div class="related-articles">
-                  <h2>Related Articles</h2>
-                  ${article.relatedArticles.map(related => `
-                    <div class="related-article">
-                      <h3><a href="/articles/${related.id}">${related.title}</a></h3>
-                      <p>${related.excerpt || ''}</p>
-                    </div>
-                  `).join('')}
-                </div>`
-                : ''
-              }
             </div>
           </div>
           
