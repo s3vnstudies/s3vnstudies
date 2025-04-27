@@ -1,7 +1,7 @@
-import postgres from "postgres";
+const postgres = require('postgres');
 
 // Create a PostgreSQL connection
-const connectionString = process.env.DATABASE_URL!;
+const connectionString = process.env.DATABASE_URL;
 const sql = postgres(connectionString, { max: 1 });
 
 async function main() {
