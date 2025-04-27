@@ -34,7 +34,7 @@ const CATEGORY_MAPPING = {
   },
   'collecting-ebay-selling.txt': {
     category: 'hobbies-collecting',
-    title: 'If You're Collecting, Ebay Selling is for You!',
+    title: 'If You\'re Collecting, Ebay Selling is for You!',
     excerpt: 'Discover how eBay can enhance your collecting hobby while also helping you sell duplicates.',
     image: '/static/images/articles/ebay-collecting.svg'
   },
