@@ -45,13 +45,23 @@ function verifySignature(req: Request): boolean {
     return false;
   }
 
+  // For signature verification to work, you need to use the raw body
+  // which should be attached to the request by express.json middleware with verify option
   const hmac = crypto.createHmac('sha256', GITHUB_WEBHOOK_SECRET);
-  const digest = 'sha256=' + hmac.update(JSON.stringify(req.body)).digest('hex');
   
-  return crypto.timingSafeEqual(
-    Buffer.from(digest),
-    Buffer.from(signature)
-  );
+  // Use the raw body if available or fallback to JSON stringify
+  const rawBody = (req as any).rawBody || Buffer.from(JSON.stringify(req.body));
+  const digest = 'sha256=' + hmac.update(rawBody).digest('hex');
+  
+  try {
+    return crypto.timingSafeEqual(
+      Buffer.from(digest),
+      Buffer.from(signature)
+    );
+  } catch (err) {
+    console.error('Error verifying signature:', err);
+    return false;
+  }
 }
 
 /**

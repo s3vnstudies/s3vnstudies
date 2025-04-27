@@ -6,6 +6,7 @@ import { setupAuth } from "./auth";
 import { setupWebsockets } from "./websocket";
 import { setupAdmin } from "./admin";
 import { createTalkRequest, getTalkStatus, getAvailablePresenters, getAvailableVoices } from "./did-ai";
+import { handleWebhook, handleManualDeploy, getDeploymentStatus } from "./github-webhook";
 import path from "path";
 import Stripe from "stripe";
 import { 
@@ -95,6 +96,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.use('/images', express.static(path.join(process.cwd(), 'public/images')));
   app.use('/courses', express.static(path.join(process.cwd(), 'public/courses')));
   app.use('/assets', express.static(path.join(process.cwd(), 'public/assets')));
+  
+  // GitHub Webhook - Raw body parser for signature verification
+  app.post('/api/webhook/github', express.raw({ type: 'application/json' }), (req, res, next) => {
+    // Convert buffer to string and parse as JSON
+    if (req.body) {
+      const rawBody = req.body;
+      try {
+        req.body = JSON.parse(rawBody.toString('utf8'));
+        (req as any).rawBody = rawBody; // Keep the raw body for signature verification
+        next();
+      } catch (err) {
+        res.status(400).json({ error: 'Invalid JSON' });
+      }
+    } else {
+      res.status(400).json({ error: 'Empty body' });
+    }
+  }, handleWebhook);
+  
+  // Deployment Routes
+  app.post('/api/deploy', requireAdmin, handleManualDeploy);
+  app.get('/api/deploy/status', requireAdmin, getDeploymentStatus);
   
   // API ROUTES
   
