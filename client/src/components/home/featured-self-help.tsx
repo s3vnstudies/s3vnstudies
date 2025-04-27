@@ -78,9 +78,12 @@ export default function FeaturedSelfHelp() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="flex-grow">
-                <p className="text-sm text-muted-foreground line-clamp-3">
+                <p className="text-sm text-muted-foreground line-clamp-3 mb-2">
                   {article.excerpt}
                 </p>
+                <div className="text-xs text-muted-foreground">
+                  By {article.author || "S3vn Studies"}
+                </div>
               </CardContent>
               <CardFooter className="flex-none">
                 <Button 

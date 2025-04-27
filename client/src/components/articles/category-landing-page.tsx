@@ -80,9 +80,12 @@ export default function CategoryLandingPage({ category, title, description, imag
           </p>
           
           <div className="flex justify-between items-center mt-3">
-            <Badge variant="outline" className="text-xs">
-              {article.membershipRequired === 'free' ? 'Free' : 'Premium'}
-            </Badge>
+            <div className="flex flex-col">
+              <Badge variant="outline" className="text-xs mb-1">
+                {article.membershipRequired === 'free' ? 'Free' : 'Premium'}
+              </Badge>
+              <span className="text-xs text-muted-foreground">By {article.author || "S3vn Studies"}</span>
+            </div>
             <div className="text-primary flex items-center text-xs font-medium">
               Read more <ArrowRight className="ml-1 h-3 w-3" />
             </div>

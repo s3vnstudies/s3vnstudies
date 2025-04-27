@@ -136,7 +136,7 @@ export const articles = pgTable("articles", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
   content: text("content").notNull(),
-  author: text("author").notNull(),
+  author: text("author").default("S3vn Studies").notNull(),
   thumbnail: text("thumbnail"),
   images: text("images").array(),
   excerpt: text("excerpt").notNull(),
