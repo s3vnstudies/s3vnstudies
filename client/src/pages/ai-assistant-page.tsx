@@ -6,19 +6,17 @@ import { InfoIcon } from "lucide-react";
 
 export default function AiAssistantPage() {
   // Set page title
-  // State to track D-ID agent loading status
-  const [didAgentStatus, setDidAgentStatus] = useState<"loading" | "success" | "error">("loading");
+  // State to track D-ID agent loading status - disabled by default
+  const [didAgentStatus, setDidAgentStatus] = useState<"loading" | "success" | "error">("error");
   
   useEffect(() => {
     document.title = "S3vn Studies - AI Assistant";
     
-    // We're temporarily disabling the D-ID agent integration
-    // due to connection issues until we get the proper API key
-    setDidAgentStatus("error");
+    // We're permanently disabling the D-ID agent integration in this component
+    // to prevent WebSocket and DOMException errors
+    // If needed later, we can re-enable with proper error handling
     
-    // This is the original D-ID Agent loading code, kept for reference
-    // but commented out to prevent further errors
-    /*
+    /* Previous implementation:
     const loadDidAgent = () => {
       try {
         // Check if the script is already loaded

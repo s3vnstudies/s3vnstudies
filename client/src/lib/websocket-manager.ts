@@ -31,10 +31,20 @@ class WebSocketManager {
     try {
       // Get the current window location
       const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-      // Always use host which includes hostname and port automatically
+      // Use the current host (hostname:port) to ensure the connection is made to the right server
+      // Current window.location.host looks like: 4343a48d-cfcf-4da5-8802-39d3db73a15a-00-qhevoi3duwbd.janeway.replit.dev
       const wsUrl = `${protocol}//${window.location.host}${path}`;
       
       console.log(`WebSocketManager: Creating new WebSocket connection to ${wsUrl}`);
+      
+      // Explicitly check URL validity to prevent DOMException
+      try {
+        // Test URL constructor to validate before creating the WebSocket
+        new URL(wsUrl);
+      } catch (urlError) {
+        console.error(`WebSocketManager: Invalid WebSocket URL: ${wsUrl}`, urlError);
+        return null;
+      }
       
       const socket = new WebSocket(wsUrl);
       
