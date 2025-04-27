@@ -38,6 +38,7 @@ export default function Header() {
     { name: "Videos", href: "/videos" },
     { name: "Store", href: "/store" },
     { name: "Community", href: "/community" },
+    { name: "Pro Membership", href: "/subscribe" },
   ];
 
   const handleLogout = () => {

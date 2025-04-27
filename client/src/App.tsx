@@ -30,6 +30,8 @@ import MembershipPage from "@/pages/membership-page";
 import AiAssistantPage from "@/pages/ai-assistant-page";
 import AdminPage from "@/pages/admin-page";
 import AdminDashboard from "@/pages/admin-dashboard";
+import SubscribePage from "@/pages/subscribe-page";
+import SubscriptionSuccess from "@/pages/subscribe-success";
 import { ProtectedRoute } from "./lib/protected-route";
 import { AuthProvider } from "./hooks/use-auth";
 import { CartProvider } from "./hooks/use-cart";
@@ -75,6 +77,8 @@ function AppRoutes() {
       <Route path="/policies" component={PoliciesPage} />
       <Route path="/membership" component={MembershipPage} />
       <Route path="/ai-assistant" component={AiAssistantPage} />
+      <ProtectedRoute path="/subscribe" component={() => <SubscribePage />} />
+      <ProtectedRoute path="/subscribe-success" component={() => <SubscriptionSuccess />} />
       <ProtectedRoute path="/admin" component={() => <AdminDashboard />} adminOnly={true} />
       <ProtectedRoute path="/admin/dashboard" component={() => <AdminDashboard />} adminOnly={true} />
       <Route component={NotFound} />
