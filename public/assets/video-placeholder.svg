@@ -1,0 +1,6 @@
+<svg width="640" height="360" viewBox="0 0 640 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="360" fill="#121212"/>
+  <path d="M320 180C342.091 180 360 162.091 360 140C360 117.909 342.091 100 320 100C297.909 100 280 117.909 280 140C280 162.091 297.909 180 320 180Z" fill="#4a90e2"/>
+  <path d="M320 200C275.82 200 240 235.82 240 280H400C400 235.82 364.18 200 320 200Z" fill="#4a90e2"/>
+  <text x="320" y="320" fill="#FFFFFF" font-family="Arial" font-size="24" text-anchor="middle">S3vn Studies Video</text>
+</svg>
