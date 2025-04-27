@@ -1084,7 +1084,8 @@ export class MemStorage implements IStorage {
       category: productData.category,
       imageUrl: productData.imageUrl || null,
       inStock: productData.inStock !== undefined ? productData.inStock : true,
-      isFeatured: productData.isFeatured !== undefined ? productData.isFeatured : false
+      isFeatured: productData.isFeatured !== undefined ? productData.isFeatured : false,
+      creator: productData.creator || "S3vn Studies"
     };
     
     this.products.set(id, product);
@@ -1308,6 +1309,7 @@ export class MemStorage implements IStorage {
       featured: videoData.featured || false,
       views: videoData.views || 0,
       source: videoData.source || "internal",
+      author: videoData.author || "S3vn Studies",
       publishDate: now
     };
     

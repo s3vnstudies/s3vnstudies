@@ -165,6 +165,7 @@ export const products = pgTable("products", {
   category: text("category").notNull(),
   inStock: boolean("in_stock").default(true).notNull(),
   isFeatured: boolean("is_featured").default(false).notNull(),
+  creator: text("creator").default("S3vn Studies").notNull(), // Creator/owner of the product
 });
 
 export const insertProductSchema = createInsertSchema(products).pick({
@@ -175,6 +176,7 @@ export const insertProductSchema = createInsertSchema(products).pick({
   category: true,
   inStock: true,
   isFeatured: true,
+  creator: true,
 });
 
 export const orders = pgTable("orders", {
@@ -288,6 +290,7 @@ export const videos = pgTable("videos", {
   views: integer("views").default(0),
   externalId: text("external_id"),  // YouTube video ID or other external ID
   source: text("source").default("internal").notNull(),  // 'youtube' or 'internal'
+  author: text("author").default("S3vn Studies").notNull(), // Owner/author of the video
 });
 
 export const insertVideoSchema = createInsertSchema(videos).pick({
@@ -304,6 +307,7 @@ export const insertVideoSchema = createInsertSchema(videos).pick({
   views: true,
   externalId: true,
   source: true,
+  author: true,
 });
 
 // User favorites for videos
