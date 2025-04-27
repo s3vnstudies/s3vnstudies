@@ -27,8 +27,12 @@ export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   getUserByEmail(email: string): Promise<User | undefined>;
+  getUserByStripeCustomerId(customerId: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
   updateUser(id: number, userData: Partial<User>): Promise<User | undefined>;
+  updateStripeCustomerId(userId: number, customerId: string): Promise<User | undefined>;
+  updateStripeSubscriptionId(userId: number, subscriptionId: string): Promise<User | undefined>;
+  updateUserMembership(userId: number, membershipTier: string): Promise<User | undefined>;
   
   // Article operations
   getArticles(limit?: number, offset?: number): Promise<Article[]>;

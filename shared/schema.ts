@@ -30,6 +30,10 @@ export const users = pgTable("users", {
   socialLinks: jsonb("social_links"), // JSON object for social media links
   coverImageUrl: text("cover_image_url"),
   lastLogin: timestamp("last_login"),
+  // Stripe payment fields
+  stripeCustomerId: text("stripe_customer_id"),
+  stripeSubscriptionId: text("stripe_subscription_id"),
+  subscriptionStatus: text("subscription_status"),
   // Moderation fields
   accountStatus: accountStatusEnum("account_status").default("active").notNull(),
   moderationReason: moderationReasonEnum("moderation_reason"),
